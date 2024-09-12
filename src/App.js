@@ -1,13 +1,14 @@
 import './App.css';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom' ;
 import Layout from '../src/Components/Layout'
-import Home from './pages/Home'
+import Home from './pages/Home/Home'
 import { NotFound } from './pages/NotFound';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import OTPVer from './Components/OTPVer/OTPVer';
 import ResetNewPass from './Components/ResetNewPass/ResetNewPass';
+import ECPC from './pages/ECPC/ECPC';
 
 
 let routers = createBrowserRouter([
@@ -15,6 +16,7 @@ let routers = createBrowserRouter([
     {index:true , element:<Home/>},
     {path:"login" , element:<Login/>},
     {path:"signup" , element:<SignUp/>},
+    {path:"ecpc" , element:<ECPC/>},
 
     {path:'*',element:<NotFound/>},
   ]},

@@ -20,7 +20,7 @@ const OurEcpc = () => {
                             porttitor sit ut non adipiscing nibh. Augue neque sapien nisi etiam.
                         </p>
                     </div>
-                    <div data-aos="fade-left" className="col-md-6 mt-3">
+                    <div  className="col-md-6 mt-3">
                         <img className='rounded-3xl' src={ecpcImg} alt="icpc hti community in ecpc" />
                     </div>
                 </div>
@@ -28,8 +28,8 @@ const OurEcpc = () => {
 
             <div className="booking">
                 <div className="row">
-                    <div className="col-md-4 ">
-                        <div  data-aos="fade-up" data-aos-duration="3000" className="card1 bg-gray-200 p-4 border-none rounded-3xl shadow-2xl hover:shadow-sm">
+                    <div className="col-md-4 sm:my-5 xs:my-5">
+                        <div   data-aos-duration="3000" className="card1 bg-gray-200 p-4 border-none rounded-3xl shadow-2xl hover:shadow-sm">
                             <h3 className='text-blue-500 mb-2 '>Book your housing</h3>
                             <p className='text-gray-600 py-3'>Lorem ipsum dolor sit amet consectetur. Phasellus et egestas feugiat</p>
                             <div className="footerCard d-flex justify-between align-items-center">
@@ -38,8 +38,8 @@ const OurEcpc = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-4 sm:my-5">
-                        <div  data-aos="fade-up" data-aos-duration="3000" className="card1 bg-gray-200 p-4 border-none rounded-3xl shadow-2xl hover:shadow-sm">
+                    <div className="col-md-4 sm:my-5 xs:my-5">
+                        <div   data-aos-duration="3000" className="card1 bg-gray-200 p-4 border-none rounded-3xl shadow-2xl hover:shadow-sm">
                             <h3 className='text-blue-500 mb-2 '>Book your housing</h3>
                             <p className='text-gray-600 py-3'>Lorem ipsum dolor sit amet consectetur. Phasellus et egestas feugiat</p>
                             <div className="footerCard d-flex justify-between align-items-center">
@@ -48,8 +48,8 @@ const OurEcpc = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-4">
-                        <div  data-aos="fade-up" data-aos-duration="3000"  className="card1 bg-gray-200 p-4 border-none rounded-3xl shadow-2xl hover:shadow-sm">
+                    <div className="col-md-4 sm:my-5 xs:my-5">
+                        <div   data-aos-duration="3000"  className="card1 bg-gray-200 p-4 border-none rounded-3xl shadow-2xl hover:shadow-sm">
                             <h3 className='text-blue-500 mb-2 '>Book your housing</h3>
                             <p className='text-gray-600 py-3'>Lorem ipsum dolor sit amet consectetur. Phasellus et egestas feugiat</p>
                             <div className="footerCard d-flex justify-between align-items-center">

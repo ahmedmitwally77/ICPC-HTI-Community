@@ -2,11 +2,11 @@
  .box{
   padding: 20px;
   border-radius: 6px;
-  background-color: #d1d1d1;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+  /* background-color: #a5a4a4; */
+  /* box-shadow: 0 2px 4px rgba(236, 236, 236, 0.1); */
   position: relative;
   }
- .box img{
+ /* .box img{
   max-width: 100%;
   position: absolute;
   width: 120px;
@@ -15,7 +15,7 @@
   top: 0px;
   border-radius: 50%;
   border: 10px solid var(--section-background);
-  }
+  } */
  .box h3{
   margin: 0 0 10px;
   color: var(--main-color);
@@ -31,4 +31,9 @@
   color: #494848;
   margin-top: 10px;
   margin-bottom: 0;
+  }
+
+  .cardFooter{
+    border-top: 2px sold #dbdbdb !important;
+    margin-top: 10px;
   }

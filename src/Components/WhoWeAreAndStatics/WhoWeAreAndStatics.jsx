@@ -6,6 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion } from 'framer-motion'
 import style from './WhoWeAreAndStatics.module.css'
+import { Link } from 'react-router-dom';
 
 const AnimatedNumbers = ({value}) =>{
     const ref = useRef(null);
@@ -52,10 +53,9 @@ const WhoWeAreAndStatics = () => {
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam exercitationem, eveniet ratione 
                         odio ea, consequuntur fugiat nobis, laudantium repellat fugit praesentium voluptas asperiores aperiam 
                         officiis. Cum repellendus labore error. Veritatis!
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam exercitationem, eveniet ratione 
-                        odio ea, consequuntur fugiat nobis,
+                        Lorem ipsum dolor sit amet consectetur, 
                         </p>
-                        
+                        <Link to={'/about'} className='btn btn-dark'>Read More</Link>
                     </div>
 
                     <motion.div initial={{scale:0}} whileInView={{scale:1}} transition={{duration:0.5 }} className='col-span-3 dark:border-light dark:bg-dark relative h-max rounded-2xl 

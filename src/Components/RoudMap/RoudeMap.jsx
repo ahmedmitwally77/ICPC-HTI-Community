@@ -1,6 +1,8 @@
 import LiIcon from '../LiIcon'
 import { motion, useScroll } from 'framer-motion'
 import icpc from '../../Images/222.svg'
+import shape1 from '../../Images/circleright.svg'
+import shapeleft from '../../Images/circleleft.svg'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import style from './RoudeMap.module.css'
@@ -22,7 +24,7 @@ const Details = ({position , company , companyLink , time , address , work}) =>{
             <span className='capitalize font-medium text-dark/75 dark:text-light/75 xs:text-sm'>
                 {time}  {address}
             </span >
-            <p className='font-medium w-full md:text-sm'>
+            <p className='font-medium text-light/75 w-full md:text-sm'>
                 {work}
             </p>
         </motion.div>
@@ -46,7 +48,7 @@ const RoudeMap = () => {
         {/* <h2 className='font-bold text-8xl  w-full text-light/90 text-center md:text-6xl xs:text-4xl md:mb-16'>
             Route Map
         </h2> */}
-
+        <img src={shape1} className='absolute right-0 -top-10' />
         <div className="row justify-around align-items-center">
             <div data-aos="fade-up-left" className="col-md-5 d-flex align-items-center justify-center">
                 <img className='' src={icpc} alt="icpc" />
@@ -55,7 +57,7 @@ const RoudeMap = () => {
                 <div ref={ref} className='w-[75%] mx-auto relative lg:w-[90%] md:w-full'>
                 <motion.div 
                 style={{scaleY: scrollYProgress}}
-                className='dark:bg-light  absolute left-9 top-0 w-[4px] h-full bg-dark origin-top
+                className='bg-light  absolute left-9 top-0 w-[4px] h-full origin-top
                 md:w-[2px] md:left-[30px] xs:left-[20px]
                 '/>
                 <ul className='w-full flex flex-col items-start justify-between ml-4'>
@@ -67,12 +69,13 @@ const RoudeMap = () => {
                      students. Teams of three, fostering collaboration, creativity, 
                      innovation, and the ability to perform..."
                     />
-                    <button className='btn btn-primary ms-5'>Reade More</button>
+                    <button className='btn grade2 ms-5'>Reade More</button>
 
                 </ul>
                 </div>
             </div>
         </div>
+        <img src={shapeleft} className='absolute ' />
     </div>
   )
 }

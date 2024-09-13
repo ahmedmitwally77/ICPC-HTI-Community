@@ -243,6 +243,28 @@ a{
           #D3A42F 40%
       ) ;
 }
+.grade2{
+  background: linear-gradient(
+          to right, 
+          #4D79C1 4%, 
+          #3D619A 42%, 
+          #C9A646 95%, 
+          #D3A42F 70%
+      ) ;
+      border:1px solid #c0c0c0 !important;
+      color: white !important;
+  transition: .5s;
+}
+.grade2:hover{
+  background: linear-gradient(
+          to left, 
+          #4D79C1 4%, 
+          #3D619A 42%, 
+          #C9A646 95%, 
+          #D3A42F 70%
+      ) ;
+      transition: .5s;
+}
 
 .filled{
   color: #ffc107;

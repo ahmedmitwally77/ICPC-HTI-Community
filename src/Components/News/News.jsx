@@ -5,6 +5,7 @@ import AnimatedText from '../AnimatedText'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Slider from 'react-slick'
+import { Link } from 'react-router-dom';
 
 
 const News = () => {
@@ -13,7 +14,7 @@ const News = () => {
         autoplay:true,
         arrows:true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         responsive: [
             {
@@ -27,53 +28,96 @@ const News = () => {
       };
 
   return (
-    <div className='news'>
-        <div className={style.features} >
-            <AnimatedText text="News & Events" ClassName='mb-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-blue-500'/>
+    <div className='news bg-light py-32'>
+        <div  >
+            <AnimatedText text="News & Events" ClassName='mb-16 lg:!text-6xl sm:!text-5xl xs:!text-4xl sm:mb-8 text-blue-500'/>
            
             <div className="container">
                 <Slider {...settings}>
                 <div>
-                <div data-aos="fade-right"
-                    data-aos-offset="300"
-                    data-aos-easing="ease-in-sine" className={`${style.box} ${style.quality}  `}>
-                    <div className={style.imgHolder}><img decoding="async" src={img} alt="icpc hti events" /></div>
-                    <h2>Quality</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima</p>
-                    <a href="#">More</a>
+                    <div data-aos="fade-right"
+                        data-aos-offset="300"
+                        data-aos-easing="ease-in-sine" className='d-flex justify-center align-items-center'>
+                            <div className="row justify-center align-items-center w-[80%]">
+                                <div className="col-md-6">
+                                    <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
+                                </div>
+                                <div className="col-md-6">
+                                    <h2>Lorem ipsum dolor</h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                    </p>
+                                    <Link className='btn btn-dark' to={'/'}>Read More</Link>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div>
-                <div data-aos="fade-right"
-                    data-aos-offset="300"
-                    data-aos-easing="ease-in-sine" className={`${style.box} ${style.time} mx-3 `}>
-                    <div className={style.imgHolder}><img decoding="async" src={img} alt="icpc hti events" /></div>
-                    <h2>Quality</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima</p>
-                    <a href="#">More</a>
+                    <div data-aos="fade-right"
+                        data-aos-offset="300"
+                        data-aos-easing="ease-in-sine" className='d-flex justify-center align-items-center'>
+                            <div className="row justify-center align-items-center w-[80%]">
+                                <div className="col-md-6">
+                                    <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
+                                </div>
+                                <div className="col-md-6">
+                                    <h2>Lorem ipsum dolor</h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                    </p>
+                                    <Link className='btn btn-dark' to={'/'}>Read More</Link>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div>
-                <div data-aos="fade-right"
-                    data-aos-offset="300"
-                    data-aos-easing="ease-in-sine" className={`${style.box} ${style.passion} mx-3 `}>
-                    <div className={style.imgHolder}><img decoding="async" src={img} alt="icpc hti events" /></div>
-                    <h2>Quality</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima</p>
-                    <a href="#">More</a>
+                    <div data-aos="fade-right"
+                        data-aos-offset="300"
+                        data-aos-easing="ease-in-sine" className='d-flex justify-center align-items-center'>
+                            <div className="row justify-center align-items-center w-[80%]">
+                                <div className="col-md-6">
+                                    <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
+                                </div>
+                                <div className="col-md-6">
+                                    <h2>Lorem ipsum dolor</h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                    </p>
+                                    <Link className='btn btn-dark' to={'/'}>Read More</Link>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div>
-                <div data-aos="fade-right"
-                    data-aos-offset="300"
-                    data-aos-easing="ease-in-sine" className={`${style.box} ${style.quality}  mx-3`}>
-                    <div className={style.imgHolder}><img decoding="async" src={img} alt="icpc hti events" /></div>
-                    <h2>Quality</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima</p>
-                    <a href="#">More</a>
+                    <div data-aos="fade-right"
+                        data-aos-offset="300"
+                        data-aos-easing="ease-in-sine" className='d-flex justify-center align-items-center'>
+                            <div className="row justify-center align-items-center w-[80%]">
+                                <div className="col-md-6">
+                                    <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
+                                </div>
+                                <div className="col-md-6">
+                                    <h2>Lorem ipsum dolor</h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
+                                    </p>
+                                    <Link className='btn btn-dark' to={'/'}>Read More</Link>
+                                </div>
+                            </div>
                     </div>
                 </div>
-                
                 </Slider>
             </div>
         </div>

@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import style from './RoudeMap.module.css'
 import { useEffect, useRef } from 'react';
+import footerWaves from '../../Images/fotter2.svg'
 
 const Details = ({position , company , companyLink , time , address , work}) =>{
 
@@ -75,7 +76,8 @@ const RoudeMap = () => {
                 </div>
             </div>
         </div>
-        <img src={shapeleft} className='absolute ' />
+        <img src={shapeleft} className='absolute z-2 ' alt='shape'/>
+        {/* <img className=' absolute -bottom-32' src={footerWaves} alt="waves" /> */}
     </div>
   )
 }

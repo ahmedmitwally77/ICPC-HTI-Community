@@ -4,6 +4,7 @@ import LiIcon from '../LiIcon'
 import { motion, useScroll } from 'framer-motion'
 import icpc from '../../Images/5d8fe48ab721ff05beea40684647002a3b64177a.svg'
 import shape1 from '../../Images/circleleft.svg'
+import footerWaves from '../../Images/fotter2.svg'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import style from './WhatIsIcpc.module.css'
@@ -46,10 +47,11 @@ const WhatIsIcpc = () => {
     )
 
   return (
-    <div className={`${style.whatisicpc} relative  py-16 `}>
+    <div className={`${style.whatisicpc} relative  pb-16 `}>
         {/* <h2 className='font-bold text-8xl  w-full text-light/90 text-center md:text-6xl xs:text-4xl md:mb-16'>
             What is ICPC
         </h2> */}
+        {/* <img className='rotate-180 absolute -top-[30%] md:none ' src={footerWaves} alt="waves" /> */}
         <img src={shape1} alt="" />
         <div className="row justify-around align-items-center">
             <div className="col-md-7">

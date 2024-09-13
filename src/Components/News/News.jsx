@@ -6,7 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom';
-
+import bg from '../../Images/blob-scene-haikei (1).svg'
 
 const News = () => {
     var settings = {
@@ -28,16 +28,13 @@ const News = () => {
       };
 
   return (
-    <div className='news bg-light py-32'>
-        <div  >
+    <div className='news bg-light relative py-32 mb-16'>
+        <div  className=' top-0'>
             <AnimatedText text="News & Events" ClassName='mb-16 lg:!text-6xl sm:!text-5xl xs:!text-4xl sm:mb-8 text-blue-500'/>
-           
             <div className="container">
                 <Slider {...settings}>
                 <div>
-                    <div data-aos="fade-right"
-                        data-aos-offset="300"
-                        data-aos-easing="ease-in-sine" className='d-flex justify-center align-items-center'>
+                    <div  className='d-flex justify-center align-items-center'>
                             <div className="row justify-center align-items-center w-[80%]">
                                 <div className="col-md-6">
                                     <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
@@ -56,9 +53,7 @@ const News = () => {
                     </div>
                 </div>
                 <div>
-                    <div data-aos="fade-right"
-                        data-aos-offset="300"
-                        data-aos-easing="ease-in-sine" className='d-flex justify-center align-items-center'>
+                    <div  className='d-flex justify-center align-items-center'>
                             <div className="row justify-center align-items-center w-[80%]">
                                 <div className="col-md-6">
                                     <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
@@ -77,9 +72,7 @@ const News = () => {
                     </div>
                 </div>
                 <div>
-                    <div data-aos="fade-right"
-                        data-aos-offset="300"
-                        data-aos-easing="ease-in-sine" className='d-flex justify-center align-items-center'>
+                    <div  className='d-flex justify-center align-items-center'>
                             <div className="row justify-center align-items-center w-[80%]">
                                 <div className="col-md-6">
                                     <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
@@ -98,9 +91,7 @@ const News = () => {
                     </div>
                 </div>
                 <div>
-                    <div data-aos="fade-right"
-                        data-aos-offset="300"
-                        data-aos-easing="ease-in-sine" className='d-flex justify-center align-items-center'>
+                    <div  className='d-flex justify-center align-items-center'>
                             <div className="row justify-center align-items-center w-[80%]">
                                 <div className="col-md-6">
                                     <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />

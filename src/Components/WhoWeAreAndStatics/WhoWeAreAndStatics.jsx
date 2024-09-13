@@ -7,6 +7,7 @@ import 'aos/dist/aos.css';
 import { motion } from 'framer-motion'
 import style from './WhoWeAreAndStatics.module.css'
 import { Link } from 'react-router-dom';
+import footerWaves from '../../Images/fotter2.svg'
 
 const AnimatedNumbers = ({value}) =>{
     const ref = useRef(null);
@@ -92,6 +93,7 @@ const WhoWeAreAndStatics = () => {
 
             </div>
         </div>
+        
     </div>
   )
 }

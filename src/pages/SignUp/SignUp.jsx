@@ -2,9 +2,12 @@ import React from 'react'
 import logo from '../../Images/Colored Icon.png'
 import style from './SignUp.module.css'
 import { Link } from 'react-router-dom'
+import TransitionEffect from '../../Components/TransitionEffect'
 
 const SignUp = () => {
-  return (
+  return <>
+      <TransitionEffect/>
+
     <div className='signUp overflow-x-hidden'>
       <div className="container">
         <div className="row mt-5 justify-content-around align-items-center">
@@ -35,7 +38,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
-  )
+  </>
 }
 
 export default SignUp

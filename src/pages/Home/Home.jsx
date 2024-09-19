@@ -8,9 +8,12 @@ import RoudeMap from '../../Components/RoudMap/RoudeMap'
 import Testimonials from '../../Components/Testimonials/Testimonials'
 import LatestEvent from '../../Components/LatestEvents/LatestEvent'
 import footerWaves from '../../Images/intersecting-waves-scattered.svg'
+import TransitionEffect from '../../Components/TransitionEffect'
 
 const Home = () => {
-  return (
+  return <>
+    <TransitionEffect/>
+
     <div className='Home  overflow-x-hidden'>
       <div className="hero bg-dark relative  -top-4">
         <AnimatedText text="ICPC HTI Community" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[25%] sm:top-[10%] top-[30%] z-20'/>
@@ -26,7 +29,7 @@ const Home = () => {
       <Testimonials/>
       <LatestEvent/>
     </div>
-  )
+  </>
 }
 
 export default Home

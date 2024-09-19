@@ -1,7 +1,8 @@
 import React from 'react'
 import style from './Testimonials.module.css'
-import img from '../../Images/me.png'
+import img from '../../Images/me.webp'
 import Slider from 'react-slick'
+import AnimatedText from '../AnimatedText'
 
 const Testimonials = () => {
 
@@ -41,7 +42,8 @@ const Testimonials = () => {
       };
 
   return (
-    <div className='testimonials py-32 mt-20'>
+    <div className='testimonials py-32 '>
+        <AnimatedText text="Testimonials" ClassName='text-center mb-5 !text-6xl !text-blue-600 '/>
       <div class="">
         <Slider {...settings}>
            

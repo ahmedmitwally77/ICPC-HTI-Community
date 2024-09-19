@@ -10,6 +10,9 @@ module.exports = {
   darkMode:'class',
   theme: {
     extend: {
+      boxShadow: {
+        'top-only': '0 -10px 10px rgba(0, 0, 0, 0.1)', // ظل خفيف من أعلى
+      },
       fontFamily: {
         mont: ['var(--font-mont)'],
       },

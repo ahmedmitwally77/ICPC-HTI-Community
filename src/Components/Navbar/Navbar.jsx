@@ -69,10 +69,11 @@ const Navbar = () => {
   {/* links */}
   <nav className='flex justify-center align-center'>
     <CustomLink to='/'  title="Home"  className='mr-3 text-decoration-none text-dark'/>
-    <CustomLink to="/about" title="Training" className='mx-3 text-decoration-none text-dark'/>
+    <CustomLink to="/about" title="About" className='mx-3 text-decoration-none text-dark'/>
+    <CustomLink to="/training" title="Training" className='mx-3 text-decoration-none text-dark'/>
     <CustomLink to="/committees" title="Committees" className='mx-3 text-decoration-none text-dark'/>
     <CustomLink to="/ecpc" title="ECPC" className='mx-3 text-decoration-none text-dark'/>
-    <CustomLink to="/about" title="About" className='mx-3 text-decoration-none text-dark'/>
+    <CustomLink to="/contactUs" title="Contact Us" className='mx-3 text-decoration-none text-dark'/>
   </nav>
   
   {/* auth */}

@@ -8,7 +8,7 @@ const Login = () => {
   return <>
       <TransitionEffect/>
 
-    <div className='login overflow-x-hidden'>
+    <div className='login overflow-x-hidden py-32'>
       <div className="container">
         <div className="row mt-5 justify-content-around align-items-center">
           <div className="col-md-6 w-25">

@@ -1,5 +1,5 @@
 import React from 'react'
-import HomeImg from '../../Images/IMG_3229.jpg'
+import HomeImg from '../../Images/IMG_3229 full.webp'
 import WhoWeAreAndStatics from '../../Components/WhoWeAreAndStatics/WhoWeAreAndStatics'
 import AnimatedText from '../../Components/AnimatedText'
 import WhatIsIcpc from '../../Components/WhatIsIcpc/WhatIsIcpc'

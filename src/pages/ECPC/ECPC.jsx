@@ -1,6 +1,6 @@
 import React from 'react'
 import AnimatedText from '../../Components/AnimatedText'
-import HomeImg from '../../Images/IMG_3229 full.jpg'
+import HomeImg from '../../Images/IMG_3229 full.webp'
 import OurEcpc from '../../Components/OurECPC/OurEcpc'
 import TransitionEffect from '../../Components/TransitionEffect'
 

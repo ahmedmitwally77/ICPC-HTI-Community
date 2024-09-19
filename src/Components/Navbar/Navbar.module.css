@@ -70,6 +70,7 @@
       text-align: center;
       border-radius: 5px;
       color: white;
+      text-decoration: none;
   
   }
     .btn2{
@@ -80,6 +81,7 @@
       text-align: center;
       border-radius: 5px;
       color: rgb(10, 10, 10); 
+      text-decoration: none;
   }
     .btn2:hover{
       background: linear-gradient(

@@ -78,8 +78,8 @@ const Navbar = () => {
   
   {/* auth */}
   <nav className='flex items-center justify-center '> 
-    <button type="submit" className={style.btn2} >SignUp</button>
-    <button type="submit" className={style.btn} >SignIn</button>
+    <Link to={'/signup'}  className={style.btn2} >SignUp</Link>
+    <Link to={'/login'} className={style.btn} >SignIn</Link>
   </nav>
 
 </div>

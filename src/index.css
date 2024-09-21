@@ -279,3 +279,16 @@ a{
     display: none !important;
   }
 }
+
+.flex.items-start.justify-end {
+  justify-content: flex-end;
+}
+.flex.items-start.justify-start {
+  justify-content: flex-start;
+}
+.bgyello{
+  background-color: #ffc107;
+}
+.yello{
+  color: #ffc107 !important;
+}

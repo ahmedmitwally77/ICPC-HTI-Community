@@ -11,6 +11,10 @@ import ResetNewPass from './Components/ResetNewPass/ResetNewPass';
 import ECPC from './pages/ECPC/ECPC';
 import About from './pages/About/About';
 import ContactUs from './pages/ContactUs/ContactUs';
+import Training from './pages/Training/Training';
+import Level from './Components/Level/Level';
+import Wave from './Components/Wave/Wave';
+import Session from './Components/Session/Session';
 
 
 let routers = createBrowserRouter([
@@ -21,6 +25,10 @@ let routers = createBrowserRouter([
     {path:"ecpc" , element:<ECPC/>},
     {path:"about" , element:<About/>},
     {path:"contactUs" , element:<ContactUs/>},
+    {path:"training" , element:<Training/>},
+    {path:"level" , element:<Level/>},
+    {path:"wave" , element:<Wave/>},
+    {path:"session" , element:<Session/>},
 
     {path:'*',element:<NotFound/>},
   ]},

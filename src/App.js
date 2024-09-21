@@ -10,6 +10,7 @@ import OTPVer from './Components/OTPVer/OTPVer';
 import ResetNewPass from './Components/ResetNewPass/ResetNewPass';
 import ECPC from './pages/ECPC/ECPC';
 import About from './pages/About/About';
+import ContactUs from './pages/ContactUs/ContactUs';
 
 
 let routers = createBrowserRouter([
@@ -19,6 +20,7 @@ let routers = createBrowserRouter([
     {path:"signup" , element:<SignUp/>},
     {path:"ecpc" , element:<ECPC/>},
     {path:"about" , element:<About/>},
+    {path:"contactUs" , element:<ContactUs/>},
 
     {path:'*',element:<NotFound/>},
   ]},

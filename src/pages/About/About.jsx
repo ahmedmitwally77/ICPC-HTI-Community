@@ -6,7 +6,6 @@ import OurMissionVision from '../../Components/OurMissionVision/OurMissionVision
 import OurAchievements from '../../Components/OurAchievements/OurAchievements'
 import OurCore from '../../Components/OurCore/OurCore'
 import OurFounders from '../../Components/OurFounders/OurFounders'
-import TalentedMember from '../../Components/talentedMember/TalentedMember'
 import Gallary from '../../Components/Gallary/Gallary'
 import TransitionEffect from '../../Components/TransitionEffect'
 
@@ -24,8 +23,7 @@ const About = () => {
         <OurMissionVision/>
         <OurAchievements/>
         <OurFounders/>
-        <OurCore/>
-        <TalentedMember/>
+        {/* <OurCore/> */}
         <Gallary/>
     </div>
     </>

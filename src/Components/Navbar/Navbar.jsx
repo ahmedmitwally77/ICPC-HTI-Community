@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import logo from '../../Images/Colored V2.png'
 import { Link, useLocation } from 'react-router-dom'
 import style from './Navbar.module.css'
+import { AuthContext } from '../../Context/AuthContext'
 
 
 const CustomLink = ({to , title , className=""}) => {
@@ -42,6 +43,9 @@ const CustomMobileLink = ({to , title , className="" , toggle , signOutClick}) =
 
 const Navbar = () => {
 
+  const {currentUser , userData } = useContext(AuthContext)
+  console.log(userData);
+
 
   const [isOpen , setIsOpen] = useState(false)
 
@@ -77,10 +81,16 @@ const Navbar = () => {
   </nav>
   
   {/* auth */}
+  {currentUser? <nav className=' '> 
+    <Link to={'/profile'} className=' fw-bold' >Hello {currentUser?.displayName}</Link>
+    {/* <img src={imageUrl} alt="" /> */}
+  </nav>: 
   <nav className='flex items-center justify-center '> 
     <Link to={'/signup'}  className={style.btn2} >SignUp</Link>
     <Link to={'/login'} className={style.btn} >SignIn</Link>
-  </nav>
+  </nav> 
+  }
+  
 
 </div>
 
@@ -93,15 +103,16 @@ transition={{duration:1}}
 className='z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70vw] flex flex-col  justify-between items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
   <nav className='flex items-center flex-col justify-center'>
     <CustomMobileLink to='/'  title="Home"  className='' toggle={handelClick}/>
+    <CustomLink to="/about" title="About" className='mx-3 text-decoration-none text-light' toggle={handelClick}/>
     <CustomMobileLink to="/training" title="Training" className='' toggle={handelClick}/>
     <CustomMobileLink to="/committees" title="Committees" className='' toggle={handelClick}/>
     <CustomMobileLink to="/ecpc" title="ECPC" className='' toggle={handelClick}/>
-    <CustomLink to="/about" title="About" className='mx-3 text-decoration-none text-light' toggle={handelClick}/>
+    <CustomMobileLink to="/contactUs" title="Contact Us" className='' toggle={handelClick}/>
   </nav>
   
   <nav className='flex items-center justify-center mt-4'>
-    <button type="submit" className={style.btn2} >SignUp</button>
-    <button type="submit" className={style.btn} >SignIn</button>
+  <Link to={'/signup'}  className={style.btn2} >SignUp</Link>
+  <Link to={'/login'} className={style.btn} >SignIn</Link>
   </nav>
 
 </div>

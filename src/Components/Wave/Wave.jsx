@@ -24,7 +24,7 @@ const Wave = () => {
       <div className="wave">
         <div className="container py-20">
             <AnimatedText
-                text="Level 0"
+                text="wave 1"
                 ClassName="text-center !text-6xl !text-blue-500 my-5"
             />
             <div className="text flex align-items-center justify-center">

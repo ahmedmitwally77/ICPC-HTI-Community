@@ -24,7 +24,7 @@ const Levels = () => {
                             non dolorum explicabo, sed iure odit reiciendis quam maiores optio rem temporibus.
                         </p>
                         <div className="btn d-flex justify-end">
-                            <Link className='btn grade2 rounded-3xl text-light px-4  text-end'>Join</Link>
+                            <Link to={'/level'} className='btn grade2 rounded-3xl text-light px-4  text-end'>Join</Link>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@ const Levels = () => {
                             non dolorum explicabo, sed iure odit reiciendis quam maiores optio rem temporibus.
                         </p>
                         <div className="btn d-flex justify-end">
-                            <Link className='btn grade2 rounded-3xl text-light px-4  text-end'>Join</Link>
+                            <Link to={'/level'} className='btn grade2 rounded-3xl text-light px-4  text-end'>Join</Link>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ const Levels = () => {
                             non dolorum explicabo, sed iure odit reiciendis quam maiores optio rem temporibus.
                         </p>
                         <div className="btn d-flex justify-end">
-                            <Link className='btn grade2 rounded-3xl text-light px-4  text-end'>Join</Link>
+                            <Link to={'/level'} className='btn grade2 rounded-3xl text-light px-4  text-end'>Join</Link>
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import logo from '../../Images/Colored Icon.png'
 import style from './Login.module.css'
 import { Link } from 'react-router-dom'
 import TransitionEffect from '../../Components/TransitionEffect'
+import { useNavigate } from 'react-router-dom'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../firebase'
+import { AuthContext } from '../../Context/AuthContext'
 
 const Login = () => {
+
+  const [err , setErr] = useState(false)
+  const navigate = useNavigate()
+
+  const {currentUser , setFlagAdmin } = useContext(AuthContext)
+
+  const handleSubmit =async (e)=>{
+    e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
+    try{
+      await signInWithEmailAndPassword(auth , email , password);
+      if(currentUser.uid === "vpFEcaagXpabB5ulRTkHVp6RAAl2"){
+        setFlagAdmin(true)
+        navigate('/')
+      }
+      navigate('/')
+    }catch(err){
+        // setErr(true)
+    }
+  }
+
+
   return <>
       <TransitionEffect/>
 
@@ -15,7 +43,7 @@ const Login = () => {
             <img className='w-100' src={logo} alt="icpc hti logo" />
           </div>
           <div className="col-md-6  ">
-            <form className='mt-5 '>
+            <form onSubmit={handleSubmit} className='mt-5 '>
               <label for="email" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Email</label>
               <input type="email" id="email" class="mb-2 bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:border-yellow-50  block w-full p-2.5 " placeholder="ex@gmail.com" required />
               
@@ -26,7 +54,8 @@ const Login = () => {
                 <button type="submit" className={style.btn} >login</button>
                 <p className='mt-4'>Don't Have An Account? <Link to={'/signup'}>Signup</Link></p>
               </div>
-              
+              {err && <span>somthing went wrong</span>}
+
             </form>
           </div>
         </div>

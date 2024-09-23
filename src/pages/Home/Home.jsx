@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import HomeImg from '../../Images/IMG_3229 full.webp'
 import WhoWeAreAndStatics from '../../Components/WhoWeAreAndStatics/WhoWeAreAndStatics'
 import AnimatedText from '../../Components/AnimatedText'
@@ -9,8 +9,16 @@ import Testimonials from '../../Components/Testimonials/Testimonials'
 import LatestEvent from '../../Components/LatestEvents/LatestEvent'
 import footerWaves from '../../Images/intersecting-waves-scattered.svg'
 import TransitionEffect from '../../Components/TransitionEffect'
+import TalentedMember from '../../Components/talentedMember/TalentedMember'
+import { AuthContext } from '../../Context/AuthContext'
 
 const Home = () => {
+  
+  
+  const {currentUser , userData } = useContext(AuthContext)
+
+  console.log(userData);
+  
   return <>
     <TransitionEffect/>
 
@@ -27,6 +35,7 @@ const Home = () => {
       <WhatIsIcpc/>
       <RoudeMap/>
       <Testimonials/>
+      <TalentedMember/>
       <LatestEvent/>
     </div>
   </>

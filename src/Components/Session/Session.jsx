@@ -2,9 +2,12 @@ import React from "react";
 import AnimatedText from "../AnimatedText";
 import line2 from "../../Images/line 2.jpeg";
 import content from '../../Images/what1-removebg-preview.png'
+import TransitionEffect from "../TransitionEffect";
 
 const Session = () => {
-  return (
+  return <>
+    <TransitionEffect />
+
     <div className="session">
       <div className="container py-20">
         <AnimatedText
@@ -54,7 +57,7 @@ const Session = () => {
 
       </div>
     </div>
-  );
+  </>
 };
 
 export default Session;

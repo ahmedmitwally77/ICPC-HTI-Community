@@ -15,6 +15,8 @@ import Training from './pages/Training/Training';
 import Level from './Components/Level/Level';
 import Wave from './Components/Wave/Wave';
 import Session from './Components/Session/Session';
+import Committees from './pages/Committees/Committees';
+import Profile from './pages/profile/Profile';
 
 
 let routers = createBrowserRouter([
@@ -29,6 +31,8 @@ let routers = createBrowserRouter([
     {path:"level" , element:<Level/>},
     {path:"wave" , element:<Wave/>},
     {path:"session" , element:<Session/>},
+    {path:"committees" , element:<Committees/>},
+    {path:"profile" , element:<Profile/>},
 
     {path:'*',element:<NotFound/>},
   ]},
@@ -42,7 +46,7 @@ let routers = createBrowserRouter([
 
 function App() {
 
-  return <RouterProvider router={routers}></RouterProvider>
+  return  <RouterProvider router={routers}></RouterProvider>
 
 }
 

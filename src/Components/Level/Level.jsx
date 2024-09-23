@@ -26,7 +26,7 @@ const Level = () => {
                         <img className='absolute left-[40%] -top-[50%] w-20' src={logo} alt="icpc logo" />
                         <h2 className='text-light text-center !text-5xl'>Wave1</h2>
                         <div className="btn absolute bottom-0 right-11 pb-2">
-                            <Link className=' btn bg-white !rounded-full !text-blue-900 fw-bold px-4  text-end'>Join</Link>
+                            <Link to={'/wave'} className=' btn bg-white !rounded-full !text-blue-900 fw-bold px-4  text-end'>Join</Link>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ const Level = () => {
                         <img className='absolute left-[40%] -top-[50%] w-20' src={logo} alt="icpc logo" />
                         <h2 className='text-light text-center !text-5xl'>Wave2</h2>
                         <div className="btn absolute bottom-0 right-11 pb-2">
-                            <Link className=' btn bg-white !rounded-full !text-red-900 fw-bold px-4  text-end'>Join</Link>
+                            <Link to={'/wave'} className=' btn bg-white !rounded-full !text-red-900 fw-bold px-4  text-end'>Join</Link>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ const Level = () => {
                         <img className='absolute left-[40%] -top-[50%] w-20' src={logo} alt="icpc logo" />
                         <h2 className='text-light text-center !text-5xl'>Wave3</h2>
                         <div className="btn absolute bottom-0 right-11 pb-2">
-                            <Link className=' btn bg-white !rounded-full yello fw-bold px-4  text-end'>Join</Link>
+                            <Link to={'/wave'} className=' btn bg-white !rounded-full yello fw-bold px-4  text-end'>Join</Link>
                         </div>
                     </div>
                 </div>

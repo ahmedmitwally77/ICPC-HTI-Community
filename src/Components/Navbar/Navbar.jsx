@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import logo from '../../Images/Colored V2.png'
 import { Link, useLocation } from 'react-router-dom'
 import style from './Navbar.module.css'
@@ -43,9 +43,21 @@ const CustomMobileLink = ({to , title , className="" , toggle , signOutClick}) =
 
 const Navbar = () => {
 
-  const {currentUser , userData } = useContext(AuthContext)
+  const {currentUser , userData , flagAdmin , setFlagAdmin , setFlag , flag} = useContext(AuthContext)
   console.log(userData);
 
+  useEffect(() => {
+    if(currentUser){
+      setFlag(true)
+      if(currentUser.uid === "vpFEcaagXpabB5ulRTkHVp6RAAl2"){
+              setFlagAdmin(true)
+            }else{
+                    setFlagAdmin(false)
+                  }
+    }else{
+      setFlag(false)
+    }
+  }, [currentUser])
 
   const [isOpen , setIsOpen] = useState(false)
 
@@ -78,6 +90,23 @@ const Navbar = () => {
     <CustomLink to="/committees" title="Committees" className='mx-3 text-decoration-none text-dark'/>
     <CustomLink to="/ecpc" title="ECPC" className='mx-3 text-decoration-none text-dark'/>
     <CustomLink to="/contactUs" title="Contact Us" className='mx-3 text-decoration-none text-dark'/>
+    {flag && flagAdmin ?<>
+      <div class="dropdown-center">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Admin Access
+        </button>
+        <ul class="dropdown-menu">
+            <li><Link class="dropdown-item" to={'/addnews'}>Add News</Link></li>
+            <li><Link class="dropdown-item" to={'/addtalented'}>Add talented</Link></li>
+            <li><Link class="dropdown-item" to={'/addevent'}>Add latest event</Link></li>
+            <li><Link class="dropdown-item" to={'/addAchievemnts'}>Add Achievemnts</Link></li>
+            <li><Link class="dropdown-item" to={'/addgallary'}>Add gallary</Link></li>
+            <li><Link class="dropdown-item" to={'/addlevels'}>Add levels</Link></li>
+            <li><Link class="dropdown-item" to={'/addwaves'}>Add waves</Link></li>
+            <li><Link class="dropdown-item" to={'/addsession'}>Add session</Link></li>
+        </ul>
+      </div>
+        </>:<></>}
   </nav>
   
   {/* auth */}
@@ -108,12 +137,34 @@ className='z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70
     <CustomMobileLink to="/committees" title="Committees" className='' toggle={handelClick}/>
     <CustomMobileLink to="/ecpc" title="ECPC" className='' toggle={handelClick}/>
     <CustomMobileLink to="/contactUs" title="Contact Us" className='' toggle={handelClick}/>
+    {flag && flagAdmin ?<>
+      <div class="dropdown-center">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Admin Access
+        </button>
+        <ul class="dropdown-menu">
+            <li><Link to={'/addnews'}>Add News</Link></li>
+            <li><Link to={'/addtalend'}>Add talented</Link></li>
+            <li><Link to={'/addevent'}>Add latest event</Link></li>
+            <li><Link to={'/addAchievemnts'}>Add Achievemnts</Link></li>
+            <li><Link to={'/addgallary'}>Add gallary</Link></li>
+            <li><Link to={'/addlevels'}>Add levels</Link></li>
+            <li><Link to={'/addwaves'}>Add waves</Link></li>
+            <li><Link to={'/addsession'}>Add session</Link></li>
+        </ul>
+      </div>
+        </>:<></>}
   </nav>
   
-  <nav className='flex items-center justify-center mt-4'>
-  <Link to={'/signup'}  className={style.btn2} >SignUp</Link>
-  <Link to={'/login'} className={style.btn} >SignIn</Link>
-  </nav>
+  {currentUser? <nav className=' '> 
+    <Link to={'/profile'} className=' fw-bold' >Hello {currentUser?.displayName}</Link>
+    {/* <img src={imageUrl} alt="" /> */}
+  </nav>: 
+  <nav className='flex items-center justify-center '> 
+    <Link to={'/signup'}  className={style.btn2} >SignUp</Link>
+    <Link to={'/login'} className={style.btn} >SignIn</Link>
+  </nav> 
+  }
 
 </div>
   : null

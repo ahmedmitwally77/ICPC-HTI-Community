@@ -1,57 +1,120 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AnimatedText from '../AnimatedText'
 import logo from '../../Images/Colored Icon.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import TransitionEffect from '../TransitionEffect'
+import { db } from '../../firebase';
+import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+
 const Level = () => {
-    <TransitionEffect/>
-  return (
+
+    const { id } = useParams();
+    const [level, setLevel] = useState(null);
+    const [loading, setLoading] = useState(true); // Add a loading state
+    const [waves, setWaves] = useState([]); // لحفظ الويفز المرتبطة بالمستوى
+
+
+    useEffect(() => {
+        const fetchlevel = async () => {
+            const docRef = doc(db, 'levels', id);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                setLevel(docSnap.data());
+            } else {
+                console.log('No such document!');
+            }
+            setLoading(false); // Stop loading once the data is fetched
+        };
+        fetchlevel();
+    }, [id]);
+
+    useEffect(() => {
+        const fetchWaves = async () => {
+            const wavesRef = collection(db, 'waves');
+            const q = query(wavesRef, where('levelId', '==', id)); // جلب الويفز التي تحتوي على نفس levelId
+            const querySnapshot = await getDocs(q);
+            const wavesArray = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setWaves(wavesArray);
+        };
+
+        if (id) {
+            fetchWaves();
+        }
+    }, [id]);
+
+
+    if (loading ) {
+        return (
+            <div id="loading">
+                <div className="sk-cube-grid">
+                    <div className="sk-cube sk-cube1"></div>
+                    <div className="sk-cube sk-cube2"></div>
+                    <div className="sk-cube sk-cube3"></div>
+                    <div className="sk-cube sk-cube4"></div>
+                    <div className="sk-cube sk-cube5"></div>
+                    <div className="sk-cube sk-cube6"></div>
+                    <div className="sk-cube sk-cube7"></div>
+                    <div className="sk-cube sk-cube8"></div>
+                    <div className="sk-cube sk-cube9"></div>
+                </div>
+            </div>
+        );
+    }
+    
+    if (!level) {
+        return <p>No level found.</p>;
+    }
+
+      return <>
+      <TransitionEffect/>
     <div className='level'>
         <div className="container py-24 ">
-            <AnimatedText text="Level 0" ClassName='text-center !text-6xl !text-blue-500 my-5'/>
+            <AnimatedText text={level.title} ClassName='text-center !text-6xl !text-blue-500 my-5'/>
             <div className="text flex align-items-center justify-center">
-                <p className='w-[75%] md:w-[100%] mb-5 text-center text-dark/75'>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti
-                    numquam esse tempora sequi voluptate enim labore veritatis hic, ipsam 
-                    voluptas exercitationem saepe magni omnis. Accusantium atque blanditiis temporibus culpa explicabo?
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti
-                    numquam esse tempora sequi voluptate enim labore veritatis hic, ipsam 
-                    voluptas exercitationem saepe magni omnis. Accusantium atque blanditiis temporibus culpa explicabo?
-                </p>
+                <p className='w-[75%] md:w-[100%] mb-5 text-center text-dark/75'>{level.Paragraph}</p>
             </div>
+
+            
             
             <div className="row py-16 !mt-20">
-                <div className="col-md-4">
+            {waves.length > 0 ? (
+                            waves.map((wave) => (
+                                <div key={wave.id} className="col-md-4">
+                                    <div className="box p-16 rounded-full relative bg-blue-900">
+                                        <img className="absolute left-[40%] -top-[50%] w-20" src={logo} alt="icpc logo" />
+                                        <h2 className="text-light text-center !text-5xl">{wave.title}</h2>
+                                        {/* <p className="text-light text-center mt-2">{wave.description}</p> */}
+                                        <div className="btn absolute bottom-0 right-11 pb-2">
+                                            <Link
+                                                to={`/wave/${wave.id}`}
+                                                className="btn bg-white !rounded-full !text-blue-900 fw-bold px-4 text-end"
+                                            >
+                                                Join
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-center">No waves available for this level.</p>
+                        )}
+                    {/* <div  className="col-md-4">
                     <div className="box p-16 rounded-full relative bg-blue-900">
                         <img className='absolute left-[40%] -top-[50%] w-20' src={logo} alt="icpc logo" />
-                        <h2 className='text-light text-center !text-5xl'>Wave1</h2>
+                        <h2 className='text-light text-center !text-5xl'>wave 1</h2>
                         <div className="btn absolute bottom-0 right-11 pb-2">
                             <Link to={'/wave'} className=' btn bg-white !rounded-full !text-blue-900 fw-bold px-4  text-end'>Join</Link>
                         </div>
                     </div>
-                </div>
-                <div className="col-md-4">
-                    <div className="box md:my-24 p-16 rounded-full relative bg-red-900">
-                        <img className='absolute left-[40%] -top-[50%] w-20' src={logo} alt="icpc logo" />
-                        <h2 className='text-light text-center !text-5xl'>Wave2</h2>
-                        <div className="btn absolute bottom-0 right-11 pb-2">
-                            <Link to={'/wave'} className=' btn bg-white !rounded-full !text-red-900 fw-bold px-4  text-end'>Join</Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-4">
-                    <div className="box p-16 rounded-full relative bgyello">
-                        <img className='absolute left-[40%] -top-[50%] w-20' src={logo} alt="icpc logo" />
-                        <h2 className='text-light text-center !text-5xl'>Wave3</h2>
-                        <div className="btn absolute bottom-0 right-11 pb-2">
-                            <Link to={'/wave'} className=' btn bg-white !rounded-full yello fw-bold px-4  text-end'>Join</Link>
-                        </div>
-                    </div>
-                </div>
+                    </div> */}
+                
             </div>
         </div>
     </div>
-  )
+  </>
 }
 
 export default Level

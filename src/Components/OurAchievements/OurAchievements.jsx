@@ -1,12 +1,41 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AnimatedText from '../AnimatedText'
 import img from '../../Images/IMG_3229 full.webp'
 import line1 from '../../Images/line 1.jpeg'
 import line2 from '../../Images/line 2.jpeg'
 import Slider from 'react-slick'
-
+import { db } from '../../firebase';
+import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import { AuthContext } from '../../Context/AuthContext'
 
 const OurAchievements = () => {
+
+    const [articles, setArticles] = useState([]);
+    const {flagAdmin} = useContext(AuthContext)
+
+    useEffect(() => {
+        const fetchArticles = async () => {
+          const articlesCollection = collection(db, 'achievements');
+          const articlesSnapshot = await getDocs(articlesCollection);
+          const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setArticles(articlesList);
+        };
+        fetchArticles();
+      }, []);
+
+      const handleDelete = async (id) => {
+        const docRef = doc(db, 'news', id);
+    
+        await deleteDoc(docRef)
+          .then(() => {
+            alert("تم حذف الوثيقة بنجاح!");
+            setArticles(articles.filter(article => article.id !== id)); // إزالة المقالة من الحالة بعد الحذف
+          })
+          .catch((error) => {
+            alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
+          });
+      }
+
     var settings = {
         dots: false,
         autoplay:true,
@@ -31,79 +60,24 @@ const OurAchievements = () => {
         </div>
         <div className="container py-16 ">
             <AnimatedText text="Our Achievements" ClassName='text-center !text-6xl !text-blue-600 my-10'/>
-                <Slider {...settings}>
-                <div>
+            <Slider {...settings}>
+                {articles.map(article => (
+                <div  >
                     <div  className='d-flex justify-center align-items-center'>
-                            <div className="row justify-center align-items-center w-100">
-                                <div className="col-md-6">
-                                    <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
-                                </div>
-                                <div className="col-md-6">
-                                    <h2>Lorem ipsum dolor</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                    </p>
+                            <div key={article.id} className="row justify-center align-items-center w-[80%]">
+                                    {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>}
+
+                                    <div className="col-md-6">
+                                    <img className='rounded-xl' decoding="async" src={article.coverImageUrl} alt="icpc hti events" />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <h2>{article.title}</h2>
+                                        <p>{article.Paragraph}</p>
                                 </div>
                             </div>
                     </div>
                 </div>
-                <div>
-                    <div  className='d-flex justify-center align-items-center'>
-                            <div className="row justify-center align-items-center w-100">
-                                <div className="col-md-6">
-                                    <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
-                                </div>
-                                <div className="col-md-6">
-                                    <h2>Lorem ipsum dolor</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                    </p>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div>
-                    <div  className='d-flex justify-center align-items-center'>
-                            <div className="row justify-center align-items-center w-100">
-                                <div className="col-md-6">
-                                    <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
-                                </div>
-                                <div className="col-md-6">
-                                    <h2>Lorem ipsum dolor</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                    </p>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div>
-                    <div  className='d-flex justify-center align-items-center'>
-                            <div className="row justify-center align-items-center w-100">
-                                <div className="col-md-6">
-                                    <img className='rounded-xl' decoding="async" src={img} alt="icpc hti events" />
-                                </div>
-                                <div className="col-md-6">
-                                    <h2>Lorem ipsum dolor</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit harum hic veniam eligendi minima
-                                    </p>
-                                </div>
-                            </div>
-                    </div>
-                </div>
+                ))}
                 </Slider>
         </div>
         <div className='line d-flex justify-center align-items-center h-25 absolute right-10 bottom-16  d-none d-md-block '>

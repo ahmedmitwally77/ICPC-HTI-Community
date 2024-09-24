@@ -5,32 +5,71 @@ import img from '../../Images/icpc core 2024.jpg'
 import AnimatedText from '../AnimatedText'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { collection, getDocs , query, orderBy, limit } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const LatestEvent = () => {
 
-    useEffect(() => {
-        AOS.init({ duration: 1000 }); 
-      }, []);
-
+    const [event, setEvent] = useState(null);
     const [Days, setDays] = useState('')
     const [Hours, setHours] = useState('')
     const [Mint, setMint] = useState('')
     const [sec, setSec] = useState('')
 
+
     useEffect(() => {
-          const countdown = new Date().getTime();
-          const counter = setInterval(() => {
-            const datenow = new Date().getTime();
-            const datediff = countdown - datenow;
-    
-            setDays(Math.floor(datediff / 1000 / 60 / 60 / 24));
-            setHours(Math.floor((datediff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-            setMint(Math.floor((datediff % (1000 * 60 * 60)) / (1000 * 60)));
-            setSec(Math.floor((datediff % (1000 * 60)) / 1000));
-          }, 1000);
-    
-          return () => clearInterval(counter);
+        AOS.init({ duration: 1000 }); 
       }, []);
+
+    // const [Days, setDays] = useState('')
+    // const [Hours, setHours] = useState('')
+    // const [Mint, setMint] = useState('')
+    // const [sec, setSec] = useState('')
+
+    useEffect(() => {
+      const fetchLatestEvent = async () => {
+        const eventCollection = collection(db, 'events');
+        const eventQuery = query(eventCollection, orderBy('date', 'desc'), limit(1));
+        const eventSnapshot = await getDocs(eventQuery);
+        const eventList = eventSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        if (eventList.length > 0) {
+          setEvent(eventList[0]);
+        }
+      };
+      fetchLatestEvent();
+    }, []);
+
+    useEffect(() => {
+      if (event) {
+        const countdown = new Date(event.date).getTime();
+        const counter = setInterval(() => {
+          const datenow = new Date().getTime();
+          const datediff = countdown - datenow;
+  
+          setDays(Math.floor(datediff / 1000 / 60 / 60 / 24));
+          setHours(Math.floor((datediff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+          setMint(Math.floor((datediff % (1000 * 60 * 60)) / (1000 * 60)));
+          setSec(Math.floor((datediff % (1000 * 60)) / 1000));
+        }, 1000);
+  
+        return () => clearInterval(counter);
+      }
+    }, [event]);
+
+    // useEffect(() => {
+    //       const countdown = new Date().getTime();
+    //       const counter = setInterval(() => {
+    //         const datenow = new Date().getTime();
+    //         const datediff = countdown - datenow;
+    
+    //         setDays(Math.floor(datediff / 1000 / 60 / 60 / 24));
+    //         setHours(Math.floor((datediff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    //         setMint(Math.floor((datediff % (1000 * 60 * 60)) / (1000 * 60)));
+    //         setSec(Math.floor((datediff % (1000 * 60)) / 1000));
+    //       }, 1000);
+    
+    //       return () => clearInterval(counter);
+    //   }, []);
 
 
       return <>
@@ -44,19 +83,19 @@ const LatestEvent = () => {
                             <div class={style.time}>
                                 <motion.div viewport={{once:true}} initial={{y:-60 , opacity:0}} whileInView={{y:0 , opacity:1  }} transition={{duration:1}} class={style.unit}>
                                 <span>{Days}</span>
-                                <span className='text-dark '>Days</span>
+                                <span className='text-light'>Days</span>
                                 </motion.div>
                                 <motion.div viewport={{once:true}} initial={{y:-60 , opacity:0}} whileInView={{y:0 , opacity:1  }} transition={{duration:1.2}} class={style.unit}>
                                 <span>{Hours}</span>
-                                <span className='text-dark '>Hours</span>
+                                <span className='text-light'>Hours</span>
                                 </motion.div>
                                 <motion.div viewport={{once:true}} initial={{y:-60 , opacity:0}} whileInView={{y:0 , opacity:1  }} transition={{duration:1.4}} class={style.unit}>
                                 <span>{Mint}</span>
-                                <span className='text-dark '>Minutes</span>
+                                <span className='text-light'>Minutes</span>
                                 </motion.div>
                                 <motion.div viewport={{once:true}} initial={{y:-60 , opacity:0}} whileInView={{y:0 , opacity:1  }} transition={{duration:1.6}} class={style.unit}>
                                 <span>{sec}</span>
-                                <span className='text-dark '>Seconds</span>
+                                <span className='text-light'>Seconds</span>
                                 </motion.div>
                             </div>
                             <h2 className={style.title}>Lorem ipsum dolor sit amet </h2>
@@ -65,7 +104,7 @@ const LatestEvent = () => {
                             </span>
                         </div>
                     </div>
-    
+                      
                     <div data-aos="fade-up-left" className="col-md-4">
                       <img className='mt-4' src={img} alt='' />
                     </div>

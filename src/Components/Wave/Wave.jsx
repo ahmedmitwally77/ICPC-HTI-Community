@@ -1,22 +1,69 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AnimatedText from "../AnimatedText";
 import TransitionEffect from "../TransitionEffect";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { db } from '../../firebase';
+import { collection, deleteDoc, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { AuthContext } from '../../Context/AuthContext';
 
 const Wave = () => {
-    const [open, setOpen] = useState(false);
+  
+  const [open, setOpen] = useState(false);
+  const { id } = useParams();
+  const [wave, setWave] = useState(null);
+  const [sessions, setSessions] = useState([]); // State to hold sessions
+  const [loading, setLoading] = useState(true); // Add a loading state
 
-    // عناوين القائمة المنسدلة
-    const titles = [
-      { id: 1, title: "Session 1", content: "This is the content for Session 1." },
-      { id: 2, title: "Session 2", content: "This is the content for Session 2." },
-      { id: 3, title: "Session 3", content: "This is the content for Session 3." },
-      { id: 4, title: "Session 4", content: "This is the content for Session 4." },
-      { id: 5, title: "Session 5", content: "This is the content for Session 5." },
-      { id: 6, title: "Session 6", content: "This is the content for Session 6." },
-      { id: 7, title: "Session 7", content: "This is the content for Session 7." },
-      { id: 8, title: "Session 8", content: "This is the content for Session 8." }
-    ];
+  useEffect(() => {
+    const fetchWave = async () => {
+        const docRef = doc(db, 'waves', id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            setWave(docSnap.data());
+        } else {
+            console.log('No such document!');
+        }
+        setLoading(false); // Stop loading once the data is fetched
+    };
+
+    const fetchSessions = async () => {
+        const sessionsQuery = query(collection(db, 'sessions'), where('waveId', '==', id));
+        const sessionsSnapshot = await getDocs(sessionsQuery);
+        const sessionsList = sessionsSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+        setSessions(sessionsList);
+    };
+
+    fetchWave();
+    fetchSessions();
+}, [id]);
+
+  if (loading ) {
+    return (
+        <div id="loading">
+            <div className="sk-cube-grid">
+                <div className="sk-cube sk-cube1"></div>
+                <div className="sk-cube sk-cube2"></div>
+                <div className="sk-cube sk-cube3"></div>
+                <div className="sk-cube sk-cube4"></div>
+                <div className="sk-cube sk-cube5"></div>
+                <div className="sk-cube sk-cube6"></div>
+                <div className="sk-cube sk-cube7"></div>
+                <div className="sk-cube sk-cube8"></div>
+                <div className="sk-cube sk-cube9"></div>
+            </div>
+        </div>
+    );
+}
+
+if (!wave) {
+    return <p>No level found.</p>;
+}
+
+
+    
 
   return (
     <>
@@ -24,23 +71,14 @@ const Wave = () => {
       <div className="wave">
         <div className="container py-20">
             <AnimatedText
-                text="wave 1"
+                text={wave.title}
                 ClassName="text-center !text-6xl !text-blue-500 my-5"
             />
             <div className="text flex align-items-center justify-center">
-                <p className="w-[75%] md:w-[100%] mb-5 text-center text-dark/75">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti
-                numquam esse tempora sequi voluptate enim labore veritatis hic,
-                ipsam voluptas exercitationem saepe magni omnis. Accusantium atque
-                blanditiis temporibus culpa explicabo? Lorem ipsum dolor sit, amet
-                consectetur adipisicing elit. Deleniti numquam esse tempora sequi
-                voluptate enim labore veritatis hic, ipsam voluptas exercitationem
-                saepe magni omnis. Accusantium atque blanditiis temporibus culpa
-                explicabo?
-                </p>
+                <p className="w-[75%] md:w-[100%] mb-5 text-center text-dark/75">{wave.description}</p>
             </div>
 
-            <div className="shadow p-4 rounded">
+            {/* <div className="shadow p-4 rounded">
                 <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => setOpen(!open)}
@@ -64,7 +102,30 @@ const Wave = () => {
                     ))}
                 </div>
                 </div>
-            </div>
+            </div> */}
+            <div className="shadow p-4 rounded">
+                        <div
+                            className="flex justify-between items-center cursor-pointer"
+                            onClick={() => setOpen(!open)}
+                        >
+                            <h3 className="text-dark/75">Sessions</h3>
+                            <span>{open ? "▲" : "▼"}</span>
+                        </div>
+
+                        <div
+                            className={`transition-all duration-300 overflow-hidden ${open ? "max-h-96" : "max-h-0"}`}
+                        >
+                            <div className="mt-4 space-y-2">
+                                {sessions.map((session) => (
+                                    <div key={session.id} className="p-2 bg-gray-100 rounded">
+                                        <Link to={`/session/${session.id}`}>
+                                            <h4 className="font-bold">{session.title}</h4>
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
 
             <AnimatedText
                 text="Stanging"

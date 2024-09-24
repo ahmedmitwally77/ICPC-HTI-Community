@@ -1,30 +1,82 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AnimatedText from "../AnimatedText";
 import line2 from "../../Images/line 2.jpeg";
 import content from '../../Images/what1-removebg-preview.png'
 import TransitionEffect from "../TransitionEffect";
+import { db } from '../../firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { useParams } from "react-router-dom";
 
 const Session = () => {
+
+  const { sessionId } = useParams(); // استخرج معرف السيشن من URL
+  const [sessionData, setSessionData] = useState(null); // حالة لتخزين بيانات السيشن
+  const [loading, setLoading] = useState(true); // حالة للتحميل
+
+
+  useEffect(() => {
+    console.log("Session ID:", sessionId); // تحقق من قيمة sessionId
+    const fetchSessionData = async () => {
+      const docRef = doc(db, 'sessions', sessionId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setSessionData(docSnap.data());
+      } else {
+        console.log('No such document!');
+      }
+      setLoading(false); // أوقف حالة التحميل بعد الانتهاء من الجلب
+    };
+
+    fetchSessionData();
+  }, [sessionId]);
+
+  if (loading) {
+    return (
+      <div id="loading">
+        <div className="sk-cube-grid">
+          <div className="sk-cube sk-cube1"></div>
+          <div className="sk-cube sk-cube2"></div>
+          <div className="sk-cube sk-cube3"></div>
+          <div className="sk-cube sk-cube4"></div>
+          <div className="sk-cube sk-cube5"></div>
+          <div className="sk-cube sk-cube6"></div>
+          <div className="sk-cube sk-cube7"></div>
+          <div className="sk-cube sk-cube8"></div>
+          <div className="sk-cube sk-cube9"></div>
+        </div>
+      </div>
+    );
+  }
+
+
+  if (!sessionData) {
+    return <p>No session found.</p>;
+  }
+
   return <>
     <TransitionEffect />
 
     <div className="session">
       <div className="container py-20">
         <AnimatedText
-          text="Session 1"
+          text={sessionData.title || "Session Title"}
           ClassName="my-20 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-dark/75 z-20"
         />
         <div className="vid d-flex relative -top-4 justify-center align-items-center d-none d-md-flex ">
-          <iframe
-            width="950"
-            height="500"
-            src="https://www.youtube.com/embed/2TdDhpjc2z4?si=m_grSyp9BmqBp4-P"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
+        {sessionData.link ? (
+              <iframe
+                width="950"
+                height="500"
+                src={sessionData.link}
+                title="YouTube video player"
+                frameborder="0" // تعديل هنا
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <p>No video available.</p> // عرض رسالة بدلاً من iframe إذا لم يكن هناك رابط
+            )}
         </div>
 
         <div className="line d-flex justify-center align-items-center relative top-7 ">
@@ -35,10 +87,9 @@ const Session = () => {
             <div className="col-md-6">
                 <AnimatedText text="Session Content" ClassName='text-start !text-5xl !text-blue-500 '/>
                 <ul className="fs-4 text-dark/75">
-                    <li>-Lorem ipsum dolor sit.</li>
-                    <li>-Lorem ipsum dolor</li>
-                    <li>-Lorem ipsum dolor.</li>
-                    <li>-Lorem ipsum </li>
+                  {sessionData.content ? sessionData.content.split('\n').map((item, index) => (
+                    <li key={index}>-{item}</li> // استخدم محتوى السيشن من البيانات
+                  )) : <li>No content available</li>}
                 </ul>
             </div>
             <div className="col-md-6">

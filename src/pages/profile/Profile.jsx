@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import AnimatedText from '../../Components/AnimatedText'
 import TransitionEffect from '../../Components/TransitionEffect'
 import HomeImg from '../../Images/IMG_3229 full.webp'
+import { AuthContext } from '../../Context/AuthContext'
+import { Link } from 'react-router-dom'
+import { signOut } from 'firebase/auth'
+import { auth } from '../../firebase'
 
 const Profile = () => {
+  const { setFlagAdmin , setFlag} = useContext(AuthContext)
+
+
+  const handleSignOut =()=>{
+    setFlagAdmin(false);
+    setFlag(false)
+  }
   return <>
     <TransitionEffect/>
 
@@ -14,6 +25,8 @@ const Profile = () => {
             <img src={HomeImg} alt="hti comunity in ecpc" />
         </div>
 
+
+        <Link to="/login" title="Log Out" className='mx-3 text-decoration-none text-black' onClick={() => { signOut(auth); handleSignOut();}}>Log Out</Link>
 
     </div>
   </>

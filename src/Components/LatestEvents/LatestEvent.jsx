@@ -15,6 +15,8 @@ const LatestEvent = () => {
     const [Hours, setHours] = useState('')
     const [Mint, setMint] = useState('')
     const [sec, setSec] = useState('')
+    const [loading, setLoading] = useState(true); // Add a loading state
+
 
 
     useEffect(() => {
@@ -35,6 +37,8 @@ const LatestEvent = () => {
         if (eventList.length > 0) {
           setEvent(eventList[0]);
         }
+        setLoading(false); // Stop loading once the data is fetched
+
       };
       fetchLatestEvent();
     }, []);
@@ -51,25 +55,33 @@ const LatestEvent = () => {
           setMint(Math.floor((datediff % (1000 * 60 * 60)) / (1000 * 60)));
           setSec(Math.floor((datediff % (1000 * 60)) / 1000));
         }, 1000);
-  
+        console.log(event.title);
+        
         return () => clearInterval(counter);
       }
     }, [event]);
 
-    // useEffect(() => {
-    //       const countdown = new Date().getTime();
-    //       const counter = setInterval(() => {
-    //         const datenow = new Date().getTime();
-    //         const datediff = countdown - datenow;
-    
-    //         setDays(Math.floor(datediff / 1000 / 60 / 60 / 24));
-    //         setHours(Math.floor((datediff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-    //         setMint(Math.floor((datediff % (1000 * 60 * 60)) / (1000 * 60)));
-    //         setSec(Math.floor((datediff % (1000 * 60)) / 1000));
-    //       }, 1000);
-    
-    //       return () => clearInterval(counter);
-    //   }, []);
+    if (loading ) {
+      return (
+          <div id="loading">
+              <div className="sk-cube-grid">
+                  <div className="sk-cube sk-cube1"></div>
+                  <div className="sk-cube sk-cube2"></div>
+                  <div className="sk-cube sk-cube3"></div>
+                  <div className="sk-cube sk-cube4"></div>
+                  <div className="sk-cube sk-cube5"></div>
+                  <div className="sk-cube sk-cube6"></div>
+                  <div className="sk-cube sk-cube7"></div>
+                  <div className="sk-cube sk-cube8"></div>
+                  <div className="sk-cube sk-cube9"></div>
+              </div>
+          </div>
+      );
+  }
+  
+  if (!event) {
+      return <p>No level found.</p>;
+  }
 
 
       return <>
@@ -83,30 +95,30 @@ const LatestEvent = () => {
                             <div class={style.time}>
                                 <motion.div viewport={{once:true}} initial={{y:-60 , opacity:0}} whileInView={{y:0 , opacity:1  }} transition={{duration:1}} class={style.unit}>
                                 <span>{Days}</span>
-                                <span className='text-light'>Days</span>
+                                <span className='text-dark fw-bold'>Days</span>
                                 </motion.div>
                                 <motion.div viewport={{once:true}} initial={{y:-60 , opacity:0}} whileInView={{y:0 , opacity:1  }} transition={{duration:1.2}} class={style.unit}>
                                 <span>{Hours}</span>
-                                <span className='text-light'>Hours</span>
+                                <span className='text-dark fw-bold'>Hours</span>
                                 </motion.div>
                                 <motion.div viewport={{once:true}} initial={{y:-60 , opacity:0}} whileInView={{y:0 , opacity:1  }} transition={{duration:1.4}} class={style.unit}>
                                 <span>{Mint}</span>
-                                <span className='text-light'>Minutes</span>
+                                <span className='text-dark fw-bold'>Minutes</span>
                                 </motion.div>
                                 <motion.div viewport={{once:true}} initial={{y:-60 , opacity:0}} whileInView={{y:0 , opacity:1  }} transition={{duration:1.6}} class={style.unit}>
                                 <span>{sec}</span>
-                                <span className='text-light'>Seconds</span>
+                                <span className='text-dark fw-bold'>Seconds</span>
                                 </motion.div>
                             </div>
-                            <h2 className={style.title}>Lorem ipsum dolor sit amet </h2>
+                            <h2 className={style.title}>{event.title} </h2>
                             <span className={style.description}>
-                              consectetur adipisicing elit. Inventore, nesciunt, quis id autem error molestias voluptatem beatae nobis magnam eos culpa , 
+                              {event.eventDetails}
                             </span>
                         </div>
                     </div>
                       
                     <div data-aos="fade-up-left" className="col-md-4">
-                      <img className='mt-4' src={img} alt='' />
+                      <img className='mt-4' src={event.eventCoverUrl} alt={event.title} />
                     </div>
                 </div>
     

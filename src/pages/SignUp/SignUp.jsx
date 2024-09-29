@@ -21,7 +21,7 @@ const SignUp = () => {
   
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-    
+
       const uploadImage = async (image, refPath) => {
         if (image) {
           const imageRef = ref(storage, refPath);
@@ -61,7 +61,7 @@ const SignUp = () => {
           phone,
           nationalId,
           handle,
-          photoURL: downloadURL,
+          downloadURL,
         });
       }
       

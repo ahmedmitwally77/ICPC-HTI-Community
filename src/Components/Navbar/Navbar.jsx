@@ -44,9 +44,11 @@ const CustomMobileLink = ({to , title , className="" , toggle , signOutClick}) =
 const Navbar = () => {
 
   const {currentUser , userData , flagAdmin , setFlagAdmin , setFlag , flag} = useContext(AuthContext)
-  console.log(userData);
+ 
 
   useEffect(() => {
+    console.log(currentUser);
+    console.log(userData?.photoURL);
     if(currentUser){
       setFlag(true)
       if(currentUser.uid === "vpFEcaagXpabB5ulRTkHVp6RAAl2"){
@@ -89,7 +91,7 @@ const Navbar = () => {
     <CustomLink to="/training" title="Training" className='mx-3 text-decoration-none text-dark'/>
     <CustomLink to="/committees" title="Committees" className='mx-3 text-decoration-none text-dark'/>
     <CustomLink to="/ecpc" title="ECPC" className='mx-3 text-decoration-none text-dark'/>
-    <CustomLink to="/contactUs" title="Contact Us" className='mx-3 text-decoration-none text-dark'/>
+    {/* <CustomLink to="/contactUs" title="Contact Us" className='mx-3 text-decoration-none text-dark'/> */}
     {flag && flagAdmin ?<>
       <div class="dropdown-center">
         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -112,7 +114,7 @@ const Navbar = () => {
   {/* auth */}
   {currentUser? <nav className=' '> 
     <Link to={'/profile'} className=' fw-bold' >Hello {currentUser?.displayName}</Link>
-    {/* <img src={imageUrl} alt="" /> */}
+    <img src={userData?.photoURL} alt="" />
   </nav>: 
   <nav className='flex items-center justify-center '> 
     <Link to={'/signup'}  className={style.btn2} >SignUp</Link>
@@ -152,8 +154,11 @@ className='z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70
             <li><Link to={'/addwaves'}>Add waves</Link></li>
             <li><Link to={'/addsession'}>Add session</Link></li>
         </ul>
+
       </div>
         </>:<></>}
+
+
   </nav>
   
   {currentUser? <nav className=' '> 
@@ -173,6 +178,9 @@ className='z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70
     {/* <Link to='/' className='w-[160px] md:w-[120px] absolute left-[50%] top-1  translate-x-[-50%]'>
       <img className='w-100' src={logo} alt="icpc hti logo" />
     </Link> */}
+
+    <img className='hidden lg:flex w-25' src={logo} alt="" />
+
   </header>
   </>
 }

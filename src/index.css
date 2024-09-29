@@ -374,3 +374,7 @@ background-color: #d1114e9a; */
             transform: scale3D(0, 0, 1);
   } 
 }
+
+.shadowTop{
+      box-shadow:0 0 20px #818181;
+}

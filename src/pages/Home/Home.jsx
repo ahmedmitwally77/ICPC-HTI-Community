@@ -14,7 +14,6 @@ import { AuthContext } from '../../Context/AuthContext'
 
 const Home = () => {
   
-  
   const {currentUser , userData , loading } = useContext(AuthContext)
 
   console.log(userData);

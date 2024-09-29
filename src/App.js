@@ -10,7 +10,7 @@ import OTPVer from './Components/OTPVer/OTPVer';
 import ResetNewPass from './Components/ResetNewPass/ResetNewPass';
 import ECPC from './pages/ECPC/ECPC';
 import About from './pages/About/About';
-import ContactUs from './pages/ContactUs/ContactUs';
+// import ContactUs from './pages/ContactUs/ContactUs';
 import Training from './pages/Training/Training';
 import Level from './Components/Level/Level';
 import Wave from './Components/Wave/Wave';
@@ -36,7 +36,7 @@ let routers = createBrowserRouter([
     {path:"signup" , element:<SignUp/>},
     {path:"ecpc" , element:<ECPC/>},
     {path:"about" , element:<About/>},
-    {path:"contactUs" , element:<ContactUs/>},
+    // {path:"contactUs" , element:<ContactUs/>},
     {path:"committees" , element:<Committees/>},
     {path:"training" , element:<Training/>},
     {path:"level/:id" , element:<ProtectedRoute><Level/></ProtectedRoute>},
@@ -45,6 +45,7 @@ let routers = createBrowserRouter([
     {path:"profile" , element:<ProtectedRoute><Profile/></ProtectedRoute>},
     {path:"admin" , element:<ProtectedAdmin><Admin/></ProtectedAdmin>},
     {path:"addnews" , element:<ProtectedAdmin><AddNews/></ProtectedAdmin>},
+    {path:"addevent" , element:<ProtectedAdmin><AddLatestEvents/></ProtectedAdmin>},
     {path:"addtalented" , element:<ProtectedAdmin><AddTalented/></ProtectedAdmin>},
     {path:"addAchievemnts" , element:<ProtectedAdmin><AddAchievements/></ProtectedAdmin>},
     {path:"addlevels" , element:<ProtectedAdmin><AddLevels/></ProtectedAdmin>},

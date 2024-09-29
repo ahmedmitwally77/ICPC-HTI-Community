@@ -378,3 +378,7 @@ background-color: #d1114e9a; */
 .shadowTop{
       box-shadow:0 0 20px #818181;
 }
+
+.durationNone{
+  text-decoration: none;
+}

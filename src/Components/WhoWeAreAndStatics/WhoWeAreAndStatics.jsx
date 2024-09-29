@@ -45,16 +45,17 @@ const WhoWeAreAndStatics = () => {
             <AnimatedText text="Who we are !" ClassName='mb-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-blue-500'/>
             <div data-aos="fade-up" className='grid w-full grid-cols-8 gap-16 sm:gap-8'>
                     <div className='col-span-3 flex flex-col items-start justify-start xl:col-span-4 md:order-2 md:col-span-8'>
-                        <h2 className='mb-4 text-lg font-bold uppercase text-dark/75 dark:text-light/75'>bigraghy</h2>
+                        <h2 className='mb-4 text-lg font-bold uppercase text-dark/75 dark:text-light/75'>Biography</h2>
                         <p className='font-medium'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. At nihil facilis hic accusantium fugit minus 
-                        vitae aut et cum! Minima voluptates blanditiis soluta, maxime officia beatae eius quia cum esse!
+                        The ICPC community at HTI University likely emerged as a group of passionate computer science students driven by
+                         a shared love for problem-solving and competitive programming. These students, inspired by the International
+                          Collegiate Programming Contest (ICPC), recognized the value of training together and participating in competitions.
                         </p>
                         <p className='font-medium my-4'>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam exercitationem, eveniet ratione 
-                        odio ea, consequuntur fugiat nobis, laudantium repellat fugit praesentium voluptas asperiores aperiam 
-                        officiis. Cum repellendus labore error. Veritatis!
-                        Lorem ipsum dolor sit amet consectetur, 
+                        Over time, the community grew, attracting talented individuals from various backgrounds within the computer science
+                         department. They organized regular practice sessions, participated in local and regional ICPC contests, and engaged 
+                         in collaborative projects to enhance their programming skills. The community also played a vital role in fostering a 
+                         culture of innovation and academic excellence within the university.
                         </p>
                         <Link to={'/about'} className='btn btn-dark'>Read More</Link>
                     </div>

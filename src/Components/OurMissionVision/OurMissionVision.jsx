@@ -21,10 +21,10 @@ const OurMissionVision = () => {
                             <img className='w-[15%] h-[10%] rounded-full m-2' src={img1} alt="" />
                             <h4 className='!text-4xl !text-dark/75 fw-bold'>Our Mission</h4>
                         </div>
-                        <p className='text-dark/70 leading-loose'>Lorem ipsum dolor sit amet consectetur. Dolor quis justo non 
-                            at morbi suspendisse lacus tortor non. Nunc non convallis id commodo. 
-                            m ipsum dolor sit amet consectetur. Dolor quis justo non at morbi suspendisse 
-                            lacus tortor non. Nunc non convallis id commodo.
+                        <p className='text-dark/70 leading-loose'>We are dedicated to nurturing a culture of
+                         innovation and excellence in computer science. We strive to provide our members with opportunities
+                          to develop their problem-solving skills, enhance their programming abilities, and represent the 
+                          university with distinction in competitive programming contests.
                         </p>
                     </div>
                 </div>
@@ -34,18 +34,14 @@ const OurMissionVision = () => {
                             <img className='w-[15%] h-[10%] rounded-full m-2' src={img2} alt="" />
                             <h4 className='!text-4xl !text-dark/75 fw-bold'>Our Mission</h4>
                         </div>
-                        <p className='text-dark/70 leading-loose'>Lorem ipsum dolor sit amet consectetur. Dolor quis justo non 
-                            at morbi suspendisse lacus tortor non. Nunc non convallis id commodo. 
-                            m ipsum dolor sit amet consectetur. Dolor quis justo non at morbi suspendisse 
-                            lacus tortor non. Nunc non convallis id commodo.
+                        <p className='text-dark/70 leading-loose'>We envision the ICPC community at HTI University as a 
+                        leading force in the field of competitive programming, renowned for its exceptional talent, innovative
+                         problem-solving, and unwavering dedication to excellence.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        {/* <div className='line d-flex justify-center align-items-center h-25 absolute right-10 bottom-16  '>
-            <img className='rounded-2xl h-[100%]' src={line1} alt="line" />
-        </div> */}
     </div>
   )
 }

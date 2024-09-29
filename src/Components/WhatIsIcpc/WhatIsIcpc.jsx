@@ -48,10 +48,7 @@ const WhatIsIcpc = () => {
 
   return (
     <div className={`${style.whatisicpc} relative  pb-16 `}>
-        {/* <h2 className='font-bold text-8xl  w-full text-light/90 text-center md:text-6xl xs:text-4xl md:mb-16'>
-            What is ICPC
-        </h2> */}
-        {/* <img className='rotate-180 absolute -top-[30%] md:none ' src={footerWaves} alt="waves" /> */}
+        
         <img src={shape1} alt="" />
         <div className="row justify-around align-items-center">
             <div className="col-md-7">
@@ -64,10 +61,12 @@ const WhatIsIcpc = () => {
                 <ul className='w-full flex flex-col items-start justify-between ml-4'>
                     <Details
                     position="International Collegiate Programming Contest" 
-                    work="ICPC stands for The International Collegiate Programming 
-                    Contest, which is an algorithmic programming contest for college
-                     students. Teams of three,fostering collaboration, creativity, 
-                     innovation, and the ability to perform..."
+                    work="The International Collegiate Programming Contest (ICPC) is an annual, 
+                    team-based, multi-tiered programming competition among universities worldwide. 
+                    Teams of three students, representing their university, work collaboratively to solve 
+                    a set of algorithmic problems within a limited time. The contest aims to foster creativity,
+                     teamwork, and problem-solving skills. It is considered one of the most prestigious programming 
+                     competitions for university students globally."
                     />
                 </ul>
                 </div>

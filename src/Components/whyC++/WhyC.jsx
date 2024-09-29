@@ -29,9 +29,9 @@ const WhyC = () => {
   };
 
   const dropdowns = [
-    { title: "What Is C++ Used For?", content: "Lorem ipsum dolor sit amet consectetur. Laoreet id accumsan facilisis egestas viverra nisl mi ridiculus. Lectus fames morbi est rhoncus tempor. Sapien aliquam urna a risus massa. Vestibulum sit congue interdum non.." },
-    { title: "What Is C++ Used For?", content: "Lorem ipsum dolor sit amet consectetur. Laoreet id accumsan facilisis egestas viverra nisl mi ridiculus. Lectus fames morbi est rhoncus tempor. Sapien aliquam urna a risus massa. Vestibulum sit congue interdum non.." },
-    { title: "What Is C++ Used For?", content: "Lorem ipsum dolor sit amet consectetur. Laoreet id accumsan facilisis egestas viverra nisl mi ridiculus. Lectus fames morbi est rhoncus tempor. Sapien aliquam urna a risus massa. Vestibulum sit congue interdum non.." }
+    { title: "What Is C++ Used For?", content: "c++ is used in fields such as system software, game development, embedded systems, scientific computing and high-performance applications. The C++ standard library provides a range of coding utilities and functions, making it easy to develop complex software systems." },
+    { title: "Is C++ very useful?", content: "all operating systems are built using C++, for example, Mac Os, Windows, Linux, etc. Browsers like Safari, Opera, Chrome, Firefox, etc., are written in C++ because it is a fast and efficient language that is why it is preferable." },
+    { title: "Is C++ a dead language?", content: "They're less likely to be used for new projects, but old ones still use them. Just like how some projects still use COBOL today, C and C++ aren't going away." }
   ];
 
   return (
@@ -46,33 +46,29 @@ const WhyC = () => {
                 <motion.div variants={qoute} initial="initial" animate="animate" className="col-md-4">
                     <div className="box p-10 relative rounded-3xl bg-yellow-400">
                         <img className='w-50 absolute  md:hidden -top-28 left-28 m-auto' src={why1} alt="" />
-                        <h4 className='text-light/95 text-center mt-3'>Lorem ipsum.</h4>
+                        <h4 className='text-light/95 text-center mt-3'>Strong foundation</h4>
                         <p className='text-white'>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus,
-                            magni! Earum, facilis illum laboriosam corrupti, eligendi impedit qui 
-                            non dolorum explicabo, sed iure odit reiciendis quam maiores optio rem temporibus.
+                        C++ provides a solid foundation in programming concepts, such as memory management,
+                         pointers, and object-oriented programming. This knowledge is transferable to other languages.
                         </p>
                     </div>
                 </motion.div>
                 <div  className="col-md-4">
                     <div className="box p-10 relative rounded-3xl md:my-20 bg-blue-500">
                         <img className='w-50 absolute md:hidden -top-28 left-28 m-auto' src={why1} alt="" />
-                        <h4 className='text-light/95 text-center mt-3'>Lorem ipsum.</h4>
+                        <h4 className='text-light/95 text-center mt-3'>performance</h4>
                         <p className='text-white pb-4'>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus,
-                            magni! Earum, facilis illum laboriosam corrupti, eligendi impedit qui 
-                            non dolorum explicabo, sed iure odit reiciendis quam maiores optio rem temporibus.
+                        C++ is a high-performance language, often used in applications that require speed and 
+                        efficiency, such as game development and system programming.
                         </p>
                     </div>
                 </div>
                 <div  className="col-md-4">
                     <div className="box p-10 relative rounded-3xl bg-yellow-400">
                         <img className='w-50 absolute md:hidden -top-28 left-28 m-auto' src={why1} alt="" />
-                        <h4 className='text-light/95 text-center mt-3'>Lorem ipsum.</h4>
+                        <h4 className='text-light/95 text-center mt-3'>Community and Resources</h4>
                         <p className='text-white'>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus,
-                            magni! Earum, facilis illum laboriosam corrupti, eligendi impedit qui 
-                            non dolorum explicabo, sed iure odit reiciendis quam maiores optio rem temporibus.
+                        C++ has a large and active community with abundant resources, including tutorials, forums, and libraries, to support learners.
                         </p>
                     </div>
                 </div>

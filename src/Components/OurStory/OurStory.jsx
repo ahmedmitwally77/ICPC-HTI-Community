@@ -16,11 +16,15 @@ const OurStory = () => {
             <div className="row">
                 <div data-aos="fade-right" className="col-md-7">
                     <AnimatedText text="Our Story" ClassName='text-start !text-5xl !text-blue-500'/>
-                    <p className='text-dark/60 leading-loose'>Lorem ipsum dolor sit amet consectetur. Phasellus et egestas feugiat phasellus quis.
-                        Vitae amet odio consectetur diam aliquet. Et porttitor sit ut non adipiscing nibh. 
-                        Augue neque sapien nisi etiam.Lorem ipsum dolor sit amet consectetur. Phasellus et 
-                        egestas feugiat phasellus quis. Vitae amet odio consectetur diam aliquet. Et porttitor
-                         sit ut non adipiscing nibh. Augue neque sapien nisi etiam.
+                    <p className='text-dark/60 leading-loose'>The ICPC community at HTI University is a vibrant hub of talented 
+                    individuals united by their passion for computer science. Members engage in regular practice sessions, honing 
+                    their problem-solving skills and collaborating on challenging coding challenges. The community actively 
+                    participates in local and regional ICPC contests, showcasing their expertise and representing the university
+                     with pride. Beyond competitions, members often collaborate on personal projects, exploring cutting-edge 
+                     technologies and pushing the boundaries of innovation. The ICPC community at HTI University fosters a 
+                     supportive and inclusive environment, encouraging members to learn from each other and grow both academically 
+                     and personally. Through their dedication and teamwork, members of the ICPC community have achieved remarkable 
+                     success, earning recognition and accolades at various levels of competition.
                     </p>
                 </div>
                 <div data-aos="fade-left" className="col-md-5">

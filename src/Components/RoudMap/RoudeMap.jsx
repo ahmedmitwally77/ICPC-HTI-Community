@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import style from './RoudeMap.module.css'
 import { useEffect, useRef } from 'react';
 import footerWaves from '../../Images/fotter2.svg'
+import { Link } from 'react-router-dom'
 
 const Details = ({position , company , companyLink , time , address , work}) =>{
 
@@ -63,14 +64,13 @@ const RoudeMap = () => {
                 '/>
                 <ul className='w-full flex flex-col items-start justify-between ml-4'>
                     <Details
-                    position="International Collegiate Programming Contest" 
-                    work="ICPC stands for The International Collegiate Programming 
-                    Contest, which is an algorithmic programming contest for college
-                     students. Teams of three, fostering collaboration, creativity, 
-                     students. Teams of three, fostering collaboration, creativity, 
-                     innovation, and the ability to perform..."
+                    position="Our Roadmap" 
+                    work="Our Roadmap contains all the materials we use for our training, 
+                    that includes slides, sheets, and even videos! The Roadmap targets everyone
+                     interested in PS, either you're a college student, older or even younger, no 
+                     matter what your major is, as long as you're interested in learning and willing"
                     />
-                    <button className='btn grade2 ms-5'>Reade More</button>
+                    <button className='btn grade2 ms-5'><Link className='durationNone text-light' to={'/training'}>Reade More</Link></button>
 
                 </ul>
                 </div>

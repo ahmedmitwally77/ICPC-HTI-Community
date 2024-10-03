@@ -25,6 +25,7 @@ import jo from '../../Images/training/Yousef Fathy.jpg'
 import anone from '../../Images/training/anone.jpeg'
 import anone2 from '../../Images/training/anone2.jpg'
 import hanya from '../../Images/hanya.jpeg'
+import menna from '../../Images/menna.jpeg'
 import sham3a from '../../Images/media/sham3a.jpg'
 import mary from '../../Images/media/mary.jpeg'
 import Slider from 'react-slick'
@@ -110,7 +111,7 @@ const Committees = () => {
 
   return <>
     <TransitionEffect/>
-    <div className='committees  relative overflow-x-hidden'>
+    <div className='committees mt-10 relative overflow-x-hidden'>
         <div className="hero bg-dark relative  -top-4">
             <AnimatedText text="Committees" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>
             <div className='overlay absolute bg-dark/50 w-100 h-[97.5%]'></div>
@@ -284,10 +285,9 @@ const Committees = () => {
             <div className="ourMission container">
                 <AnimatedText text="What is our mission!" ClassName='text-start ms-3 !text-4xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-blue-500 '/>
                 <ul className='text-dark/75 '>
-                    <li className='p-1 fs-6'>- Media Coverage: The committee manages the media coverage of ICPC events, including press conferences, interviews, and photo opportunities.</li>
-                    <li className='p-1 fs-6'>- They work to ensure that the media coverage is accurate, informative, and positive.</li>
-                    <li className='p-1 fs-6'>- Content Creation: The media committee creates content for the ICPC's official media channels, such as press releases, social media posts, and articles.</li>
-                    <li className='p-1 fs-6'>- This content is designed to promote the ICPC and its events to a wider audience.</li>
+                    <li className='p-1 fs-6'>- Website Development: The committee develops the website's architecture, programming, and coding, ensuring that it is compatible with different browsers and devices.</li>
+                    <li className='p-1 fs-6'>- Database Management: They design and implement databases to store and manage competition data, such as contestant information, problem submissions, and scores.</li>
+                    <li className='p-1 fs-6'>- User Interface Design: The committee works with designers to create a visually appealing and intuitive user interface that is easy for contestants, judges, and organizers to navigate.</li>
                 </ul>
             </div>
 
@@ -318,7 +318,7 @@ const Committees = () => {
                                 <h3>Menna Farag</h3>
                                 <p>UI/UX of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={anone} alt="" />
+                            <img className='w-100 hover:scale-105 transition-transform' src={menna} alt="" />
                         </div>
                     </div>
                 </Slider>

@@ -12,7 +12,7 @@ import TransitionEffect from '../../Components/TransitionEffect'
 const About = () => {
   return <>
     <TransitionEffect/>
-    <div className='about relative overflow-x-hidden'>
+    <div className='about mt-10 relative overflow-x-hidden'>
       <div className="hero bg-dark relative  -top-4">
             <AnimatedText text="About Us" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>
             <div className='overlay absolute bg-dark/50 w-100 h-[97.5%]'></div>

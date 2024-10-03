@@ -133,11 +133,11 @@ animate={{scale:1 , opacity:1 }}
 transition={{duration:1}}
 className='z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70vw] flex flex-col  justify-between items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
   <nav className='flex items-center flex-col justify-center'>
-    <CustomMobileLink to='/'  title="Home"  className='' toggle={handelClick}/>
-    <CustomLink to="/about" title="About" className='mx-3 text-decoration-none text-light' toggle={handelClick}/>
-    <CustomMobileLink to="/training" title="Training" className='' toggle={handelClick}/>
-    <CustomMobileLink to="/committees" title="Committees" className='' toggle={handelClick}/>
-    <CustomMobileLink to="/ecpc" title="ECPC" className='' toggle={handelClick}/>
+    <CustomLink to='/'  title="Home"  className='mx-3 text-decoration-none text-light' toggle={handelClick}/>
+    <CustomLink to="/about" title="About" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
+    <CustomLink to="/training" title="Training" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
+    <CustomLink to="/committees" title="Committees" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
+    <CustomLink to="/ecpc" title="ECPC" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
     {/* <CustomMobileLink to="/contactUs" title="Contact Us" className='' toggle={handelClick}/> */}
     {flag && flagAdmin ?<>
       <div class="dropdown-center">

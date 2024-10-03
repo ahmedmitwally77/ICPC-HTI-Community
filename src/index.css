@@ -382,3 +382,19 @@ background-color: #d1114e9a; */
 .durationNone{
   text-decoration: none;
 }
+
+.btnnew{
+  background: linear-gradient(
+      to right, 
+      #4D79C1 1%, 
+      #3D619A 32%, 
+      #C9A646 75%, 
+      #D3A42F 100%
+  );
+  padding: 17px 25%;
+  margin-top: 30px ;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+
+}

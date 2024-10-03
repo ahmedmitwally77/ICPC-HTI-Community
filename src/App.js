@@ -1,5 +1,5 @@
 import './App.css';
-import {RouterProvider, createBrowserRouter} from 'react-router-dom' ;
+import { RouterProvider, createBrowserRouter} from 'react-router-dom' ;
 import Layout from '../src/Components/Layout'
 import Home from './pages/Home/Home'
 import { NotFound } from './pages/NotFound';
@@ -24,6 +24,7 @@ import AddLatestEvents from './pages/Adds/AddLatestEvents';
 import AddAchievements from './pages/Adds/AddAchievements';
 import AddLevels from './pages/Adds/Training/AddLevels';
 import AddWave from './pages/Adds/Training/AddWave';
+import Form from './pages/Form-wave/Form';
 import AddSessions from './pages/Adds/Training/AddSessions';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ProtectedAdmin from './Components/ProtectedAdmin';
@@ -51,6 +52,7 @@ let routers = createBrowserRouter([
     {path:"addlevels" , element:<ProtectedAdmin><AddLevels/></ProtectedAdmin>},
     {path:"addwaves" , element:<ProtectedAdmin><AddWave/></ProtectedAdmin>},
     {path:"addsession" , element:<ProtectedAdmin><AddSessions/></ProtectedAdmin>},
+    {path:"form" , element:<Form/>},
 
     {path:'*',element:<NotFound/>},
   ]},

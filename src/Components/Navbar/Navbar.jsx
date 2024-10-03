@@ -138,7 +138,7 @@ className='z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70
     <CustomMobileLink to="/training" title="Training" className='' toggle={handelClick}/>
     <CustomMobileLink to="/committees" title="Committees" className='' toggle={handelClick}/>
     <CustomMobileLink to="/ecpc" title="ECPC" className='' toggle={handelClick}/>
-    <CustomMobileLink to="/contactUs" title="Contact Us" className='' toggle={handelClick}/>
+    {/* <CustomMobileLink to="/contactUs" title="Contact Us" className='' toggle={handelClick}/> */}
     {flag && flagAdmin ?<>
       <div class="dropdown-center">
         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

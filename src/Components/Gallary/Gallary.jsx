@@ -66,7 +66,7 @@ const Gallary = () => {
         </div>
         <AnimatedText text="Our Gallary" ClassName='text-center !text-6xl !text-blue-600 my-16'/>
         <div className="  py-16 pb-32">
-            <Slider className='mt-4' {...settings}>
+            {/* <Slider className='mt-4' {...settings}>
             <div className=''>
                 <div className="image mx-2">
                     <img className='rounded-xl ' src={img} alt="icpc hti gallary" />
@@ -149,7 +149,8 @@ const Gallary = () => {
             </Slider>
             <div className="showMore mt-10 d-flex justify-center align-items-center">
                 <Link className='text-center mt-10 btn grade2  ' to={'/gallary'}>Show more</Link>
-            </div>
+            </div> */}
+            <h3>Coming Soon ...</h3>
         </div>
     </div>
   )

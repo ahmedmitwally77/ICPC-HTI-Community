@@ -30,6 +30,7 @@ import sham3a from '../../Images/media/sham3a.jpg'
 import mary from '../../Images/media/mary.jpeg'
 import Slider from 'react-slick'
 import TransitionEffect from '../../Components/TransitionEffect'
+import { Helmet } from 'react-helmet'
 
 
 const Committees = () => {
@@ -110,6 +111,10 @@ const Committees = () => {
 
 
   return <>
+    <Helmet>
+        <title>Committees of ICPC HTI </title>
+        <meta name='description' content='Discover the committees of ICPC HTI that organize and support competitive programming activities, including event management, technical support, and community outreach.' />
+    </Helmet>
     <TransitionEffect/>
     <div className='committees  relative overflow-x-hidden'>
         <div className="hero bg-dark relative  -top-4">

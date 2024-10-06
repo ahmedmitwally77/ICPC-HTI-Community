@@ -13,11 +13,11 @@ const OurEcpc = () => {
                     <div className="col-md-6">
                         <AnimatedText text="_Our Ecpc" ClassName='text-start !text-4xl !text-blue-500'/>
                         <p className=''>
-                            Lorem ipsum dolor sit amet consectetur. Phasellus et egestas feugiat phasellus quis. Vitae amet odio 
-                            consectetur diam aliquet. Et porttitor sit ut non adipiscing nibh. Augue neque sapien nisi etiam.Lorem ipsum dolor
-                            sit amet consectetur. Phasellus et egestas feugiat phasellus quis. Vitae amet odio consectetur diam aliquet. Et
-                            porttitor sit ut non adipiscing nibh. Augue neque sapien nisi etiam.
-                            porttitor sit ut non adipiscing nibh. Augue neque sapien nisi etiam.
+                        ECPC is a prestigious annual competition that brings together top programming teams from Egyptian universities. It's a platform for students to showcase their problem-solving skills, teamwork, and algorithmic thinking.
+
+                        Key features of ECPC
+                        Intense Competition: Teams face challenging programming problems that require creativity, efficiency, and strategic thinking.
+                        Global Recognition: Winners of ECPC gain international recognition and often qualify for the prestigious International Collegiate Programming Contest (ICPC) World Finals.
                         </p>
                     </div>
                     <div  className="col-md-6 mt-3">

@@ -31,18 +31,13 @@ const OurStory = () => {
                     <img className='rounded-xl' src={img} alt="icpc hti team" />
                 </div>
             </div> 
-            <div className="vid d-flex relative -top-4 justify-center align-items-center d-none d-md-flex ">
-                {/* <video width="600" controls>
-                    <source src='../../Images/ECPC VID.mp4' type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video> */}
+            <div className="vid d-flex relative -top-4 justify-center align-items-center md:mt-12 d-md-flex ">
                 <iframe width="950" height="500" 
                     src="https://www.youtube.com/embed/2TdDhpjc2z4?si=m_grSyp9BmqBp4-P"
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen>
-                        
                   </iframe>
             </div>
         </div>

@@ -3,9 +3,16 @@ import AnimatedText from '../../Components/AnimatedText'
 import HomeImg from '../../Images/IMG_3229 full.webp'
 import OurEcpc from '../../Components/OurECPC/OurEcpc'
 import TransitionEffect from '../../Components/TransitionEffect'
+import { Helmet } from 'react-helmet'
 
 const ECPC = () => {
   return <>
+
+    <Helmet>
+        <title>ECPC | Egyptian Collegiate Programming Contest at ICPC HTI</title>
+        <meta name='description' content='Learn about ECPC, the Egyptian Collegiate Programming Contest organized by ICPC HTI, where students showcase their problem-solving skills in national-level competitions.' />
+    </Helmet>
+
       <TransitionEffect/>
 
     <div className='ecpc  relative'>

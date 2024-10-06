@@ -24,7 +24,7 @@ const OurAchievements = () => {
       }, []);
 
       const handleDelete = async (id) => {
-        const docRef = doc(db, 'news', id);
+        const docRef = doc(db, 'achievements', id);
     
         await deleteDoc(docRef)
           .then(() => {

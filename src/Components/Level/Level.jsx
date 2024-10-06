@@ -4,7 +4,8 @@ import logo from '../../Images/Colored Icon.png'
 import { Link, useParams } from 'react-router-dom'
 import TransitionEffect from '../TransitionEffect'
 import { db } from '../../firebase';
-import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, getDocs, deleteDoc } from 'firebase/firestore';
+import { AuthContext } from '../../Context/AuthContext'
 
 const Level = () => {
 
@@ -12,6 +13,7 @@ const Level = () => {
     const [level, setLevel] = useState(null);
     const [loading, setLoading] = useState(true); // Add a loading state
     const [waves, setWaves] = useState([]); // لحفظ الويفز المرتبطة بالمستوى
+    // const {flagAdmin} = useContext(AuthContext)
 
 
     useEffect(() => {
@@ -68,6 +70,19 @@ const Level = () => {
         return <p>No level found.</p>;
     }
 
+    // const handleDelete = async (id) => {
+    //     const docRef = doc(db, 'waves', id);
+    
+    //     await deleteDoc(docRef)
+    //       .then(() => {
+    //           setWaves(waves.filter(wave => wave.id !== id)); // إزالة المقالة من الحالة بعد الحذف
+    //         alert("تم حذف الوثيقة بنجاح!");
+    //       })
+    //       .catch((error) => {
+    //         alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
+    //       });
+    //   }
+
       return <>
       <TransitionEffect/>
     <div className='level'>
@@ -83,6 +98,7 @@ const Level = () => {
             {waves.length > 0 ? (
                             waves.map((wave) => (
                                 <div key={wave.id} className="col-md-4">
+                                    {/* {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(waves.id)}>Delete</button>:<></>} */}
                                     <div className="box p-16 rounded-full relative bg-blue-900">
                                         <img className="absolute left-[40%] -top-[50%] w-20" src={logo} alt="icpc logo" />
                                         <h2 className="text-light text-center !text-5xl">{wave.title}</h2>

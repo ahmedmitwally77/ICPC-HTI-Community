@@ -128,9 +128,10 @@ if (!wave) {
                     </div>
 
             <AnimatedText
-                text="Stanging"
+                text="Standing"
                 ClassName="text-start !text-5xl !text-blue-900 my-5"
             />
+            <h3>Coming Soon ...</h3>
 
         </div>
       </div>

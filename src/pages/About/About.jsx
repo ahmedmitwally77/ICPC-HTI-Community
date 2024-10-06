@@ -4,13 +4,17 @@ import HomeImg from '../../Images/IMG_3229 full.webp'
 import OurStory from '../../Components/OurStory/OurStory'
 import OurMissionVision from '../../Components/OurMissionVision/OurMissionVision'
 import OurAchievements from '../../Components/OurAchievements/OurAchievements'
-import OurCore from '../../Components/OurCore/OurCore'
 import OurFounders from '../../Components/OurFounders/OurFounders'
 import Gallary from '../../Components/Gallary/Gallary'
 import TransitionEffect from '../../Components/TransitionEffect'
+import { Helmet } from 'react-helmet'
 
 const About = () => {
   return <>
+    <Helmet>
+        <title>About ICPC HTI | Empowering Competitive Programming at HTI</title>
+        <meta name='description' content='Learn about ICPC HTI, a community that fosters programming skills and competitive coding among students, preparing them for national and international competitions.' />
+    </Helmet>
     <TransitionEffect/>
     <div className='about  relative overflow-x-hidden'>
       <div className="hero bg-dark relative  -top-4">

@@ -1,13 +1,12 @@
 import { useInView, useMotionValue, useSpring } from 'framer-motion';
 import React, { useEffect, useRef } from 'react'
 import AnimatedText from '../AnimatedText';
-import logo from '../../Images/Black V1.png'
+import logo from '../../Images/Colored V1.png'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion } from 'framer-motion'
 import style from './WhoWeAreAndStatics.module.css'
 import { Link } from 'react-router-dom';
-import footerWaves from '../../Images/fotter2.svg'
 
 const AnimatedNumbers = ({value}) =>{
     const ref = useRef(null);
@@ -57,7 +56,7 @@ const WhoWeAreAndStatics = () => {
                          in collaborative projects to enhance their programming skills. The community also played a vital role in fostering a 
                          culture of innovation and academic excellence within the university.
                         </p>
-                        <Link to={'/about'} className='btn btn-dark'>Read More</Link>
+                        <Link to={'/about'} className='btn grade2'>Read More</Link>
                     </div>
 
                     <motion.div initial={{scale:0}} whileInView={{scale:1}} transition={{duration:0.5 }} className='col-span-3 dark:border-light dark:bg-dark relative h-max rounded-2xl 

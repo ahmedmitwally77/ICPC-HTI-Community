@@ -91,7 +91,7 @@ const News = () => {
                                     <div className="col-md-6">
                                         <h2>{article.title}</h2>
                                         <p>{article.Paragraph}</p>
-                                        <Link className='btn btn-dark' to={'/'}>Read More</Link>
+                                        {/* <Link className='btn btn-dark' to={'/'}>Read More</Link> */}
                                 </div>
                             </div>
                     </div>

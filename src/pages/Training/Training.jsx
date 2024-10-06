@@ -5,9 +5,15 @@ import AnimatedText from '../../Components/AnimatedText'
 import WhyC from '../../Components/whyC++/WhyC'
 import RoadMap from '../../Components/RoadMap/RoadMap'
 import Levels from '../../Components/Levels/Levels'
+import { Helmet } from 'react-helmet'
 
 const Training = () => {
   return <>
+
+    <Helmet>
+        <title>ICPC HTI Training | Preparing Students for Competitive Programming</title>
+        <meta name='description' content='Explore the training programs offered by ICPC HTI to help students enhance their programming skills and excel in national and international competitions.' />
+    </Helmet>
     <TransitionEffect/>
     <div className='training  relative overflow-x-hidden'>
     <div className="hero bg-dark relative  -top-4">

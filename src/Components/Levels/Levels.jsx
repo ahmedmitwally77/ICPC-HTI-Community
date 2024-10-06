@@ -8,7 +8,6 @@ import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { AuthContext } from '../../Context/AuthContext';
 
 const Levels = () => {
-
     const [articles, setArticles] = useState([]);
     const {flagAdmin} = useContext(AuthContext)
 

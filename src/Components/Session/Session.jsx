@@ -105,7 +105,7 @@ const Session = () => {
           text="Sheet"
           ClassName="my-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-dark/75 z-20"
         />
-
+        <h3>Coming Soon ...</h3>
       </div>
     </div>
   </>

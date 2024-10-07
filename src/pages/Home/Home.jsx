@@ -45,7 +45,7 @@ const Home = () => {
       <News/>
       <WhatIsIcpc/>
       <RoudeMap/>
-      <Testimonials/>
+      {/* <Testimonials/> */}
       <TalentedMember/>
       <LatestEvent/>
     </div>}

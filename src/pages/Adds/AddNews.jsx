@@ -13,7 +13,6 @@ const AddNews = () => {
         const title = e.target[1].value;
         const Paragraph = e.target[2].value;
         
-
         try {
           const uploadImage = async (image, refPath) => {
             if (image) {

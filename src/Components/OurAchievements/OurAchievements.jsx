@@ -29,7 +29,7 @@ const OurAchievements = () => {
         await deleteDoc(docRef)
           .then(() => {
             alert("تم حذف الوثيقة بنجاح!");
-            setArticles(articles.filter(article => article.id !== id)); // إزالة المقالة من الحالة بعد الحذف
+            setArticles(articles.filter(achievement => achievement.id !== id)); // إزالة المقالة من الحالة بعد الحذف
           })
           .catch((error) => {
             alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
@@ -37,7 +37,9 @@ const OurAchievements = () => {
       }
 
     var settings = {
-        dots: false,
+      autoplaySpeed: 2000,
+        cssEase: "linear",
+        dots: true,
         autoplay:true,
         arrows:true,
         speed: 500,

@@ -91,7 +91,7 @@ const Navbar = () => {
     <CustomLink to="/training" title="Training" className='mx-3 text-decoration-none text-dark'/>
     <CustomLink to="/committees" title="Committees" className='mx-3 text-decoration-none text-dark'/>
     <CustomLink to="/ecpc" title="ECPC" className='mx-3 text-decoration-none text-dark'/>
-    <CustomLink to="/form" title="Form" className='mx-3 text-decoration-none text-dark'/>
+    {/* <CustomLink to="/form" title="Form" className='mx-3 text-decoration-none text-dark'/> */}
     {flag && flagAdmin ?<>
       <div class="dropdown-center">
         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -138,7 +138,7 @@ className='z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70
     <CustomLink to="/training" title="Training" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
     <CustomLink to="/committees" title="Committees" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
     <CustomLink to="/ecpc" title="ECPC" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
-    <CustomLink to="/form" title="Form" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
+    {/* <CustomLink to="/form" title="Form" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/> */}
     {flag && flagAdmin ?<>
       <div class="dropdown-center">
         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

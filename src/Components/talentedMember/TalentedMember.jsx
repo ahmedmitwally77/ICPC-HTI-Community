@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AnimatedText from '../AnimatedText'
 import line2 from '../../Images/line 2.jpeg'
-import me from '../../Images/me.webp'
 import Slider from 'react-slick'
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
@@ -23,7 +22,7 @@ const TalentedMember = () => {
       }, []);
 
       const handleDelete = async (id) => {
-        const docRef = doc(db, 'news', id);
+        const docRef = doc(db, 'talented', id);
     
         await deleteDoc(docRef)
           .then(() => {
@@ -35,14 +34,17 @@ const TalentedMember = () => {
           });
       }
 
-
     var settings = {
-        dots: false,
+        className: "center",
+        centerMode: true,
+        dots: true,
         autoplay:true,
         arrows:true,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
+        autoplaySpeed: 2000,
+        cssEase: "linear",
         responsive: [
             {
               breakpoint: 768,  
@@ -56,12 +58,12 @@ const TalentedMember = () => {
       };
 
   return (
-    <div className='talentedMembers bg-dark/10 shadow-top-only rounded-3xl relative -top-14'>
+    <div className='talentedMembers bg-dark/10 shadow-top-only rounded-3xl '>
         <div className='line d-flex justify-center align-items-center relative top-7 '>
             <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
         </div>
-        <AnimatedText text="Talented Members" ClassName='text-center !text-6xl !text-blue-600 my-16'/>
-        <div className="container py-16 pb-32">
+        <AnimatedText text="Talented Members" ClassName='text-center !text-6xl !text-blue-600  my-16'/>
+        <div className=" py-16 pb-32">
             <Slider {...settings}>
                 {articles.map(article => (
                     <div className=''>

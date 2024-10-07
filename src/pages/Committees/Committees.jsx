@@ -28,6 +28,7 @@ import hanya from '../../Images/hanya.jpeg'
 import menna from '../../Images/menna.jpeg'
 import sham3a from '../../Images/media/sham3a.jpg'
 import mary from '../../Images/media/mary.jpeg'
+import eid from '../../Images/ahmed eid.jpeg'
 import Slider from 'react-slick'
 import TransitionEffect from '../../Components/TransitionEffect'
 import { Helmet } from 'react-helmet'
@@ -37,7 +38,11 @@ const Committees = () => {
 
 
     var settings = {
-        dots: false,
+        className: "center",
+        centerMode: true,
+        autoplaySpeed: 2000,
+        cssEase: "linear",
+        dots: true,
         autoplay:true,
         arrows:true,
         speed: 400,
@@ -55,7 +60,11 @@ const Committees = () => {
           ]
       };
     var settings2 = {
-        dots: false,
+        className: "center",
+        centerMode: true,
+        autoplaySpeed: 2000,
+        cssEase: "linear",
+        dots: true,
         autoplay:true,
         arrows:true,
         speed: 400,
@@ -73,41 +82,49 @@ const Committees = () => {
           ]
       };
     var settings3 = {
-        dots: false,
+        className: "center",
+        centerMode: true,
+        autoplaySpeed: 2000,
+        cssEase: "linear",
+        dots: true,
         autoplay:true,
         arrows:true,
         speed: 400,
-        slidesToShow: 2,
+        slidesToShow: 4,
         slidesToScroll: 1,
         responsive: [
             {
               breakpoint: 768,  
               settings: {
-                slidesToShow: 1,  
+                slidesToShow: 2,  
                 slidesToScroll: 1,
                 dots: true,
               }
             }
           ]
       };
-    var settings4 = {
-        dots: false,
-        autoplay:true,
-        arrows:true,
-        speed: 400,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        responsive: [
-            {
-              breakpoint: 768,  
-              settings: {
-                slidesToShow: 1,  
-                slidesToScroll: 1,
-                dots: true,
-              }
-            }
-          ]
-      };
+    // var settings4 = {
+    //     className: "center",
+    //     centerMode: true,
+    //     autoplaySpeed: 2000,
+    //     cssEase: "linear",
+    //     dots: false,
+    //     autoplay:true,
+    //     arrows:true,
+    //     speed: 400,
+    //     slidesToShow: 5,
+    //     slidesToScroll: 1,
+    //     responsive: [
+    //         {
+    //           breakpoint: 768,  
+    //           settings: {
+    //             slidesToShow: 1,  
+    //             slidesToScroll: 1,
+    //             dots: true,
+    //           }
+    //         }
+    //       ]
+    //   };
 
 
   return <>
@@ -230,7 +247,7 @@ const Committees = () => {
 
             <div className="ourTeam py-16 container">
                 <AnimatedText text="Our Team" ClassName='text-start ms-3 !text-5xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-blue-500 '/>
-                <Slider {...settings4}>
+                <Slider {...settings3}>
                     <div className=''>
                         <div className="card mx-3 relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
                             <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
@@ -246,7 +263,7 @@ const Committees = () => {
                                 <h3>Ahmed Eid</h3>
                                 <p>Media MEMBER OF ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={anone2} alt="" />
+                            <img className='w-100 hover:scale-105 transition-transform' src={eid} alt="" />
                         </div>
                     </div>
                     <div className=''>

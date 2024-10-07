@@ -32,7 +32,7 @@ const News = () => {
         await deleteDoc(docRef)
           .then(() => {
             alert("تم حذف الوثيقة بنجاح!");
-            setArticles(articles.filter(article => article.id !== id)); // إزالة المقالة من الحالة بعد الحذف
+            setArticles(articles.filter(article => article.id !== id)); 
           })
           .catch((error) => {
             alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
@@ -40,6 +40,8 @@ const News = () => {
       }
 
     var settings = {
+        autoplaySpeed: 2000,
+        cssEase: "linear",
         dots: true,
         autoplay:true,
         arrows:true,

@@ -79,7 +79,7 @@ const WhoWeAreAndStatics = () => {
                         </div>
                         <div className='xl:items-center flex flex-col items-end justify-center'>
                             <span className='md:text-6xl sm:text-5xl xs:text-4xl inline-block text-7xl font-bold text-yellow-500'>
-                            <AnimatedNumbers value={75}/>+
+                            <AnimatedNumbers value={30}/>+
                             </span>
                             <h2 className='xl:text-center md:text-lg sm:text-base xs:text-sm text-xl font-medium capitalize text-dark/75 dark:text-light/75'>Recorded Session</h2>
                         </div>

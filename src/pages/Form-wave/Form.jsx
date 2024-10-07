@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AnimatedText from '../../Components/AnimatedText'
 import HomeImg from '../../Images/IMG_3229 full.webp'
 import TransitionEffect from '../../Components/TransitionEffect'
 import { db } from '../../firebase'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, getDoc, getDocs } from 'firebase/firestore'
 import * as XLSX from 'xlsx';
+import DataTable from 'react-data-table-component'
+import { AuthContext } from '../../Context/AuthContext';
+
 
 const Form = () => {
 
-
+    const { flagAdmin } = useContext(AuthContext)
     const [err , setErr] = useState(false)
+    const [registrations, setRegistrations] = useState([]);
+
 
     const handleSubmit =async(e)=>{
         e.preventDefault();
@@ -36,16 +41,16 @@ const Form = () => {
           console.log("Document successfully written with ID: ", docRef.id);
           alert("تمت اضافه الخبر بنجاح");
 
-          const dataForExcel = [
-            { Name: name, ID: id, Phone: phone, Email: email, SelectedOption: selectedOption },
-             ];
+        //   const dataForExcel = [
+        //     { Name: name, ID: id, Phone: phone, Email: email, SelectedOption: selectedOption },
+        //      ];
 
-             const worksheet = XLSX.utils.json_to_sheet(dataForExcel);
-             const workbook = XLSX.utils.book_new();
-             XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
+        //      const worksheet = XLSX.utils.json_to_sheet(dataForExcel);
+        //      const workbook = XLSX.utils.book_new();
+        //      XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
  
-             // تحميل ملف Excel
-             XLSX.writeFile(workbook, "dataWave.xlsx");
+        //      // تحميل ملف Excel
+        //      XLSX.writeFile(workbook, "dataWave.xlsx");
  
 
           console.log("Name:", name);
@@ -59,6 +64,57 @@ const Form = () => {
           console.error("Error uploading images: ", error);
           alert( "فى مشكله لو المشكله اتكررت كلم حد من الادمن");
         }}
+
+        useEffect(() => {
+            const fetchRegistrations = async () => {
+                const formCollection = collection(db, 'dataWave1');
+                const formSnapshot = await getDocs(formCollection);
+                const formList = formSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+              setRegistrations(formList);
+            };
+            fetchRegistrations();
+          }, []);
+
+          const columns =[
+            {
+                name:"Name",
+                selector:row => row.name,
+                sortable:true,
+            },
+            {
+                name:"id",
+                selector:row => row.id,
+                sortable:true,
+            },
+            {
+                name:"phone",
+                selector:row => row.phone,
+                sortable:true,
+            },
+            {
+                name:"email",
+                selector:row => row.email,
+                sortable:true,
+            },
+            {
+                name:"selectedOption",
+                selector:row => row.selectedOption,
+                sortable:true,
+            },
+        
+          ]
+
+          const [rec, setRec] = useState(registrations)
+            useEffect(() => {
+                setRec(registrations);
+            }, [registrations]);
+
+        function handleFilter(e){
+            const newData = registrations.filter(row =>{
+                return row.toName.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase()) 
+            })
+            setRec(newData)
+        }
 
 
   return <>
@@ -125,6 +181,23 @@ const Form = () => {
             </div>
         </div>
 
+        {flagAdmin ?<>
+            <div className="users">
+                <div className="container mb-5 mt-5">
+                    <div className="search text-end">
+                        <input type="text" className='form-control w-75 mb-4 m-auto ' placeholder='search By Name'  onChange={handleFilter}/>
+                    </div>
+                    <DataTable
+                    columns={columns}
+                    data={rec}
+                    selectableRows
+                    fixedHeader
+                    pagination
+                    >
+                    </DataTable>
+                </div>
+            </div>
+            </>:<></>}
   </div>
   </>
 }

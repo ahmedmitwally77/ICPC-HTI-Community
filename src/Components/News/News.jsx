@@ -40,8 +40,6 @@ const News = () => {
       }
 
     var settings = {
-        autoplaySpeed: 2000,
-        cssEase: "linear",
         dots: true,
         autoplay:true,
         arrows:true,

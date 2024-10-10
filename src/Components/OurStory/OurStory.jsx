@@ -33,7 +33,8 @@ const OurStory = () => {
             </div> 
             <div className="vid d-flex relative -top-4 justify-center align-items-center md:mt-12 d-md-flex ">
                 <iframe width="950" height="500" 
-                    src="https://www.youtube.com/embed/cfZEv06YiZg?si=GzaapxryqC1RjIJP"
+                    className='sm:!h-[300px]'
+                    src="https://www.youtube.com/embed/sclb7CLPpNU?si=9AfrrpTqew2-wamx"
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin"

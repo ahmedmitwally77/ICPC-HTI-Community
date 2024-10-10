@@ -116,18 +116,17 @@ const Form = () => {
             setRec(newData)
         }
 
-
   return <>
   <TransitionEffect/>
 
    <div className='form relative'>
-      <div className="hero bg-dark relative  -top-4">
+      <div className="hero bg-dark relative  -top-4 ">
           <AnimatedText text="Forms" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>
           <div className='overlay absolute bg-dark/50 w-100 h-[97.5%]'></div>
           <img src={HomeImg} alt="hti comunity in ecpc" />
       </div>
 
-        <div className="form bg-white rounded-3xl relative -top-14">
+        <div className="form bg-white rounded-3xl relative -top-14 sm:top-0">
             <div className='line d-flex justify-center align-items-center relative top-7 '>
                 {/* <img className='rounded-2xl w-[20%]' src={line2} alt="line" /> */}
             </div>

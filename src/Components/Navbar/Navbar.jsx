@@ -5,11 +5,15 @@ import style from './Navbar.module.css'
 import { AuthContext } from '../../Context/AuthContext'
 
 
-const CustomLink = ({to , title , className=""}) => {
+const CustomLink = ({to , title , className="" , toggle}) => {
   const location = useLocation();
 
+  const handelClick = ()=>{
+    toggle()
+  }
+
   return(
-    <Link to={to} className={`${className} relative end-0 group hover:text-blue-500 ${location.pathname === to ? 'border-b-2 border-blue-500' : ''} `}>
+    <Link to={to} className={`${className} relative end-0 group hover:text-blue-500 ${location.pathname === to ? 'border-b-2 border-blue-500' : ''} `} onClick={() => {handelClick()}}>
       {title}
       {/* <span className={`absolute left-0 group-hover:w-full 
       transition-[width] ease  duration-1000
@@ -22,7 +26,6 @@ const CustomMobileLink = ({to , title , className="" , toggle , signOutClick}) =
 
   const handelClick = ()=>{
     toggle()
-    
   }
   
   const handleSignOut =()=>{
@@ -44,14 +47,13 @@ const CustomMobileLink = ({to , title , className="" , toggle , signOutClick}) =
 const Navbar = () => {
 
   const {currentUser , userData , flagAdmin , setFlagAdmin , setFlag , flag} = useContext(AuthContext)
- 
 
   useEffect(() => {
     console.log(currentUser);
     console.log(userData?.photoURL);
     if(currentUser){
       setFlag(true)
-      if(currentUser.uid === "vpFEcaagXpabB5ulRTkHVp6RAAl2"){
+      if(currentUser.uid === "bVvBoclZhwb15PRvvaJ8ne1pkGf1"){
               setFlagAdmin(true)
             }else{
                     setFlagAdmin(false)
@@ -179,7 +181,7 @@ className='z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70
       <img className='w-100' src={logo} alt="icpc hti logo" />
     </Link> */}
 
-    <img className='hidden lg:flex w-25' src={logo} alt="" />
+        <img className='hidden lg:flex w-25' src={logo} alt="" />
 
   </header>
   </>

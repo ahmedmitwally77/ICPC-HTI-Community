@@ -8,43 +8,23 @@ import { signOut } from 'firebase/auth'
 import { auth, db } from '../../firebase'
 import img from '../../Images/me.webp'
 import line2 from '../../Images/line 2.jpeg'
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 
 
 const Profile = () => {
   const { setFlagAdmin , setFlag} = useContext(AuthContext)
   const {  userData ,currentUser } = useContext(AuthContext)
-  const [articles, setArticles] = useState([]);
-
+  const [articles, setArticles] = useState(null);
 
   useEffect(() => {
-    console.log(userData);
-    
-    const fetchArticles = async () => {
-      if (!currentUser || !currentUser.uid) {
-        console.error('No user is currently logged in.');
-        return; // Handle the case where no user is logged in
-      }
-
-
-      const articlesCollection = collection(db, 'users'); // Assuming 'articles' collection stores articles
-      const userArticlesQuery = query(articlesCollection, where('uid', '==', currentUser.uid)); // Filter by user ID
-
-      try {
-        const articlesSnapshot = await getDocs(userArticlesQuery);
-        const userArticlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setArticles(userArticlesList);
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-      }
-      
-      // const articlesCollection = collection(db, 'users');
-      // const articlesSnapshot = await getDocs(articlesCollection);
-      // const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      // setArticles(articlesList);
-    };
-    fetchArticles();
-  }, [currentUser]);
+    const user = auth.currentUser; // الحصول على المستخدم الحالي من Firebase Authentication
+    if (user) {
+      setArticles({
+        displayName: user.displayName,
+        photoURL: user.photoURL,  // رابط الصورة من Firebase Authentication
+      });
+    }
+  }, []);
 
   const handleSignOut =()=>{
     setFlagAdmin(false);
@@ -58,43 +38,71 @@ const Profile = () => {
             <AnimatedText text="Profile" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>
             <div className='overlay absolute bg-dark/50 w-100 h-[97.5%]'></div>
             <img src={HomeImg} alt="hti comunity in ecpc" />
-        </div>
+      </div>
 
-        <div className='line d-flex justify-center align-items-center relative top-7 '>
-              <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
-          </div>
-        <div className="container py-20">
-          
-          <div className="row">
-            <div className="col-md-6">
-                    <div className="card mx-3 w-25 relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
-                        <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
-                            <h3>change photo</h3>
-                        </div>
-                        <div className="">
-                          <img className='w-100 hover:scale-105 transition-transform' src={userData?.downloadURL} alt="" />
-                        </div>
+      <div className="profDetails bg-white rounded-3xl relative -top-14 sm:top-0">
+          <div className="container">
+            <div className="box m-auto p-10 bg-white  w-100 !md:w-[100%] shadow-2xl rounded-3xl relative -top-14">
+              <div className="row justify-center align-items-center">
+                <div className="col-md-3">
+                  <img src={articles?.photoURL} alt="" />
+                </div>
+                <div className="col-md-9">
+                  <div className="name d-flex justify-between w-100">
+                  <div className='w-100 me-2'>
+                    <label for="First_name" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+                    <input  type="text" id="First_name" class=" mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder={userData?.Fname} required disabled/>
+
+                  </div>
+                  <div className='w-100'>
+                    <label for="Last_name" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
+                    <input type="text" id="Last_name" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder={userData?.Lname} required  disabled/>
+                  </div>
+                  
+                  </div>
+
+                  <div className="idGender d-flex justify-between w-100">
+                    <div className='w-100 me-2'>
+                      <label for="id" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Stu ID</label>
+                      <input  type="number" id="id" class=" mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder={userData?.stuId} required disabled/>
+
                     </div>
-            </div>
-            <div className="col-md-6">
-              <div className="box">
-                <h3>name: {articles[0]?.Fname}</h3>
-                <h3>email: {userData?.email}</h3>
-                <h3>stuId: {userData?.stuId}</h3>
-                <h3>phone: {userData?.phone}</h3>
-                <h3>national ID: {userData?.nationalId}</h3>
-                <h3>Handle: {userData?.handle}</h3>
-                <h3>Total Problems: .......</h3>
-                <img src={userData?.downloadURL} alt="" />
+                    <div className='w-100 me-2'>
+                      <label for="phone" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+                      <input type="number" id="phone" class=" mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder={userData?.phone} required disabled/>
+
+                    </div>
+                  </div>
+              
+                  <label for="email" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                  <input type="email" id="email" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder={userData?.email} required  disabled/>
+
+                    <div className='w-100 me-2'>
+                      <label for="nationalID" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">National ID</label>
+                      <input  type="number" id="nationalID" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder={userData?.nationalId} required disabled/>
+
+                    </div>
+
+                  <div className="idGender d-flex justify-between w-100">
+                    <div className='w-100 me-2'>
+                      <label for="handle" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Codeforces Handle</label>
+                      <input  type="text" id="handle" class=" mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder={userData?.handle} required disabled/>
+
+                    </div>
+
+                    <div className='w-100 me-2'>
+                      <label for="total" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Total Problems</label>
+                      <input  type="number" id="total" class=" mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder="0 " required disabled/>
+
+                    </div>
+                  </div>
+
+                </div>
+                <Link to="/login" title="Log Out" className='mx-3 w-50  mt-5 p-2 btn grade2  text-decoration-none text-white' onClick={() => { signOut(auth); handleSignOut();}}>Log Out</Link>
               </div>
             </div>
           </div>
-
-          
-
-          <Link to="/login" title="Log Out" className='mx-3 btn bg-dark text-decoration-none text-white' onClick={() => { signOut(auth); handleSignOut();}}>Log Out</Link>
-        </div>
-
+      </div>
 
     </div>
   </>

@@ -15,7 +15,7 @@ const OurMissionVision = () => {
         <div className="container py-32">
             <AnimatedText text="Our Mission and vision" ClassName='text-center !text-5xl !text-blue-600'/>
             <div className="row justify-center">
-                <div data-aos="fade-right" className="col-md-7 py-16">
+                <div  className="col-md-7 py-16">
                     <div className="card p-4 bg-dark/50 shadow-xl hover:bg-dark/40 !border-none rounded-xl duration-1000">
                         <div className="upperCard d-flex justify-start align-items-center ">
                             <img className='w-[15%] h-[10%] rounded-full m-2' src={img1} alt="" />
@@ -28,7 +28,7 @@ const OurMissionVision = () => {
                         </p>
                     </div>
                 </div>
-                <div data-aos="fade-left" className="col-md-7">
+                <div  className="col-md-7">
                     <div className="card p-4 bg-dark/50 shadow-xl hover:bg-dark/40 !border-none rounded-xl duration-1000 ">
                         <div className="upperCard d-flex justify-start align-items-center ">
                             <img className='w-[15%] h-[10%] rounded-full m-2' src={img2} alt="" />

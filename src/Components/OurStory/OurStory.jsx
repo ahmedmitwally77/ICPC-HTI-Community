@@ -14,7 +14,7 @@ const OurStory = () => {
         </div>
         <div className="container py-32">
             <div className="row">
-                <div data-aos="fade-right" className="col-md-7">
+                <div  className="col-md-7">
                     <AnimatedText text="Our Story" ClassName='text-start !text-5xl !text-blue-500'/>
                     <p className='text-dark/60 leading-loose'>The ICPC community at HTI University is a vibrant hub of talented 
                     individuals united by their passion for computer science. Members engage in regular practice sessions, honing 
@@ -27,7 +27,7 @@ const OurStory = () => {
                      success, earning recognition and accolades at various levels of competition.
                     </p>
                 </div>
-                <div data-aos="fade-left" className="col-md-5">
+                <div  className="col-md-5">
                     <img className='rounded-xl' src={img} alt="icpc hti team" />
                 </div>
             </div> 

@@ -198,7 +198,7 @@ const Committees = () => {
                                 <p>Co-Leader of ICPC HTI</p>
                             </div>
                             <div className="image w-100 ">
-                                <img className='w-100 hover:scale-105 transition-transform' src={me2} alt="" />
+                                <img className='w-100 ' src={me2} alt="" />
                             </div>
                         </div>
                     </div>
@@ -209,7 +209,7 @@ const Committees = () => {
                                 <p>Leader of ICPC HTI</p>
                             </div>
                             <div className="image w-100 ">
-                                <img className='w-100  hover:scale-105 transition-transform' src={alaa} alt="" />
+                                <img className='w-100  ' src={alaa} alt="" />
                             </div>
                         </div>
                     </div>
@@ -220,7 +220,7 @@ const Committees = () => {
                                 <p>Co-Leader of ICPC HTI</p>
                             </div>
                             <div className="image w-100 ">
-                                <img className='w-100 hover:scale-105 transition-transform' src={adbelkareem} alt="" />
+                                <img className='w-100 ' src={adbelkareem} alt="" />
                             </div>
                         </div>
                     </div>
@@ -254,7 +254,7 @@ const Committees = () => {
                                 <h3>Youssef Shamaa</h3>
                                 <p>Media MEMBER OF ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={sham3a} alt="" />
+                            <img className='w-100 ' src={sham3a} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -263,7 +263,7 @@ const Committees = () => {
                                 <h3>Ahmed Eid</h3>
                                 <p>Media MEMBER OF ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={eid} alt="" />
+                            <img className='w-100 ' src={eid} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -272,7 +272,7 @@ const Committees = () => {
                                 <h3>Mary Gerges</h3>
                                 <p>Media MEMBER OF ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={mary} alt="" />
+                            <img className='w-100 ' src={mary} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -281,7 +281,7 @@ const Committees = () => {
                                 <h3>Rawda Mohamed</h3>
                                 <p>Media MEMBER OF ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={anone} alt="" />
+                            <img className='w-100 ' src={anone} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -290,7 +290,7 @@ const Committees = () => {
                                 <h3>Menna Elhwary</h3>
                                 <p>Media MEMBER OF ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={anone} alt="" />
+                            <img className='w-100 ' src={anone} alt="" />
                         </div>
                     </div>
                 </Slider>
@@ -322,7 +322,7 @@ const Committees = () => {
                                 <h3>ziad essa</h3>
                                 <p>Frontend Developer of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={me2} alt="" />
+                            <img className='w-100 ' src={me2} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -331,7 +331,7 @@ const Committees = () => {
                                 <h3>Hanya Hisham</h3>
                                 <p>UI/UX of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={hanya} alt="" />
+                            <img className='w-100 ' src={hanya} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -340,7 +340,7 @@ const Committees = () => {
                                 <h3>Menna Farag</h3>
                                 <p>UI/UX of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={menna} alt="" />
+                            <img className='w-100 ' src={menna} alt="" />
                         </div>
                     </div>
                 </Slider>
@@ -373,7 +373,7 @@ const Committees = () => {
                                 <h3>Alaa Nabih</h3>
                                 <p>Hr Head of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={alaaa} alt="" />
+                            <img className='w-100 ' src={alaaa} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -382,7 +382,7 @@ const Committees = () => {
                                 <h3>Hager Sabry</h3>
                                 <p>Hr Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={hager} alt="" />
+                            <img className='w-100 ' src={hager} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -391,7 +391,7 @@ const Committees = () => {
                                 <h3>Rawan Ahmed</h3>
                                 <p>Hr Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={rawan} alt="" />
+                            <img className='w-100 ' src={rawan} alt="" />
                         </div>
                     </div>
                     
@@ -425,7 +425,7 @@ const Committees = () => {
                                 <h3>Mahmoud MC</h3>
                                 <p>Training Head of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={mahmoudmc} alt="" />
+                            <img className='w-100 ' src={mahmoudmc} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -434,7 +434,7 @@ const Committees = () => {
                                 <h3>Abdallah Yasser</h3>
                                 <p>Training Vice Head of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={abdallah} alt="" />
+                            <img className='w-100 ' src={abdallah} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -443,7 +443,7 @@ const Committees = () => {
                                 <h3>Amr Nabil</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={amr} alt="" />
+                            <img className='w-100 ' src={amr} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -452,7 +452,7 @@ const Committees = () => {
                                 <h3>Ahmed Mitwally</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={meto} alt="" />
+                            <img className='w-100 ' src={meto} alt="" />
                         </div>
                     </div>
                 </Slider>
@@ -464,7 +464,7 @@ const Committees = () => {
                                 <h3>Abdalrahman Yasser</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={yasser} alt="" />
+                            <img className='w-100 ' src={yasser} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -473,7 +473,7 @@ const Committees = () => {
                                 <h3>Abdo Khalil</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={abdo} alt="" />
+                            <img className='w-100 ' src={abdo} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -482,7 +482,7 @@ const Committees = () => {
                                 <h3>Ahmed Omara</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={omara} alt="" />
+                            <img className='w-100 ' src={omara} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -491,7 +491,7 @@ const Committees = () => {
                                 <h3>Mario Eid</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={mario} alt="" />
+                            <img className='w-100 ' src={mario} alt="" />
                         </div>
                     </div>
                 </Slider>
@@ -503,7 +503,7 @@ const Committees = () => {
                                 <h3>Lujain Haytham</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={lujain} alt="" />
+                            <img className='w-100 ' src={lujain} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -512,7 +512,7 @@ const Committees = () => {
                                 <h3>Tasneem Mohamed</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={anone} alt="" />
+                            <img className='w-100 ' src={anone} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -521,7 +521,7 @@ const Committees = () => {
                                 <h3>Mohamed Ali</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={moali} alt="" />
+                            <img className='w-100 ' src={moali} alt="" />
                         </div>
                     </div>
                     <div className=''>
@@ -530,7 +530,7 @@ const Committees = () => {
                                 <h3>Mostafa Hamed</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={mohamed} alt="" />
+                            <img className='w-100 ' src={mohamed} alt="" />
                         </div>
                     </div>
                 </Slider>
@@ -542,7 +542,7 @@ const Committees = () => {
                                 <h3>yahia zahran</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={anone2} alt="" />
+                            <img className='w-100 ' src={anone2} alt="" />
                         </div>
                     </div>
                     <div className="col-md-3 mt-8">
@@ -551,7 +551,7 @@ const Committees = () => {
                                 <h3>Yousef Fathy</h3>
                                 <p>Training Member of ICPC HTI</p>
                             </div>
-                            <img className='w-100 hover:scale-105 transition-transform' src={jo} alt="" />
+                            <img className='w-100 ' src={jo} alt="" />
                         </div>
                     </div>
                 </div>

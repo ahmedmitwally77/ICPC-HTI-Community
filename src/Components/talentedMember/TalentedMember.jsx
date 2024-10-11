@@ -72,7 +72,7 @@ const TalentedMember = () => {
                         <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
                             <h3>{article.title}</h3>
                         </div>
-                        <img className='w-100 hover:scale-105 transition-transform' src={article.coverImageUrl} alt="" />
+                        <img className='w-100 ' src={article.coverImageUrl} alt="" />
                     </div>
                     </div>  
                 ))}

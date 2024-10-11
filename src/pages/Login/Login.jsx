@@ -29,6 +29,7 @@ const Login = () => {
       navigate('/')
     }catch(err){
         setErr(true)
+        navigate('/')
     }
   }
 

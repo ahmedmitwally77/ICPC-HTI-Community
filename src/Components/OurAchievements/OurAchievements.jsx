@@ -72,7 +72,7 @@ const OurAchievements = () => {
                                     <div className="col-md-6">
                                     <img className='rounded-xl' decoding="async" src={article.coverImageUrl} alt="icpc hti events" />
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-6 rtlll">
                                         <h2>{article.title}</h2>
                                         <p>{article.Paragraph}</p>
                                 </div>

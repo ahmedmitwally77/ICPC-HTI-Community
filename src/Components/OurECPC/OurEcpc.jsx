@@ -31,7 +31,7 @@ const OurEcpc = () => {
                     <div className="col-md-4 sm:my-5 xs:my-5">
                         <div   data-aos-duration="3000" className="card1 bg-gray-200 p-4 border-none rounded-3xl shadow-2xl hover:shadow-sm">
                             <h3 className='text-blue-500 mb-2 '>Book your housing</h3>
-                            <p className='text-gray-600 py-3'>Lorem ipsum dolor sit amet consectetur. Phasellus et egestas feugiat</p>
+                            <p className='text-gray-600 py-3'>Secure your stay and focus on the competition.</p>
                             <div className="footerCard d-flex justify-between align-items-center">
                                 <p className='!text-blue-400 h5'>Price = 0</p>
                                 <p className='border rounded-xl px-2 py-1'>Closed</p>
@@ -41,7 +41,7 @@ const OurEcpc = () => {
                     <div className="col-md-4 sm:my-5 xs:my-5">
                         <div   data-aos-duration="3000" className="card1 bg-gray-200 p-4 border-none rounded-3xl shadow-2xl hover:shadow-sm">
                             <h3 className='text-blue-500 mb-2 '>Book your housing</h3>
-                            <p className='text-gray-600 py-3'>Lorem ipsum dolor sit amet consectetur. Phasellus et egestas feugiat</p>
+                            <p className='text-gray-600 py-3'>Secure your stay and focus on the competition.</p>
                             <div className="footerCard d-flex justify-between align-items-center">
                                 <p className='!text-blue-400 h5'>Price = 0</p>
                                 <p className='border rounded-xl px-2 py-1'>Closed</p>
@@ -51,7 +51,7 @@ const OurEcpc = () => {
                     <div className="col-md-4 sm:my-5 xs:my-5">
                         <div   data-aos-duration="3000"  className="card1 bg-gray-200 p-4 border-none rounded-3xl shadow-2xl hover:shadow-sm">
                             <h3 className='text-blue-500 mb-2 '>Book your housing</h3>
-                            <p className='text-gray-600 py-3'>Lorem ipsum dolor sit amet consectetur. Phasellus et egestas feugiat</p>
+                            <p className='text-gray-600 py-3'>Secure your stay and focus on the competition.</p>
                             <div className="footerCard d-flex justify-between align-items-center">
                                 <p className='!text-blue-400 h5'>Price = 0</p>
                                 <p className='border rounded-xl px-2 py-1'>Closed</p>

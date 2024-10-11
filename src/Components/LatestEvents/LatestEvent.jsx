@@ -85,7 +85,7 @@ const LatestEvent = () => {
 
 
       return <>
-      <div className="latest">
+      <div className={style.latestEvent}>
       <div class={`${style.events} container `} id="events">
             <AnimatedText text="Latest Event" ClassName='mb-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-blue-500'/>
             <div class={style.container}>

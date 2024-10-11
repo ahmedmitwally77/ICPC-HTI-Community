@@ -81,14 +81,14 @@ const News = () => {
                 <Slider {...settings}>
                 {articles.map(article => (
                 <div  >
-                    <div  className='d-flex justify-center align-items-center'>
+                    <div  className='d-flex justify-center align-items-center '>
                             <div key={article.id} className="row justify-center align-items-center w-[80%]">
                                     {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>}
 
                                     <div className="col-md-6">
                                     <img className='rounded-xl' decoding="async" src={article.coverImageUrl} alt="icpc hti events" />
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-6 rtlll">
                                         <h2>{article.title}</h2>
                                         <p>{article.Paragraph}</p>
                                         {/* <Link className='btn btn-dark' to={'/'}>Read More</Link> */}

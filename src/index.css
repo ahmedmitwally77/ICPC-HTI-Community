@@ -398,3 +398,8 @@ background-color: #d1114e9a; */
   color: white;
 
 }
+.rtlll{
+  direction: rtl;
+  text-align: right;
+  overflow-x: hidden;
+}

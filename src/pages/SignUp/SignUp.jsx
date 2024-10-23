@@ -17,57 +17,72 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values)=>{
-    const {Fname ,Lname , email , password  , stuId , phone , nationalId , handle  , profileImage } = values;
+    const {Fname ,Lname , email , password  , stuId , phone , nationalId , handle , uni , year   } = values;
   
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
-      const uploadImage = async (image, refPath) => {
-        if (image) {
-          const imageRef = ref(storage, refPath);
-          const uploadTask = uploadBytesResumable(imageRef, image);
-          await new Promise((resolve, reject) => {
-            uploadTask.on(
-              'state_changed',
-              null,
-              (error) => reject(error),
-              () => resolve()
-            );
-          });
-          return await getDownloadURL(imageRef);
-        }
-        return null;
-      };
+      // const uploadImage = async (image, refPath) => {
+      //   if (image) {
+      //     const imageRef = ref(storage, refPath);
+      //     const uploadTask = uploadBytesResumable(imageRef, image);
+      //     await new Promise((resolve, reject) => {
+      //       uploadTask.on(
+      //         'state_changed',
+      //         null,
+      //         (error) => reject(error),
+      //         () => resolve()
+      //       );
+      //     });
+      //     return await getDownloadURL(imageRef);
+      //   }
+      //   return null;
+      // };
     
       // ارفع صورة الملف الشخصي فقط هنا
-      const downloadURL = await uploadImage(profileImage, `coverImages/${Fname}`);
+      //const downloadURL = await uploadImage(profileImage, `coverImages/${Fname}`);
     
-      if (downloadURL) {
-        // تحديث الملف الشخصي في Firebase Authentication
-        await updateProfile(res.user, {
-          displayName: Fname,
-          photoURL: downloadURL,
-        });
+      // if (downloadURL) {
+      //   // تحديث الملف الشخصي في Firebase Authentication
+      //   await updateProfile(res.user, {
+      //     displayName: Fname,
+      //     photoURL: downloadURL,
+      //   });
     
-        // حفظ البيانات في Firestore
-        await setDoc(doc(db, 'users', res.user.uid), {
-          uid: res.user.uid,
-          displayName: Fname,
-          Fname,
-          Lname,
-          email,
-          password,
-          stuId,
-          phone,
-          nationalId,
-          handle,
-          downloadURL,
-        });
-      }
+      //   // حفظ البيانات في Firestore
+      //   await setDoc(doc(db, 'users', res.user.uid), {
+      //     uid: res.user.uid,
+      //     displayName: Fname,
+      //     Fname,
+      //     Lname,
+      //     email,
+      //     password,
+      //     stuId,
+      //     phone,
+      //     nationalId,
+      //     handle,
+      //     downloadURL,
+      //   });
+      // }
       
-      
-  console.log("Navigating to home page");
-  navigate('/');  // تأكد من التنقل هنا
+      await setDoc(doc(db, 'users', res.user.uid), {
+                 uid: res.user.uid,
+                 displayName: Fname,
+                 Fname,
+                 Lname,
+                 email,
+                 password,
+                 stuId,
+                 phone,
+                 nationalId,
+                 handle,
+                 uni,
+                 year
+                });
+                console.log("Navigating to home page");
+                
+                navigate('/');   
+
       
     } catch (err) {
       console.error("Error during sign-up:", err); // لعرض تفاصيل الخطأ
@@ -84,9 +99,10 @@ const SignUp = () => {
       password: '',
       stuId: '',
       phone: '',
-      profileImage: null,
       nationalId: '',
       handle: '',
+      uni: '',
+      year: '',
     },
     validationSchema: Yup.object({
       Fname: Yup.string().required('الاسم مطلوب'),
@@ -96,9 +112,10 @@ const SignUp = () => {
         .matches(/^[0-9]{14}$/, 'الرقم القومي يجب أن يكون مكون من 14 رقم'),
       email: Yup.string().email('البريد الإلكتروني غير صالح').required('البريد الإلكتروني مطلوب'),
       password: Yup.string().required('كلمة المرور مطلوبة'),
-      profileImage: Yup.mixed(),
       stuId:  Yup.string().required('id مطلوب'),
       handle:  Yup.string().required('codeforces handle ??'),
+      uni:  Yup.string().required('university ??'),
+      year:  Yup.string().required('What year in college ??'),
     }),
     onSubmit: handleSubmit,
   });
@@ -172,10 +189,18 @@ const SignUp = () => {
                 </div>
               </div>
 
-              <label for="profile" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white"> Image Profile</label>
-              <input {...formik.getFieldProps('profileImage')} type="file" id="profile" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder="" required />
-              {formik.touched.profileImage && formik.errors.profileImage ? <div className='text-danger fw-bold'>{formik.errors.profileImage}</div> : null}
-
+              <div className="idGender d-flex justify-between w-100">
+                <div className='w-100 me-2'>
+                  <label for="university" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">university</label>
+                  <input {...formik.getFieldProps('uni')} type="text" id="university" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder="university" required />
+                  {formik.touched.uni && formik.errors.uni ? <div className='text-danger fw-bold'>{formik.errors.uni}</div> : null}
+                </div>
+                <div className='w-100 me-2'>
+                  <label for="yearincollege" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">What year in college?</label>
+                  <input {...formik.getFieldProps('year')} type="text" id="yearincollege" class=" mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder=" " required />
+                  {formik.touched.year && formik.errors.year ? <div className='text-danger fw-bold'>{formik.errors.year}</div> : null}
+                </div>
+              </div>
 
               <div className="text-center w-100">
                 <button type="submit" className={style.btn} >Sign Up</button>

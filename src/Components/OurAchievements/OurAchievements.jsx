@@ -70,12 +70,12 @@ const OurAchievements = () => {
                                     {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>}
 
                                     <div className="col-md-6">
-                                    <img className='rounded-xl' decoding="async" src={article.coverImageUrl} alt="icpc hti events" />
+                                      <img className='rounded-xl' decoding="async" src={article.coverImageUrl} alt="icpc hti events" />
                                     </div>
                                     <div className="col-md-6 rtlll">
                                         <h2>{article.title}</h2>
                                         <p>{article.Paragraph}</p>
-                                </div>
+                                    </div>
                             </div>
                     </div>
                 </div>

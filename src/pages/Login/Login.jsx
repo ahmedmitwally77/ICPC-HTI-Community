@@ -22,7 +22,7 @@ const Login = () => {
 
     try{
       await signInWithEmailAndPassword(auth , email , password);
-      if(currentUser.uid === "bVvBoclZhwb15PRvvaJ8ne1pkGf1"){
+      if(currentUser.uid ===  process.env.REACT_APP_Admin_Id){
         navigate('/')
         setFlagAdmin(true)
       }

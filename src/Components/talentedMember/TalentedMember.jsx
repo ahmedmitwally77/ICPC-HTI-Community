@@ -9,9 +9,7 @@ import { AuthContext } from '../../Context/AuthContext'
 const TalentedMember = () => {
 
     const [articles, setArticles] = useState([]);
-    const {flagAdmin} = useContext(AuthContext);
-    const [loading, setLoading] = useState(true); // Add a loading state
-
+    const {flagAdmin} = useContext(AuthContext)
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -19,7 +17,6 @@ const TalentedMember = () => {
           const articlesSnapshot = await getDocs(articlesCollection);
           const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
           setArticles(articlesList);
-          setLoading(false);
         };
         fetchArticles();
       }, []);
@@ -59,24 +56,6 @@ const TalentedMember = () => {
             }
           ]
       };
-
-      if (loading ) {
-        return (
-            <div id="loading">
-                <div className="sk-cube-grid">
-                    <div className="sk-cube sk-cube1"></div>
-                    <div className="sk-cube sk-cube2"></div>
-                    <div className="sk-cube sk-cube3"></div>
-                    <div className="sk-cube sk-cube4"></div>
-                    <div className="sk-cube sk-cube5"></div>
-                    <div className="sk-cube sk-cube6"></div>
-                    <div className="sk-cube sk-cube7"></div>
-                    <div className="sk-cube sk-cube8"></div>
-                    <div className="sk-cube sk-cube9"></div>
-                </div>
-            </div>
-        );
-    }
 
   return (
     <div className='talentedMembers bg-dark/10 shadow-top-only rounded-3xl '>

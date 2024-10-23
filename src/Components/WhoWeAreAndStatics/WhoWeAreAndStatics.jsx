@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const AnimatedNumbers = ({value}) =>{
     const ref = useRef(null);
     const motionValue = useMotionValue(0);
-    const springValue = useSpring(motionValue , {duration:5000});
+    const springValue = useSpring(motionValue , {duration:3000});
     const isInView = useInView(ref , {once: true});
 
     useEffect(() => {
@@ -73,7 +73,7 @@ const WhoWeAreAndStatics = () => {
                     <div data-aos="fade-up" className='col-span-2 xl:col-span-8 xl:flex-row flex flex-col items-center justify-between xl:text-center md:order-3'>
                         <div className='xl:items-center flex flex-col items-end justify-center'>
                             <span className='md:text-6xl sm:text-5xl xs:text-4xl inline-block text-7xl font-bold text-yellow-500 '>
-                                <AnimatedNumbers value={1501}/>+
+                                <AnimatedNumbers value={1000}/>+
                             </span>
                             <h2 className='xl:text-center md:text-lg sm:text-base xs:text-sm text-xl font-medium capitalize text-dark/75 dark:text-light/75'>Trainees</h2>
                         </div>

@@ -37,10 +37,10 @@ const Footer = () => {
           </div>
           <div className="col-md-3 pb-3 ">
             <div className="social text-center">
-              <a href="https://www.facebook.com/icpchti" target='blank'><i class="fa-brands m-auto fa-facebook fs-5 ms-3 text-blue-700"></i></a>
-              <a href="https://www.facebook.com/icpchti" target='blank'><i class="fa-brands m-auto fa-linkedin fs-5 ms-3 text-blue-500"></i></a>
-              <a href="https://www.facebook.com/icpchti" target='blank'><i class="fa-brands m-auto fa-telegram fs-5 ms-3 text-blue-400"></i></a>
-              <a href="https://www.facebook.com/icpchti" target='blank'><i class="fa-brands m-auto fa-instagram fs-5 ms-3 "></i></a>
+              <i class="fa-brands m-auto fa-facebook fs-5 ms-3 text-blue-700"><a href="https://www.facebook.com/icpchti"></a></i>
+              <i class="fa-brands m-auto fa-linkedin fs-5 ms-3 text-blue-500"><a href="https://www.facebook.com/icpchti"></a></i>
+              <i class="fa-brands m-auto fa-telegram fs-5 ms-3 text-blue-400"><a href="https://www.facebook.com/icpchti"></a></i>
+              <i class="fa-brands m-auto fa-instagram fs-5 ms-3 "><a href="https://www.facebook.com/icpchti"></a></i>
             </div>
           </div>
         </div>
@@ -60,9 +60,7 @@ const Footer = () => {
           <div className="col-md-3">
           <div className="email">
             <i class="fa-regular fa-envelope text-blue-500 me-2"></i>
-            <a href={`mailto:${"icpchti@gmail.com"}`} style={{ textDecoration: 'none', color: 'black' }}>
-              icpchti@gmail.com
-            </a>
+            <span>icpchti@gmail.com</span>
           </div>
           </div>
           

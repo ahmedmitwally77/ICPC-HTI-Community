@@ -60,28 +60,9 @@ const Session = () => {
       <div className="container py-20">
         <AnimatedText
           text={sessionData.title || "Session Title"}
-          ClassName="mt-20 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-dark/75 z-20"
+          ClassName="my-20 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-dark/75 z-20"
         />
-
-        <div className="row  justify-center align-items-center">
-            <div className="col-md-6">
-                <AnimatedText text="Session Content" ClassName='text-start !text-5xl !text-blue-500 '/>
-                <ul className="fs-4 text-dark/75">
-                  {sessionData.content ? sessionData.content.split('\n').map((item, index) => (
-                    <li key={index}>-{item}</li> // استخدم محتوى السيشن من البيانات
-                  )) : <li>No content available</li>}
-                </ul>
-            </div>
-            <div className="col-md-6">
-                <img className="w-100" src={content} alt="" />
-            </div>
-        </div>
-
-        <div className="line pb-7 d-flex justify-center align-items-center relative top-7 ">
-          <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
-        </div>
-
-        <div className="vid my-16 d-flex relative -top-4 justify-center align-items-center d-none d-md-flex ">
+        <div className="vid d-flex relative -top-4 justify-center align-items-center d-none d-md-flex ">
         {sessionData.link ? (
               <iframe
                 width="950"
@@ -96,6 +77,24 @@ const Session = () => {
             ) : (
               <p>No video available.</p> // عرض رسالة بدلاً من iframe إذا لم يكن هناك رابط
             )}
+        </div>
+
+        <div className="line d-flex justify-center align-items-center relative top-7 ">
+          <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
+        </div>
+
+        <div className="row py-16 justify-center align-items-center">
+            <div className="col-md-6">
+                <AnimatedText text="Session Content" ClassName='text-start !text-5xl !text-blue-500 '/>
+                <ul className="fs-4 text-dark/75">
+                  {sessionData.content ? sessionData.content.split('\n').map((item, index) => (
+                    <li key={index}>-{item}</li> // استخدم محتوى السيشن من البيانات
+                  )) : <li>No content available</li>}
+                </ul>
+            </div>
+            <div className="col-md-6">
+                <img className="w-100" src={content} alt="" />
+            </div>
         </div>
 
         <div className="line d-flex justify-center align-items-center relative top-7 ">

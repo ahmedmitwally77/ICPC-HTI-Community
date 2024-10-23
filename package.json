@@ -8,16 +8,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "aos": "^2.3.4",
-    "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
-    "cheerio": "^1.0.0",
-    "cors": "^2.8.5",
-    "express": "^4.21.1",
     "firebase": "^10.13.2",
     "flowbite-react": "^0.10.1",
     "formik": "^2.4.6",
     "framer-motion": "^10.6.0",
-    "jsdom": "^25.0.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-data-table-component": "^7.6.2",
@@ -58,13 +53,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
-    "concurrently": "^9.0.1",
     "postcss": "^8.4.45",
     "tailwindcss": "^3.4.10"
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "postcss.config.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

@@ -119,7 +119,7 @@ const Form = () => {
   return <>
   <TransitionEffect/>
 
-   <div className='form relative'>
+   <div className='form mt-16 relative'>
       <div className="hero bg-dark relative  -top-4 ">
           <AnimatedText text="Form" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>
           <div className='overlay absolute bg-dark/50 w-100 h-[97.5%]'></div>
@@ -133,7 +133,7 @@ const Form = () => {
 
 
             <div className="container">
-                <div className="box m-auto p-10 bg-white  w-100 !md:w-[100%] shadow-2xl rounded-3xl relative -top-14">
+                <div className="box m-auto p-10 py-20 bg-white  w-100 !md:w-[100%] shadow-2xl rounded-3xl relative -top-14">
                     <div className="row   justify-center align-items-center">
                         <div className="col-md-8">
                             <form onSubmit={handleSubmit}>

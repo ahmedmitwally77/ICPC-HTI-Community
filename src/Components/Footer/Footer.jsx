@@ -37,10 +37,10 @@ const Footer = () => {
           </div>
           <div className="col-md-3 pb-3 ">
             <div className="social text-center">
-              <i class="fa-brands m-auto fa-facebook fs-5 ms-3 text-blue-700"><a href="https://www.facebook.com/icpchti"></a></i>
-              <i class="fa-brands m-auto fa-linkedin fs-5 ms-3 text-blue-500"><a href="https://www.facebook.com/icpchti"></a></i>
-              <i class="fa-brands m-auto fa-telegram fs-5 ms-3 text-blue-400"><a href="https://www.facebook.com/icpchti"></a></i>
-              <i class="fa-brands m-auto fa-instagram fs-5 ms-3 "><a href="https://www.facebook.com/icpchti"></a></i>
+              <a href="https://www.facebook.com/icpchti" target='blank'><i class="fa-brands m-auto fa-facebook fs-5 ms-3 text-blue-700"></i></a>
+              <a href="https://www.facebook.com/icpchti" target='blank'><i class="fa-brands m-auto fa-linkedin fs-5 ms-3 text-blue-500"></i></a>
+              <a href="https://www.facebook.com/icpchti" target='blank'><i class="fa-brands m-auto fa-telegram fs-5 ms-3 text-blue-400"></i></a>
+              <a href="https://www.facebook.com/icpchti" target='blank'><i class="fa-brands m-auto fa-instagram fs-5 ms-3 "></i></a>
             </div>
           </div>
         </div>

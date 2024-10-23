@@ -4,7 +4,7 @@ import React from 'react'
 
 const qoute = {
     initial:{
-        opacity:1,
+        opacity:0,
     },
     animate:{
         opacity:1,

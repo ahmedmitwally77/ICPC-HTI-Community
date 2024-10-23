@@ -80,7 +80,7 @@ const LatestEvent = () => {
   }
   
   if (!event) {
-      return <p>No level found.</p>;
+      return <p>No event found.</p>;
   }
 
 

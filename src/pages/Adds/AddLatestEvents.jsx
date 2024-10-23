@@ -39,7 +39,7 @@ const AddLatestEvents = () => {
                     }
                 );
             });
-        
+
           const eventsData = {
             eventCoverUrl,
             title,
@@ -69,8 +69,15 @@ const AddLatestEvents = () => {
                       <label class="input-group-text" for="file1">صوره الغلاف</label>
                       <input type="file" class="form-control" id="file1" />
                     </div>
-                    <input type="text" className='mb-1 form-control borderinput' placeholder=' العنوان' />
                     <input type="text" className='mb-1 form-control borderinput' placeholder=' تفاصيل الايفنت' />
+                    <textarea
+                      className="form-control"
+                      // id="content"
+                      // value={content}
+                      // onChange={(e) => setContent(e.target.value)}
+                      // required
+                    ></textarea>
+                    {/* <input type="text" className='mb-1 form-control borderinput' placeholder=' تفاصيل الايفنت' /> */}
                     <input type="text" className='mb-1 form-control borderinput' placeholder='jul 31, 2024 22:30:20' />
                     <button className='mt-3 mb-3 btn ylyBlueBg btn-primary w-100 text-white'>اضافه</button>
         </form>

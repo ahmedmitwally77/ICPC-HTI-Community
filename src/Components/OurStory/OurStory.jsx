@@ -3,8 +3,8 @@ import AnimatedText from '../AnimatedText'
 import img from '../../Images/IMG_3229 full.webp'
 import line1 from '../../Images/line 1.jpeg'
 import line2 from '../../Images/line 2.jpeg'
-import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { motion } from 'framer-motion'
 
 const OurStory = () => {
   return (
@@ -12,8 +12,9 @@ const OurStory = () => {
         <div className='line d-flex justify-center align-items-center relative top-7 '>
             <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
         </div>
+
         <div className="container py-32">
-            <div className="row">
+            <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:1 , y:0}} transition={{duration:1 }} className="row">
                 <div  className="col-md-7">
                     <AnimatedText text="Our Story" ClassName='text-start !text-5xl !text-blue-500'/>
                     <p className='text-dark/60 leading-loose'>The ICPC community at HTI University is a vibrant hub of talented 
@@ -27,20 +28,20 @@ const OurStory = () => {
                      success, earning recognition and accolades at various levels of competition.
                     </p>
                 </div>
-                <div  className="col-md-5">
+                <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:1 , y:0}} transition={{duration:1 }}  className="col-md-5">
                     <img className='rounded-xl' src={img} alt="icpc hti team" />
-                </div>
-            </div> 
-            <div className="vid d-flex relative -top-4 justify-center align-items-center md:mt-12 d-md-flex ">
+                </motion.div>
+            </motion.div> 
+            <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:1 , y:0}} transition={{duration:1 }} className="vid d-flex relative -top-4 justify-center align-items-center md:mt-12 d-md-flex ">
                 <iframe width="950" height="500" 
                     className='sm:!h-[300px]'
-                    src="https://www.youtube.com/embed/sclb7CLPpNU?si=9AfrrpTqew2-wamx"
+                    src="https://www.youtube.com/embed/6l19PsCtbTs?si=tNOlwmyf4G6jL59k"
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen>
                   </iframe>
-            </div>
+            </motion.div>
         </div>
         <div className='line d-flex justify-center align-items-center h-25 absolute right-10 bottom-16 d-none d-md-block '>
             <img className='rounded-2xl h-[100%]' src={line1} alt="line" />

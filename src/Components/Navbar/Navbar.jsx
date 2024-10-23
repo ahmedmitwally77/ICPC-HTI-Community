@@ -49,11 +49,9 @@ const Navbar = () => {
   const {currentUser , userData , flagAdmin , setFlagAdmin , setFlag , flag} = useContext(AuthContext)
 
   useEffect(() => {
-    console.log(currentUser);
-    console.log(userData?.photoURL);
     if(currentUser){
       setFlag(true)
-      if(currentUser.uid === "bVvBoclZhwb15PRvvaJ8ne1pkGf1"){
+      if(currentUser.uid === process.env.REACT_APP_Admin_Id){
               setFlagAdmin(true)
             }else{
                     setFlagAdmin(false)
@@ -115,8 +113,7 @@ const Navbar = () => {
   
   {/* auth */}
   {currentUser? <nav className=' '> 
-    <Link to={'/profile'} className=' fw-bold' >Hello {currentUser?.displayName}</Link>
-    <img src={userData?.photoURL} alt="" />
+    <Link to={'/profile'} className=' fw-bold' >Hello {userData?.Fname}</Link>
   </nav>: 
   <nav className='flex items-center justify-center '> 
     <Link to={'/signup'}  className={style.btn2} >SignUp</Link>

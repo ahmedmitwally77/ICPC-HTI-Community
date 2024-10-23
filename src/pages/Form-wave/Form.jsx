@@ -21,8 +21,8 @@ const Form = () => {
         const name = e.target[0].value;
         const id = e.target[1].value;
         const phone = e.target[2].value;
-        const email = e.target[3].value;
-        const selectedOption = e.target.flexRadioDefault.value; 
+        // const email = e.target[3].value;
+        // const selectedOption = e.target.flexRadioDefault.value; 
 
         
 
@@ -32,14 +32,14 @@ const Form = () => {
             name,
             id,
             phone,
-            email,
-            selectedOption,
+            // email,
+            // selectedOption,
           };
       
           const docRef = await addDoc(collection(db, "dataWave1"), dataWave);
       
           console.log("Document successfully written with ID: ", docRef.id);
-          alert("تمت اضافه الخبر بنجاح");
+          alert("تم التسجيل بنجاح");
 
         //   const dataForExcel = [
         //     { Name: name, ID: id, Phone: phone, Email: email, SelectedOption: selectedOption },
@@ -55,9 +55,9 @@ const Form = () => {
 
           console.log("Name:", name);
           console.log("ID:", id);
-          console.log("Phone:", phone);
-          console.log("Email:", email);
-          console.log("Selected Option (Yes/No):", selectedOption);
+        //   console.log("Phone:", phone);
+        //   console.log("Email:", email);
+        //   console.log("Selected Option (Yes/No):", selectedOption);
          
         } catch (error) {
           setErr(true);
@@ -91,16 +91,16 @@ const Form = () => {
                 selector:row => row.phone,
                 sortable:true,
             },
-            {
-                name:"email",
-                selector:row => row.email,
-                sortable:true,
-            },
-            {
-                name:"selectedOption",
-                selector:row => row.selectedOption,
-                sortable:true,
-            },
+            // {
+            //     name:"email",
+            //     selector:row => row.email,
+            //     sortable:true,
+            // },
+            // {
+            //     name:"selectedOption",
+            //     selector:row => row.selectedOption,
+            //     sortable:true,
+            // },
         
           ]
 
@@ -121,7 +121,7 @@ const Form = () => {
 
    <div className='form relative'>
       <div className="hero bg-dark relative  -top-4 ">
-          <AnimatedText text="Forms" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>
+          <AnimatedText text="Form" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>
           <div className='overlay absolute bg-dark/50 w-100 h-[97.5%]'></div>
           <img src={HomeImg} alt="hti comunity in ecpc" />
       </div>
@@ -150,10 +150,10 @@ const Form = () => {
                             
                                 </div>
                     
-                                <label for="phone-number" class="block mb-0 mt-3 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
+                                 <label for="phone-number" class="block mb-0 mt-3 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
                                 <input  type="number" id="phone-number" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
                                 
-                                <label for="email" class="block mb-0 mt-3 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                               {/* <label for="email" class="block mb-0 mt-3 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                 <input  type="email" id="email" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
 
                                 <h3 className='mt-3'>First time participating?</h3>
@@ -168,7 +168,7 @@ const Form = () => {
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         No
                                     </label>
-                                </div>
+                                </div> */}
 
                                 <div className="text-center w-100 mt-4">
                                     <button type="submit" className="btnnew" >Submit</button>

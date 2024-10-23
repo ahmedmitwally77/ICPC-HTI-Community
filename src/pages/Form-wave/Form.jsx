@@ -14,6 +14,8 @@ const Form = () => {
     const { flagAdmin } = useContext(AuthContext)
     const [err , setErr] = useState(false)
     const [registrations, setRegistrations] = useState([]);
+    const [isRegistered, setIsRegistered] = useState(false); // حالة التسجيل
+
 
 
     const handleSubmit =async(e)=>{
@@ -21,10 +23,7 @@ const Form = () => {
         const name = e.target[0].value;
         const id = e.target[1].value;
         const phone = e.target[2].value;
-        // const email = e.target[3].value;
-        // const selectedOption = e.target.flexRadioDefault.value; 
-
-        
+        const session = "s1"
 
         try {
       
@@ -32,8 +31,7 @@ const Form = () => {
             name,
             id,
             phone,
-            // email,
-            // selectedOption,
+            session
           };
       
           const docRef = await addDoc(collection(db, "dataWave1"), dataWave);
@@ -53,12 +51,12 @@ const Form = () => {
         //      XLSX.writeFile(workbook, "dataWave.xlsx");
  
 
+        localStorage.setItem('hasRegistered', 'true');
+        setIsRegistered(true); // تحديث الحالة لتعطيل الزر
+
           console.log("Name:", name);
           console.log("ID:", id);
-        //   console.log("Phone:", phone);
-        //   console.log("Email:", email);
-        //   console.log("Selected Option (Yes/No):", selectedOption);
-         
+        
         } catch (error) {
           setErr(true);
           console.error("Error uploading images: ", error);
@@ -66,6 +64,19 @@ const Form = () => {
         }}
 
         useEffect(() => {
+             // تحقق من حالة التسجيل من local storage عند تحميل الصفحة
+            const hasRegistered = localStorage.getItem('hasRegistered');
+            if (hasRegistered === 'true') {
+                setIsRegistered(true); // إذا كان المستخدم قد سجل من قبل، تعطيل الزر
+            }
+
+            //to allow fill again
+            // const resetRegistration = () => {
+            //     localStorage.removeItem('hasRegistered'); // حذف حالة التسجيل من الـ localStorage
+            //     setIsRegistered(false); // تحديث الحالة لتمكين الحقول والزر مرة أخرى
+            //   };
+            //   resetRegistration()
+
             const fetchRegistrations = async () => {
                 const formCollection = collection(db, 'dataWave1');
                 const formSnapshot = await getDocs(formCollection);
@@ -91,16 +102,6 @@ const Form = () => {
                 selector:row => row.phone,
                 sortable:true,
             },
-            // {
-            //     name:"email",
-            //     selector:row => row.email,
-            //     sortable:true,
-            // },
-            // {
-            //     name:"selectedOption",
-            //     selector:row => row.selectedOption,
-            //     sortable:true,
-            // },
         
           ]
 
@@ -115,6 +116,9 @@ const Form = () => {
             })
             setRec(newData)
         }
+
+        
+          
 
   return <>
   <TransitionEffect/>
@@ -140,18 +144,18 @@ const Form = () => {
                                 <div className="name d-flex justify-between w-100">
                                     <div className='w-100 me-2'>
                                         <label for="Your-name" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>
-                                        <input  type="text" id="Your-name" class=" mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
+                                        <input disabled={isRegistered} type="text" id="Your-name" class=" mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
 
                                     </div>
                                     <div className='w-100'>
                                         <label for="id" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">ID</label>
-                                        <input  type="number" id="id" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
+                                        <input disabled={isRegistered} type="number" id="id" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
                                     </div>
                             
                                 </div>
                     
                                  <label for="phone-number" class="block mb-0 mt-3 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
-                                <input  type="number" id="phone-number" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
+                                <input disabled={isRegistered} type="number" id="phone-number" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
                                 
                                {/* <label for="email" class="block mb-0 mt-3 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                 <input  type="email" id="email" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
@@ -171,7 +175,16 @@ const Form = () => {
                                 </div> */}
 
                                 <div className="text-center w-100 mt-4">
-                                    <button type="submit" className="btnnew" >Submit</button>
+                                <button
+                                type="submit"
+                                className={`btnnew ${
+                                    isRegistered ? '!bg-gray-500 cursor-not-allowed' : 'btnnew'
+                                  }`}
+                                disabled={isRegistered} // تعطيل الزر إذا كان المستخدم قد سجل
+                                >
+                                Submit
+                                </button>
+                                    {/* <button type="submit" className="btnnew" >Submit</button> */}
                                 </div>
                             </form>
                         </div>

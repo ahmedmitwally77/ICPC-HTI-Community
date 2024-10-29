@@ -28,6 +28,7 @@ import Form from './pages/Form-wave/Form';
 import AddSessions from './pages/Adds/Training/AddSessions';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ProtectedAdmin from './Components/ProtectedAdmin';
+import CodeF from './Components/CodeF';
 
 
 let routers = createBrowserRouter([
@@ -53,6 +54,7 @@ let routers = createBrowserRouter([
     {path:"addwaves" , element:<ProtectedAdmin><AddWave/></ProtectedAdmin>},
     {path:"addsession" , element:<ProtectedAdmin><AddSessions/></ProtectedAdmin>},
     {path:"form" , element:<Form/>},
+    {path:"cc" , element:<CodeF/>},
 
     {path:'*',element:<NotFound/>},
   ]},

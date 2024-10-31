@@ -67,12 +67,12 @@ const Form = () => {
 
         useEffect(() => {
              // تحقق من حالة التسجيل من local storage عند تحميل الصفحة
-            const hasRegistered = localStorage.getItem('hasRegistered');
-            if (hasRegistered === 'true') {
-                setIsRegistered(true); // إذا كان المستخدم قد سجل من قبل، تعطيل الزر
-            }
+            // const hasRegistered = localStorage.getItem('hasRegistered');
+            // if (hasRegistered === 'true') {
+            //     setIsRegistered(true); // إذا كان المستخدم قد سجل من قبل، تعطيل الزر
+            // }
 
-            //to allow fill again
+            // to allow fill again
             // const resetRegistration = () => {
             //     localStorage.removeItem('hasRegistered'); // حذف حالة التسجيل من الـ localStorage
             //     setIsRegistered(false); // تحديث الحالة لتمكين الحقول والزر مرة أخرى

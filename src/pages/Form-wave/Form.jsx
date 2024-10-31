@@ -23,7 +23,8 @@ const Form = () => {
         const name = e.target[0].value;
         const id = e.target[1].value;
         const phone = e.target[2].value;
-        const session = "s1"
+        const group = e.target[3].value;
+        const session = "s2"
 
         try {
       
@@ -31,10 +32,11 @@ const Form = () => {
             name,
             id,
             phone,
+            group,
             session
           };
       
-          const docRef = await addDoc(collection(db, "dataWave1"), dataWave);
+          const docRef = await addDoc(collection(db, "dataWave2"), dataWave);
       
           console.log("Document successfully written with ID: ", docRef.id);
           alert("تم التسجيل بنجاح");
@@ -78,7 +80,7 @@ const Form = () => {
             //   resetRegistration()
 
             const fetchRegistrations = async () => {
-                const formCollection = collection(db, 'dataWave1');
+                const formCollection = collection(db, 'dataWaveS2');
                 const formSnapshot = await getDocs(formCollection);
                 const formList = formSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
               setRegistrations(formList);
@@ -100,6 +102,11 @@ const Form = () => {
             {
                 name:"phone",
                 selector:row => row.phone,
+                sortable:true,
+            },
+            {
+                name:"group",
+                selector:row => row.group,
                 sortable:true,
             },
         
@@ -156,6 +163,9 @@ const Form = () => {
                     
                                  <label for="phone-number" class="block mb-0 mt-3 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
                                 <input disabled={isRegistered} type="number" id="phone-number" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
+
+                                 <label for="group" class="block mb-0 mt-3 text-sm font-medium text-gray-900 dark:text-white">Mini Group Name</label>
+                                <input disabled={isRegistered} type="text" id="group" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />
                                 
                                {/* <label for="email" class="block mb-0 mt-3 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                 <input  type="email" id="email" class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5"  required />

@@ -80,7 +80,7 @@ const Form = () => {
             //   resetRegistration()
 
             const fetchRegistrations = async () => {
-                const formCollection = collection(db, 'dataWaveS2');
+                const formCollection = collection(db, 'dataWave2');
                 const formSnapshot = await getDocs(formCollection);
                 const formList = formSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
               setRegistrations(formList);

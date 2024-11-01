@@ -81,7 +81,7 @@ const Session = () => {
           <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
         </div>
         
-        <div className="vid d-flex relative -top-4 justify-center align-items-center d-none d-md-flex ">
+        <div className="vid d-flex relative -top-4 justify-center align-items-center  d-md-flex ">
         {sessionData.link ? (
               <iframe
                 width="950"

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import Navbar from '../Components/Navbar/Navbar'
 import { Outlet } from "react-router-dom";
 import Footer from './Footer/Footer';

@@ -11,6 +11,7 @@ import footerWaves from '../../Images/intersecting-waves-scattered.svg'
 import TransitionEffect from '../../Components/TransitionEffect'
 import TalentedMember from '../../Components/talentedMember/TalentedMember'
 import { AuthContext } from '../../Context/AuthContext'
+import Notes from '../../Components/Notes/Notes'
 
 const Home = () => {
   
@@ -41,6 +42,7 @@ const Home = () => {
         <img className='rotate-180 absolute -bottom-1 ' src={footerWaves} alt="footer bg" />
       </div>
 
+      {/* <Notes/> */}
       <WhoWeAreAndStatics/>
       <News/>
       <WhatIsIcpc/>

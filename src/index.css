@@ -403,3 +403,12 @@ background-color: #d1114e9a; */
   text-align: right;
   overflow-x: hidden;
 }
+
+@media (max-width: 600px) {
+  .notes-window {
+    width: 90%;
+    bottom: 20px;
+    padding: 15px;
+    maxHeight: 70vh;  
+  }
+}

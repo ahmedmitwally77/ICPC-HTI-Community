@@ -6,6 +6,7 @@ import TransitionEffect from "../TransitionEffect";
 import { db } from '../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useParams } from "react-router-dom";
+import Sheet from "../Codeforces/sheet/Sheet";
 
 const Session = () => {
 
@@ -100,6 +101,36 @@ const Session = () => {
 
 
 
+       
+        <div className=" d-flex relative -top-4 justify-center align-items-center  d-md-flex ">
+        {sessionData.sessionPdf ? <>
+
+            <div className="line d-flex justify-center align-items-center relative top-7 ">
+            <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
+            </div>
+
+            <AnimatedText
+            text="Presentation"
+            ClassName="my-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-dark/75 z-20"
+            />
+
+              
+             <iframe 
+            src={`${sessionData.sessionPdf}/preview`} 
+            width="100%" 
+             height="600px"
+             title="pdf session"
+             >
+              
+           </iframe>
+            
+           </> : (
+              <p>No pdf available.</p> // عرض رسالة بدلاً من iframe إذا لم يكن هناك رابط
+            )} 
+        </div>
+
+
+
         <div className="line d-flex justify-center align-items-center relative top-7 ">
           <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
         </div>
@@ -108,6 +139,7 @@ const Session = () => {
           text="Sheet"
           ClassName="my-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-dark/75 z-20"
         />
+        <a href={sessionData.sheetLink}><h4>Sheet Link</h4></a>
         <h3>Coming Soon ...</h3>
       </div>
     </div>

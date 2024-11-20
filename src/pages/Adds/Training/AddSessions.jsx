@@ -6,6 +6,7 @@ const AddSessions = () => {
 
     const [title, setTitle] = useState('');
     const [link, setLink] = useState('');
+    const [sessionPdf, setsessionPdf] = useState('');
     const [content, setContent] = useState('');
     const [levelId, setLevelId] = useState('');
     const [waveId, setWaveId] = useState('');
@@ -50,10 +51,11 @@ const AddSessions = () => {
           await addDoc(collection(db, 'sessions'), {
             title,
             link,
+            sessionPdf,
             content,
             waveId,
           });
-          alert('Wave added successfully!');
+          alert('session added successfully!');
           // إعادة توجيه المستخدم بعد إضافة السيشن
         } catch (error) {
           console.error("Error adding session: ", error);
@@ -78,11 +80,23 @@ const AddSessions = () => {
       <div className="mb-3">
         <label htmlFor="link" className="form-label">Session Link</label>
         <input
-          type="url"
+          type="text"
           className="form-control"
           id="link"
           value={link}
           onChange={(e) => setLink(e.target.value)}
+          required
+        />
+      </div>
+      
+      <div className="mb-3">
+        <label htmlFor="sessionPdf" className="form-label">Session PDF ID</label>
+        <input
+          type="text"
+          className="form-control"
+          id="sessionPdf"
+          value={sessionPdf}
+          onChange={(e) => setsessionPdf(e.target.value)}
           required
         />
       </div>

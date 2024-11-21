@@ -102,7 +102,6 @@ const Session = () => {
 
 
        
-        <div className=" d-flex relative -top-4 justify-center align-items-center  d-md-flex ">
         {sessionData.sessionPdf ? <>
 
             <div className="line d-flex justify-center align-items-center relative top-7 ">
@@ -113,6 +112,7 @@ const Session = () => {
             text="Presentation"
             ClassName="my-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-dark/75 z-20"
             />
+        <div className=" d-flex relative -top-4 justify-center align-items-center  d-md-flex ">
 
               
              <iframe 
@@ -124,10 +124,10 @@ const Session = () => {
               
            </iframe>
             
+        </div>
            </> : (
               <p>No pdf available.</p> // عرض رسالة بدلاً من iframe إذا لم يكن هناك رابط
             )} 
-        </div>
 
 
 

@@ -12,7 +12,7 @@ const Sheet = ({link}) => {
       const apiKey = "425cda34ea31bfc2ed544e8acd0e3958"; // استبدل بمفتاح API الخاص بك
       const targetUrl = link;
   
-      const scraperApiUrl = `http://api.scraperapi.com?api_key=${apiKey}&url=${encodeURIComponent(
+      const scraperApiUrl = `https://api.scraperapi.com?api_key=${apiKey}&url=${encodeURIComponent(
         targetUrl
       )}`;
       try {
@@ -40,7 +40,6 @@ const Sheet = ({link}) => {
     return () => clearInterval(interval); // تنظيف المؤقت عند إلغاء التركيب
     
   }, [link]);
-  
   
     const [selectedProblems, setSelectedProblems] = useState([]);
   

@@ -53,7 +53,6 @@ const Sheet = ({link}) => {
     };
 
 
-
     if (loading) {
       return (
         <div id="loading">
@@ -71,8 +70,8 @@ const Sheet = ({link}) => {
         </div>
       );
     }
-  if (error) window.location.reload();
-  if (error) return <div className='py-52'>{error}</div>;
+
+    if (error) return <div className='py-52'>{error}</div>;
 
     return (
         <div className='py-5'>

@@ -29,6 +29,8 @@ import AddSessions from './pages/Adds/Training/AddSessions';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ProtectedAdmin from './Components/ProtectedAdmin';
 import Sheet from './Components/Codeforces/sheet/Sheet';
+import Standing from './Components/Codeforces/Standing';
+import AddStandingW1 from './pages/Adds/Training/AddStandingW1';
 
 
 let routers = createBrowserRouter([
@@ -53,8 +55,9 @@ let routers = createBrowserRouter([
     {path:"addlevels" , element:<ProtectedAdmin><AddLevels/></ProtectedAdmin>},
     {path:"addwaves" , element:<ProtectedAdmin><AddWave/></ProtectedAdmin>},
     {path:"addsession" , element:<ProtectedAdmin><AddSessions/></ProtectedAdmin>},
+    {path:"addStandingW1" , element:<ProtectedAdmin><AddStandingW1/></ProtectedAdmin>},
     {path:"form" , element:<Form/>},
-    {path:"sheet" , element:<Sheet/>},
+    {path:"standing" , element:<Standing/>},
 
     {path:'*',element:<NotFound/>},
   ]},

@@ -4,7 +4,7 @@ import TransitionEffect from "../TransitionEffect";
 import { Link, useParams } from "react-router-dom";
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
-import { AuthContext } from '../../Context/AuthContext';
+import Standing from "../Codeforces/Standing";
 
 const Wave = () => {
   
@@ -12,7 +12,9 @@ const Wave = () => {
   const { id } = useParams();
   const [wave, setWave] = useState(null);
   const [sessions, setSessions] = useState([]); // State to hold sessions
+  const [sheetLinks, setSheetLinks] = useState([]); // State to hold sessions
   const [loading, setLoading] = useState(true); // Add a loading state
+
 
   useEffect(() => {
     const fetchWave = async () => {
@@ -25,6 +27,22 @@ const Wave = () => {
         }
         setLoading(false); // Stop loading once the data is fetched
     };
+      
+    const fetchLinks = async () => {
+        try {
+          const linksCollection = collection(db, "standingW1"); // اسم مجموعة الروابط في Firebase
+          const linksSnapshot = await getDocs(linksCollection);
+          const linksList = linksSnapshot.docs.map((doc) => doc.data().url); // استخراج الروابط فقط
+          setSheetLinks(linksList);
+          console.log(linksList);
+          
+        } catch (err) {
+          console.error("Error fetching links: ", err);
+        }
+      };
+  
+      fetchLinks();
+
 
     const fetchSessions = async () => {
         const sessionsQuery = query(collection(db, 'sessions'), where('waveId', '==', id));
@@ -39,6 +57,9 @@ const Wave = () => {
     fetchWave();
     fetchSessions();
 }, [id]);
+console.log(sheetLinks);
+
+
 
   if (loading ) {
     return (
@@ -61,9 +82,6 @@ const Wave = () => {
 if (!wave) {
     return <p>No level found.</p>;
 }
-
-
-    
 
   return (
     <>
@@ -131,7 +149,7 @@ if (!wave) {
                 text="Standing"
                 ClassName="text-start !text-5xl !text-blue-900 my-5"
             />
-            <h3>Coming Soon ...</h3>
+            <Standing links={sheetLinks}/>
 
         </div>
       </div>

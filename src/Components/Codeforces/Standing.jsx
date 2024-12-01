@@ -1,94 +1,106 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { ref } from "firebase/storage";
+import React, { useContext, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { db } from "../../firebase";
+import { get, set } from "firebase/database";
+import { CodeForcesContextStanding } from "../../Context/CodeForcesStandingContext";
 
 const Standing = () => {
  
-  const [standingData, setStandingData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [filteredData, setFilteredData] = useState([]);
+  const {standingData,loading,error,filteredData , setFilteredData} = useContext(CodeForcesContextStanding)
 
-  // Array of sheet links
+  console.log(standingData);
+  
+
+  // const [standingData, setStandingData] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+  // const [filteredData, setFilteredData] = useState([]);
+
+  // // Array of sheet links
   const sheetLinks = [
     `https://api.scraperapi.com/?api_key=425cda34ea31bfc2ed544e8acd0e3958&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/560740`,
     `https://api.scraperapi.com/?api_key=425cda34ea31bfc2ed544e8acd0e3958&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/562542`,
     `https://api.scraperapi.com/?api_key=425cda34ea31bfc2ed544e8acd0e3958&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/563052`,
     `https://api.scraperapi.com/?api_key=425cda34ea31bfc2ed544e8acd0e3958&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/564666`,
+    `https://api.scraperapi.com/?api_key=425cda34ea31bfc2ed544e8acd0e3958&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/568330`,
+    `https://api.scraperapi.com/?api_key=425cda34ea31bfc2ed544e8acd0e3958&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/569054`,
   ];
 
-  useEffect(() => {
-    const fetchData = async () => {
+  // useEffect(() => {
+  //   const fetchData = async () => {
 
-      try {
-        const handleData = {};
-        const sheetNames = []; // To store sheet names for dynamic columns
+  //     try {
+  //       const handleData = {};
+  //       const sheetNames = []; // To store sheet names for dynamic columns
 
-        for (let i = 0; i < sheetLinks.length; i++) {
-          const baseLink = sheetLinks[i];
-          let page = 1;
-          let lastContestants = {};
-          sheetNames.push(`Sheet ${i + 1}`); // Dynamically name the sheets
+  //       for (let i = 0; i < sheetLinks.length; i++) {
+  //         const baseLink = sheetLinks[i];
+  //         let page = 1;
+  //         let lastContestants = {};
+  //         sheetNames.push(`Sheet ${i + 1}`); // Dynamically name the sheets
 
-          while (true) {
-            const link = `${baseLink}/p/${page}/l/2063b65688e40601c8eda6d776202eb9`;
-            const response = await axios.get(link);
-            const res = response.data.result;
+  //         while (true) {
+  //           const link = `${baseLink}/p/${page}/l/2063b65688e40601c8eda6d776202eb9`;
+  //           const response = await axios.get(link);
+  //           const res = response.data.result;
 
-            // Break if no data or repeated data
-            if (!res.contestants || Object.keys(res.contestants).length === 0) {
-              break;
-            }
-            if (JSON.stringify(res.contestants) === JSON.stringify(lastContestants)) {
-              break;
-            }
+  //           // Break if no data or repeated data
+  //           if (!res.contestants || Object.keys(res.contestants).length === 0) {
+  //             break;
+  //           }
+  //           if (JSON.stringify(res.contestants) === JSON.stringify(lastContestants)) {
+  //             break;
+  //           }
 
-            lastContestants = res.contestants;
+  //           lastContestants = res.contestants;
 
-            for (const handle in res.contestants) {
-              const problems = res.contestants[handle].ac.split("-").length;
+  //           for (const handle in res.contestants) {
+  //             const problems = res.contestants[handle].ac.split("-").length;
 
-              if (!handleData[handle]) {
-                handleData[handle] = { handle: handle, total: 0 };
-              }
+  //             if (!handleData[handle]) {
+  //               handleData[handle] = { handle: handle, total: 0 };
+  //             }
 
-              handleData[handle][`Sheet ${i + 1}`] =
-                (handleData[handle][`Sheet ${i + 1}`] || 0) + problems;
+  //             handleData[handle][`Sheet ${i + 1}`] =
+  //               (handleData[handle][`Sheet ${i + 1}`] || 0) + problems;
 
-              handleData[handle].total += problems;
-            }
+  //             handleData[handle].total += problems;
+  //           }
 
-            page++; // Move to the next page
-          }
-        }
+  //           page++; // Move to the next page
+  //         }
+  //       }
 
-        // Convert handleData object to array for table display
-        const tableData = Object.keys(handleData).map((key) => ({
-          ...handleData[key],
-          handle: (
-            <a
-              href={`https://codeforces.com/profile/${handleData[key].handle}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {handleData[key].handle}
-            </a>
-          ),
-        }));
+  //       // Convert handleData object to array for table display
+  //       const tableData = Object.keys(handleData).map((key) => ({
+  //         ...handleData[key],
+  //         handle: (
+  //           <a
+  //             href={`https://codeforces.com/profile/${handleData[key].handle}`}
+  //             target="_blank"
+  //             rel="noopener noreferrer"
+  //           >
+  //             {handleData[key].handle}
+  //           </a>
+  //         ),
+  //       }));
 
-        setStandingData(tableData);
-        setFilteredData(tableData);
-        setLoading(false);
-      } catch (err) {
-        setError("Failed to fetch data");
-        setLoading(false);
-      }
-    };
+  //       setStandingData(tableData);
+  //       setFilteredData(tableData);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       setError("Failed to fetch data");
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   // Generate dynamic columns based on sheet names
+  
   const columns = [
     {
       name: "Handle",

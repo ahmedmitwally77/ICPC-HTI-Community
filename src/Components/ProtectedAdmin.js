@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase'; // تأكد من استيراد إعداد Firebase الخاص بك
 
-const adminUID = "bVvBoclZhwb15PRvvaJ8ne1pkGf1"; // UID الخاص بالمسؤول
+const adminUID = process.env.REACT_APP_Admin_Id; // UID الخاص بالمسؤول
 
 
 const ProtectedAdmin = ({ children }) => {

@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { db } from '../firebase';
-import React, {  createContext, useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react';
 
 export const CodeForcesContextStanding = createContext();
 
-export const CodeForcesContextStandingProvider = ({children})=>{
-   
+export const CodeForcesContextStandingProvider = ({ children }) => {
   const [standingData, setStandingData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,24 +23,17 @@ export const CodeForcesContextStandingProvider = ({children})=>{
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // تحقق إذا كانت البيانات موجودة في Local Storage ومحدثة
-        const cachedData = JSON.parse(localStorage.getItem("standingData"));
-        const lastUpdated = localStorage.getItem("lastUpdated");
-        const now = new Date();
-
-        if (cachedData && lastUpdated) {
-          const hoursSinceUpdate =
-            (now - new Date(lastUpdated)) / (1000 * 60 * 60);
-          if (hoursSinceUpdate < 24) {
-            // إذا كانت البيانات محدثة، استخدمها
-            setStandingData(cachedData);
-            setFilteredData(cachedData);
-            setLoading(false);
-            return;
-          }
+        // محاولة استرجاع البيانات من Firestore
+        const doc = await db.collection('standing').doc('standingDoc').get();
+        if (doc.exists) {
+          const savedData = doc.data().data;
+          setStandingData(savedData);
+          setFilteredData(savedData);
+          setLoading(false);
+          return;
         }
 
-        // إذا لم تكن البيانات موجودة أو قديمة، اجلب البيانات من API
+        // إذا لم تكن البيانات موجودة في Firestore، اجلبها من API
         const handleData = {};
         const promises = [];
 
@@ -99,9 +91,8 @@ export const CodeForcesContextStandingProvider = ({children})=>{
         setStandingData(tableData);
         setFilteredData(tableData);
 
-        // حفظ البيانات في Local Storage
-        localStorage.setItem("standingData", JSON.stringify(tableData));
-        localStorage.setItem("lastUpdated", now.toISOString());
+        // حفظ البيانات في Firestore
+        await saveArrayToFirestore(tableData);
 
         setLoading(false);
       } catch (err) {
@@ -112,42 +103,28 @@ export const CodeForcesContextStandingProvider = ({children})=>{
 
     fetchData();
   }, []);
-  
+
+  // دالة لحفظ البيانات في Firestore
   const saveArrayToFirestore = async (arrayData) => {
     try {
       if (!arrayData || arrayData.length === 0) {
         console.log('No data to save.');
         return;
       }
-      // اكتب البيانات كمصفوفة في المستند المحدد
       await db.collection('standing').doc('standingDoc').set({
         data: arrayData,
-        updatedAt: new Date().toISOString(), // إضافة تاريخ التحديث (اختياري)
+        updatedAt: new Date().toISOString(), // إضافة تاريخ التحديث
       });
       console.log('Array saved to Firestore!');
     } catch (error) {
       console.error('Error saving array to Firestore:', error);
     }
   };
-  
-  
-  
 
-  // Firestore.collection('standing').doc('standingDoc').get().then((doc) => {
-  //   if (doc.exists) {
-  //     console.log('Array data:', doc.data().data);
-  //   } else {
-  //     console.log('No such document!');
-  //   }
-  // }).catch((error) => {
-  //   console.error('Error fetching array:', error);
-  // });
   
-    
-    return(
-        <CodeForcesContextStanding.Provider value={{standingData,loading,error,filteredData,setFilteredData}} >
-            {children}
-        </CodeForcesContextStanding.Provider>
-    )
-
-}
+  return (
+    <CodeForcesContextStanding.Provider value={{ standingData, loading, error, filteredData, setFilteredData }}>
+      {children}
+    </CodeForcesContextStanding.Provider>
+  );
+};

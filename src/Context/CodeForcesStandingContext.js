@@ -23,15 +23,6 @@ export const CodeForcesContextStandingProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // محاولة استرجاع البيانات من Firestore
-        const doc = await db.collection('standing').doc('standingDoc').get();
-        if (doc.exists) {
-          const savedData = doc.data().data;
-          setStandingData(savedData);
-          setFilteredData(savedData);
-          setLoading(false);
-          return;
-        }
 
         // إذا لم تكن البيانات موجودة في Firestore، اجلبها من API
         const handleData = {};
@@ -90,10 +81,6 @@ export const CodeForcesContextStandingProvider = ({ children }) => {
 
         setStandingData(tableData);
         setFilteredData(tableData);
-
-        // حفظ البيانات في Firestore
-        await saveArrayToFirestore(tableData);
-
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch data");
@@ -104,24 +91,6 @@ export const CodeForcesContextStandingProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  // دالة لحفظ البيانات في Firestore
-  const saveArrayToFirestore = async (arrayData) => {
-    try {
-      if (!arrayData || arrayData.length === 0) {
-        console.log('No data to save.');
-        return;
-      }
-      await db.collection('standing').doc('standingDoc').set({
-        data: arrayData,
-        updatedAt: new Date().toISOString(), // إضافة تاريخ التحديث
-      });
-      console.log('Array saved to Firestore!');
-    } catch (error) {
-      console.error('Error saving array to Firestore:', error);
-    }
-  };
-
-  
   return (
     <CodeForcesContextStanding.Provider value={{ standingData, loading, error, filteredData, setFilteredData }}>
       {children}

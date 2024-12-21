@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { db } from '../firebase';
-import React, { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 export const CodeForcesContextStanding = createContext();
 
@@ -22,11 +21,11 @@ export const CodeForcesContextStandingProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+      setLoading(true);
+      setError(null);
 
-        // إذا لم تكن البيانات موجودة في Firestore، اجلبها من API
+      try {
         const handleData = {};
-        const promises = [];
 
         for (let i = 0; i < sheetLinks.length; i++) {
           const baseLink = sheetLinks[i];
@@ -35,37 +34,33 @@ export const CodeForcesContextStandingProvider = ({ children }) => {
           while (true) {
             const link = `${baseLink}/p/${page}/l/2063b65688e40601c8eda6d776202eb9`;
 
-            promises.push(
-              axios.get(link).then((response) => {
-                const res = response.data.result;
+            const response = await axios.get(link);
+            const res = response.data.result;
 
-                if (!res.contestants || Object.keys(res.contestants).length === 0) {
-                  return null;
-                }
+            // Exit loop if no contestants data is available
+            if (!res.contestants || Object.keys(res.contestants).length === 0) {
+              break;
+            }
 
-                for (const handle in res.contestants) {
-                  const problems = res.contestants[handle].ac.split("-").length;
+            // Process contestants data
+            for (const handle in res.contestants) {
+              const problems = res.contestants[handle].ac.split("-").length;
 
-                  if (!handleData[handle]) {
-                    handleData[handle] = { handle: handle, total: 0 };
-                  }
+              if (!handleData[handle]) {
+                handleData[handle] = { handle, total: 0 };
+              }
 
-                  handleData[handle][`Sheet ${i + 1}`] =
-                    (handleData[handle][`Sheet ${i + 1}`] || 0) + problems;
+              handleData[handle][`Sheet ${i + 1}`] =
+                (handleData[handle][`Sheet ${i + 1}`] || 0) + problems;
 
-                  handleData[handle].total += problems;
-                }
-
-                return true;
-              })
-            );
+              handleData[handle].total += problems;
+            }
 
             page++;
           }
         }
 
-        await Promise.all(promises);
-
+        // Convert handleData to array format for display
         const tableData = Object.keys(handleData).map((key) => ({
           ...handleData[key],
           handle: (
@@ -81,9 +76,9 @@ export const CodeForcesContextStandingProvider = ({ children }) => {
 
         setStandingData(tableData);
         setFilteredData(tableData);
-        setLoading(false);
       } catch (err) {
         setError("Failed to fetch data");
+      } finally {
         setLoading(false);
       }
     };
@@ -92,7 +87,9 @@ export const CodeForcesContextStandingProvider = ({ children }) => {
   }, []);
 
   return (
-    <CodeForcesContextStanding.Provider value={{ standingData, loading, error, filteredData, setFilteredData }}>
+    <CodeForcesContextStanding.Provider
+      value={{ standingData, loading, error, filteredData, setFilteredData }}
+    >
       {children}
     </CodeForcesContextStanding.Provider>
   );

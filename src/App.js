@@ -31,6 +31,8 @@ import ProtectedAdmin from './Components/ProtectedAdmin';
 import Sheet from './Components/Codeforces/sheet/Sheet';
 import Standing from './Components/Codeforces/Standing';
 import AddStandingW1 from './pages/Adds/Training/AddStandingW1';
+ReactGA.initialize('G-LBVS9BVBNB'); 
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 
 let routers = createBrowserRouter([

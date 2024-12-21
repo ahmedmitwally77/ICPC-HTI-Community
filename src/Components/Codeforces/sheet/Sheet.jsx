@@ -9,7 +9,7 @@ const Sheet = ({link}) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiKey = "27e61be1a3defcd52a5ba98456c4dbf3"; // استبدل بمفتاح API الخاص بك
+      const apiKey = "efc0c555508381d513fd60c169d3b6bd"; // استبدل بمفتاح API الخاص بك
       const targetUrl = link;
   
       const scraperApiUrl = `https://api.scraperapi.com?api_key=${apiKey}&url=${encodeURIComponent(

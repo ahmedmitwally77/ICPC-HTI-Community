@@ -149,7 +149,14 @@ if (!wave) {
                 text="Standing"
                 ClassName="text-start !text-5xl !text-blue-900 my-5"
             />
-            <Standing links={sheetLinks}/>
+            {/* <Standing links={sheetLinks}/> */}
+            <iframe 
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRZs0_7CEcTcIADswi0Rs1wn8NIWLFjnZ0Hi5C_5JzO3mnM_DM1rIC1a4P-wt6rzh8B1RCgiQ4xBv_-/pubhtml?gid=467328511&amp;single=true&amp;widget=true&amp;headers=false"
+                width="100%"
+                height="600"
+                title="standing"
+                frameborder="0">
+            </iframe>
 
         </div>
       </div>

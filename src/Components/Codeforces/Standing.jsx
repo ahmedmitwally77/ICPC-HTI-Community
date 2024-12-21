@@ -175,6 +175,7 @@ const Standing = () => {
           },
         ]}
       />
+      
     </div>
   );
 

@@ -31,8 +31,8 @@ import ProtectedAdmin from './Components/ProtectedAdmin';
 import Sheet from './Components/Codeforces/sheet/Sheet';
 import Standing from './Components/Codeforces/Standing';
 import AddStandingW1 from './pages/Adds/Training/AddStandingW1';
-ReactGA.initialize('G-LBVS9BVBNB'); 
-ReactGA.pageview(window.location.pathname + window.location.search);
+import ReactGA from 'react-ga';
+import { useEffect } from 'react';
 
 
 let routers = createBrowserRouter([
@@ -72,6 +72,13 @@ let routers = createBrowserRouter([
 
 
 function App() {
+  useEffect(() => {
+    // Initialize ReactGA with your measurement ID
+    ReactGA.initialize('G-LBVS9BVBNB');
+
+    // Track the current page view
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return  <RouterProvider router={routers}></RouterProvider>
 

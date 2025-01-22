@@ -10,7 +10,6 @@ import OTPVer from './Components/OTPVer/OTPVer';
 import ResetNewPass from './Components/ResetNewPass/ResetNewPass';
 import ECPC from './pages/ECPC/ECPC';
 import About from './pages/About/About';
-// import ContactUs from './pages/ContactUs/ContactUs';
 import Training from './pages/Training/Training';
 import Level from './Components/Level/Level';
 import Wave from './Components/Wave/Wave';
@@ -28,7 +27,6 @@ import Form from './pages/Form-wave/Form';
 import AddSessions from './pages/Adds/Training/AddSessions';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ProtectedAdmin from './Components/ProtectedAdmin';
-import Sheet from './Components/Codeforces/sheet/Sheet';
 import Standing from './Components/Codeforces/Standing';
 import AddStandingW1 from './pages/Adds/Training/AddStandingW1';
 import ReactGA from 'react-ga';
@@ -42,7 +40,6 @@ let routers = createBrowserRouter([
     {path:"signup" , element:<SignUp/>},
     {path:"ecpc" , element:<ECPC/>},
     {path:"about" , element:<About/>},
-    // {path:"contactUs" , element:<ContactUs/>},
     {path:"committees" , element:<Committees/>},
     {path:"training" , element:<Training/>},
     {path:"level/:id" , element:<ProtectedRoute><Level/></ProtectedRoute>},
@@ -72,13 +69,15 @@ let routers = createBrowserRouter([
 
 
 function App() {
-  useEffect(() => {
-    // Initialize ReactGA with your measurement ID
-    ReactGA.initialize('G-LBVS9BVBNB');
 
+
+  // for google analytics
+  useEffect(() => {
+    ReactGA.initialize('G-LBVS9BVBNB');
     // Track the current page view
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
+
 
   return  <RouterProvider router={routers}></RouterProvider>
 

@@ -5,7 +5,6 @@ import OurStory from '../../Components/OurStory/OurStory'
 import OurMissionVision from '../../Components/OurMissionVision/OurMissionVision'
 import OurAchievements from '../../Components/OurAchievements/OurAchievements'
 import OurFounders from '../../Components/OurFounders/OurFounders'
-import Gallary from '../../Components/Gallary/Gallary'
 import TransitionEffect from '../../Components/TransitionEffect'
 import { Helmet } from 'react-helmet'
 
@@ -26,9 +25,8 @@ const About = () => {
         <OurStory/>
         <OurMissionVision/>
         <OurAchievements/>
-        <OurFounders/>
+        <OurFounders />
         {/* <OurCore/> */}
-        <Gallary/>
     </div>
     </>
 }

@@ -58,7 +58,7 @@ const TalentedMember = () => {
       };
 
   return (
-    <div className='talentedMembers bg-dark/10 shadow-top-only rounded-3xl '>
+    <div className='talentedMembers bg-light shadow-top-only rounded-3xl '>
         <div className='line d-flex justify-center align-items-center relative top-7 '>
             <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
         </div>

@@ -9,17 +9,17 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AuthContextProvider } from './Context/AuthContext';
-import { CodeForcesContextStandingProvider } from './Context/CodeForcesStandingContext';
+// import { CodeForcesContextStandingProvider } from './Context/CodeForcesStandingContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <CodeForcesContextStandingProvider>
+  // <CodeForcesContextStandingProvider>
     <AuthContextProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
     </AuthContextProvider>
-  </CodeForcesContextStandingProvider>
+  // </CodeForcesContextStandingProvider>
 );
 
 reportWebVitals();

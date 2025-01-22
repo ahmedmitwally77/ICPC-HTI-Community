@@ -5,7 +5,7 @@ export default function CommunityBox({img,name,title,link,mark}) {
     <div className={`community-box relative flex shadow-yellow-shadow justify-center items-center flex-col border-2 border-[#FFD876] rounded-2xl p-2 ${mark=='true' ? 'top-16 sm:top-0 md:top-0' : ''}`}>
 
       <div className="image relative -mt-16 w-[160px] h-[160px] rounded-full ">
-        <img src={img} alt="" className='w-full h-full object-cover rounded-full'/>
+        <img src={img} alt={`${name} ${title}`} className='w-full h-full object-cover rounded-full'/>
       </div>
 
 

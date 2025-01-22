@@ -5,11 +5,12 @@ import AnimatedText from '../../Components/AnimatedText'
 import WhatIsIcpc from '../../Components/WhatIsIcpc/WhatIsIcpc'
 import News from '../../Components/News/News'
 import RoudeMap from '../../Components/RoudMap/RoudeMap'
-import LatestEvent from '../../Components/LatestEvents/LatestEvent'
 import footerWaves from '../../Images/intersecting-waves-scattered.svg'
 import TransitionEffect from '../../Components/TransitionEffect'
 import TalentedMember from '../../Components/talentedMember/TalentedMember'
 import { AuthContext } from '../../Context/AuthContext'
+import NewOurFounders from '../../Components/NewOurFounders/NewOurFounders'
+import Testimonials from '../../Components/Testimonials/Testimonials'
 
 const Home = () => {
   
@@ -42,10 +43,12 @@ const Home = () => {
 
       <WhoWeAreAndStatics/>
       <News/>
+      <NewOurFounders/>
       <WhatIsIcpc/>
       <RoudeMap/>
       <TalentedMember/>
       {/* <LatestEvent/> */}
+      <Testimonials/>
     </div>}
 
     

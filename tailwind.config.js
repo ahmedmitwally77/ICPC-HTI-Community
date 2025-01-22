@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       boxShadow: {
         'top-only': '0 -10px 10px rgba(0, 0, 0, 0.1)', // ظل خفيف من أعلى
+        'yellow-shadow': '0px 4px 4px 0px #FEBA12',
       },
       fontFamily: {
         mont: ['var(--font-mont)'],
@@ -52,6 +53,9 @@ module.exports = {
 
     circularDarkSm:
         "repeating-radial-gradient(rgba(255,255,255,0.5) 2px,#1b1b1b 4px,#1b1b1b 40px)",
+
+    ourGradient: "linear-gradient(90deg, #FEBA12 0%, #4A82C3 20%, #BBBBBB 80%);",
+
       }
     },
     screens: {

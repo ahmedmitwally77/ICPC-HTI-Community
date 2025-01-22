@@ -8,7 +8,9 @@ import OurFounders from '../../Components/OurFounders/OurFounders'
 import Gallary from '../../Components/Gallary/Gallary'
 import TransitionEffect from '../../Components/TransitionEffect'
 import { Helmet } from 'react-helmet'
-
+import NewOurFounders from '../../Components/NewOurFounders/NewOurFounders'
+import OurLeaders from '../../Components/OurLeaders/OurLeaders'
+import OurCommunityFounders from '../../Components/OurCommunityFounders/OurCommunityFounders'
 const About = () => {
   return <>
     <Helmet>
@@ -28,6 +30,13 @@ const About = () => {
         <OurAchievements/>
         <OurFounders/>
         {/* <OurCore/> */}
+
+        {/* Ahmed Updates */}
+        <NewOurFounders/>
+        <OurLeaders/>
+        <OurCommunityFounders/>
+
+
         <Gallary/>
     </div>
     </>

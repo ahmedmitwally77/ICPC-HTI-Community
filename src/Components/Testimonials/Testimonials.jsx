@@ -1,8 +1,5 @@
 import React from 'react'
-import style from './Testimonials.module.css'
-import img from '../../Images/me.webp'
 import Slider from 'react-slick'
-import AnimatedText from '../AnimatedText'
 import TestimonialsCard from './TestimonialsCard'
 import MainHeading from '../MainHeading/MainHeading'
 
@@ -29,7 +26,6 @@ const Testimonials = () => {
 
   return (
     <div className='testimonials py-28 '>
-        {/* <AnimatedText text="Testimonials" ClassName='text-center mb-5 !text-6xl !text-blue-600 '/> */}
       <div class="container">
         <MainHeading title1='' title2='Testimonials'/>
         <Slider className='mt-16' {...settings}>

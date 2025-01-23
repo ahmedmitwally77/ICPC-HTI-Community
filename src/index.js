@@ -11,8 +11,11 @@ import "slick-carousel/slick/slick-theme.css";
 import { AuthContextProvider } from './Context/AuthContext';
 // import { CodeForcesContextStandingProvider } from './Context/CodeForcesStandingContext';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
+
   // <CodeForcesContextStandingProvider>
     <AuthContextProvider>
     <React.StrictMode>

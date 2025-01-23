@@ -31,6 +31,7 @@ import Standing from './Components/Codeforces/Standing';
 import AddStandingW1 from './pages/Adds/Training/AddStandingW1';
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
+import { Get_Accepted } from './Components/Codeforces/CodeForcesData/Get_Accepted';
 
 
 let routers = createBrowserRouter([

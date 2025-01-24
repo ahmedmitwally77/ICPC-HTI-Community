@@ -5,6 +5,7 @@ import Slider from 'react-slick'
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { AuthContext } from '../../Context/AuthContext'
+import MainHeading from '../MainHeading/MainHeading';
 
 const TalentedMember = () => {
 
@@ -52,8 +53,10 @@ const TalentedMember = () => {
                 slidesToShow: 1,  
                 slidesToScroll: 1,
                 dots: true,
-              }
-            }
+              },
+              
+            },
+            
           ]
       };
 
@@ -62,17 +65,24 @@ const TalentedMember = () => {
         <div className='line d-flex justify-center align-items-center relative top-7 '>
             <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
         </div>
-        <AnimatedText text="Talented Members" ClassName='text-center !text-6xl !text-blue-600  my-16'/>
+        {/* <AnimatedText text="Talented Members" ClassName='text-center !text-6xl !text-blue-600  my-16'/> */}
+        <div className="container mt-32">
+          <MainHeading title1='' title2='Talented Members'/>
+        </div>
+          
         <div className=" py-16 pb-32">
             <Slider {...settings}>
                 {articles.map(article => (
                     <div className=''>
                     {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>}
-                    <div key={article.id} className="card mx-3 relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
-                        <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
-                            <h3>{article.title}</h3>
-                        </div>
-                        <img className='w-100 ' src={article.coverImageUrl} alt="" />
+                    <div className="card flex flex-col justify-center align-items-center border-none shadowBlue p-3 md:p-1 sm:p-1 m-3 bg-dark/90 rounded-xl">
+                      <div className="image   mb-4  rounded-xl ">
+                        <img className=' w-[350px] h-[250px] md:w-[250px] sm:w-[250px] object-cover rounded-xl' src={article.coverImageUrl} alt={article.title} />
+                      </div>
+                      <div className="text text-center ">
+                        <h3 className='flex align-items-center justify-center'>{article.title} <i className="filled fas fa-star fs-6 ms-1"></i></h3>
+                        <p>Total Problems: <span className='text-blue-700 fw-bold'>277</span></p>
+                      </div>
                     </div>
                     </div>  
                 ))}

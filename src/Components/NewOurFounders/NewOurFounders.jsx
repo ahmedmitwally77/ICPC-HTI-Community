@@ -7,6 +7,8 @@ import shebr from '../../Images/websiteFounders/shebr.jpeg'
 import mustafa from '../../Images/websiteFounders/mustafa.jpeg'
 import nabil from '../../Images/websiteFounders/nabil.jpeg'
 import mitwaly from '../../Images/websiteFounders/Mitwally.jpg'
+import upperShape from '../../Images/websiteFounders/Ellipse 1204.svg'
+import downShape from '../../Images/websiteFounders/Ellipse 1203.svg'
 import line2 from '../../Images/line 2.jpeg'
 
 
@@ -14,7 +16,8 @@ export default function NewOurFounders() {
   return (
     <>
     <section className='our-founders pb-12  rounded-3xl relative -top-14 shadow-top-only'>
-
+      <img className='absolute top-0 -z-10' src={upperShape} alt="" />
+      <img className='absolute buttom-0 right-0 -z-10 md:-right-20 md:-bottom-36' src={downShape} alt="" />
       <div className="container">
 
           <div className='line d-flex justify-center align-items-center relative top-7 mb-5'>

@@ -7,20 +7,19 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import style from './RoudeMap.module.css'
 import { useEffect, useRef } from 'react';
-import footerWaves from '../../Images/fotter2.svg'
 import { Link } from 'react-router-dom'
 
 const Details = ({position , company , companyLink , time , address , work}) =>{
 
     const ref = useRef(null)
 
-    return <li ref={ref} className='my-8 first:mt-0 last:mb-0 w-[80%] mx-auto flex flex-col items-center justify-between md:w-[80%]'>
+    return <li ref={ref} className=' my-8 first:mt-0 last:mb-0 w-[80%] mx-auto flex flex-col items-center justify-between md:w-[80%]'>
         <LiIcon reference={ref} />
 
         <motion.div
         initial={{y:50}}
         whileInView={{y:0}}
-        transition={{duration:0.5 , type:"spring"}}
+        transition={{duration:0.5 , type:"spring"}}        
         >
             <h3 className='capitalize font-bold text-2xl sm:text-xl xs:text-lg'>{position}&nbsp; <a href={companyLink} target='_blank' className='text-primary dark:text-primaryDark capitalize' > {company}</a></h3>
             <span className='capitalize font-medium text-dark/75 dark:text-light/75 xs:text-sm'>
@@ -32,6 +31,7 @@ const Details = ({position , company , companyLink , time , address , work}) =>{
         </motion.div>
     </li>
 }
+
 const RoudeMap = () => {
     useEffect(() => {
         AOS.init({ duration: 1000 }); 
@@ -62,7 +62,7 @@ const RoudeMap = () => {
                 className='bg-light  absolute left-9 top-0 w-[4px] h-full origin-top
                 md:w-[2px] md:left-[30px] xs:left-[20px]
                 '/>
-                <ul className='w-full flex flex-col items-start justify-between ml-4'>
+                <ul className=' w-full flex flex-col items-start justify-between ml-4'>
                     <Details
                     position="Our Roadmap" 
                     work="Our Roadmap contains all the materials we use for our training, 
@@ -73,13 +73,14 @@ const RoudeMap = () => {
                     <button className='btn grade2 ms-5'><Link className='durationNone text-light' to={'/training'}>Reade More</Link></button>
 
                 </ul>
-                </div>
+            </div>
             </div>
         </div>
         <img src={shapeleft} className='absolute z-2 ' alt='shape'/>
         {/* <img className=' absolute -bottom-32' src={footerWaves} alt="waves" /> */}
     </div>
   )
+
 }
 
 export default RoudeMap

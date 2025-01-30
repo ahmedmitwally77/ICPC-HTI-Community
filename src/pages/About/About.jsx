@@ -9,6 +9,7 @@ import TransitionEffect from '../../Components/TransitionEffect'
 import { Helmet } from 'react-helmet'
 import OurLeaders from '../../Components/OurLeaders/OurLeaders'
 import OurCommunityFounders from '../../Components/OurCommunityFounders/OurCommunityFounders'
+import RoudeMap from '../../Components/RoudMap/RoudeMap'
 
 
 const About = () => {
@@ -31,6 +32,7 @@ const About = () => {
         <OurAchievements/>
         {/* Ahmed Updates */}
         <OurCommunityFounders/>
+        <RoudeMap/>
 
 
     </div>

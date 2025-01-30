@@ -15,7 +15,7 @@ import Level from './Components/Level/Level';
 import Wave from './Components/Wave/Wave';
 import Session from './Components/Session/Session';
 import Committees from './pages/Committees/Committees';
-import Profile from './pages/profile/Profile';
+import DashBoard from './pages/DashBoard/DashBoard';
 import Admin from './pages/Admin/Admin';
 import AddNews from './pages/Adds/AddNews';
 import AddTalented from './pages/Adds/AddTalented';
@@ -31,7 +31,7 @@ import Standing from './Components/Codeforces/Standing';
 import AddStandingW1 from './pages/Adds/Training/AddStandingW1';
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
-import { Get_Accepted } from './Components/Codeforces/CodeForcesData/Get_Accepted';
+import ProfileDash from './Components/DashBoardPages/ProfileDash';
 
 
 let routers = createBrowserRouter([
@@ -46,7 +46,15 @@ let routers = createBrowserRouter([
     {path:"level/:id" , element:<ProtectedRoute><Level/></ProtectedRoute>},
     {path:"wave/:id" , element:<ProtectedRoute><Wave/></ProtectedRoute>},
     {path:"session/:sessionId" , element:<ProtectedRoute><Session/></ProtectedRoute>},
-    {path:"profile" , element:<ProtectedRoute><Profile/></ProtectedRoute>},
+    {
+      path: "dashboard",
+      element: <ProtectedRoute><DashBoard /></ProtectedRoute>,
+      children: [
+        { index: true, element: <ProfileDash /> }, // الصفحة الافتراضية
+        { path: "profile", element: <ProfileDash /> }, // صفحة البروفايل
+        {path:'*',element:<NotFound/>},
+      ],
+    },
     {path:"admin" , element:<ProtectedAdmin><Admin/></ProtectedAdmin>},
     {path:"addnews" , element:<ProtectedAdmin><AddNews/></ProtectedAdmin>},
     {path:"addevent" , element:<ProtectedAdmin><AddLatestEvents/></ProtectedAdmin>},
@@ -60,6 +68,12 @@ let routers = createBrowserRouter([
     {path:"standing" , element:<Standing/>},
 
     {path:'*',element:<NotFound/>},
+
+    // {path:'/dashboard' , element:<DashBoard/>, children:[
+    //   {index:true , element:<ProfileDash/>},
+    //   {path:"profile" , element:<ProfileDash/>},
+
+    // ]}
   ]},
     
     {path:"resetpassword" , element:<ResetPassword/>},

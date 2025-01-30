@@ -1,11 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 
 const { fontFamily } = require('tailwindcss/defaultTheme')
+const flowbite = require("flowbite-react/tailwind");
+
 
 module.exports = {
+  plugins: [ 
+    flowbite.plugin(),
+    require('daisyui'),
+   ],
   content: [
     // Or if using `src` directory:
     "./src/**/*.{ts,jsx,js,tsx,mdx}",
+    flowbite.content(),
   ],
   darkMode:'class',
   theme: {
@@ -78,6 +85,5 @@ module.exports = {
       // => @media (max-width: 479px) { ... }
   },
   },
-  plugins: [],
 }
 

@@ -33,7 +33,7 @@ const Home = () => {
               <div class="sk-cube sk-cube8"></div>
               <div class="sk-cube sk-cube9"></div>
             </div>
-      </div>:<div className='Home  overflow-x-hidden'>
+      </div>:<div className='Home overflow-x-hidden'>
       <div className="hero !bg-dark relative  -top-4">
         <AnimatedText text="ICPC HTI Community" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[25%] sm:top-[10%] top-[30%] z-20'/>
         <div className='overlay absolute bgWaves w-100 h-[98%] sm:h-[91.5%] xs:h-[98%]'></div>

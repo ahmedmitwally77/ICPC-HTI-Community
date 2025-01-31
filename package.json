@@ -13,6 +13,7 @@
     "flowbite-react": "^0.10.2",
     "formik": "^2.4.6",
     "framer-motion": "^10.6.0",
+    "hti-website": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-ga": "^3.3.1",

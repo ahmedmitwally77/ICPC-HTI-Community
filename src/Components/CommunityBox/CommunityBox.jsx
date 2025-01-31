@@ -13,7 +13,7 @@ export default function CommunityBox({img,name,title,link,mark}) {
 
         <h5 className='text-3xl sm:text-1xl md:text-2xl flex items-center'>{name}
           <span className='mx-2 text-2xl'>|</span>
-          <a href={link} target="_blank"  >
+          <a href={link} target="_blank" rel='noreferrer'  >
             <i className="fa-brands fa-linkedin text-2xl pt-2"></i>
           </a>
         </h5>

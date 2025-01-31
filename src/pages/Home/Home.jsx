@@ -11,6 +11,7 @@ import TalentedMember from '../../Components/talentedMember/TalentedMember'
 import { AuthContext } from '../../Context/AuthContext'
 import NewOurFounders from '../../Components/NewOurFounders/NewOurFounders'
 import Testimonials from '../../Components/Testimonials/Testimonials'
+import Appreciation from '../../Components/Appreciation/Appreciation'
 
 const Home = () => {
   
@@ -44,6 +45,7 @@ const Home = () => {
       <WhoWeAreAndStatics/>
       <News/>
       <NewOurFounders/>
+      <Appreciation/>
       <WhatIsIcpc/>
       <RoudeMap/>
       <TalentedMember/>

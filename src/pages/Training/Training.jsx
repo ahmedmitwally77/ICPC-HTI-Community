@@ -6,6 +6,7 @@ import WhyC from '../../Components/whyC++/WhyC'
 // import RoadMap from '../../Components/RoadMap/RoadMap'
 import Levels from '../../Components/Levels/Levels'
 import { Helmet } from 'react-helmet'
+import TableData from '../../Components/Codeforces/CodeForcesData/TableData'
 
 
 const Training = () => {
@@ -27,6 +28,7 @@ const Training = () => {
         <WhyC/>
         {/* <RoadMap/> */}
         <Levels/>
+        {/* <TableData/> */}
     </div>
   </>
 }

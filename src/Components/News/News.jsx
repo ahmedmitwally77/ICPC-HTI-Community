@@ -2,14 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import style from './News.module.css'
 import img from '../../Images/icpc core 2024.jpg'
 import AnimatedText from '../AnimatedText'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom';
 import bg from '../../Images/blob-scene-haikei (1).svg'
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { AuthContext } from '../../Context/AuthContext'
+import MainHeading from '../MainHeading/MainHeading';
 
 const News = () => {
 
@@ -74,11 +73,12 @@ const News = () => {
       </>
 
   return (
-    <div className='news bg-light relative py-32 mb-16'>
+    <div className='news bg-light relative py-24 mb-16'>
         <div  className=' top-0'>
-            <AnimatedText text="News & Events" ClassName='mb-16 lg:!text-6xl sm:!text-5xl xs:!text-4xl sm:mb-8 text-blue-500'/>
-            <div className="container">
-                <Slider {...settings}>
+            {/* <AnimatedText text="News & Events" ClassName='mb-16 lg:!text-6xl sm:!text-5xl xs:!text-4xl sm:mb-8 text-blue-500'/> */}
+            <div className="container ">
+              <MainHeading title1='' title2='News & Events'/>
+                <Slider className='mt-5' {...settings}>
                 {articles.map(article => (
                 <div  >
                     <div  className='d-flex justify-center align-items-center '>

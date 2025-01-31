@@ -5,8 +5,6 @@ import { motion, useScroll } from 'framer-motion'
 import icpc from '../../Images/5d8fe48ab721ff05beea40684647002a3b64177a.svg'
 import shape1 from '../../Images/circleleft.svg'
 import footerWaves from '../../Images/fotter2.svg'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import style from './WhatIsIcpc.module.css'
 
 const Details = ({position , company , companyLink , time , address , work}) =>{
@@ -34,9 +32,7 @@ const Details = ({position , company , companyLink , time , address , work}) =>{
 
 const WhatIsIcpc = () => {
 
-    useEffect(() => {
-        AOS.init({ duration: 1000 }); 
-      }, []);
+    
 
     const ref = useRef(null);
     const {scrollYProgress} = useScroll(
@@ -47,7 +43,7 @@ const WhatIsIcpc = () => {
     )
 
   return (
-    <div className={`${style.whatisicpc} relative  pb-16 `}>
+    <div className={`${style.whatisicpc} relative  pb-16 !bg-[#4d72c2]`}>
         
         <img src={shape1} alt="" />
         <div className="row justify-around align-items-center">
@@ -71,7 +67,7 @@ const WhatIsIcpc = () => {
                 </ul>
                 </div>
             </div>
-            <div data-aos="fade-up-left" className="col-md-5 d-flex align-items-center justify-center">
+            <div className="col-md-5 d-flex align-items-center justify-center">
                 <img className='' src={icpc} alt="icpc" />
             </div>
         </div>

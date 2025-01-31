@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import style from './LatestEvent.module.css'
 import img from '../../Images/icpc core 2024.jpg'
 import AnimatedText from '../AnimatedText'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { collection, getDocs , query, orderBy, limit } from 'firebase/firestore';
 import { db } from '../../firebase';
 
@@ -19,9 +17,7 @@ const LatestEvent = () => {
 
 
 
-    useEffect(() => {
-        AOS.init({ duration: 1000 }); 
-      }, []);
+  
 
     // const [Days, setDays] = useState('')
     // const [Hours, setHours] = useState('')
@@ -91,7 +87,7 @@ const LatestEvent = () => {
             <div class={style.container}>
                 <div className="row">
                     <div className="col-md-8">
-                        <div data-aos="fade-up-right" class={style.info}>
+                        <div  class={style.info}>
                             <div class={style.time}>
                                 <motion.div viewport={{once:true}} initial={{y:-60 , opacity:0}} whileInView={{y:0 , opacity:1  }} transition={{duration:1}} class={style.unit}>
                                 <span>{Days}</span>
@@ -117,7 +113,7 @@ const LatestEvent = () => {
                         </div>
                     </div>
                       
-                    <div data-aos="fade-up-left" className="col-md-4">
+                    <div  className="col-md-4">
                       <img className='mt-4' src={event.eventCoverUrl} alt={event.title} />
                     </div>
                 </div>

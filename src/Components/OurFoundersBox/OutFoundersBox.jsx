@@ -4,8 +4,8 @@ export default function OutFoundersBox({img,name,title,link}) {
   return (
     <div className="card-box flex lg:flex-col justify-center items-center">
       
-      <div className="image w-[200px] h-[200px] ">
-        <img src={img} alt={`${name} ${title}`} className="w-full h-full object-cover rounded-full" />
+      <div className="image w-[160px] h-[160px] ">
+        <img src={img} alt={`${name} ${title}`} className="w-100 h-100 object-cover rounded-full" />
       </div>
 
       <div className="data lg:mt-4 lg:pl-0 mt-0 pl-6">

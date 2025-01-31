@@ -1,189 +1,209 @@
-import React, { useContext, useEffect, useState } from 'react'
-import logo from '../../Images/Colored V2.png'
-import { Link, useLocation } from 'react-router-dom'
-import style from './Navbar.module.css'
-import { AuthContext } from '../../Context/AuthContext'
-
-
-const CustomLink = ({to , title , className="" , toggle}) => {
-  const location = useLocation();
-
-  const handelClick = ()=>{
-    toggle()
-  }
-
-  return(
-    <Link to={to} className={`${className} relative end-0 group hover:text-blue-500 ${location.pathname === to ? 'border-b-2 border-blue-500' : ''} `} onClick={() => {handelClick()}}>
-      {title}
-      {/* <span className={`absolute left-0 group-hover:w-full 
-      transition-[width] ease  duration-1000
-      -bottom-0.5  h-[1px] inline-block dark:bg-light bg-dark `}>&nbsp;</span> */}
-    </Link>
-  )
-}
-
-const CustomMobileLink = ({to , title , className="" , toggle , signOutClick}) => {
-
-  const handelClick = ()=>{
-    toggle()
-  }
-  
-  const handleSignOut =()=>{
-    signOutClick()
-  }
-
-
-  return(
-    <Link to={to} className={`${className} relative group text-light dark:text-dark my-2 text-decoration-none `} onClick={() => {handelClick() ; handleSignOut();}}>
-      {title}
-
-      {/* <span className={`absolute left-0 group-hover:w-full 
-      transition-[width] ease duration-300
-      -bottom-0.5  h-[1px] inline-block dark:bg-dark bg-light `}>&nbsp;</span> */}
-    </Link>
-  )
-}
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthContext';
+import logo from '../../Images/Colored V2.webp';
+import style from './Navbar.module.css';
 
 const Navbar = () => {
+  const { currentUser, userData, flagAdmin, setFlagAdmin, setFlag, flag } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const {currentUser , userData , flagAdmin , setFlagAdmin , setFlag , flag} = useContext(AuthContext)
-
+  // تحقق من حالة المستخدم عند التحميل أو تغيير currentUser
   useEffect(() => {
-    console.log(currentUser);
-    console.log(userData?.photoURL);
-    if(currentUser){
-      setFlag(true)
-      if(currentUser.uid === process.env.REACT_APP_Admin_Id){
-              setFlagAdmin(true)
-            }else{
-                    setFlagAdmin(false)
-                  }
-    }else{
-      setFlag(false)
+    if (currentUser) {
+      setFlag(true);
+      setFlagAdmin(currentUser.uid === process.env.REACT_APP_Admin_Id);
+    } else {
+      setFlag(false);
+      setFlagAdmin(false);
     }
-  }, [currentUser])
+  }, [currentUser, setFlag, setFlagAdmin]);
 
-  const [isOpen , setIsOpen] = useState(false)
+  // تبديل حالة القائمة المنسدلة (للأجهزة المحمولة)
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
-  const handelClick = ()=>{
-    setIsOpen(!isOpen)
-  }
+  // روابط التنقل الرئيسية
+  const NAV_LINKS = [
+    { to: '/', title: 'Home' },
+    { to: '/about', title: 'About' },
+    { to: '/training', title: 'Training' },
+    { to: '/committees', title: 'Committees' },
+    { to: '/ecpc', title: 'ECPC' },
+  ];
 
-  return <>
-  <header className= {`${style.header} relative z-10 lg:px-16 md:px-12 sm:px-8  w-full px-32 py-8 font-medium flex items-center justify-between fixed-top`} >
+  // روابط الأدمن
+  const ADMIN_LINKS = [
+    { to: '/addnews', title: 'Add News' },
+    { to: '/addtalented', title: 'Add Talented' },
+    { to: '/addevent', title: 'Add Latest Event' },
+    { to: '/addAchievemnts', title: 'Add Achievements' },
+    { to: '/addgallary', title: 'Add Gallery' },
+    { to: '/addlevels', title: 'Add Levels' },
+    { to: '/addwaves', title: 'Add Waves' },
+    { to: '/addsession', title: 'Add Session' },
+  ];
 
-  <button className='hidden lg:flex  flex-col justify-center items-center' onClick={handelClick}>
-    <span className={`grade dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm -translate-y-0.5 ${isOpen ? 'rotate-45 translate-y-0.5' : "-translate-y-0.5"}`}></span>
-    <span className={`grade dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isOpen ? "opacity-0" : "opacity-100"}`}></span>
-    <span className={`grade dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm translate-y-0.5 ${isOpen ? '-rotate-45 -translate-y-1.5' : "translate-y-0.5"}`}></span>
-  </button>
+  // مكون الرابط المخصص
+  const CustomLink = ({ to, title, className = "", onClick }) => {
+    const location = useLocation();
 
-  
-  <div 
-  className='container flex justify-between items-center lg:hidden'> 
+    return (
+      <Link
+        to={to}
+        className={`${className} relative end-0 group hover:text-blue-500 ${
+          location.pathname === to ? 'border-b-2 border-blue-500' : ''
+        }`}
+        onClick={onClick}
+      >
+        {title}
+      </Link>
+    );
+  };
 
-  <Link to='/' className='w-[110px] md:w-[120px]   top-1  '>
-      <img className='w-100' src={logo} alt="icpc hti logo" />
-  </Link>
+  return (
+    <header
+      className={`${style.header} relative z-10 lg:px-16 md:px-12 sm:px-8 w-full px-32 py-8 font-medium flex items-center justify-between fixed-top`}
+    >
+      {/* زر القائمة المنسدلة (للأجهزة المحمولة) */}
+      <button className="hidden lg:flex flex-col justify-center items-center" onClick={toggleMenu}>
+        <span
+          className={`grade dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm -translate-y-0.5 ${
+            isOpen ? 'rotate-45 translate-y-0.5' : '-translate-y-0.5'
+          }`}
+        ></span>
+        <span
+          className={`grade dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${
+            isOpen ? 'opacity-0' : 'opacity-100'
+          }`}
+        ></span>
+        <span
+          className={`grade dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm translate-y-0.5 ${
+            isOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-0.5'
+          }`}
+        ></span>
+      </button>
 
-  {/* links */}
-  <nav className='flex justify-center align-center'>
-    <CustomLink to='/'  title="Home"  className='mr-3 text-decoration-none text-dark'/>
-    <CustomLink to="/about" title="About" className='mx-3 text-decoration-none text-dark'/>
-    <CustomLink to="/training" title="Training" className='mx-3 text-decoration-none text-dark'/>
-    <CustomLink to="/committees" title="Committees" className='mx-3 text-decoration-none text-dark'/>
-    <CustomLink to="/ecpc" title="ECPC" className='mx-3 text-decoration-none text-dark'/>
-    {/* <CustomLink to="/form" title="Form" className='mx-3 text-decoration-none text-dark'/> */}
-    {flag && flagAdmin ?<>
-      <div class="dropdown-center">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Admin Access
-        </button>
-        <ul class="dropdown-menu">
-            <li><Link class="dropdown-item" to={'/addnews'}>Add News</Link></li>
-            <li><Link class="dropdown-item" to={'/addtalented'}>Add talented</Link></li>
-            <li><Link class="dropdown-item" to={'/addevent'}>Add latest event</Link></li>
-            <li><Link class="dropdown-item" to={'/addAchievemnts'}>Add Achievemnts</Link></li>
-            <li><Link class="dropdown-item" to={'/addgallary'}>Add gallary</Link></li>
-            <li><Link class="dropdown-item" to={'/addlevels'}>Add levels</Link></li>
-            <li><Link class="dropdown-item" to={'/addwaves'}>Add waves</Link></li>
-            <li><Link class="dropdown-item" to={'/addsession'}>Add session</Link></li>
-        </ul>
+      {/* التنقل لسطح المكتب */}
+      <div className="container flex justify-between items-center lg:hidden">
+        {/* الشعار */}
+        <Link to="/" className="w-[110px] md:w-[120px] top-1">
+          <img className="w-100" src={logo} alt="icpc hti logo" loading="lazy" />
+        </Link>
+
+        {/* الروابط */}
+        <nav className="flex justify-center align-center">
+          {NAV_LINKS.map((link) => (
+            <CustomLink
+              key={link.to}
+              to={link.to}
+              title={link.title}
+              className="mx-3 text-decoration-none text-dark"
+            />
+          ))}
+          {flag && flagAdmin && (
+            <div className="dropdown-center">
+              <button
+                className="btn btn-primary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Admin Access
+              </button>
+              <ul className="dropdown-menu">
+                {ADMIN_LINKS.map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to} className="dropdown-item">
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </nav>
+
+        {/* قسم المستخدم */}
+        {currentUser ? (
+          <nav>
+            <Link to={'/dashBoard'} class="flex items-center px-4 -mx-2">
+              <img class="object-cover mx-2 rounded-full h-9 w-9" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar" />
+              <span class="mx-2 font-medium text-gray-800 dark:text-gray-200">Hello {userData?.Fname}</span>
+            </Link>
+          </nav>
+        ) : (
+          <nav className="flex items-center justify-center">
+            <Link to="/signup" className={style.btn2}>
+              SignUp
+            </Link>
+            <Link to="/login" className={style.btn}>
+              SignIn
+            </Link>
+          </nav>
+        )}
       </div>
-        </>:<></>}
-  </nav>
-  
-  {/* auth */}
-  {currentUser? <nav className=' '> 
-    <Link to={'/profile'} className=' fw-bold' >Hello {userData?.Fname}</Link>
-  </nav>: 
-  <nav className='flex items-center justify-center '> 
-    <Link to={'/signup'}  className={style.btn2} >SignUp</Link>
-    <Link to={'/login'} className={style.btn} >SignIn</Link>
-  </nav> 
-  }
-  
 
-</div>
+      {/* القائمة المنسدلة (للأجهزة المحمولة) */}
+      {isOpen && (
+        <div className="z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70vw] flex flex-col justify-between items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <nav className="flex items-center flex-col justify-center">
+            {NAV_LINKS.map((link) => (
+              <CustomLink
+                key={link.to}
+                to={link.to}
+                title={link.title}
+                className="mx-3 text-decoration-none text-light"
+                onClick={toggleMenu}
+              />
+            ))}
+            {flag && flagAdmin && (
+              <div className="dropdown-center">
+                <button
+                  className="btn btn-primary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Admin Access
+                </button>
+                <ul className="dropdown-menu">
+                  {ADMIN_LINKS.map((link) => (
+                    <li key={link.to}>
+                      <Link to={link.to} className="dropdown-item">
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </nav>
 
-{
-  isOpen ?
-<div 
-initial={{scale:0 , opacity:0 , x:"-50%" , y:"-50%"}}
-animate={{scale:1 , opacity:1 }}
-transition={{duration:1}}
-className='z-30 login rounded-lg backdrop-blur-md bg-dark/50 py-[70px] min-w-[70vw] flex flex-col  justify-between items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-  <nav className='flex items-center flex-col justify-center'>
-    <CustomLink to='/'  title="Home"  className='mx-3 text-decoration-none text-light' toggle={handelClick}/>
-    <CustomLink to="/about" title="About" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
-    <CustomLink to="/training" title="Training" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
-    <CustomLink to="/committees" title="Committees" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
-    <CustomLink to="/ecpc" title="ECPC" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/>
-    {/* <CustomLink to="/form" title="Form" className='mx-3 mt-2 text-decoration-none text-light' toggle={handelClick}/> */}
-    {flag && flagAdmin ?<>
-      <div class="dropdown-center">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Admin Access
-        </button>
-        <ul class="dropdown-menu">
-            <li><Link to={'/addnews'}>Add News</Link></li>
-            <li><Link to={'/addtalend'}>Add talented</Link></li>
-            <li><Link to={'/addevent'}>Add latest event</Link></li>
-            <li><Link to={'/addAchievemnts'}>Add Achievemnts</Link></li>
-            <li><Link to={'/addgallary'}>Add gallary</Link></li>
-            <li><Link to={'/addlevels'}>Add levels</Link></li>
-            <li><Link to={'/addwaves'}>Add waves</Link></li>
-            <li><Link to={'/addsession'}>Add session</Link></li>
-        </ul>
+          {currentUser ? (
+            <nav>
+              <Link to="/profile" className="fw-bold">
+                Hello {currentUser?.displayName}
+              </Link>
+            </nav>
+          ) : (
+            <nav className="flex items-center justify-center">
+              <Link to="/signup" className={style.btn2}>
+                SignUp
+              </Link>
+              <Link to="/login" className={style.btn}>
+                SignIn
+              </Link>
+            </nav>
+          )}
+        </div>
+      )}
 
-      </div>
-        </>:<></>}
-
-
-  </nav>
-  
-  {currentUser? <nav className=' '> 
-    <Link to={'/profile'} className=' fw-bold' >Hello {currentUser?.displayName}</Link>
-    {/* <img src={imageUrl} alt="" /> */}
-  </nav>: 
-  <nav className='flex items-center justify-center '> 
-    <Link to={'/signup'}  className={style.btn2} >SignUp</Link>
-    <Link to={'/login'} className={style.btn} >SignIn</Link>
-  </nav> 
-  }
-
-</div>
-  : null
-}
-
-    {/* <Link to='/' className='w-[160px] md:w-[120px] absolute left-[50%] top-1  translate-x-[-50%]'>
-      <img className='w-100' src={logo} alt="icpc hti logo" />
-    </Link> */}
-
-        <img className='hidden lg:flex w-25' src={logo} alt="" />
-
-  </header>
-  </>
-}
+      {/* الشعار (للأجهزة المحمولة) */}
+      <img className="hidden lg:flex w-25" src={logo} alt="icpc hti logo" loading="lazy" />
+    </header>
+  );
+};
 
 export default Navbar;

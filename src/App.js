@@ -10,13 +10,12 @@ import OTPVer from './Components/OTPVer/OTPVer';
 import ResetNewPass from './Components/ResetNewPass/ResetNewPass';
 import ECPC from './pages/ECPC/ECPC';
 import About from './pages/About/About';
-// import ContactUs from './pages/ContactUs/ContactUs';
 import Training from './pages/Training/Training';
 import Level from './Components/Level/Level';
 import Wave from './Components/Wave/Wave';
 import Session from './Components/Session/Session';
 import Committees from './pages/Committees/Committees';
-import Profile from './pages/profile/Profile';
+import DashBoard from './pages/DashBoard/DashBoard';
 import Admin from './pages/Admin/Admin';
 import AddNews from './pages/Adds/AddNews';
 import AddTalented from './pages/Adds/AddTalented';
@@ -28,9 +27,11 @@ import Form from './pages/Form-wave/Form';
 import AddSessions from './pages/Adds/Training/AddSessions';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ProtectedAdmin from './Components/ProtectedAdmin';
-import Sheet from './Components/Codeforces/sheet/Sheet';
-import Standing from './Components/Codeforces/Standing';
 import AddStandingW1 from './pages/Adds/Training/AddStandingW1';
+import ReactGA from 'react-ga';
+import { useEffect } from 'react';
+import ProfileDash from './Components/DashBoardPages/generalPages/ProfileDash';
+import StandingData from './Components/DashBoardPages/generalPages/StandingData';
 
 
 let routers = createBrowserRouter([
@@ -40,13 +41,21 @@ let routers = createBrowserRouter([
     {path:"signup" , element:<SignUp/>},
     {path:"ecpc" , element:<ECPC/>},
     {path:"about" , element:<About/>},
-    // {path:"contactUs" , element:<ContactUs/>},
     {path:"committees" , element:<Committees/>},
     {path:"training" , element:<Training/>},
     {path:"level/:id" , element:<ProtectedRoute><Level/></ProtectedRoute>},
     {path:"wave/:id" , element:<ProtectedRoute><Wave/></ProtectedRoute>},
     {path:"session/:sessionId" , element:<ProtectedRoute><Session/></ProtectedRoute>},
-    {path:"profile" , element:<ProtectedRoute><Profile/></ProtectedRoute>},
+    {
+      path: "dashboard",
+      element: <ProtectedRoute><DashBoard /></ProtectedRoute>,
+      children: [
+        { index: true, element: <ProfileDash /> }, // الصفحة الافتراضية
+        { path: "profile", element: <ProfileDash /> }, // صفحة البروفايل
+        { path: "standing", element: <StandingData /> }, 
+        {path:'*',element:<NotFound/>},
+      ],
+    },
     {path:"admin" , element:<ProtectedAdmin><Admin/></ProtectedAdmin>},
     {path:"addnews" , element:<ProtectedAdmin><AddNews/></ProtectedAdmin>},
     {path:"addevent" , element:<ProtectedAdmin><AddLatestEvents/></ProtectedAdmin>},
@@ -57,9 +66,13 @@ let routers = createBrowserRouter([
     {path:"addsession" , element:<ProtectedAdmin><AddSessions/></ProtectedAdmin>},
     {path:"addStandingW1" , element:<ProtectedAdmin><AddStandingW1/></ProtectedAdmin>},
     {path:"form" , element:<Form/>},
-    {path:"standing" , element:<Standing/>},
-
     {path:'*',element:<NotFound/>},
+
+    // {path:'/dashboard' , element:<DashBoard/>, children:[
+    //   {index:true , element:<ProfileDash/>},
+    //   {path:"profile" , element:<ProfileDash/>},
+
+    // ]}
   ]},
     
     {path:"resetpassword" , element:<ResetPassword/>},
@@ -70,6 +83,15 @@ let routers = createBrowserRouter([
 
 
 function App() {
+
+
+  // for google analytics
+  useEffect(() => {
+    ReactGA.initialize('G-LBVS9BVBNB');
+    // Track the current page view
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
 
   return  <RouterProvider router={routers}></RouterProvider>
 

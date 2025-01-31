@@ -3,7 +3,6 @@ import AnimatedText from '../AnimatedText'
 import img1 from '../../Images/im1.webp'
 import img2 from '../../Images/img2.webp'
 import line2 from '../../Images/line 2.jpeg'
-import 'aos/dist/aos.css';
 import { motion } from 'framer-motion'
 
 const OurMissionVision = () => {

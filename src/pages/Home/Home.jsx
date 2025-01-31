@@ -5,13 +5,12 @@ import AnimatedText from '../../Components/AnimatedText'
 import WhatIsIcpc from '../../Components/WhatIsIcpc/WhatIsIcpc'
 import News from '../../Components/News/News'
 import RoudeMap from '../../Components/RoudMap/RoudeMap'
-// import Testimonials from '../../Components/Testimonials/Testimonials'
-import LatestEvent from '../../Components/LatestEvents/LatestEvent'
 import footerWaves from '../../Images/intersecting-waves-scattered.svg'
 import TransitionEffect from '../../Components/TransitionEffect'
 import TalentedMember from '../../Components/talentedMember/TalentedMember'
 import { AuthContext } from '../../Context/AuthContext'
-import Notes from '../../Components/Notes/Notes'
+import NewOurFounders from '../../Components/NewOurFounders/NewOurFounders'
+import Testimonials from '../../Components/Testimonials/Testimonials'
 
 const Home = () => {
   
@@ -38,18 +37,18 @@ const Home = () => {
       <div className="hero !bg-dark relative  -top-4">
         <AnimatedText text="ICPC HTI Community" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[25%] sm:top-[10%] top-[30%] z-20'/>
         <div className='overlay absolute bgWaves w-100 h-[98%] sm:h-[91.5%] xs:h-[98%]'></div>
-        <img className='w-full  vh-100 object-cover' src={HomeImg} alt="hti comunity in ecpc" />
-        <img className='rotate-180 absolute -bottom-1 ' src={footerWaves} alt="footer bg" />
+        <img className='w-full  vh-100 object-cover' src={HomeImg} alt="hti comunity in ecpc" loading='lazy' />
+        <img className='rotate-180 absolute -bottom-1 ' src={footerWaves} alt="footer bg" loading='lazy'/>
       </div>
 
-      {/* <Notes/> */}
       <WhoWeAreAndStatics/>
       <News/>
+      <NewOurFounders/>
       <WhatIsIcpc/>
       <RoudeMap/>
-      {/* <Testimonials/> */}
       <TalentedMember/>
-      <LatestEvent/>
+      {/* <LatestEvent/> */}
+      <Testimonials/>
     </div>}
 
     
@@ -57,3 +56,4 @@ const Home = () => {
 }
 
 export default Home
+

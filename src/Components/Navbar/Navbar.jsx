@@ -102,7 +102,7 @@ const Navbar = () => {
               className="mx-3 text-decoration-none text-dark"
             />
           ))}
-          {flag && flagAdmin && (
+          {/* {flag && flagAdmin && (
             <div className="dropdown-center">
               <button
                 className="btn btn-primary dropdown-toggle"
@@ -122,7 +122,7 @@ const Navbar = () => {
                 ))}
               </ul>
             </div>
-          )}
+          )} */}
         </nav>
 
         {/* قسم المستخدم */}
@@ -158,7 +158,7 @@ const Navbar = () => {
                 onClick={toggleMenu}
               />
             ))}
-            {flag && flagAdmin && (
+            {/* {flag && flagAdmin && (
               <div className="dropdown-center">
                 <button
                   className="btn btn-primary dropdown-toggle"
@@ -178,7 +178,7 @@ const Navbar = () => {
                   ))}
                 </ul>
               </div>
-            )}
+            )} */}
           </nav>
 
           {currentUser ? (

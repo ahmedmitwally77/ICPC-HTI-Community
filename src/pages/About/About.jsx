@@ -32,7 +32,6 @@ const About = () => {
         <OurAchievements/>
         {/* Ahmed Updates */}
         <OurCommunityFounders/>
-        <RoudeMap/>
 
 
     </div>

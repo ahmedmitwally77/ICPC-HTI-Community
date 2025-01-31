@@ -4,7 +4,6 @@ import reda from '../../Images/redaa.jpg'
 import salman from '../../Images/salman.jpeg'
 import adel from '../../Images/adell.jpg'
 import line2 from '../../Images/line 2.jpeg'
-import 'aos/dist/aos.css';
 import { motion } from 'framer-motion'
 
 const OurFounders = () => {

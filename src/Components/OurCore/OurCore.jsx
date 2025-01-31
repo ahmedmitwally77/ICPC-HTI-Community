@@ -2,8 +2,7 @@ import React from 'react'
 import AnimatedText from '../AnimatedText'
 import line2 from '../../Images/line 2.jpeg'
 import me from '../../Images/me.webp'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+
 
 const OurCore = () => {
   return (
@@ -43,7 +42,7 @@ const OurCore = () => {
                 </div>
             </div>
             <div className="row my-16 justify-center align-items-center">
-                <div data-aos="fade-up" className="col-md-3 my-5 col-sm-4">
+                <div  className="col-md-3 my-5 col-sm-4">
                     <div className="card relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
                         <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
                             <h3>ziad essa</h3>
@@ -52,7 +51,7 @@ const OurCore = () => {
                         <img className='w-100 hover:scale-105 transition-transform' src={me} alt="" />
                     </div>
                 </div>
-                <div data-aos="fade-up" className="col-md-3 my-5 col-sm-4">
+                <div  className="col-md-3 my-5 col-sm-4">
                     <div className="card relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
                         <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
                             <h3>ziad essa</h3>
@@ -61,7 +60,7 @@ const OurCore = () => {
                         <img className='w-100 hover:scale-105 transition-transform' src={me} alt="" />
                     </div>
                 </div>
-                <div data-aos="fade-up" className="col-md-3 my-5 col-sm-4">
+                <div  className="col-md-3 my-5 col-sm-4">
                     <div className="card sm:mt-16 relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
                         <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
                             <h3>Mohamed Alaa</h3>
@@ -70,7 +69,7 @@ const OurCore = () => {
                         <img className='w-100 hover:scale-105 transition-transform' src={me} alt="" />
                     </div>
                 </div>
-                <div data-aos="fade-up" className="col-md-3 my-5 col-sm-4">
+                <div  className="col-md-3 my-5 col-sm-4">
                     <div className="card relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
                         <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
                             <h3>Mohamed AbdElkrem</h3>
@@ -81,7 +80,7 @@ const OurCore = () => {
                 </div>
             </div>
             <div className="row my-16 justify-center align-items-center">
-                <div data-aos="fade-up" className="col-md-3 my-5 col-sm-4">
+                <div  className="col-md-3 my-5 col-sm-4">
                     <div className="card relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
                         <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
                             <h3>ziad essa</h3>
@@ -90,7 +89,7 @@ const OurCore = () => {
                         <img className='w-100 hover:scale-105 transition-transform' src={me} alt="" />
                     </div>
                 </div>
-                <div data-aos="fade-up" className="col-md-3 my-5 col-sm-4">
+                <div  className="col-md-3 my-5 col-sm-4">
                     <div className="card relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
                         <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
                             <h3>ziad essa</h3>
@@ -99,7 +98,7 @@ const OurCore = () => {
                         <img className='w-100 hover:scale-105 transition-transform' src={me} alt="" />
                     </div>
                 </div>
-                <div data-aos="fade-up" className="col-md-3 my-5 col-sm-4">
+                <div  className="col-md-3 my-5 col-sm-4">
                     <div className="card sm:mt-16 relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
                         <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
                             <h3>Mohamed Alaa</h3>
@@ -108,7 +107,7 @@ const OurCore = () => {
                         <img className='w-100 hover:scale-105 transition-transform' src={me} alt="" />
                     </div>
                 </div>
-                <div data-aos="fade-up" className="col-md-3 my-5 col-sm-4">
+                <div  className="col-md-3 my-5 col-sm-4">
                     <div className="card relative d-flex justify-center align-items-center bg-dark border shadow-lg overflow-hidden">
                         <div className="content text-center bottom-0 text-light bg-dark/65 w-100 rounded-xl absolute">
                             <h3>Mohamed AbdElkrem</h3>

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import AnimatedText from '../AnimatedText';
+import AnimatedText from '../../AnimatedText';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase';
-import { AuthContext } from '../../Context/AuthContext';
-import img from '../../Images/websiteFounders/ziad.jpeg'
+import { auth } from '../../../firebase';
+import { AuthContext } from '../../../Context/AuthContext';
+import img from '../../../Images/websiteFounders/ziad.jpeg'
 
 const ProfileDash = () => {
 

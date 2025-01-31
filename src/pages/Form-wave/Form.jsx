@@ -5,7 +5,6 @@ import TransitionEffect from '../../Components/TransitionEffect'
 import { db } from '../../firebase'
 import { addDoc, collection, getDoc, getDocs } from 'firebase/firestore'
 import * as XLSX from 'xlsx';
-import DataTable from 'react-data-table-component'
 import { AuthContext } from '../../Context/AuthContext';
 
 
@@ -208,14 +207,7 @@ const Form = () => {
                     <div className="search text-end">
                         <input type="text" className='form-control w-75 mb-4 m-auto ' placeholder='search By Name'  onChange={handleFilter}/>
                     </div>
-                    <DataTable
-                    columns={columns}
-                    data={rec}
-                    selectableRows
-                    fixedHeader
-                    pagination
-                    >
-                    </DataTable>
+                    
                 </div>
             </div>
             </>:<></>}

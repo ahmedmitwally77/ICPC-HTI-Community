@@ -27,11 +27,11 @@ import Form from './pages/Form-wave/Form';
 import AddSessions from './pages/Adds/Training/AddSessions';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ProtectedAdmin from './Components/ProtectedAdmin';
-import Standing from './Components/Codeforces/Standing';
 import AddStandingW1 from './pages/Adds/Training/AddStandingW1';
 import ReactGA from 'react-ga';
 import { useEffect } from 'react';
-import ProfileDash from './Components/DashBoardPages/ProfileDash';
+import ProfileDash from './Components/DashBoardPages/generalPages/ProfileDash';
+import StandingData from './Components/DashBoardPages/generalPages/StandingData';
 
 
 let routers = createBrowserRouter([
@@ -52,6 +52,7 @@ let routers = createBrowserRouter([
       children: [
         { index: true, element: <ProfileDash /> }, // الصفحة الافتراضية
         { path: "profile", element: <ProfileDash /> }, // صفحة البروفايل
+        { path: "standing", element: <StandingData /> }, 
         {path:'*',element:<NotFound/>},
       ],
     },
@@ -65,8 +66,6 @@ let routers = createBrowserRouter([
     {path:"addsession" , element:<ProtectedAdmin><AddSessions/></ProtectedAdmin>},
     {path:"addStandingW1" , element:<ProtectedAdmin><AddStandingW1/></ProtectedAdmin>},
     {path:"form" , element:<Form/>},
-    {path:"standing" , element:<Standing/>},
-
     {path:'*',element:<NotFound/>},
 
     // {path:'/dashboard' , element:<DashBoard/>, children:[

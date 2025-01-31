@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import style from './News.module.css'
 import img from '../../Images/icpc core 2024.jpg'
 import AnimatedText from '../AnimatedText'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom';
 import bg from '../../Images/blob-scene-haikei (1).svg'

@@ -4,7 +4,6 @@ import TransitionEffect from "../TransitionEffect";
 import { Link, useParams } from "react-router-dom";
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
-import Standing from "../Codeforces/Standing";
 
 const Wave = () => {
   
@@ -149,7 +148,6 @@ if (!wave) {
                 text="Standing"
                 ClassName="text-start !text-5xl !text-blue-900 my-5"
             />
-            {/* <Standing links={sheetLinks}/> */}
             <iframe 
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNxfnw5XmXe4EqnjpOKRlqcM2HAOyB8QovkTeaHo6P1s3JOIMbF-N0fDcAFzI1XJlgQ8JsV3rLdEbo/pubhtml?gid=467328511&amp;single=true&amp;widget=true&amp;headers=false"
                 width="100%"

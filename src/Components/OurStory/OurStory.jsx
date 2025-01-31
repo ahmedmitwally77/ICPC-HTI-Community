@@ -3,7 +3,6 @@ import AnimatedText from '../AnimatedText'
 import img from '../../Images/IMG_3229 full.webp'
 import line1 from '../../Images/line 1.jpeg'
 import line2 from '../../Images/line 2.jpeg'
-import 'aos/dist/aos.css';
 import { motion } from 'framer-motion'
 
 const OurStory = () => {

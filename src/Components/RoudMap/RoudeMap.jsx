@@ -3,8 +3,6 @@ import { motion, useScroll } from 'framer-motion'
 import icpc from '../../Images/222.svg'
 import shape1 from '../../Images/circleright.svg'
 import shapeleft from '../../Images/circleleft.svg'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import style from './RoudeMap.module.css'
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom'
@@ -33,9 +31,7 @@ const Details = ({position , company , companyLink , time , address , work}) =>{
 }
 
 const RoudeMap = () => {
-    useEffect(() => {
-        AOS.init({ duration: 1000 }); 
-      }, []);
+
 
     const ref = useRef(null);
     const {scrollYProgress} = useScroll(
@@ -44,15 +40,14 @@ const RoudeMap = () => {
             offset: ["start end" , "center start"]
         }
     )
-
   return (
-    <div className={`${style.whatisicpc} relative  py-16 `}>
+    <div className={`${style.whatisicpc} relative  py-16 !bg-[#4d72c2] `}>
         {/* <h2 className='font-bold text-8xl  w-full text-light/90 text-center md:text-6xl xs:text-4xl md:mb-16'>
             Route Map
         </h2> */}
         <img src={shape1} className='absolute right-0 -top-10' />
         <div className="row justify-around align-items-center">
-            <div data-aos="fade-up-left" className="col-md-5 d-flex align-items-center justify-center">
+            <div  className="col-md-5 d-flex align-items-center justify-center">
                 <img className='' src={icpc} alt="icpc" />
             </div>
             <div className="col-md-7">

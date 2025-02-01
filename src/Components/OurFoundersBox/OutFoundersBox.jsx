@@ -1,4 +1,6 @@
 import React from 'react'
+import { FaLinkedin } from "react-icons/fa";
+
 
 export default function OutFoundersBox({img,name,title,link}) {
   return (
@@ -11,8 +13,8 @@ export default function OutFoundersBox({img,name,title,link}) {
       <div className="data lg:mt-4 lg:pl-0 mt-0 pl-6">
       <h5 className='text-2xl flex items-center'>{name}
         <span className='mx-2 text-2xl'>|</span>
-        <a href={link} target="_blank" >
-          <i className="fa-brands fa-linkedin pt-2"></i>
+        <a href={link} target="_blank"  className='pt-2'>
+        <FaLinkedin />
         </a>
       </h5>
       <p className='text-lg'>{title}</p>

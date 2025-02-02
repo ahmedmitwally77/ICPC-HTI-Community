@@ -27,11 +27,11 @@ const About = () => {
         </div>
 
         <OurStory/>
-        <OurMissionVision/>
+        <OurCommunityFounders/>
         <OurLeaders/>
+        <OurMissionVision/>
         <OurAchievements/>
         {/* Ahmed Updates */}
-        <OurCommunityFounders/>
 
 
     </div>

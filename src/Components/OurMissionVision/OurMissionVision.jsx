@@ -20,7 +20,7 @@ const OurMissionVision = () => {
                     <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:1 , y:0}} transition={{duration:1.5 }} className="card p-4 bg-dark/50 shadow-xl hover:bg-dark/40 !border-none rounded-xl duration-1000">
                         <div className="upperCard d-flex justify-center align-items-center ">
                             <img className='w-[15%] h-[10%] rounded-full m-2' src={img1} alt="" />
-                            <h4 className='!text-4xl !text-dark/75 fw-bold'>Our Mission</h4>
+                            <h4 className='!text-4xl !text-dark/75 fw-bold'>Our Vision</h4>
                         </div>
                         <p className='text-dark/70 leading-loose'>We are dedicated to nurturing a culture of
                          innovation and excellence in computer science. We strive to provide our members with opportunities

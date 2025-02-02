@@ -4,6 +4,7 @@ import img from '../../Images/IMG_3229 full.webp'
 import line1 from '../../Images/line 1.jpeg'
 import line2 from '../../Images/line 2.jpeg'
 import { motion } from 'framer-motion'
+import MainHeading from '../MainHeading/MainHeading'
 
 const OurStory = () => {
   return (
@@ -14,8 +15,8 @@ const OurStory = () => {
         <div className="container py-32">
             <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:1 , y:0}} transition={{duration:1.5 }} className="row">
                 <div  className="col-md-7">
-                    <AnimatedText text="Our Story" ClassName='text-start !text-5xl !text-blue-500'/>
-                    <p className='text-dark/60 leading-loose'>The ICPC community at HTI University is 
+                    <MainHeading title1='Our' title2='Story'/>
+                    <p className='text-dark/60 leading-loose mt-8'>The ICPC community at HTI University is 
                     a dynamic hub of talented individuals passionate about computer science. Members 
                     regularly engage in practice sessions to enhance their problem-solving skills and 
                     collaborate on challenging coding tasks. They actively participate in local and regional
@@ -26,7 +27,7 @@ const OurStory = () => {
                        have achieved remarkable success, earning recognition and accolades at various competitionlevels.
                     </p>
                 </div>
-                <div  className="col-md-5">
+                <div  className="col-md-5 flex justify-center align-items-center ">
                     <img className='rounded-xl' src={img} alt="icpc hti team" />
                 </div>
             </motion.div> 

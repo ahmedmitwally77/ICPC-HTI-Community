@@ -27,8 +27,8 @@ const About = () => {
         </div>
 
         <OurStory/>
-        <OurLeaders/>
         <OurMissionVision/>
+        <OurLeaders/>
         <OurAchievements/>
         {/* Ahmed Updates */}
         <OurCommunityFounders/>

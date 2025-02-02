@@ -1,5 +1,4 @@
 import React from 'react'
-import AnimatedText from '../AnimatedText'
 import img1 from '../../Images/im1.webp'
 import img2 from '../../Images/img2.webp'
 import line2 from '../../Images/line 2.jpeg'
@@ -8,7 +7,7 @@ import MainHeading from '../MainHeading/MainHeading'
 import icpcHti from '../../Images/icpc hti.jpeg'
 
 const OurMissionVision = () => {
-  return (
+return (
     <div className='ourMissionVision bg-dark/10 shadow-top-only rounded-3xl relative -top-14 '>
         <div className='line d-flex justify-center align-items-center relative top-7 '>
             <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
@@ -47,7 +46,7 @@ const OurMissionVision = () => {
             </div>
         </div>
     </div>
-  )
+)
 }
 
 export default OurMissionVision

@@ -8,7 +8,7 @@ import icpcHti from '../../Images/icpc hti.jpeg'
 
 const OurMissionVision = () => {
 return (
-    <div className='ourMissionVision bg-dark/10 shadow-top-only rounded-3xl relative -top-14 '>
+    <div className='ourMissionVision bg-[#FAFAFA] shadow-top-only rounded-3xl relative -top-14 '>
         <div className='line d-flex justify-center align-items-center relative top-7 '>
             <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
         </div>
@@ -16,8 +16,8 @@ return (
             <MainHeading title1="Our" title2="Mission & Vision" />
 
             <div className="flex flex-wrap justify-center w-5/6 mx-auto">
-                <div  className="w-1/2 sm:w-full md:w-full lg:w-full sm:px-0 md:px-0 lg:px-0 2xl:px-0 pr-4 ">
-                    <img src={icpcHti} alt="icpc hti Logo" className='w-[100%] h-[100%] rounded-2xl object-cover'  />
+                <div  className="w-1/2 sm:w-full md:w-full lg:w-full sm:px-0 md:px-0 lg:px-0 2xl:px-0 pr-8 ">
+                    <img src={icpcHti} alt="icpc hti Logo" className='w-[100%] h-[100%] rounded-2xl object-cover imgShadow'  />
                 </div>
                 <div  className="w-1/2 sm:w-full md:w-full lg:w-full sm:mt-8 md:mt-8 lg:mt-8 2xl:mt-8  bg-white rounded-2xl overflow-hidden ">
                     <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:1 , y:0}} transition={{duration:1.5 }} className="card p-4 bg-dark/50  hover:bg-dark/40 !border-none rounded-xl duration-1000">

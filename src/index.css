@@ -341,3 +341,7 @@ a{
 .shadowYellow{
   box-shadow: 4px 4px 20px 0px #FEBA12;
 }
+
+.imgShadow{
+  box-shadow: 5px 0px 20px 0px #00000040;
+}

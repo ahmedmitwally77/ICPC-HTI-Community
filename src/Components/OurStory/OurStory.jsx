@@ -13,9 +13,9 @@ const OurStory = () => {
             <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
         </div>
         <div className="container py-32">
+            <MainHeading title1='Our' title2='Story'/>
             <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:1 , y:0}} transition={{duration:1.5 }} className="row">
                 <div  className="col-md-7">
-                    <MainHeading title1='Our' title2='Story'/>
                     <p className='text-dark/60 leading-loose mt-8 pr-8 relative after:w-2 after:h-full after:bg-[#FEBA12] after:absolute after:top-1/2 after:-translate-y-1/2 after:-left-6'>The ICPC community at HTI University is 
                     a dynamic hub of talented individuals passionate about computer science. Members 
                     regularly engage in practice sessions to enhance their problem-solving skills and 
@@ -27,10 +27,10 @@ const OurStory = () => {
                     have achieved remarkable success, earning recognition and accolades at various competitionlevels.
                     </p>
                 </div>
-                <div  className="col-md-5 flex justify-center align-items-center p-8 ">
-                    <div className="image relative w-[650px] h-[250px]">
+                <div  className="col-md-5 flex justify-center align-items-center sm:ml-6  ">
+                    <div className="image relative w-[650px] h-[250px] sm:w-[400px]">
                         <img className='shadowYellow w-full h-full object-cover'  src={img} alt="icpc hti team" />
-                        <div className="text absolute left-[-144px] top-[105px]   rotate-[-90deg] flex justify-center align-items-center flex-col text-light bg-[#FFCA45] h-[40px] w-[250px]">
+                        <div className="text absolute left-[-144px] top-[105px]   rotate-[-90deg] flex justify-center align-items-center flex-col text-light bg-[#FFCA45] h-[40px] w-[251px]">
                             <h6 >ICPC 2024</h6>
                         </div>
                     </div>

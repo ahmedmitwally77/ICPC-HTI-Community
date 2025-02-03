@@ -74,7 +74,7 @@ const Levels = () => {
                           efficiency. Are you ready to elevate your skills? Join Level One now!
                         </p>
                         <div className="d-flex justify-end">
-                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light mt-3 px-4 mx-auto'>Closed <i class="fa-solid fa-lock"></i></spam>
+                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light mt-3 px-4 mx-auto disabled'>Closed <i class="fa-solid fa-lock"></i></spam>
                         </div>
                     </motion.div>
                 </div>
@@ -90,7 +90,7 @@ const Levels = () => {
                          opportunity Enroll in Level Two today!
                         </p>
                         <div className="d-flex justify-end">
-                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light px-4 mx-auto'>Closed <i class="fa-solid fa-lock"></i></spam>
+                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light px-4 mx-auto disabled'>Closed <i class="fa-solid fa-lock"></i></spam>
                         </div>
                     </motion.div>
                 </div>

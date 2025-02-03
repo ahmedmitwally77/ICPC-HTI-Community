@@ -32,6 +32,14 @@ import ReactGA from 'react-ga';
 import { useEffect } from 'react';
 import ProfileDash from './Components/DashBoardPages/generalPages/ProfileDash';
 import StandingData from './Components/DashBoardPages/generalPages/StandingData';
+import WaveDataDash from './Components/DashBoardPages/generalPages/WaveDataDash';
+import MentorAccess from './Components/DashBoardPages/mentorPages/MentorAccess';
+import Sheets_Contest from './Components/DashBoardPages/generalPages/Sheets_Contest';
+import Trainees from './Components/DashBoardPages/generalPages/Trainees';
+import Attendance from './Components/DashBoardPages/generalPages/Attendance';
+import Warning from './Components/DashBoardPages/generalPages/Warning';
+import WarningAttendance from './Components/DashBoardPages/generalPages/WarningAttendance';
+import SessionsDash from './Components/DashBoardPages/generalPages/SessionsDash';
 
 
 let routers = createBrowserRouter([
@@ -55,6 +63,14 @@ let routers = createBrowserRouter([
         { index: true, element: <ProfileDash /> }, // الصفحة الافتراضية
         { path: "profile", element: <ProfileDash /> }, // صفحة البروفايل
         { path: "standing", element: <StandingData /> }, 
+        { path: "waveData", element: <WaveDataDash /> }, 
+        { path: "sheet_contest", element: <Sheets_Contest /> }, 
+        { path: "trainees", element: <Trainees /> }, 
+        { path: "attendance", element: <Attendance /> }, 
+        { path: "warning", element: <Warning /> }, 
+        { path: "warning_attendance", element: <WarningAttendance /> }, 
+        { path: "sessions", element: <SessionsDash /> }, 
+        { path: "sessions/addsession", element: <ProtectedAdmin><AddSessions /></ProtectedAdmin> }, 
         {path:'*',element:<NotFound/>},
       ],
     },

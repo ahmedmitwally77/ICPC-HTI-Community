@@ -1,10 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import style from './News.module.css'
-import img from '../../Images/icpc core 2024.jpg'
-import AnimatedText from '../AnimatedText'
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom';
-import bg from '../../Images/blob-scene-haikei (1).svg'
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { AuthContext } from '../../Context/AuthContext'
@@ -84,7 +80,7 @@ const News = () => {
                 <div key={index} >
                     <div  className='flex justify-center align-items-center '>
                             <div key={article.id} className="flex justify-center items-center flex-wrap md:flex-col sm:flex-col lg:flex-col  w-[70%] py-16">
-                                    {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>}
+                                    {/* {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>} */}
                                     <div className="w-1/2  md:w-full flex justify-center sm:w-full lg:w-full md:mb-12 sm:mb-12 lg:mb-12 ">
                                       <div className="image sm:after:hidden  after:w-[400px]  after:rounded-xl after:h-[450px]  after:bg-[#FFB600] relative after:z-[-1] after:translate-x-[-40px] after:translate-y-[-20px] after:top-0 after:left-0 after:absolute">
                                         <img className='rounded-xl w-[400px] h-[400px]' decoding="async" src={article.coverImageUrl} alt="icpc hti events" />

@@ -9,7 +9,7 @@ import footerWaves from '../../Images/intersecting-waves-scattered.svg'
 import TransitionEffect from '../../Components/TransitionEffect'
 import TalentedMember from '../../Components/talentedMember/TalentedMember'
 import { AuthContext } from '../../Context/AuthContext'
-import NewOurFounders from '../../Components/NewOurFounders/NewOurFounders'
+import NewOurFounders from '../../Components/websiteFounders/NewOurFounders'
 import Testimonials from '../../Components/Testimonials/Testimonials'
 import Appreciation from '../../Components/Appreciation/Appreciation'
 

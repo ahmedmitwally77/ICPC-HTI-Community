@@ -59,37 +59,34 @@ const OurAchievements = () => {
           ]
       };
   return (
-    <div className='news relative py-24 mb-16'>
-    <div  className=' top-0'>
-        {/* <AnimatedText text="News & Events" ClassName='mb-16 lg:!text-6xl sm:!text-5xl xs:!text-4xl sm:mb-8 text-blue-500'/> */}
-        <div className="">
-          <div className="container">
-          <MainHeading title1='Our' title2='Achievements'/>
-          </div>
-            <Slider className='mt-5 `p-12 bg-light ' {...settings}>
-            {articles.map( (article, index) => (
-            <div key={index} >
-                <div  className='flex justify-center align-items-center '>
-                        <div key={article.id} className="flex justify-center items-center flex-wrap md:flex-col sm:flex-col lg:flex-col  w-[70%] py-16">
-                                {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>}
-                                <div className="w-1/2  md:w-full flex justify-center sm:w-full lg:w-full md:mb-12 sm:mb-12 lg:mb-12 ">
-                                  <div className="image sm:after:hidden  after:w-[400px]  after:rounded-xl after:h-[450px]  after:bg-[#FFB600] relative after:z-[-1] after:translate-x-[-40px] after:translate-y-[-20px] after:top-0 after:left-0 after:absolute">
-                                    <img className='rounded-xl w-[400px] h-[400px]' decoding="async" src={article.coverImageUrl} alt="icpc hti events" />
-                                  </div>
-                                </div>
-                                <div className="w-1/2 pl-6 md:w-full sm:w-full lg:w-full ">
-                                    <h2 className='text-3xl font-bold'>{article.title}</h2>
-                                    <p className='text-xl text-[#3E3E3E] mt-4'>{article.Paragraph}</p>
-                                    <Link className='btn grade2 ' to={'/'}>Read More</Link>
+    <div className='ourAchievements bg-light shadow-top-only rounded-3xl relative -top-14 '>
+        <div className='line d-flex justify-center align-items-center relative top-7 '>
+            <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
+        </div>
+        <div className="container py-16 ">
+            <AnimatedText text="Our Achievements" ClassName='text-center !text-6xl !text-blue-600 my-10'/>
+            <Slider {...settings}>
+                {articles.map(article => (
+                <div  >
+                    <div  className='d-flex justify-center align-items-center'>
+                            <div key={article.id} className="row justify-center align-items-center w-[80%]">
+                                    {/* {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>} */}
+
+                                    <div className="col-md-6">
+                                      <img className='rounded-xl' decoding="async" src={article.coverImageUrl} alt="icpc hti events" />
+                                    </div>
+                                    <div className="col-md-6 rtlll">
+                                        <h2>{article.title}</h2>
+                                        <p>{article.Paragraph}</p>
+                                    </div>
+    
                             </div>
                         </div>
                 </div>
-            </div>
             ))}
             </Slider>
         </div>
     </div>
-</div>
   )
 }
 

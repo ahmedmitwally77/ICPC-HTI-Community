@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from 'react'
-import AnimatedText from '../AnimatedText'
 import LiIcon from '../LiIcon'
 import { motion, useScroll } from 'framer-motion'
 import icpc from '../../Images/5d8fe48ab721ff05beea40684647002a3b64177a.svg'
 import shape1 from '../../Images/circleleft.svg'
-import footerWaves from '../../Images/fotter2.svg'
 import style from './WhatIsIcpc.module.css'
 
 const Details = ({position , company , companyLink , time , address , work}) =>{
@@ -31,8 +29,6 @@ const Details = ({position , company , companyLink , time , address , work}) =>{
 }
 
 const WhatIsIcpc = () => {
-
-    
 
     const ref = useRef(null);
     const {scrollYProgress} = useScroll(

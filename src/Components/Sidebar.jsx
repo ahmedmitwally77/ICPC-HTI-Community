@@ -3,6 +3,11 @@ import logo from "../Images/Colored Icon.png"
 import waves from "../Images/dashboard/waves.svg"
 import standing from "../Images/dashboard/standing.svg"
 import profile from "../Images/dashboard/profile.svg"
+import trainees from "../Images/dashboard/trainees.svg"
+import sheetcontest from "../Images/dashboard/sheet&contest.svg"
+import attendance from "../Images/dashboard/attendance.svg"
+import warning from "../Images/dashboard/warning'.svg"
+import addsession from "../Images/dashboard/addsession.svg"
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -24,21 +29,21 @@ const Sidebar = () => {
               <nav>
                 <Link
                   to={'/dashboard/profile'}
-                  className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200"
+                  className="flex items-center no-underline px-4 py-2 text-gray-700  rounded-md dark:bg-gray-800 dark:text-gray-200"
                 >
                   <div className="w-5 h-5" viewBox="0 0 24 24">
-                    <img src={profile} alt="" />
+                    <img src={profile} alt="profile icon" />
                   </div>
   
                   <span className="mx-4 font-medium">Profile</span>
                 </Link>
   
                 <Link
-                  to={'/dashboard/dashWaves'}
-                  className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  to={'/dashboard/waveData'}
+                  className="flex items-center no-underline px-4 py-2 mt-3 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <div className="w-5 h-5" viewBox="0 0 24 24">
-                    <img src={waves} alt="" />
+                    <img src={waves} alt="waves icon" />
                   </div>
   
                   <span className="mx-4 font-medium">Waves</span>
@@ -46,16 +51,116 @@ const Sidebar = () => {
   
                 <Link
                   to={'/dashboard/standing'}
-                  className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center no-underline px-4 py-2 mt-3 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <div className="w-5 h-5" viewBox="0 0 24 24">
-                    <img src={standing} alt="" />
+                    <img src={standing} alt="standing icon" />
                   </div>
   
                   <span className="mx-4 font-medium">Standing</span>
                 </Link>
   
                 <hr className="my-6 border-gray-900 dark:border-gray-600" />
+
+                {/* mentor access  */}
+                {/* <h3 className="text-center">Mentor</h3>
+                <Link
+                  to={'/dashboard/sheet_contest'}
+                  className="flex items-center px-4 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5" viewBox="0 0 24 24">
+                    <img src={trainees} alt="trainees icon" />
+                  </div>
+  
+                  <span className="mx-4 font-medium">Trainees</span>
+                </Link> */}
+                {/* end mentor access  */}
+
+                {/* HR access  */}
+                {/* <h3 className="text-center">HR</h3>
+                <Link
+                  to={'/dashboard/trainees'}
+                  className="flex items-center px-4 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5" viewBox="0 0 24 24">
+                    <img src={trainees} alt="trainees icon" />
+                  </div>
+  
+                  <span className="mx-4 font-medium">Trainees</span>
+                </Link>
+
+                <Link
+                  to={'/dashboard/sheet_contest'}
+                  className="flex items-center px-2 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5 ms-3" >
+                    <img src={sheetcontest} alt="sheet_contest icon" />
+                  </div>
+  
+                  <span className="mx-2 font-medium">Sheet&Contest</span>
+                </Link>
+
+                <Link
+                  to={'/dashboard/attendance'}
+                  className="flex items-center px-3 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5 ms-2" viewBox="0 0 24 24">
+                    <img src={attendance} alt="attendance icon" />
+                  </div>
+  
+                  <span className="mx-2 font-medium">Attendance</span>
+                </Link>
+
+                <Link
+                  to={'/dashboard/warning'}
+                  className="flex items-center px-4 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5" viewBox="0 0 24 24">
+                    <img src={warning} alt="warning icon" />
+                  </div>
+  
+                  <span className="mx-4 font-medium">Warning</span>
+                </Link> */}
+                {/* end HR access  */}
+
+
+                {/* instructor access  */}
+                <h3 className="text-center">Instructor</h3>
+
+                <Link
+                  to={'/dashboard/trainees'}
+                  className="flex items-center px-4 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5" viewBox="0 0 24 24">
+                    <img src={trainees} alt="trainees icon" />
+                  </div>
+  
+                  <span className="mx-4 font-medium">Trainees</span>
+                </Link>
+
+                <Link
+                  to={'/dashboard/sheet_contest'}
+                  className="flex items-center px-2 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5 ms-3" >
+                    <img src={sheetcontest} alt="sheet_contest icon" />
+                  </div>
+  
+                  <span className="mx-2 font-medium">Sheet&Contest</span>
+                </Link>
+
+                <Link
+                  to={'/dashboard/sessions'}
+                  className="flex items-center px-3 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5 ms-2" viewBox="0 0 24 24">
+                    <img src={addsession} alt="addsession icon" />
+                  </div>
+  
+                  <span className="mx-2 font-medium">Sessions</span>
+                </Link>
+                {/* end instructor access  */}
+  
   
                 <Link
                   to="/login"
@@ -66,6 +171,7 @@ const Sidebar = () => {
                 </Link>
               </nav>
             </div>
+
           </aside>
         </div>
       </>

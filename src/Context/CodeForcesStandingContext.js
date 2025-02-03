@@ -4,21 +4,34 @@ import { createContext, useEffect, useState } from 'react';
 export const CodeForcesContextStanding = createContext();
 
 export const CodeForcesContextStandingProvider = ({ children }) => {
-  const [standingData, setStandingData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [filteredData, setFilteredData] = useState([]);
 
-  // Array of sheet links
-  const sheetLinks = [
-    `https://api.scraperapi.com/?api_key=27e61be1a3defcd52a5ba98456c4dbf3&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/560740`,
-    `https://api.scraperapi.com/?api_key=27e61be1a3defcd52a5ba98456c4dbf3&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/562542`,
-    `https://api.scraperapi.com/?api_key=27e61be1a3defcd52a5ba98456c4dbf3&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/563052`,
-    `https://api.scraperapi.com/?api_key=27e61be1a3defcd52a5ba98456c4dbf3&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/564666`,
-    `https://api.scraperapi.com/?api_key=27e61be1a3defcd52a5ba98456c4dbf3&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/568330`,
-    `https://api.scraperapi.com/?api_key=27e61be1a3defcd52a5ba98456c4dbf3&url=https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/569054`,
-  ];
-
+  const standingData =[
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"alaa essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ahmed essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"waal essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ls;fsd essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+    {name:"ziad essa" , sheet1:"20 / 30" , sheet2:"20 / 30" , sheet3: "40 / 50" , sheet4:"20 / 50", sheet5:"20 / 50", sheet6:"20 / 50", },
+  ]
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -92,7 +105,7 @@ export const CodeForcesContextStandingProvider = ({ children }) => {
 
   return (
     <CodeForcesContextStanding.Provider
-      value={{ standingData, loading, error, filteredData, setFilteredData }}
+      value={{ standingData }}
     >
       {children}
     </CodeForcesContextStanding.Provider>

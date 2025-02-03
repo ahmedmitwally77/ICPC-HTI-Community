@@ -1,6 +1,8 @@
 import React from 'react'
 import style from './Testimonials.module.css'
 import img from '../../Images/me.webp'
+import { FaStar } from 'react-icons/fa';
+import { CiStar } from 'react-icons/ci';
 
 
 const TestimonialsCard = ({text , name , rate}) => {
@@ -10,16 +12,15 @@ const TestimonialsCard = ({text , name , rate}) => {
   return (
     <div className='TestimonialsCard'>
          <div class={`${style.box} mx-1 relative  bg-light/90`}>
-                    
                     <div class={style.rate}>
-                        <div>
+                        <div className='flex'>
                             {/* النجوم المملوءة */}
                             {Array.from({ length: rate }, (_, index) => (
-                            <i key={index} className="filled fas fa-star fs-4"></i>
+                            <FaStar key={index} className="filled fas fa-star fs-4"/>
                             ))}
                             {/* النجوم غير المملوءة */}
                             {Array.from({ length: maxRate - rate }, (_, index) => (
-                            <i key={index + rate} className="far fa-star fs-4"></i>
+                            <CiStar key={index + rate} className="far fa-star fs-4"/>
                             ))}
                         </div>
                     </div>

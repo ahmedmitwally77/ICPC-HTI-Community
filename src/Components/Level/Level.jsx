@@ -6,6 +6,8 @@ import TransitionEffect from '../TransitionEffect'
 import { db } from '../../firebase';
 import { doc, getDoc, collection, query, where, getDocs, deleteDoc } from 'firebase/firestore';
 import { AuthContext } from '../../Context/AuthContext'
+import MainHeading from '../MainHeading/MainHeading'
+import ideaImg from '../../Images/idea.png'
 
 const Level = () => {
 
@@ -86,27 +88,32 @@ const Level = () => {
     return <>
     <TransitionEffect/>
     <div className='level'>
-        <div className="container py-24 ">
-            <AnimatedText text={level.title} ClassName='text-center !text-6xl !text-blue-500 my-5'/>
-            <div className="text flex align-items-center justify-center">
-                <p className='w-[75%] md:w-[100%] mb-5 text-center text-dark/75'>{level.Paragraph}</p>
+        <div className="container py-24 sm:py-16 ">
+            <div className="my-8 pl-6">
+            <MainHeading title1="" title2={level.title} />
+            </div>
+            <div className="text flex flex-wrap justify-between">
+                <p className='w-1/2 text-2xl sm:w-[100%] lg:w-[100%] xl:w-[100%]  text-[#7F7F7F] md:w-[100%] mb-5 text-dark/75 relative before:w-[8px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-5 before:left-0'>{level.Paragraph}</p>
+                <div className="w-1/2 flex justify-center items-start sm:hidden md:hidden lg:hidden xl:hidden ">
+                <img src={ideaImg} className='w-[400px] relative -top-[80px] block object-cover md:w-[0%]' alt="idea img" />
+                </div>
             </div>
 
             
             
-            <div className="row py-16 !mt-20">
+            <div className="row py-16 !mt-12 justify-center">
             {waves.length > 0 ? (
                             waves.map((wave) => (
-                                <div key={wave.id} className="col-md-4">
+                                <div key={wave.id} className="col-md-6 col-lg-4 col-sm-12">
                                     {/* {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(waves.id)}>Delete</button>:<></>} */}
-                                    <div className="box p-16 rounded-full relative bg-blue-900">
+                                    <div className="box p-10 relative bg-[#FBFBFB] boxBorder rounded-[80px]">
                                         <img className="absolute left-[40%] -top-[50%] w-20" src={logo} alt="icpc logo" />
-                                        <h2 className="text-light text-center !text-5xl">{wave.title}</h2>
+                                        <h2 className="text-[#305593] text-center font-bold !text-5xl " >{wave.title}</h2>
                                         {/* <p className="text-light text-center mt-2">{wave.description}</p> */}
-                                        <div className="btn absolute bottom-0 right-11 pb-2">
+                                        <div className="flex justify-center mt-8">
                                             <Link
                                                 to={`/wave/${wave.id}`}
-                                                className="btn bg-white !rounded-full !text-blue-900 fw-bold px-4 text-end"
+                                                className="btn grade2 !rounded-full fw-bold px-4 text-end"
                                             >
                                                 Join
                                             </Link>

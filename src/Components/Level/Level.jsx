@@ -83,8 +83,8 @@ const Level = () => {
     //       });
     //   }
 
-      return <>
-      <TransitionEffect/>
+    return <>
+    <TransitionEffect/>
     <div className='level'>
         <div className="container py-24 ">
             <AnimatedText text={level.title} ClassName='text-center !text-6xl !text-blue-500 my-5'/>

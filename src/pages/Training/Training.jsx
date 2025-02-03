@@ -18,8 +18,8 @@ const Training = () => {
     </Helmet>
     <TransitionEffect/>
     <div className='training  relative overflow-x-hidden'>
-    <div className="hero bg-dark relative  -top-4">
-            <AnimatedText text="Training" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>
+    <div className="hero bg-dark relative sm:py-8  -top-4">
+            <AnimatedText text="Training" ClassName='mt-16 sm:mt-24 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>
             <div className='overlay absolute bgWaves w-100 h-[97.5%]'></div>
             <img src={HomeImg} alt="hti comunity in ecpc" />
         </div>

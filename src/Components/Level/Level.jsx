@@ -92,8 +92,8 @@ const Level = () => {
             <div className="my-8 pl-6">
             <MainHeading title1="" title2={level.title} />
             </div>
-            <div className="text flex flex-wrap justify-between">
-                <p className='w-1/2 text-xl sm:w-[100%] lg:w-[100%] xl:w-[100%]  text-[#7F7F7F] md:w-[100%] mb-5 text-dark/75 relative before:w-[8px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-5 before:left-0'>{level.Paragraph}</p>
+            <div className="text flex flex-wrap justify-between items-start">
+                <p className='w-1/2 text-xl sm:w-[100%] lg:w-[100%] xl:w-[100%  text-[#7F7F7F] md:w-[100%] mb-5 text-dark/75 relative before:w-[8px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-5 before:left-0'>{level.Paragraph}</p>
                 <div className="w-1/2 flex justify-center items-start sm:hidden md:hidden lg:hidden xl:hidden ">
                 <img src={ideaImg} className='w-[400px] relative -top-[80px] block object-cover md:w-[0%]' alt="idea img" />
                 </div>

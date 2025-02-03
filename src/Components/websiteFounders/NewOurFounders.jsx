@@ -16,8 +16,8 @@ export default function NewOurFounders() {
   return (
     <>
     <section className='our-founders pb-12  rounded-3xl relative -top-14 shadow-top-only'>
-      <img className='absolute top-0 -z-10' src={upperShape} alt="" />
-      <img className='absolute buttom-0 right-0 -z-10 md:-right-20 md:-bottom-36' src={downShape} alt="" />
+      <img className='absolute top-0 ' src={upperShape} alt="" />
+      <img className='absolute buttom-0 right-0 md:-right-20 md:-bottom-36' src={downShape} alt="" />
       <div className="container">
 
           <div className='line d-flex justify-center align-items-center relative top-7 mb-5'>
@@ -33,7 +33,7 @@ export default function NewOurFounders() {
           <OutFoundersBox img={hanya} name='Hanya Hisham' title='UI / UX Developer' link='http://linkedin.com/in/hanya-hisham-39b211284'  />
           <OutFoundersBox img={shebr} name='Abdalrahman Shabrawy' title='Back-End Developer' link='https://www.linkedin.com/in/abdalrahman-shabrawy?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'  />
           <OutFoundersBox img={nabil} name='Ahmed Nabil' title='Back-End Developer' link='https://www.linkedin.com/in/ahmed-nabil-b0lb0l/'  />
-          <OutFoundersBox img={mustafa} name='Mustafa Mahmoud' title='Back-End Developer' link='https://www.linkedin.com/in/mustafa-mahmoud-55965826b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app'  />
+          {/* <OutFoundersBox img={mustafa} name='Mustafa Mahmoud' title='Back-End Developer' link='https://www.linkedin.com/in/mustafa-mahmoud-55965826b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app'  /> */}
 
         </div>
       </div>

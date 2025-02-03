@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 
+
+
 const Wave = () => {
   
   const [open, setOpen] = useState(false);

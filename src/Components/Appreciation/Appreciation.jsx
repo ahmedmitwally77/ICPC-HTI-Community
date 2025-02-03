@@ -1,6 +1,6 @@
 import React from 'react'
 import MainHeading from '../MainHeading/MainHeading'
-import img1 from '../../Images/DR-yousria-1.jpg'
+import img1 from '../../Images/DR-yousria png.png'
 
 export default function Appreciation() {
   return (
@@ -17,8 +17,8 @@ export default function Appreciation() {
                 </div>
                 <div className="w-2/3 p-4 sm:w-full md:w-full lg:w-full">
                   <h5 className='text-4xl font-bold sm:text-2xl md:text-3xl'>DR: Yousria Mohamed</h5>
-                  <p className='text-2xl sm:text-xl md:text-xl text-[#7F7F7F] mt-4 relative before:w-[5px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-4 before:left-0'>Lorem ipsum dolor sit amet consectetur. Laoreet id accumsan facilisis egestas viverra nisl mi ridiculus. </p>
-                  <p className='text-2xl sm:text-xl md:text-xl text-[#7F7F7F] mt-4 relative before:w-[5px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-4 before:left-0'>Lorem ipsum dolor sit amet consectetur. Laoreet id accumsan facilisis egestas viverra nisl mi ridiculus. </p>
+                  <p className='ms-1 text-2xl sm:text-xl md:text-xl text-[#7F7F7F] mt-4 relative before:w-[5px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-4 before:left-0'>Lorem ipsum dolor sit amet consectetur. Laoreet id accumsan facilisis egestas viverra nisl mi ridiculus. </p>
+                  <p className='ms-5 text-2xl sm:text-xl md:text-xl text-[#7F7F7F] mt-4 relative before:w-[5px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-4 before:left-0'>Lorem ipsum dolor sit amet consectetur. Laoreet id accumsan facilisis egestas viverra nisl mi ridiculus. </p>
                   <p className='text-2xl sm:text-xl md:text-xl text-[#7F7F7F] mt-4 relative before:w-[5px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-4 before:left-0'>Lorem ipsum dolor sit amet consectetur. Laoreet id accumsan facilisis egestas viverra nisl mi ridiculus. </p>
                 </div>
             </div>

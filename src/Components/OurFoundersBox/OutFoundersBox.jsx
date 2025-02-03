@@ -4,7 +4,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 export default function OutFoundersBox({img,name,title,link}) {
   return (
-    <div className="card-box flex lg:flex-col justify-center items-center">
+    <div className="card-box z-20 flex lg:flex-col justify-center items-center">
       
       <div className="image w-[160px] h-[160px] ">
         <img src={img} alt={`${name} ${title}`} className="w-100 h-100 object-cover rounded-full" />

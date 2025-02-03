@@ -4,12 +4,10 @@ import HomeImg from '../../Images/IMG_3229 full.webp'
 import OurStory from '../../Components/OurStory/OurStory'
 import OurMissionVision from '../../Components/OurMissionVision/OurMissionVision'
 import OurAchievements from '../../Components/OurAchievements/OurAchievements'
-import OurFounders from '../../Components/OurFounders/OurFounders'
 import TransitionEffect from '../../Components/TransitionEffect'
 import { Helmet } from 'react-helmet'
 import OurLeaders from '../../Components/OurLeaders/OurLeaders'
 import OurCommunityFounders from '../../Components/OurCommunityFounders/OurCommunityFounders'
-import RoudeMap from '../../Components/RoudMap/RoudeMap'
 
 
 const About = () => {

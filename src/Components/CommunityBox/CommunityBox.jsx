@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaLinkedin } from "react-icons/fa";
 
 export default function CommunityBox({img,name,title,link,mark}) {
   return (
@@ -11,10 +12,10 @@ export default function CommunityBox({img,name,title,link,mark}) {
 
       <div className="data text-center mt-2 ">
 
-        <h5 className='text-3xl sm:text-1xl md:text-2xl flex items-center'>{name}
+        <h5 className='text-3xl sm:text-1xl md:text-2xl lg:text-2xl flex items-center'>{name}
           <span className='mx-2 text-2xl'>|</span>
-          <a href={link} target="_blank" rel='noreferrer'  >
-            <i className="fa-brands fa-linkedin text-2xl pt-2"></i>
+          <a href={link} className='pt-2' target="_blank" rel='noreferrer'  >
+            <FaLinkedin />
           </a>
         </h5>
         <p className='text-lg text-[#424242]'>{title}</p>

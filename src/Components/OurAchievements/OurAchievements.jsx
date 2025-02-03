@@ -7,11 +7,14 @@ import Slider from 'react-slick'
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { AuthContext } from '../../Context/AuthContext'
+import MainHeading from '../MainHeading/MainHeading'
+import { Link } from 'react-router-dom'
 
 const OurAchievements = () => {
 
     const [articles, setArticles] = useState([]);
     const {flagAdmin} = useContext(AuthContext)
+
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -76,14 +79,12 @@ const OurAchievements = () => {
                                         <h2>{article.title}</h2>
                                         <p>{article.Paragraph}</p>
                                     </div>
+    
                             </div>
-                    </div>
+                        </div>
                 </div>
-                ))}
-                </Slider>
-        </div>
-        <div className='line d-flex justify-center align-items-center h-25 absolute right-10 bottom-16  d-none d-md-block '>
-            <img className='rounded-2xl h-[100%]' src={line1} alt="line" />
+            ))}
+            </Slider>
         </div>
     </div>
   )

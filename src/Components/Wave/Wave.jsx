@@ -4,14 +4,17 @@ import TransitionEffect from "../TransitionEffect";
 import { Link, useParams } from "react-router-dom";
 import { db } from '../../firebase';
 import { collection, deleteDoc, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
-
+import MainHeading from "../MainHeading/MainHeading";
+import { FaGraduationCap } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
+import { IoMdTime } from "react-icons/io";
+import StandingData from "../DashBoardPages/generalPages/StandingData";
 
 
 const Wave = () => {
-  
-  const [open, setOpen] = useState(false);
-  const { id } = useParams();
-  const [wave, setWave] = useState(null);
+    const [open, setOpen] = useState(false);
+    const { id } = useParams();
+    const [wave, setWave] = useState(null);
   const [sessions, setSessions] = useState([]); // State to hold sessions
   const [sheetLinks, setSheetLinks] = useState([]); // State to hold sessions
   const [loading, setLoading] = useState(true); // Add a loading state
@@ -35,7 +38,6 @@ const Wave = () => {
           const linksSnapshot = await getDocs(linksCollection);
           const linksList = linksSnapshot.docs.map((doc) => doc.data().url); // استخراج الروابط فقط
           setSheetLinks(linksList);
-          console.log(linksList);
           
         } catch (err) {
           console.error("Error fetching links: ", err);
@@ -53,16 +55,29 @@ const Wave = () => {
             ...doc.data()
         }));
         setSessions(sessionsList);
+        console.log(sessions)
     };
 
     fetchWave();
     fetchSessions();
 }, [id]);
-console.log(sheetLinks);
+
+// Function to render a session box
+    function sessionBox(session){ 
+        return (
+                <div key={session.id} className="box bgSession text-white p-4 rounded-xl w-1/5 sm:w-full md:w-full lg:w-1/3 ">
+                    <h4 className="text-xl font-bold mb-4">{session.title}</h4>
+                    <p className="flex text-md items-center gap-2"> <FaGraduationCap /> Beginer level</p>
+                    <p className="flex text-md items-center gap-2"><IoMdTime /> Published on: Oct 2024</p>
+                    <Link to={`/session/${session.id}`}>
+                        <button className="flex items-center gap-2 bg-white text-black p-2  rounded-full ml-auto"><FaPlay /></button>
+                    </Link>
+                </div>
+        )
+    }
 
 
-
-  if (loading ) {
+if (loading ) {
     return (
         <div id="loading">
             <div className="sk-cube-grid">
@@ -84,79 +99,33 @@ if (!wave) {
     return <p>No level found.</p>;
 }
 
-  return (
+return (
     <>
-      <TransitionEffect />
-      <div className="wave">
+    <TransitionEffect />
+    <div className="wave">
         <div className="container py-20">
-            <AnimatedText
-                text={wave.title}
-                ClassName="text-center !text-6xl !text-blue-500 my-5"
-            />
-            <div className="text flex align-items-center justify-center">
-                <p className="w-[75%] md:w-[100%] mb-5 text-center text-dark/75">{wave.description}</p>
+            <div className="py-12 pb-6 sm:pl-4">
+            <MainHeading title2={wave.title} />
             </div>
 
-            {/* <div className="shadow p-4 rounded">
-                <div
-                className="flex justify-between items-center cursor-pointer"
-                onClick={() => setOpen(!open)}
-                >
-                <h3 className="text-dark/75">Sessions</h3>
-                <span>{open ? "▲" : "▼"}</span>
-                </div>
+            <div className="text flex flex-wrap justify-between items-start pb-8">
+                <p className='text-xl md:w-[100%] text-[#2E2E2E] relative before:w-[8px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-5 before:left-0'>{wave.description.length < 10 ?"Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur delectus necessitatibus, excepturi amet repellendus molestias soluta voluptates quo accusantium voluptas? Vitae, placeat nisi eum consectetur praesentium quasi ex quis blanditiis voluptas ipsam nihil accusamus, deserunt ut eaque cum error fuga natus possimus molestiae sed eos? Itaque facilis ipsam consectetur ipsa." : wave.description}</p>
+            </div>
 
-                <div
-                className={`transition-all duration-300 overflow-hidden ${
-                    open ? "max-h-96" : "max-h-0"
-                }`}
-                >
-                <div className="mt-4 space-y-2">
-                    {titles.map((item) => (
-                    <div key={item.id} className="p-2 bg-gray-100 rounded">
-                        <Link>
-                            <h4 className="font-bold">{item.title}</h4>
-                        </Link>
-                    </div>
-                    ))}
-                </div>
-                </div>
-            </div> */}
-            <div className="shadow p-4 rounded">
-                        <div
-                            className="flex justify-between items-center cursor-pointer"
-                            onClick={() => setOpen(!open)}
-                        >
-                            <h3 className="text-dark/75">Sessions</h3>
-                            <span>{open ? "▲" : "▼"}</span>
-                        </div>
 
-                        <div
-                            className={`transition-all duration-300 overflow-hidden ${open ? "max-h-96" : "max-h-0"}`}
-                        >
-                            <div className="mt-4 space-y-2">
-                                {sessions.map((session) => (
-                                    <div key={session.id} className="p-2 bg-gray-100 rounded">
-                                        <Link to={`/session/${session.id}`}>
-                                            <h4 className="font-bold">{session.title}</h4>
-                                        </Link>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+            <div className="sm:pl-4">
+            <MainHeading title1="Sessions" />
+            </div>
 
-            <AnimatedText
-                text="Standing"
-                ClassName="text-start !text-5xl !text-blue-900 my-5"
-            />
-            <iframe 
-                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNxfnw5XmXe4EqnjpOKRlqcM2HAOyB8QovkTeaHo6P1s3JOIMbF-N0fDcAFzI1XJlgQ8JsV3rLdEbo/pubhtml?gid=467328511&amp;single=true&amp;widget=true&amp;headers=false"
-                width="100%"
-                height="600"
-                title="standing"
-                frameborder="0">
-            </iframe>
+            <div className="mt-4 flex flex-wrap gap-4 justify-center">
+                {sessions.map((session) => (
+                    sessionBox(session)
+                ))}
+            </div>
+            
+            <div className="my-16">
+                <StandingData />
+            </div>
 
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import MainHeading from '../../MainHeading/MainHeading';
 
 const StandingData = () => {
 
@@ -48,8 +49,8 @@ const StandingData = () => {
   return (
     <div className="standing">
       <div className="relative overflow-x-auto container">
-        <div className="headerStanding flex justify-between my-3">
-          <h2>Standing</h2>
+        <div className="headerStanding flex justify-between my-3 pl-4 sm:pl-6">
+            <MainHeading title1="Standing" />
           <div className="pb-4 bg-white dark:bg-gray-900">
             <input
               type="text"

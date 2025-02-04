@@ -410,3 +410,9 @@ a {
   border: 2px solid;
   border-color: #4D79C1 #3D619A #C9A646  #D3A42F;
 }
+
+.bgSession{
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0,0.7 )), url("/src/Images/session.jpeg");
+  background-size: cover;
+  background-position: center;
+}

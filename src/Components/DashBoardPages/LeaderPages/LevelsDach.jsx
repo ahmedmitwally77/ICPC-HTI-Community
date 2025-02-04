@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const SessionsDash = () => {
+const LevelsDach = () => {
   const standingData = [
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session1" },
-    { name: "stls2", published: "3/2/2025", attendance: "335", session: "Session2" },
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session3" },
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session4" },
-    { name: "stls1", published: "3/2/2025", attendance: "335", session: "Session5" },
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session6" },
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session7" },
+    { name: "Level 1", published: "3/2/2025", waves: "Waves 1" },
+    { name: "Level 2", published: "3/2/2025", waves: "Waves 2 " },
+    { name: "Level 3", published: "3/2/2025", waves: "Waves 3" },
   ];
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,7 +25,6 @@ const SessionsDash = () => {
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
 
- 
   const handleDeleteClick = (index) => {
     setRowToDelete(index);
     setShowDeletePopup(true);
@@ -51,22 +46,21 @@ const SessionsDash = () => {
 
   // update it in api updates
   const handleUpdateClick = (session) => {
-    
     // navigate(`/updatesession/${session}`);
-    navigate(`addsession`);
+    navigate(`addlevel`);
   };
 
   return (
-    <div className='SessionsDash'>
+    <div className="AchievementDash">
       <div className="relative overflow-x-auto container">
         <div className="headerStanding flex justify-between my-3">
-          <h2>Sessions</h2>
-          <div className="add session">
+          <h2>Levels</h2>
+          <div className="add Level">
             <Link
-              to={'addsession'}
+              to={"addlevel"}
               className="no-underline text-dark flex justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-500 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
             >
-              Add Session
+              Add Level
               <svg
                 className="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
                 viewBox="0 0 16 19"
@@ -86,16 +80,13 @@ const SessionsDash = () => {
           <thead className="text-lg text-[#3A3A3A] uppercase dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3 text-center">
-                Session
+                Levels
               </th>
               <th scope="col" className="px-6 py-3 text-center">
-                Name
+                Waves
               </th>
               <th scope="col" className="px-6 py-3 text-center">
                 Published
-              </th>
-              <th scope="col" className="px-6 py-3 text-center">
-                Attendance
               </th>
               <th scope="col" className="px-6 py-3 text-center">
                 Actions
@@ -107,21 +98,12 @@ const SessionsDash = () => {
               <tr
                 key={index}
                 className={`font-medium bg-light/75 !border-yellow-300 fs-6 !h-10 text-dark/75 rounded-lg ${
-                  selectedRows.includes(index) ? 'bg-gray-200' : ''
+                  selectedRows.includes(index) ? "bg-gray-200" : ""
                 }`}
               >
-                <td className="px-6 text-center">
-                  {data.session}
-                </td>
-                <td className="px-6 text-center">
-                  {data.name}
-                </td>
-                <td className="px-6 text-center">
-                  {data.published}
-                </td>
-                <td className="px-6 text-center">
-                  {data.attendance}
-                </td>
+                <td className="px-6 text-center">{data.name}</td>
+                <td className="px-6 text-center">{data.waves}</td>
+                <td className="px-6 text-center">{data.published}</td>
                 <td className="px-6 text-center">
                   <button
                     className="px-4 py-2 bg-red-500 text-white rounded mx-2"
@@ -163,7 +145,7 @@ const SessionsDash = () => {
         {showDeletePopup && (
           <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg">
-              <p>هل متأكد من حذف الجلسة؟</p>
+              <p>هل متأكد من حذف الليفل</p>
               <div className="flex justify-center mt-4">
                 <button
                   className="px-4 py-2 bg-red-500 text-white rounded mx-2"
@@ -186,4 +168,4 @@ const SessionsDash = () => {
   );
 };
 
-export default SessionsDash;
+export default LevelsDach;

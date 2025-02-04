@@ -40,6 +40,16 @@ import Attendance from './Components/DashBoardPages/generalPages/Attendance';
 import Warning from './Components/DashBoardPages/generalPages/Warning';
 import WarningAttendance from './Components/DashBoardPages/generalPages/WarningAttendance';
 import SessionsDash from './Components/DashBoardPages/generalPages/SessionsDash';
+import CoreMembers from './Components/DashBoardPages/LeaderPages/CoreMembers';
+import AddCoreMember from './pages/Adds/AddCoreMember';
+import Events from './Components/DashBoardPages/LeaderPages/Events';
+import News from './Components/News/News';
+import NewsDash from './Components/DashBoardPages/LeaderPages/NewsDash';
+import AchievementsDash from './Components/DashBoardPages/LeaderPages/AchievementsDash';
+import LevelsDach from './Components/DashBoardPages/LeaderPages/LevelsDach';
+import WaveDash from './Components/DashBoardPages/LeaderPages/WaveDash';
+import Requests from './Components/DashBoardPages/LeaderPages/Requests';
+import Archive from './Components/DashBoardPages/LeaderPages/Archive';
 
 
 let routers = createBrowserRouter([
@@ -64,16 +74,38 @@ let routers = createBrowserRouter([
         { path: "profile", element: <ProfileDash /> }, // صفحة البروفايل
         { path: "standing", element: <StandingData /> }, 
         { path: "waveData", element: <WaveDataDash /> }, 
+        
         { path: "sheet_contest", element: <Sheets_Contest /> }, 
         { path: "trainees", element: <Trainees /> }, 
+
+        //  Hr access 
         { path: "attendance", element: <Attendance /> }, 
         { path: "warning", element: <Warning /> }, 
         { path: "warning_attendance", element: <WarningAttendance /> }, 
+
+        // admin and instructor access 
         { path: "sessions", element: <SessionsDash /> }, 
         { path: "sessions/addsession", element: <ProtectedAdmin><AddSessions /></ProtectedAdmin> }, 
+
+        // admin access 
+        { path: "request", element: <Requests /> }, 
+        { path: "archive", element: <Archive /> }, 
+        { path: "coremembers", element: <CoreMembers /> }, 
+        { path: "coremembers/addcoremember", element: <AddCoreMember /> }, 
+        { path: "events", element: <Events /> }, 
+        { path: "events/addevent", element: <AddLatestEvents /> }, 
+        { path: "newsDash", element: <NewsDash /> }, 
+        { path: "newsDash/addnews", element: <AddNews /> }, 
+        { path: "achievementsDash", element: <AchievementsDash /> }, 
+        { path: "achievementsDash/addachievement", element: <AddAchievements /> }, 
+        { path: "levels", element: <LevelsDach /> }, 
+        { path: "levels/addlevel", element: <AddLevels /> }, 
+        { path: "waves", element: <WaveDash /> }, 
+        { path: "waves/addwave", element: <AddWave /> }, 
         {path:'*',element:<NotFound/>},
       ],
     },
+
     // {path:"admin" , element:<ProtectedAdmin><Admin/></ProtectedAdmin>},
     // {path:"addnews" , element:<ProtectedAdmin><AddNews/></ProtectedAdmin>},
     // {path:"addevent" , element:<ProtectedAdmin><AddLatestEvents/></ProtectedAdmin>},

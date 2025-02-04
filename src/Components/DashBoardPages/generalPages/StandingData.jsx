@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const StandingData = () => {
 
@@ -49,17 +50,56 @@ const StandingData = () => {
     <div className="standing">
       <div className="relative overflow-x-auto container">
         <div className="headerStanding flex justify-between my-3">
-          <h2>Standing</h2>
-          <div className="pb-4 bg-white dark:bg-gray-900">
-            <input
-              type="text"
-              id="table-search"
-              className="block pt-2 ps-3 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search by name"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-        </div>
+                  <h2>Standing</h2>
+                  <div className="pb-4 bg-white dark:bg-gray-900">
+                    <input
+                      type="text"
+                      id="table-search"
+                      className="block pt-2 ps-3 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Search by name"
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                  </div>
+
+                  {/* if Leader display it  */}
+                  <div className="drobDowns">
+                    <details className="dropdown  bg-blue-300">
+                      <summary className="bg-[#3C5B8E] p-2 rounded-md text-light btn-primary font-medium ">
+                        Waves{" "}
+                      </summary>
+                      <ul className="menu dropdown-content bg-blue-400 rounded-box z-[1] w-52 p-2 shadow">
+                        <li>
+                          <Link className="text-light font-semibold no-underline">
+                            Wave 1
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="text-light font-semibold no-underline">
+                            Wave 2
+                          </Link>
+                        </li>
+                      </ul>
+                    </details>
+                    <details className="dropdown ms-3 bg-blue-300">
+                      <summary className="bg-[#3C5B8E] p-2 rounded-md text-light btn-primary font-medium ">
+                        Levels{" "}
+                      </summary>
+                      <ul className="menu dropdown-content bg-blue-400 rounded-box z-[1] w-52 p-2 shadow">
+                        <li>
+                          <Link className="text-light font-semibold no-underline">
+                            Level 1
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="text-light font-semibold no-underline">
+                            Level 2
+                          </Link>
+                        </li>
+                      </ul>
+                    </details>
+                  </div>
+
+                </div>
         <hr />
 
           <table className="w-full border-separate border-spacing-y-2 my-3 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

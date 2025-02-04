@@ -92,8 +92,8 @@ const Level = () => {
             <div className="my-8 pl-6">
             <MainHeading title1="" title2={level.title} />
             </div>
-            <div className="text flex flex-wrap justify-between">
-                <p className='w-1/2 text-2xl sm:w-[100%] lg:w-[100%] xl:w-[100%]  text-[#7F7F7F] md:w-[100%] mb-5 text-dark/75 relative before:w-[8px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-5 before:left-0'>{level.Paragraph}</p>
+            <div className="text flex flex-wrap justify-between items-start">
+                <p className='w-1/2 text-xl sm:w-[100%] lg:w-[100%] xl:w-[100%  text-[#7F7F7F] md:w-[100%] mb-5 text-dark/75 relative before:w-[8px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-5 before:left-0'>{level.Paragraph}</p>
                 <div className="w-1/2 flex justify-center items-start sm:hidden md:hidden lg:hidden xl:hidden ">
                 <img src={ideaImg} className='w-[400px] relative -top-[80px] block object-cover md:w-[0%]' alt="idea img" />
                 </div>
@@ -104,7 +104,7 @@ const Level = () => {
             <div className="row py-16 !mt-12 justify-center">
             {waves.length > 0 ? (
                             waves.map((wave) => (
-                                <div key={wave.id} className="col-md-6 col-lg-4 col-sm-12">
+                                <div key={wave.id} className="col-md-6 col-lg-4 col-sm-12 p-3">
                                     {/* {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(waves.id)}>Delete</button>:<></>} */}
                                     <div className="box p-10 relative bg-[#FBFBFB] boxBorder rounded-[80px]">
                                         <img className="absolute left-[40%] -top-[50%] w-20" src={logo} alt="icpc logo" />

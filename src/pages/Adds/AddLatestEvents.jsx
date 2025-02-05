@@ -64,15 +64,22 @@ const AddLatestEvents = () => {
   return (
     <div className='AddLatestEvents'>
         <form onSubmit={handleSubmit} className=' d-flex flex-column align-items-center m-auto w-75 mt-5 p-4' >
-          <h3 className='h1 pb-2 text-white'>Add event</h3>
-                    <div class="input-group mt-3 mb-3">
+        <h2 className="text-center font-semibold mb-4">Add New Event</h2>
+        <div class="input-group mt-3 mb-3">
                       <label class="input-group-text" for="file1">صوره الغلاف</label>
                       <input type="file" class="form-control" id="file1" />
                     </div>
                     <input type="text" className='mb-1 form-control borderinput' placeholder=' العنوان' />
-                    <input type="text" className='mb-1 form-control borderinput' placeholder=' تفاصيل الايفنت' />
+                    <textarea
+                      className="form-control my-3"
+                      id="content"
+                      value=""
+                      required
+                    ></textarea>
                     <input type="text" className='mb-1 form-control borderinput' placeholder='jul 31, 2024 22:30:20' />
-                    <button className='mt-3 mb-3 btn ylyBlueBg btn-primary w-100 text-white'>اضافه</button>
+                    <div className='flex align-middle justify-center mt-4'>
+                      <button type="submit" className=" bg-[#305593] rounded-lg hover:bg-[#40559b] text-center py-3 px-12 text-light font-bold">Add Event</button>
+                    </div>
         </form>
     </div>
   )

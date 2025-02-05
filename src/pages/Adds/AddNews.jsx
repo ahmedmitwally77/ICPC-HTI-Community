@@ -55,18 +55,21 @@ const AddNews = () => {
           alert( "فى مشكله لو المشكله اتكررت كلم حد من الادمن");
         }}
 
+        
   return (
-    <div className='addNews py-20'>
+    <div className='addNews py-16'>
         <form onSubmit={handleSubmit} className=' d-flex flex-column align-items-center m-auto w-75 mt-5 p-4' >
-          <h3 className='h1 pb-2 text-white'>Add new</h3>
-                    <div class="input-group mt-3 mb-3">
+          <h2 className='text-center mb-5'>Add new</h2>
+                    <div class="input-group my-2">
                       <label class="input-group-text" for="file1">صوره الغلاف</label>
                       <input type="file" class="form-control" id="file1" />
                     </div>
-                    <input type="text" className='mb-1 form-control borderinput' placeholder=' العنوان' />
-                    <input type="text" className='mb-1 form-control borderinput' placeholder=' اكتب الكلام ' />
+                    <input type="text" className='my-2 form-control borderinput' placeholder=' العنوان' />
+                    <input type="text" className='my-2 form-control borderinput' placeholder=' اكتب الكلام ' />
                     
-                    <button className='mt-3 mb-3 btn ylyBlueBg btn-primary w-100 text-white '>اضافه</button>
+                    <div className='flex align-middle justify-center mt-4'>
+                      <button type="submit" className=" bg-[#305593] rounded-lg hover:bg-[#40559b] text-center py-3 px-12 text-light font-bold">Add News</button>
+                    </div>        
         </form>
     </div>
   )

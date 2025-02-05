@@ -26,10 +26,10 @@ return (
             <img className='rounded-2xl w-[20%]' src={line2} alt="line" />
         </div>
 
-        <div className="container sm:py-16 py-32">
+        <div className="container sm:py-16 pt-32">
             {/* <AnimatedText text="Why C++" ClassName='text-start !text-5xl !text-blue-500 mb-20'/> */}
             <div className="mb-20 sm:mb-0 sm:pl-4">
-                <MainHeading title1="Why" title2="C++"/>
+                <MainHeading title1="" title2="Why C++"/>
             </div>
 
             <div className="row justify-center align-items-center">

@@ -16,11 +16,11 @@ root.render(
 
 
   // <CodeForcesContextStandingProvider>
-    <AuthContextProvider>
+    // <AuthContextProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-    </AuthContextProvider>
+    // </AuthContextProvider>
   // </CodeForcesContextStandingProvider>
 );
 

@@ -11,6 +11,7 @@
   /*عشان ف نسخه الفون بيرجع يلزق ف الحرف ف دا بيبعدو شويه */
 }
 
+
 .main-title {
   margin: 0 auto 80px;
   border: 3px solid black;
@@ -189,111 +190,100 @@ a {
 }
 
 
-/* loader */
-#lauding {
-  background-color: #09676e;
-  position: absolute;
+/* Loader Container */
+#loading {
+  background-color: #09676e; /* Dark Teal Background */
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9999999;
+  z-index: 999999;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.sk-cube-grid {
-  width: 40px;
-  height: 40px;
-  margin: 100px auto;
+.icpc-loader {
+  width: 150px;
+  height: 150px;
+  position: relative;
 }
 
-.sk-cube-grid .sk-cube {
-  width: 33%;
-  height: 33%;
-  background-color: #333;
-  float: left;
-  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
-  animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+.dot {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #0074D9; /* Blue Color */
+  animation: icpc-pulse 1.5s infinite ease-in-out;
 }
 
-.sk-cube-grid .sk-cube1 {
-  -webkit-animation-delay: 0.2s;
-  animation-delay: 0.2s;
-}
-
-.sk-cube-grid .sk-cube2 {
-  -webkit-animation-delay: 0.3s;
-  animation-delay: 0.3s;
-}
-
-.sk-cube-grid .sk-cube3 {
-  -webkit-animation-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
-.sk-cube-grid .sk-cube4 {
-  -webkit-animation-delay: 0.1s;
-  animation-delay: 0.1s;
-}
-
-.sk-cube-grid .sk-cube5 {
-  -webkit-animation-delay: 0.2s;
-  animation-delay: 0.2s;
-}
-
-.sk-cube-grid .sk-cube6 {
-  -webkit-animation-delay: 0.3s;
-  animation-delay: 0.3s;
-}
-
-.sk-cube-grid .sk-cube7 {
-  -webkit-animation-delay: 0s;
+.dot-1 {
+  top: 0;
+  left: 65px;
   animation-delay: 0s;
 }
 
-.sk-cube-grid .sk-cube8 {
-  -webkit-animation-delay: 0.1s;
-  animation-delay: 0.1s;
-}
-
-.sk-cube-grid .sk-cube9 {
-  -webkit-animation-delay: 0.2s;
+.dot-2 {
+  top: 25px;
+  left: 25px;
   animation-delay: 0.2s;
 }
 
-@-webkit-keyframes sk-cubeGridScaleDelay {
-
-  0%,
-  70%,
-  100% {
-    -webkit-transform: scale3D(1, 1, 1);
-    transform: scale3D(1, 1, 1);
-  }
-
-  35% {
-    -webkit-transform: scale3D(0, 0, 1);
-    transform: scale3D(0, 0, 1);
-  }
+.dot-3 {
+  top: 25px;
+  right: 25px;
+  animation-delay: 0.4s;
 }
 
-@keyframes sk-cubeGridScaleDelay {
-
-  0%,
-  70%,
-  100% {
-    -webkit-transform: scale3D(1, 1, 1);
-    transform: scale3D(1, 1, 1);
-  }
-
-  35% {
-    -webkit-transform: scale3D(0, 0, 1);
-    transform: scale3D(0, 0, 1);
-  }
+.dot-4 {
+  top: 50px;
+  left: 50px;
+  animation-delay: 0.6s;
 }
 
+.dot-5 {
+  bottom: 0;
+  left: 65px;
+  animation-delay: 0.8s;
+}
 
+.dot-6 {
+  bottom: 25px;
+  left: 25px;
+  animation-delay: 1s;
+}
+
+.dot-7 {
+  bottom: 25px;
+  right: 25px;
+  animation-delay: 1.2s;
+}
+
+.dot-8 {
+  top: 75px;
+  left: 25px;
+  animation-delay: 1.4s;
+}
+
+.dot-9 {
+  top: 75px;
+  right: 25px;
+  animation-delay: 1.6s;
+}
+
+/* Animation */
+@keyframes icpc-pulse {
+  0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+  }
+  50% {
+      transform: scale(1.5);
+      opacity: 0.5;
+  }
+}
 
 .grade {
   background: linear-gradient(to top,

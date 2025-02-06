@@ -1,37 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom';
-import { db } from '../../firebase';
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { AuthContext } from '../../Context/AuthContext'
 import MainHeading from '../MainHeading/MainHeading';
 
 const News = () => {
 
     const [articles, setArticles] = useState([]);
-    const {flagAdmin} = useContext(AuthContext)
+    // const {flagAdmin} = useContext(AuthContext)
 
-    useEffect(() => {
-        const fetchArticles = async () => {
-          const articlesCollection = collection(db, 'news');
-          const articlesSnapshot = await getDocs(articlesCollection);
-          const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          setArticles(articlesList);
-        };
-        fetchArticles();
-      }, []);
+    // useEffect(() => {
+    //     const fetchArticles = async () => {
+    //       const articlesCollection = collection(db, 'news');
+    //       const articlesSnapshot = await getDocs(articlesCollection);
+    //       const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    //       setArticles(articlesList);
+    //     };
+    //     fetchArticles();
+    //   }, []);
 
-      const handleDelete = async (id) => {
-        const docRef = doc(db, 'news', id);
-        await deleteDoc(docRef)
-          .then(() => {
-            alert("تم حذف الوثيقة بنجاح!");
-            setArticles(articles.filter(article => article.id !== id)); 
-          })
-          .catch((error) => {
-            alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
-          });
-      }
+    //   const handleDelete = async (id) => {
+    //     const docRef = doc(db, 'news', id);
+    //     await deleteDoc(docRef)
+    //       .then(() => {
+    //         alert("تم حذف الوثيقة بنجاح!");
+    //         setArticles(articles.filter(article => article.id !== id)); 
+    //       })
+    //       .catch((error) => {
+    //         alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
+    //       });
+    //   }
 
     var settings = {
         dots: true,
@@ -51,21 +49,21 @@ const News = () => {
           ]
       };
 
-      if (!articles) return <>
-      <div id="lauding">
-        <div class="sk-cube-grid ">
-            <div class="sk-cube sk-cube1"></div>
-            <div class="sk-cube sk-cube2"></div>
-            <div class="sk-cube sk-cube3"></div>
-            <div class="sk-cube sk-cube4"></div>
-            <div class="sk-cube sk-cube5"></div>
-            <div class="sk-cube sk-cube6"></div>
-            <div class="sk-cube sk-cube7"></div>
-            <div class="sk-cube sk-cube8"></div>
-            <div class="sk-cube sk-cube9"></div>
-          </div>
-    </div>
-      </>
+    //   if (!articles) return <>
+    //   <div id="lauding">
+    //     <div class="sk-cube-grid ">
+    //         <div class="sk-cube sk-cube1"></div>
+    //         <div class="sk-cube sk-cube2"></div>
+    //         <div class="sk-cube sk-cube3"></div>
+    //         <div class="sk-cube sk-cube4"></div>
+    //         <div class="sk-cube sk-cube5"></div>
+    //         <div class="sk-cube sk-cube6"></div>
+    //         <div class="sk-cube sk-cube7"></div>
+    //         <div class="sk-cube sk-cube8"></div>
+    //         <div class="sk-cube sk-cube9"></div>
+    //       </div>
+    // </div>
+    //   </>
 
   return (
     <div className='news relative py-24 mb-16'>

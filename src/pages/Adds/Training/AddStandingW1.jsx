@@ -1,6 +1,5 @@
-import { addDoc, collection } from 'firebase/firestore';
 import React, { useState } from 'react'
-import { db } from '../../../firebase';
+
 
 const AddStandingW1 = () => {
     const [err , setErr] = useState(false)
@@ -10,23 +9,25 @@ const AddStandingW1 = () => {
         const title = e.target[0].value;
         const url = e.target[1].value;
 
-        try {
+        // try {
       
-          const articleData = {
-            title,
-            url
-          };
+        //   const articleData = {
+        //     title,
+        //     url
+        //   };
       
-          const docRef = await addDoc(collection(db, "standingW1"), articleData);
+        //   const docRef = await addDoc(collection(db, "standingW1"), articleData);
       
-          console.log("Document successfully written with ID: ", docRef.id);
-          alert("تمت اضافه اللينك ");
+        //   console.log("Document successfully written with ID: ", docRef.id);
+        //   alert("تمت اضافه اللينك ");
          
-        } catch (error) {
-          setErr(true);
-          console.error("Error uploading images: ", error);
-          alert( "فى مشكله لو المشكله اتكررت كلم حد من الادمن");
-        }}
+        // } catch (error) {
+        //   setErr(true);
+        //   console.error("Error uploading images: ", error);
+        //   alert( "فى مشكله لو المشكله اتكررت كلم حد من الادمن");
+        // }
+        
+      }
 
   return (
     <div className='addLevels my-40'>

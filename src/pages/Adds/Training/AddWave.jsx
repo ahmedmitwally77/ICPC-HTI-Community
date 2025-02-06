@@ -1,7 +1,5 @@
 import React, {  useEffect, useState } from 'react'
-import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { db, storage} from '../../../firebase'
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+
 
 const AddWave = () => {
 
@@ -10,35 +8,35 @@ const AddWave = () => {
     const [waveDescription, setWaveDescription] = useState('');
     const [levels, setLevels] = useState([]);
 
-    useEffect(() => {
-        const fetchLevels = async () => {
-            const levelsCollection = collection(db, 'levels');
-            const levelsSnapshot = await getDocs(levelsCollection);
-            const levelsList = levelsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-            setLevels(levelsList);
-        };
-        fetchLevels();
-    }, []);
+    // useEffect(() => {
+    //     const fetchLevels = async () => {
+    //         const levelsCollection = collection(db, 'levels');
+    //         const levelsSnapshot = await getDocs(levelsCollection);
+    //         const levelsList = levelsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    //         setLevels(levelsList);
+    //     };
+    //     fetchLevels();
+    // }, []);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            // Add new wave to the "waves" collection in Firestore
-            await addDoc(collection(db, 'waves'), {
-                title: waveTitle,
-                description: waveDescription,
-                levelId: levelId, // ربط الـ wave بمعرف الـ level
-            });
-            alert('Wave added successfully!');
-            setWaveTitle('');
-            setWaveDescription('');
-            setLevelId('');
-        } catch (error) {
-            console.error('Error adding wave: ', error);
-            alert('Failed to add wave.');
-        }
+        // try {
+        //     // Add new wave to the "waves" collection in Firestore
+        //     await addDoc(collection(db, 'waves'), {
+        //         title: waveTitle,
+        //         description: waveDescription,
+        //         levelId: levelId, // ربط الـ wave بمعرف الـ level
+        //     });
+        //     alert('Wave added successfully!');
+        //     setWaveTitle('');
+        //     setWaveDescription('');
+        //     setLevelId('');
+        // } catch (error) {
+        //     console.error('Error adding wave: ', error);
+        //     alert('Failed to add wave.');
+        // }
     };
 
   return (

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { db, storage } from "../../../firebase";
-import { addDoc, collection } from "firebase/firestore";
+
 
 const AddLevels = () => {
   const [err, setErr] = useState(false);
@@ -13,47 +11,47 @@ const AddLevels = () => {
     const prefParagraph = e.target[2].value;
     const Paragraph = e.target[3].value;
 
-    try {
-      const uploadImage = async (image, refPath) => {
-        if (image) {
-          const imageRef = ref(storage, refPath);
-          const uploadTask = uploadBytesResumable(imageRef, image);
-          await new Promise((resolve, reject) => {
-            uploadTask.on(
-              "state_changed",
-              null,
-              (error) => reject(error),
-              () => resolve()
-            );
-          });
-          return await getDownloadURL(imageRef);
-        }
-        return null;
-      };
+    // try {
+    //   const uploadImage = async (image, refPath) => {
+    //     if (image) {
+    //       const imageRef = ref(storage, refPath);
+    //       const uploadTask = uploadBytesResumable(imageRef, image);
+    //       await new Promise((resolve, reject) => {
+    //         uploadTask.on(
+    //           "state_changed",
+    //           null,
+    //           (error) => reject(error),
+    //           () => resolve()
+    //         );
+    //       });
+    //       return await getDownloadURL(imageRef);
+    //     }
+    //     return null;
+    //   };
 
-      const coverImageUrl = await uploadImage(
-        coverImage,
-        `coverImages/${title}`
-      );
+    //   const coverImageUrl = await uploadImage(
+    //     coverImage,
+    //     `coverImages/${title}`
+    //   );
 
-      const articleData = {
-        coverImageUrl,
-        title,
-        prefParagraph,
-        Paragraph,
-      };
+    //   const articleData = {
+    //     coverImageUrl,
+    //     title,
+    //     prefParagraph,
+    //     Paragraph,
+    //   };
 
-      const docRef = await addDoc(collection(db, "levels"), articleData);
+    //   const docRef = await addDoc(collection(db, "levels"), articleData);
 
-      console.log("Document successfully written with ID: ", docRef.id);
-      alert("تمت اضافه الخبر بنجاح");
+    //   console.log("Document successfully written with ID: ", docRef.id);
+    //   alert("تمت اضافه الخبر بنجاح");
 
-      console.log(coverImageUrl);
-    } catch (error) {
-      setErr(true);
-      console.error("Error uploading images: ", error);
-      alert("فى مشكله لو المشكله اتكررت كلم حد من الادمن");
-    }
+    //   console.log(coverImageUrl);
+    // } catch (error) {
+    //   setErr(true);
+    //   console.error("Error uploading images: ", error);
+    //   alert("فى مشكله لو المشكله اتكررت كلم حد من الادمن");
+    // }
   };
 
   return (

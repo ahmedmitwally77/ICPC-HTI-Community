@@ -3,8 +3,6 @@ import AnimatedText from "../AnimatedText";
 import line2 from "../../Images/line 2.jpeg";
 import content from '../../Images/what1-removebg-preview.png'
 import TransitionEffect from "../TransitionEffect";
-import { db } from '../../firebase';
-import { doc, getDoc } from 'firebase/firestore';
 import { useParams } from "react-router-dom";
 import Sheet from "../Codeforces/sheet/Sheet";
 
@@ -15,21 +13,21 @@ const Session = () => {
   const [loading, setLoading] = useState(true); // حالة للتحميل
 
 
-  useEffect(() => {
-    console.log("Session ID:", sessionId); // تحقق من قيمة sessionId
-    const fetchSessionData = async () => {
-      const docRef = doc(db, 'sessions', sessionId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setSessionData(docSnap.data());
-      } else {
-        console.log('No such document!');
-      }
-      setLoading(false); // أوقف حالة التحميل بعد الانتهاء من الجلب
-    };
+  // useEffect(() => {
+  //   console.log("Session ID:", sessionId); // تحقق من قيمة sessionId
+  //   const fetchSessionData = async () => {
+  //     const docRef = doc(db, 'sessions', sessionId);
+  //     const docSnap = await getDoc(docRef);
+  //     if (docSnap.exists()) {
+  //       setSessionData(docSnap.data());
+  //     } else {
+  //       console.log('No such document!');
+  //     }
+  //     setLoading(false); // أوقف حالة التحميل بعد الانتهاء من الجلب
+  //   };
 
-    fetchSessionData();
-  }, [sessionId]);
+  //   fetchSessionData();
+  // }, [sessionId]);
 
   // const link = sessionData.sheetLink ;
   // "https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/560740/p/1";

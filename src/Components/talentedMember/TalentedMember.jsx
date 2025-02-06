@@ -2,38 +2,36 @@ import React, { useContext, useEffect, useState } from 'react'
 import AnimatedText from '../AnimatedText'
 import line2 from '../../Images/line 2.jpeg'
 import Slider from 'react-slick'
-import { db } from '../../firebase';
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { AuthContext } from '../../Context/AuthContext'
 import MainHeading from '../MainHeading/MainHeading';
 
 const TalentedMember = () => {
 
     const [articles, setArticles] = useState([]);
-    const {flagAdmin} = useContext(AuthContext)
+    // const {flagAdmin} = useContext(AuthContext)
 
-    useEffect(() => {
-        const fetchArticles = async () => {
-          const articlesCollection = collection(db, 'talented');
-          const articlesSnapshot = await getDocs(articlesCollection);
-          const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          setArticles(articlesList);
-        };
-        fetchArticles();
-      }, []);
+    // useEffect(() => {
+    //     const fetchArticles = async () => {
+    //       const articlesCollection = collection(db, 'talented');
+    //       const articlesSnapshot = await getDocs(articlesCollection);
+    //       const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    //       setArticles(articlesList);
+    //     };
+    //     fetchArticles();
+    //   }, []);
 
-      const handleDelete = async (id) => {
-        const docRef = doc(db, 'talented', id);
+    //   const handleDelete = async (id) => {
+    //     const docRef = doc(db, 'talented', id);
     
-        await deleteDoc(docRef)
-          .then(() => {
-            alert("تم حذف الوثيقة بنجاح!");
-            setArticles(articles.filter(article => article.id !== id)); // إزالة المقالة من الحالة بعد الحذف
-          })
-          .catch((error) => {
-            alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
-          });
-      }
+    //     await deleteDoc(docRef)
+    //       .then(() => {
+    //         alert("تم حذف الوثيقة بنجاح!");
+    //         setArticles(articles.filter(article => article.id !== id)); // إزالة المقالة من الحالة بعد الحذف
+    //       })
+    //       .catch((error) => {
+    //         alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
+    //       });
+    //   }
 
     var settings = {
         className: "center",
@@ -74,7 +72,7 @@ const TalentedMember = () => {
             <Slider {...settings}>
                 {articles.map(article => (
                     <div className=''>
-                    {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>}
+                    {/* {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>} */}
                     <div className="card flex flex-col justify-center align-items-center border-none shadowBlue p-3 md:p-1 sm:p-1 m-3 bg-dark/90 rounded-xl">
                       <div className="image   mb-4  rounded-xl ">
                         <img className=' w-[350px] h-[250px] md:w-[250px] sm:w-[250px] object-cover rounded-xl' src={article.coverImageUrl} alt={article.title} />

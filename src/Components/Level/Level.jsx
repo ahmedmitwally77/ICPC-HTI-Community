@@ -3,9 +3,6 @@ import AnimatedText from '../AnimatedText'
 import logo from '../../Images/Colored Icon.png'
 import { Link, useParams } from 'react-router-dom'
 import TransitionEffect from '../TransitionEffect'
-import { db } from '../../firebase';
-import { doc, getDoc, collection, query, where, getDocs, deleteDoc } from 'firebase/firestore';
-import { AuthContext } from '../../Context/AuthContext'
 import MainHeading from '../MainHeading/MainHeading'
 import ideaImg from '../../Images/idea.png'
 
@@ -18,36 +15,36 @@ const Level = () => {
     // const {flagAdmin} = useContext(AuthContext)
 
 
-    useEffect(() => {
-        const fetchlevel = async () => {
-            const docRef = doc(db, 'levels', id);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                setLevel(docSnap.data());
-            } else {
-                console.log('No such document!');
-            }
-            setLoading(false); // Stop loading once the data is fetched
-        };
-        fetchlevel();
-    }, [id]);
+    // useEffect(() => {
+    //     const fetchlevel = async () => {
+    //         const docRef = doc(db, 'levels', id);
+    //         const docSnap = await getDoc(docRef);
+    //         if (docSnap.exists()) {
+    //             setLevel(docSnap.data());
+    //         } else {
+    //             console.log('No such document!');
+    //         }
+    //         setLoading(false); // Stop loading once the data is fetched
+    //     };
+    //     fetchlevel();
+    // }, [id]);
 
-    useEffect(() => {
-        const fetchWaves = async () => {
-            const wavesRef = collection(db, 'waves');
-            const q = query(wavesRef, where('levelId', '==', id)); // جلب الويفز التي تحتوي على نفس levelId
-            const querySnapshot = await getDocs(q);
-            const wavesArray = querySnapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setWaves(wavesArray);
-        };
+    // useEffect(() => {
+    //     const fetchWaves = async () => {
+    //         const wavesRef = collection(db, 'waves');
+    //         const q = query(wavesRef, where('levelId', '==', id)); // جلب الويفز التي تحتوي على نفس levelId
+    //         const querySnapshot = await getDocs(q);
+    //         const wavesArray = querySnapshot.docs.map((doc) => ({
+    //             id: doc.id,
+    //             ...doc.data(),
+    //         }));
+    //         setWaves(wavesArray);
+    //     };
 
-        if (id) {
-            fetchWaves();
-        }
-    }, [id]);
+    //     if (id) {
+    //         fetchWaves();
+    //     }
+    // }, [id]);
 
 
     if (loading ) {

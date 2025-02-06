@@ -1,43 +1,36 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AnimatedText from '../AnimatedText'
-import img from '../../Images/IMG_3229 full.webp'
-import line1 from '../../Images/line 1.jpeg'
 import line2 from '../../Images/line 2.jpeg'
 import Slider from 'react-slick'
-import { db } from '../../firebase';
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
-import { AuthContext } from '../../Context/AuthContext'
-import MainHeading from '../MainHeading/MainHeading'
-import { Link } from 'react-router-dom'
 
 const OurAchievements = () => {
 
     const [articles, setArticles] = useState([]);
-    const {flagAdmin} = useContext(AuthContext)
+    // const {flagAdmin} = useContext(AuthContext)
 
 
-    useEffect(() => {
-        const fetchArticles = async () => {
-          const articlesCollection = collection(db, 'achievements');
-          const articlesSnapshot = await getDocs(articlesCollection);
-          const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          setArticles(articlesList);
-        };
-        fetchArticles();
-      }, []);
+    // useEffect(() => {
+    //     const fetchArticles = async () => {
+    //       const articlesCollection = collection(db, 'achievements');
+    //       const articlesSnapshot = await getDocs(articlesCollection);
+    //       const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    //       setArticles(articlesList);
+    //     };
+    //     fetchArticles();
+    //   }, []);
 
-      const handleDelete = async (id) => {
-        const docRef = doc(db, 'achievements', id);
+    //   const handleDelete = async (id) => {
+    //     const docRef = doc(db, 'achievements', id);
     
-        await deleteDoc(docRef)
-          .then(() => {
-            alert("تم حذف الوثيقة بنجاح!");
-            setArticles(articles.filter(achievement => achievement.id !== id)); // إزالة المقالة من الحالة بعد الحذف
-          })
-          .catch((error) => {
-            alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
-          });
-      }
+    //     await deleteDoc(docRef)
+    //       .then(() => {
+    //         alert("تم حذف الوثيقة بنجاح!");
+    //         setArticles(articles.filter(achievement => achievement.id !== id)); // إزالة المقالة من الحالة بعد الحذف
+    //       })
+    //       .catch((error) => {
+    //         alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
+    //       });
+    //   }
 
     var settings = {
       autoplaySpeed: 2000,

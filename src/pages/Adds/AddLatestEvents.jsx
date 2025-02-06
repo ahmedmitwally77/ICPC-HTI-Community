@@ -1,8 +1,5 @@
 import { motion } from 'framer-motion'
 import React, { useContext, useEffect, useState } from 'react'
-import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import {auth , db, storage} from '../../firebase'
-import { addDoc, collection, doc, setDoc } from "firebase/firestore"; 
 import { Link, useNavigate } from 'react-router-dom'
 
 const AddLatestEvents = () => {
@@ -20,45 +17,47 @@ const AddLatestEvents = () => {
             return;
         }
         console.log(eventCover);
-        try {
+        // try {
 
-            const storageRef = ref(storage, `eventCover/${title}`);
+        //     const storageRef = ref(storage, `eventCover/${title}`);
 
-            // Upload the file and metadata
-            const uploadTask = uploadBytesResumable(storageRef, eventCover);
+        //     // Upload the file and metadata
+        //     const uploadTask = uploadBytesResumable(storageRef, eventCover);
     
-            // Wait for the upload to complete and get the download URL
-            const eventCoverUrl = await new Promise((resolve, reject) => {
-                uploadTask.on(
-                    'state_changed',
-                    null,
-                    (error) => reject(error),
-                    async () => {
-                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                        resolve(downloadURL);
-                    }
-                );
-            });
+        //     // Wait for the upload to complete and get the download URL
+        //     const eventCoverUrl = await new Promise((resolve, reject) => {
+        //         uploadTask.on(
+        //             'state_changed',
+        //             null,
+        //             (error) => reject(error),
+        //             async () => {
+        //                 const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        //                 resolve(downloadURL);
+        //             }
+        //         );
+        //     });
         
-          const eventsData = {
-            eventCoverUrl,
-            title,
-            eventDetails,
-            date,
-          };
+        //   const eventsData = {
+        //     eventCoverUrl,
+        //     title,
+        //     eventDetails,
+        //     date,
+        //   };
       
-          // إضافة البيانات إلى Firestore وإنشاء مستند بمعرف فريد
-          const docRef = await addDoc(collection(db, "events"), eventsData);
+        //   // إضافة البيانات إلى Firestore وإنشاء مستند بمعرف فريد
+        //   const docRef = await addDoc(collection(db, "events"), eventsData);
       
-          console.log("Document successfully written with ID: ", docRef.id);
-          alert("تمت اضافه الايفنت بنجاح");
+        //   console.log("Document successfully written with ID: ", docRef.id);
+        //   alert("تمت اضافه الايفنت بنجاح");
 
 
-        } catch (err) {
-          setErr(true);
-          console.error("Error uploading images: ", err);
-          alert( "فى مشكله لو المشكله اتكررت كلم حد من الادمن");
-        }}
+        // } catch (err) {
+        //   setErr(true);
+        //   console.error("Error uploading images: ", err);
+        //   alert( "فى مشكله لو المشكله اتكررت كلم حد من الادمن");
+        // }
+      
+      }
 
 
   return (

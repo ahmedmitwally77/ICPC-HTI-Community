@@ -4,8 +4,6 @@ import style from './Login.module.css'
 import { Link } from 'react-router-dom'
 import TransitionEffect from '../../Components/TransitionEffect'
 import { useNavigate } from 'react-router-dom'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase'
 import { AuthContext } from '../../Context/AuthContext'
 
 const Login = () => {
@@ -13,24 +11,24 @@ const Login = () => {
   const [err , setErr] = useState(false)
   const navigate = useNavigate()
 
-  const {currentUser , setFlagAdmin } = useContext(AuthContext)
+  // const {currentUser , setFlagAdmin } = useContext(AuthContext)
 
   const handleSubmit =async (e)=>{
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
 
-    try{
-      await signInWithEmailAndPassword(auth , email , password);
-      if(currentUser.uid ===  process.env.REACT_APP_Admin_Id){
-        navigate('/')
-        setFlagAdmin(true)
-      }
-      navigate('/')
-    }catch(err){
-        setErr(true)
-        navigate('/')
-    }
+    // try{
+    //   await signInWithEmailAndPassword(auth , email , password);
+    //   if(currentUser.uid ===  process.env.REACT_APP_Admin_Id){
+    //     navigate('/')
+    //     setFlagAdmin(true)
+    //   }
+    //   navigate('/')
+    // }catch(err){
+    //     setErr(true)
+    //     navigate('/')
+    // }
   }
 
 

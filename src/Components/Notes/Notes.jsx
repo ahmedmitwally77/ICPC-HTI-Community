@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "react-quill/dist/quill.snow.css"; // استيراد أنماط React Quill
 import { FiEdit3 } from "react-icons/fi";
-import {
-  doc,
-  getDoc,
-  getFirestore,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+
 import "react-tabs/style/react-tabs.css";
 import { getAuth } from "firebase/auth";
 
 const Notes = () => {
-  const db = getFirestore();
-  const auth = getAuth();
+  // const db = getFirestore();
+  // const auth = getAuth();
 
   const [tabs, setTabs] = useState([]);
   const [activeTab, setActiveTab] = useState(null);
@@ -21,47 +15,47 @@ const Notes = () => {
   const [newTabName, setNewTabName] = useState("");
   const [isNoteOpen, setIsNoteOpen] = useState(false);
 
-  const user = auth.currentUser; // Get the current authenticated user
-  const userId = user ? user.uid : null; // Use the user's UID as a unique identifier
+  // const user = auth.currentUser; // Get the current authenticated user
+  // const userId = user ? user.uid : null; // Use the user's UID as a unique identifier
 
-  // Fetch user notes when the component mounts
-  useEffect(() => {
-    if (userId) {
-      const fetchNotes = async () => {
-        const userNotesRef = doc(db, "notes", userId);
-        const docSnap = await getDoc(userNotesRef);
+  // // Fetch user notes when the component mounts
+  // useEffect(() => {
+  //   if (userId) {
+  //     const fetchNotes = async () => {
+  //       const userNotesRef = doc(db, "notes", userId);
+  //       const docSnap = await getDoc(userNotesRef);
 
-        if (docSnap.exists()) {
-          const userNotes = docSnap.data();
-          const fetchedTabs = userNotes.tabs || [];
-          // Check if there are no tabs, then add a default tab
-          if (fetchedTabs.length === 0) {
-            const defaultTab = { id: 1, name: "Tab 1", content: "" };
-            fetchedTabs.push(defaultTab);
-            await updateUserNotes({
-              tabs: fetchedTabs,
-              activeTab: 1,
-              noteContent: "",
-            }); // Save default tab to Firestore
-          }
-          setTabs(fetchedTabs);
-          setActiveTab(userNotes.activeTab || 1); // Set the first tab as active if no activeTab is set
-          setNoteContent(userNotes.noteContent || ""); // Set default content if available
-        } else {
-          // Initialize a new notes structure with a default tab
-          const defaultTab = { id: 1, name: "Tab 1", content: "" };
-          await setDoc(userNotesRef, {
-            tabs: [defaultTab],
-            activeTab: 1,
-            noteContent: "",
-          });
-          setTabs([defaultTab]);
-          setActiveTab(1);
-        }
-      };
-      fetchNotes();
-    }
-  }, [userId]);
+  //       if (docSnap.exists()) {
+  //         const userNotes = docSnap.data();
+  //         const fetchedTabs = userNotes.tabs || [];
+  //         // Check if there are no tabs, then add a default tab
+  //         if (fetchedTabs.length === 0) {
+  //           const defaultTab = { id: 1, name: "Tab 1", content: "" };
+  //           fetchedTabs.push(defaultTab);
+  //           await updateUserNotes({
+  //             tabs: fetchedTabs,
+  //             activeTab: 1,
+  //             noteContent: "",
+  //           }); // Save default tab to Firestore
+  //         }
+  //         setTabs(fetchedTabs);
+  //         setActiveTab(userNotes.activeTab || 1); // Set the first tab as active if no activeTab is set
+  //         setNoteContent(userNotes.noteContent || ""); // Set default content if available
+  //       } else {
+  //         // Initialize a new notes structure with a default tab
+  //         const defaultTab = { id: 1, name: "Tab 1", content: "" };
+  //         await setDoc(userNotesRef, {
+  //           tabs: [defaultTab],
+  //           activeTab: 1,
+  //           noteContent: "",
+  //         });
+  //         setTabs([defaultTab]);
+  //         setActiveTab(1);
+  //       }
+  //     };
+  //     fetchNotes();
+  //   }
+  // }, [userId]);
 
   // Toggle notes window visibility
   const toggleNotes = () => {

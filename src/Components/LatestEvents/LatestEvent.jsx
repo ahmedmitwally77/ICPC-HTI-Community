@@ -24,20 +24,20 @@ const LatestEvent = () => {
     // const [Mint, setMint] = useState('')
     // const [sec, setSec] = useState('')
 
-    useEffect(() => {
-      const fetchLatestEvent = async () => {
-        const eventCollection = collection(db, 'events');
-        const eventQuery = query(eventCollection, orderBy('date', 'desc'), limit(1));
-        const eventSnapshot = await getDocs(eventQuery);
-        const eventList = eventSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        if (eventList.length > 0) {
-          setEvent(eventList[0]);
-        }
-        setLoading(false); // Stop loading once the data is fetched
+    // useEffect(() => {
+    //   const fetchLatestEvent = async () => {
+    //     const eventCollection = collection(db, 'events');
+    //     const eventQuery = query(eventCollection, orderBy('date', 'desc'), limit(1));
+    //     const eventSnapshot = await getDocs(eventQuery);
+    //     const eventList = eventSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    //     if (eventList.length > 0) {
+    //       setEvent(eventList[0]);
+    //     }
+    //     setLoading(false); // Stop loading once the data is fetched
 
-      };
-      fetchLatestEvent();
-    }, []);
+    //   };
+    //   fetchLatestEvent();
+    // }, []);
 
     useEffect(() => {
       if (event) {

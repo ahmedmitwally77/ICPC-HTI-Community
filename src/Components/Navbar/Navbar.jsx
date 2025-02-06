@@ -5,19 +5,19 @@ import logo from '../../Images/Colored V2.webp';
 import style from './Navbar.module.css';
 
 const Navbar = () => {
-  const { currentUser, userData, flagAdmin, setFlagAdmin, setFlag, flag } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [currentUser, setcurrentUser] = useState(false);
 
   // تحقق من حالة المستخدم عند التحميل أو تغيير currentUser
-  useEffect(() => {
-    if (currentUser) {
-      setFlag(true);
-      setFlagAdmin(currentUser.uid === process.env.REACT_APP_Admin_Id);
-    } else {
-      setFlag(false);
-      setFlagAdmin(false);
-    }
-  }, [currentUser, setFlag, setFlagAdmin]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     setFlag(true);
+  //     setFlagAdmin(currentUser.uid === process.env.REACT_APP_Admin_Id);
+  //   } else {
+  //     setFlag(false);
+  //     setFlagAdmin(false);
+  //   }
+  // }, [currentUser, setFlag, setFlagAdmin]);
 
   // تبديل حالة القائمة المنسدلة (للأجهزة المحمولة)
   const toggleMenu = () => {
@@ -130,7 +130,7 @@ const Navbar = () => {
           <nav>
             <Link to={'/dashBoard'} class="flex items-center px-4 -mx-2">
               <img class="object-cover mx-2 rounded-full h-9 w-9" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar" />
-              <span class="mx-2 font-medium text-gray-800 dark:text-gray-200">Hello {userData?.Fname}</span>
+              {/* <span class="mx-2 font-medium text-gray-800 dark:text-gray-200">Hello {userData?.Fname}</span> */}
             </Link>
           </nav>
         ) : (

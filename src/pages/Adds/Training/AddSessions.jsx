@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../../../firebase';
-import { collection, addDoc, getDocs, query, where } from 'firebase/firestore';
 
 const AddSessions = () => {
 
@@ -13,57 +11,56 @@ const AddSessions = () => {
     const [levels, setLevels] = useState([]);
     const [waves, setWaves] = useState([]);
 
-    useEffect(() => {
-        const fetchLevels = async () => {
-          const levelsCollection = collection(db, 'levels'); // assuming 'levels' is the name of your collection for levels
-          const levelsSnapshot = await getDocs(levelsCollection);
-          const levelsList = levelsSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          }));
-          setLevels(levelsList);
-        };
+    // useEffect(() => {
+    //     const fetchLevels = async () => {
+    //       const levelsCollection = collection(db, 'levels'); // assuming 'levels' is the name of your collection for levels
+    //       const levelsSnapshot = await getDocs(levelsCollection);
+    //       const levelsList = levelsSnapshot.docs.map(doc => ({
+    //         id: doc.id,
+    //         ...doc.data()
+    //       }));
+    //       setLevels(levelsList);
+    //     };
     
-        fetchLevels();
-      }, []);
+    //     fetchLevels();
+    //   }, []);
 
-      useEffect(() => {
-        const fetchWaves = async () => {
-          if (levelId) {
-            const wavesCollection = query(collection(db, 'waves'), where('levelId', '==', levelId));
-            const wavesSnapshot = await getDocs(wavesCollection);
-            const wavesList = wavesSnapshot.docs.map(doc => ({
-              id: doc.id,
-              ...doc.data()
-            }));
-            setWaves(wavesList);
-          } else {
-            setWaves([]); // Clear waves if no level is selected
-          }
-        };
+    //   useEffect(() => {
+    //     const fetchWaves = async () => {
+    //       if (levelId) {
+    //         const wavesCollection = query(collection(db, 'waves'), where('levelId', '==', levelId));
+    //         const wavesSnapshot = await getDocs(wavesCollection);
+    //         const wavesList = wavesSnapshot.docs.map(doc => ({
+    //           id: doc.id,
+    //           ...doc.data()
+    //         }));
+    //         setWaves(wavesList);
+    //       } else {
+    //         setWaves([]); // Clear waves if no level is selected
+    //       }
+    //     };
     
-        fetchWaves();
-      }, [levelId]);
+    //     fetchWaves();
+    //   }, [levelId]);
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-          await addDoc(collection(db, 'sessions'), {
-            title,
-            link,
-            sessionPdf,
-            content,
-            waveId,
-          });
-          alert('session added successfully!');
-          // إعادة توجيه المستخدم بعد إضافة السيشن
-        } catch (error) {
-          console.error("Error adding session: ", error);
-        }
+        // try {
+        //   await addDoc(collection(db, 'sessions'), {
+        //     title,
+        //     link,
+        //     sessionPdf,
+        //     content,
+        //     waveId,
+        //   });
+        //   alert('session added successfully!');
+        //   // إعادة توجيه المستخدم بعد إضافة السيشن
+        // } catch (error) {
+        //   console.error("Error adding session: ", error);
+        // }
       };
 
   return (
-
     <div className='' >
 <div className="container py-20">
     <h2 className="text-center font-semibold mb-4">Add New Session</h2>

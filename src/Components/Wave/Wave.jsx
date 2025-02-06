@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import AnimatedText from "../AnimatedText";
 import TransitionEffect from "../TransitionEffect";
 import { Link, useParams } from "react-router-dom";
-import { db } from '../../firebase';
-import { collection, deleteDoc, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import MainHeading from "../MainHeading/MainHeading";
 import { FaGraduationCap } from "react-icons/fa";
 import { FaPlay } from "react-icons/fa";
@@ -20,47 +18,47 @@ const Wave = () => {
   const [loading, setLoading] = useState(true); // Add a loading state
 
 
-  useEffect(() => {
-    const fetchWave = async () => {
-        const docRef = doc(db, 'waves', id);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            setWave(docSnap.data());
-        } else {
-            console.log('No such document!');
-        }
-        setLoading(false); // Stop loading once the data is fetched
-    };
+//   useEffect(() => {
+//     const fetchWave = async () => {
+//         const docRef = doc(db, 'waves', id);
+//         const docSnap = await getDoc(docRef);
+//         if (docSnap.exists()) {
+//             setWave(docSnap.data());
+//         } else {
+//             console.log('No such document!');
+//         }
+//         setLoading(false); // Stop loading once the data is fetched
+//     };
       
-    const fetchLinks = async () => {
-        try {
-          const linksCollection = collection(db, "standingW1"); // اسم مجموعة الروابط في Firebase
-          const linksSnapshot = await getDocs(linksCollection);
-          const linksList = linksSnapshot.docs.map((doc) => doc.data().url); // استخراج الروابط فقط
-          setSheetLinks(linksList);
+//     const fetchLinks = async () => {
+//         try {
+//           const linksCollection = collection(db, "standingW1"); // اسم مجموعة الروابط في Firebase
+//           const linksSnapshot = await getDocs(linksCollection);
+//           const linksList = linksSnapshot.docs.map((doc) => doc.data().url); // استخراج الروابط فقط
+//           setSheetLinks(linksList);
           
-        } catch (err) {
-          console.error("Error fetching links: ", err);
-        }
-      };
+//         } catch (err) {
+//           console.error("Error fetching links: ", err);
+//         }
+//       };
   
-      fetchLinks();
+//       fetchLinks();
 
 
-    const fetchSessions = async () => {
-        const sessionsQuery = query(collection(db, 'sessions'), where('waveId', '==', id));
-        const sessionsSnapshot = await getDocs(sessionsQuery);
-        const sessionsList = sessionsSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        }));
-        setSessions(sessionsList);
-        console.log(sessions)
-    };
+//     const fetchSessions = async () => {
+//         const sessionsQuery = query(collection(db, 'sessions'), where('waveId', '==', id));
+//         const sessionsSnapshot = await getDocs(sessionsQuery);
+//         const sessionsList = sessionsSnapshot.docs.map(doc => ({
+//             id: doc.id,
+//             ...doc.data()
+//         }));
+//         setSessions(sessionsList);
+//         console.log(sessions)
+//     };
 
-    fetchWave();
-    fetchSessions();
-}, [id]);
+//     fetchWave();
+//     fetchSessions();
+// }, [id]);
 
 // Function to render a session box
     function sessionBox(session){ 

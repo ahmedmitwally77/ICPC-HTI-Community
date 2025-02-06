@@ -1,9 +1,5 @@
 import React, { useContext, useState } from 'react'
-import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import {auth , db, storage} from '../../firebase'
-import { addDoc, collection, doc, setDoc } from "firebase/firestore"; 
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../Context/AuthContext';
 
 const AddTalented = () => {
 
@@ -14,45 +10,47 @@ const AddTalented = () => {
         const coverImage = e.target[0].files[0];
         const title = e.target[1].value;
         
-        try {
-          const uploadImage = async (image, refPath) => {
-            if (image) {
-              const imageRef = ref(storage, refPath);
-              const uploadTask = uploadBytesResumable(imageRef, image);
-              await new Promise((resolve, reject) => {
-                uploadTask.on(
-                  "state_changed",
-                  null,
-                  (error) => reject(error),
-                  () => resolve()
-                );
-              });
-              return await getDownloadURL(imageRef);
-            }
-            return null;
-          };
+        // try {
+        //   const uploadImage = async (image, refPath) => {
+        //     if (image) {
+        //       const imageRef = ref(storage, refPath);
+        //       const uploadTask = uploadBytesResumable(imageRef, image);
+        //       await new Promise((resolve, reject) => {
+        //         uploadTask.on(
+        //           "state_changed",
+        //           null,
+        //           (error) => reject(error),
+        //           () => resolve()
+        //         );
+        //       });
+        //       return await getDownloadURL(imageRef);
+        //     }
+        //     return null;
+        //   };
       
-          const coverImageUrl = await uploadImage(coverImage, `coverImages/${title}`);
+        //   const coverImageUrl = await uploadImage(coverImage, `coverImages/${title}`);
         
-          const articleData = {
-            coverImageUrl,
-            title,
-          };
+        //   const articleData = {
+        //     coverImageUrl,
+        //     title,
+        //   };
       
-          const docRef = await addDoc(collection(db, "talented"), articleData);
+        //   const docRef = await addDoc(collection(db, "talented"), articleData);
       
-          console.log("Document successfully written with ID: ", docRef.id);
-          alert("تمت اضافه الخبر بنجاح");
+        //   console.log("Document successfully written with ID: ", docRef.id);
+        //   alert("تمت اضافه الخبر بنجاح");
 
-          console.log(
-            coverImageUrl
-          );
+        //   console.log(
+        //     coverImageUrl
+        //   );
          
-        } catch (error) {
-          setErr(true);
-          console.error("Error uploading images: ", error);
-          alert( "فى مشكله لو المشكله اتكررت كلم حد من الادمن");
-        }}
+        // } catch (error) {
+        //   setErr(true);
+        //   console.error("Error uploading images: ", error);
+        //   alert( "فى مشكله لو المشكله اتكررت كلم حد من الادمن");
+        // }
+      
+      }
 
 
 

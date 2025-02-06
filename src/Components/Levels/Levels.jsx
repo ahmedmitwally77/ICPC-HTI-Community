@@ -3,38 +3,36 @@ import line2 from '../../Images/line 2.jpeg'
 import why1 from '../../Images/why1-removebg-preview.png'
 import AnimatedText from '../AnimatedText';
 import { Link } from 'react-router-dom';
-import { db } from '../../firebase';
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { AuthContext } from '../../Context/AuthContext';
 import { motion } from 'framer-motion';
 import MainHeading from '../MainHeading/MainHeading';
 
 const Levels = () => {
     const [articles, setArticles] = useState([]);
-    const {flagAdmin} = useContext(AuthContext)
+    // const {flagAdmin} = useContext(AuthContext)
 
-    useEffect(() => {
-        const fetchArticles = async () => {
-          const articlesCollection = collection(db, 'levels');
-          const articlesSnapshot = await getDocs(articlesCollection);
-          const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          setArticles(articlesList);
-        };
-        fetchArticles();
-      }, []);
+    // useEffect(() => {
+    //     const fetchArticles = async () => {
+    //       const articlesCollection = collection(db, 'levels');
+    //       const articlesSnapshot = await getDocs(articlesCollection);
+    //       const articlesList = articlesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    //       setArticles(articlesList);
+    //     };
+    //     fetchArticles();
+    //   }, []);
 
-      const handleDelete = async (id) => {
-        const docRef = doc(db, 'levels', id);
+    //   const handleDelete = async (id) => {
+    //     const docRef = doc(db, 'levels', id);
     
-        await deleteDoc(docRef)
-          .then(() => {
-            alert("تم حذف الوثيقة بنجاح!");
-            setArticles(articles.filter(article => article.id !== id)); // إزالة المقالة من الحالة بعد الحذف
-          })
-          .catch((error) => {
-            alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
-          });
-      }
+    //     await deleteDoc(docRef)
+    //       .then(() => {
+    //         alert("تم حذف الوثيقة بنجاح!");
+    //         setArticles(articles.filter(article => article.id !== id)); // إزالة المقالة من الحالة بعد الحذف
+    //       })
+    //       .catch((error) => {
+    //         alert("حدث خطأ أثناء محاولة حذف الوثيقة:", error);
+    //       });
+    //   }
 
   return (
     <div className='levels bg-white rounded-3xl relative -top-14'>
@@ -50,7 +48,7 @@ const Levels = () => {
             <div className="row">
                 {articles.map(article => (
                     <div key={article.id} className="col-md-6 col-12 col-xl-4">
-                    {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>}
+                    {/* {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>} */}
 
                     <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:1 , y:0}} transition={{duration:0.5 }} className="box lg:mb-36 sm:mb-6 boxBorder h-[420px] lg:h-[470px]   shadow-xl border-blue p-10 relative rounded-[80px] ">
                         <img className='w-40 absolute rounded-full  md:hidden -top-24 left-1/2 -translate-x-1/2 m-auto bg-white' src={article.coverImageUrl} alt={article.title} />

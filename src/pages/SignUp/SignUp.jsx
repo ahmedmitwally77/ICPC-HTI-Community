@@ -3,93 +3,111 @@ import logo from '../../Images/Colored Icon.png'
 import style from './SignUp.module.css'
 import { Link } from 'react-router-dom'
 import TransitionEffect from '../../Components/TransitionEffect'
-import {  createUserWithEmailAndPassword , updateProfile } from "firebase/auth";
-import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import {auth , db, storage} from '../../firebase'
-import { doc, setDoc } from "firebase/firestore" 
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios'
 
 const SignUp = () => {
 
-  const [err, setErr] = useState(false);
-  const navigate = useNavigate();
 
-  const handleSubmit = async (values)=>{
-    const {Fname ,Lname , email , password  , stuId , phone , nationalId , handle , uni , year   } = values;
+  let navigate = useNavigate() // to let user to go to (home )
+  const [error , seterror] = useState(null)
+  const [isLoading , setisLoading] = useState(false)
   
-    try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-
-      // const uploadImage = async (image, refPath) => {
-      //   if (image) {
-      //     const imageRef = ref(storage, refPath);
-      //     const uploadTask = uploadBytesResumable(imageRef, image);
-      //     await new Promise((resolve, reject) => {
-      //       uploadTask.on(
-      //         'state_changed',
-      //         null,
-      //         (error) => reject(error),
-      //         () => resolve()
-      //       );
-      //     });
-      //     return await getDownloadURL(imageRef);
-      //   }
-      //   return null;
-      // };
-    
-      // ارفع صورة الملف الشخصي فقط هنا
-      //const downloadURL = await uploadImage(profileImage, `coverImages/${Fname}`);
-    
-      // if (downloadURL) {
-      //   // تحديث الملف الشخصي في Firebase Authentication
-      //   await updateProfile(res.user, {
-      //     displayName: Fname,
-      //     photoURL: downloadURL,
-      //   });
-    
-      //   // حفظ البيانات في Firestore
-      //   await setDoc(doc(db, 'users', res.user.uid), {
-      //     uid: res.user.uid,
-      //     displayName: Fname,
-      //     Fname,
-      //     Lname,
-      //     email,
-      //     password,
-      //     stuId,
-      //     phone,
-      //     nationalId,
-      //     handle,
-      //     downloadURL,
-      //   });
-      // }
+  async function handleSubmit(values){ 
+    setisLoading(true)
+    let {data} = await  axios.post(`https://icpc-hti.vercel.app/api/auth/signup` , values)
+    .catch((err)=> {
+      setisLoading(false)
+      seterror(err.response.data.message)
+      console.log(err);
       
-      await setDoc(doc(db, 'users', res.user.uid), {
-                 uid: res.user.uid,
-                 displayName: Fname,
-                 Fname,
-                 Lname,
-                 email,
-                 password,
-                 stuId,
-                 phone,
-                 nationalId,
-                 handle,
-                 uni,
-                 year
-                });
-                console.log("Navigating to home page");
-                
-                navigate('/');   
-
-      
-    } catch (err) {
-      console.error("Error during sign-up:", err); // لعرض تفاصيل الخطأ
-      setErr(true);
+    })
+    if(data.message === 'success'){
+      setisLoading(false)
+      console.log(data);
+      navigate('/login') 
     }
-
   }
+
+  // const [err, setErr] = useState(false);
+  // // const navigate = useNavigate();
+
+  // const handleSubmit = async (values)=>{
+  //   const {Fname ,Lname , email , password  , stuId , phone , nationalId , handle , uni , year   } = values;
+  
+  //   try {
+  //     const res = await createUserWithEmailAndPassword(auth, email, password);
+
+  //     // const uploadImage = async (image, refPath) => {
+  //     //   if (image) {
+  //     //     const imageRef = ref(storage, refPath);
+  //     //     const uploadTask = uploadBytesResumable(imageRef, image);
+  //     //     await new Promise((resolve, reject) => {
+  //     //       uploadTask.on(
+  //     //         'state_changed',
+  //     //         null,
+  //     //         (error) => reject(error),
+  //     //         () => resolve()
+  //     //       );
+  //     //     });
+  //     //     return await getDownloadURL(imageRef);
+  //     //   }
+  //     //   return null;
+  //     // };
+    
+  //     // ارفع صورة الملف الشخصي فقط هنا
+  //     //const downloadURL = await uploadImage(profileImage, `coverImages/${Fname}`);
+    
+  //     // if (downloadURL) {
+  //     //   // تحديث الملف الشخصي في Firebase Authentication
+  //     //   await updateProfile(res.user, {
+  //     //     displayName: Fname,
+  //     //     photoURL: downloadURL,
+  //     //   });
+    
+  //     //   // حفظ البيانات في Firestore
+  //     //   await setDoc(doc(db, 'users', res.user.uid), {
+  //     //     uid: res.user.uid,
+  //     //     displayName: Fname,
+  //     //     Fname,
+  //     //     Lname,
+  //     //     email,
+  //     //     password,
+  //     //     stuId,
+  //     //     phone,
+  //     //     nationalId,
+  //     //     handle,
+  //     //     downloadURL,
+  //     //   });
+  //     // }
+      
+  //     await setDoc(doc(db, 'users', res.user.uid), {
+  //                uid: res.user.uid,
+  //                displayName: Fname,
+  //                Fname,
+  //                Lname,
+  //                email,
+  //                password,
+  //                stuId,
+  //                phone,
+  //                nationalId,
+  //                handle,
+  //                uni,
+  //                year
+  //               });
+  //               console.log("Navigating to home page");
+                
+  //               navigate('/');   
+
+      
+  //   } catch (err) {
+  //     console.error("Error during sign-up:", err); // لعرض تفاصيل الخطأ
+  //     setErr(true);
+  //   }
+
+  // }
 
   const formik = useFormik({
     initialValues: {
@@ -131,6 +149,7 @@ const SignUp = () => {
             <img className='w-100' src={logo} alt="icpc hti logo" />
           </div>
           <div className="col-md-6  ">
+          {error !== null? <div className="alert alert-danger">{error}</div> : ""}
             <form  onSubmit={formik.handleSubmit} className='mt-5 '>
               <div className="name d-flex justify-between w-100">
                 <div className='w-100 me-2'>
@@ -206,7 +225,7 @@ const SignUp = () => {
                 <button type="submit" className={style.btn} >Sign Up</button>
                 <p className='mt-4'>Already Have An Account? <Link to={'/login'}>Login</Link></p>
               </div>
-              {err && <span>somthing went wrong</span>}
+              {error && <span>somthing went wrong</span>}
             </form>
           </div>
         </div>

@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useQuery } from 'react-query'
+import { AuthContext } from "../../../Context/AuthContext";
 
 const LevelsDach = () => {
   const standingData = [
@@ -16,6 +19,29 @@ const LevelsDach = () => {
   const rowsPerPage = 20;
 
   const navigate = useNavigate();
+
+
+  function getAllLevels(userToken) {
+    console.log("Sending Token:", userToken); // تحقق مما يتم إرساله
+    return axios.get("https://icpc-hti.vercel.app/api/level", {
+      headers: {
+        token: userToken,
+      },
+    });
+  }
+  
+  const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
+  // console.log(userToken);
+
+  const { data, isLoading, isFetching, isError } = useQuery(
+    ["AllLevels", userToken], // جعل userToken جزءًا من المفتاح
+    () => getAllLevels(userToken), // تمرير userToken هنا
+    {
+      enabled: !!userToken, // لن يتم جلب البيانات إلا إذا كان هناك توكن
+    }
+  );
+  console.log(data);
+  
 
   const filteredData = standingData.filter((data) =>
     data.name.toLowerCase().includes(searchTerm.toLowerCase())

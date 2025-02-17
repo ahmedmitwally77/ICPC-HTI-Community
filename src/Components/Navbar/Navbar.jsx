@@ -6,8 +6,14 @@ import style from './Navbar.module.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentUser, setcurrentUser] = useState(false);
+  // const [currentUser, setcurrentUser] = useState(false);
 
+    let {userToken} = useContext(AuthContext)
+    let {userData} = useContext(AuthContext)
+    console.log(userData);
+    
+    
+    
   // تحقق من حالة المستخدم عند التحميل أو تغيير currentUser
   // useEffect(() => {
   //   if (currentUser) {
@@ -126,11 +132,11 @@ const Navbar = () => {
         </nav>
 
         {/* قسم المستخدم */}
-        {currentUser ? (
+        {userToken && userData ? (
           <nav>
             <Link to={'/dashBoard'} class="flex items-center px-4 -mx-2">
-              <img class="object-cover mx-2 rounded-full h-9 w-9" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar" />
-              {/* <span class="mx-2 font-medium text-gray-800 dark:text-gray-200">Hello {userData?.Fname}</span> */}
+              <img class="object-cover mx-2 rounded-full h-9 w-9" src={userData?.image?.secure_url} alt={userData?.firstName} />
+              <span class="mx-2 font-medium text-gray-800 dark:text-gray-200 no-underline">Hello {userData?.firstName}</span>
             </Link>
           </nav>
         ) : (
@@ -181,10 +187,10 @@ const Navbar = () => {
             )} */}
           </nav>
 
-          {currentUser ? (
+          {userToken ? (
             <nav>
-              <Link to="/profile" className="fw-bold">
-                Hello {currentUser?.displayName}
+              <Link to="/dashBoard" className="fw-bold">
+                Hello 
               </Link>
             </nav>
           ) : (

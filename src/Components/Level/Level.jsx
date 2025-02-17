@@ -10,7 +10,7 @@ const Level = () => {
 
     const { id } = useParams();
     const [level, setLevel] = useState(null);
-    const [loading, setLoading] = useState(true); // Add a loading state
+    const [loading, setLoading] = useState(false); // Add a loading state
     const [waves, setWaves] = useState([]); // لحفظ الويفز المرتبطة بالمستوى
     // const {flagAdmin} = useContext(AuthContext)
 
@@ -65,9 +65,9 @@ const Level = () => {
         );
     }
     
-    if (!level) {
-        return <p>No level found.</p>;
-    }
+    // if (!level) {
+    //     return <p>No level found.</p>;
+    // }
 
     // const handleDelete = async (id) => {
     //     const docRef = doc(db, 'waves', id);
@@ -87,10 +87,12 @@ const Level = () => {
     <div className='level'>
         <div className="container py-24 sm:py-16 ">
             <div className="my-8 pl-6">
-            <MainHeading title1="" title2={level.title} />
+            <MainHeading title1="" title2="Level 1" />
             </div>
             <div className="text flex flex-wrap justify-between items-start">
-                <p className='w-1/2 text-xl sm:w-[100%] lg:w-[100%] xl:w-[100%  text-[#7F7F7F] md:w-[100%] mb-5 text-dark/75 relative before:w-[8px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-5 before:left-0'>{level.Paragraph}</p>
+                <p className='w-1/2 text-xl sm:w-[100%] lg:w-[100%] xl:w-[100%  text-[#7F7F7F] md:w-[100%] mb-5 text-dark/75 relative before:w-[8px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-5 before:left-0'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum a temporibus doloremque blanditiis porro odio accusamus quo fugit magnam assumenda dolores fugiat omnis corporis explicabo obcaecati odit amet, voluptatem magni.
+                </p>
                 <div className="w-1/2 flex justify-center items-start sm:hidden md:hidden lg:hidden xl:hidden ">
                 <img src={ideaImg} className='w-[400px] relative -top-[80px] block object-cover md:w-[0%]' alt="idea img" />
                 </div>

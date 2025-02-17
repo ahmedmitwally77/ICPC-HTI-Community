@@ -15,7 +15,7 @@ const Wave = () => {
     const [wave, setWave] = useState(null);
   const [sessions, setSessions] = useState([]); // State to hold sessions
   const [sheetLinks, setSheetLinks] = useState([]); // State to hold sessions
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [loading, setLoading] = useState(false); // Add a loading state
 
 
 //   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../Images/Colored Icon.png";
 import waves from "../Images/dashboard/waves.svg";
 import standing from "../Images/dashboard/standing.svg";
@@ -8,11 +8,14 @@ import sheetcontest from "../Images/dashboard/sheet&contest.svg";
 import attendance from "../Images/dashboard/attendance.svg";
 import warning from "../Images/dashboard/warning'.svg";
 import addsession from "../Images/dashboard/addsession.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdPeople } from "react-icons/io";
 import { FaCodePullRequest } from "react-icons/fa6";
 import { FaArchive } from "react-icons/fa";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { AuthContext } from "../Context/AuthContext";
+import axios from 'axios'
+
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // حالة فتح/إغلاق القائمة الفرعية
@@ -22,10 +25,23 @@ const Sidebar = () => {
   };
 
   const [isVisible, setIsVisible] = useState(false); // حالة لإظهار/إخفاء الروابط
-
   const toggleVisibility = () => {
     setIsVisible(!isVisible); // تبديل الحالة
   };
+
+  let navigate = useNavigate()
+  let {setUserToken} = useContext(AuthContext)
+  let {setUserData} = useContext(AuthContext)
+  
+   function Logout(){
+    
+        localStorage.removeItem('userToken');
+        localStorage.removeItem('user');
+        setUserToken(null);
+        setUserData(null);
+        navigate('/login')
+  }
+
 
   return (
     <>
@@ -292,6 +308,7 @@ const Sidebar = () => {
                 to="/login"
                 title="Log Out"
                 className="mx-3 w-75 fw-bold mt-5 p-2 btn grade2 text-decoration-none text-white"
+                onClick={()=>Logout()}
               >
                 Log Out
               </Link>

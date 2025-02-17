@@ -5,9 +5,6 @@ import Home from './pages/Home/Home'
 import { NotFound } from './pages/NotFound';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
-import ResetPassword from './Components/ResetPassword/ResetPassword';
-import OTPVer from './Components/OTPVer/OTPVer';
-import ResetNewPass from './Components/ResetNewPass/ResetNewPass';
 import ECPC from './pages/ECPC/ECPC';
 import About from './pages/About/About';
 import Training from './pages/Training/Training';
@@ -50,6 +47,8 @@ import LevelsDach from './Components/DashBoardPages/LeaderPages/LevelsDach';
 import WaveDash from './Components/DashBoardPages/LeaderPages/WaveDash';
 import Requests from './Components/DashBoardPages/LeaderPages/Requests';
 import Archive from './Components/DashBoardPages/LeaderPages/Archive';
+import ResetPassword from './Components/ForgetPasswordAndOTPVer/ResetPassword';
+import OTPVer from './Components/ForgetPasswordAndOTPVer/OTPVer';
 
 
 let routers = createBrowserRouter([
@@ -61,9 +60,11 @@ let routers = createBrowserRouter([
     {path:"about" , element:<About/>},
     {path:"committees" , element:<Committees/>},
     {path:"training" , element:<Training/>},
-    {path:"level/:id" , element:<Level/>},
-    {path:"wave/:id" , element:<Wave/>},
-    {path:"session/:sessionId" , element:<Session/>},
+    {path:"level" , element:<Level/>},
+    {path:"wave" , element:<Wave/>},
+    {path:"session" , element:<Session/>},
+    {path:"resetpassword" , element:<ResetPassword/>},
+    {path:"otp" , element:<OTPVer/>},
     // {path:"session/:sessionId" , element:<ProtectedRoute><Session/></ProtectedRoute>},
     // {path:"level/:id" , element:<ProtectedRoute><Level/></ProtectedRoute>},
     // {path:"wave/:id" , element:<ProtectedRoute><Wave/></ProtectedRoute>},
@@ -126,9 +127,7 @@ let routers = createBrowserRouter([
     // ]}
   ]},
     
-    {path:"resetpassword" , element:<ResetPassword/>},
-    {path:"otp" , element:<OTPVer/>},
-    {path:"resetnewpass" , element:<ResetNewPass/>},
+    
 
 ])
 

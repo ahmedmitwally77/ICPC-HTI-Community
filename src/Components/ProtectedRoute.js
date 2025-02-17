@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
-    // const [isAuthenticated, setIsAuthenticated] = useState(null); // حالة لتخزين حالة تسجيل الدخول
+    const [isAuthenticated, setIsAuthenticated] = useState(null); // حالة لتخزين حالة تسجيل الدخول
 
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStateChanged(auth, (user) => {
-    //         if (user) {
-    //             setIsAuthenticated(true); // المستخدم مسجل
-    //         } else {
-    //             setIsAuthenticated(false); // المستخدم غير مسجل
-    //         }
-    //     });
+        let {userToken} = useContext(AuthContext)
+    
 
-    //     return () => unsubscribe(); // قم بإلغاء الاشتراك عند إلغاء تركيب المكون
-    // }, []);
+    useEffect(() => {
+            if (userToken) {
+                setIsAuthenticated(true); // المستخدم مسجل
+            } else {
+                setIsAuthenticated(false); // المستخدم غير مسجل
+            }
 
-    // if (isAuthenticated === null) {
-    //     return <div>Loading...</div>; // يمكنك عرض شاشة تحميل أثناء انتظار حالة المصادقة
-    // }
+    }, []);
 
-    // if (isAuthenticated) {
-    //     return children; // إذا كان المستخدم مسجلاً، ارجع المحتوى
-    // } else {
-    //     return <Navigate to="/login" />; // إذا لم يكن مسجلاً، توجيه إلى صفحة تسجيل الدخول
-    // }
+    if (isAuthenticated === null) {
+        return <div>Loading...</div>; // يمكنك عرض شاشة تحميل أثناء انتظار حالة المصادقة
+    }
+
+    if (isAuthenticated) {
+        return children; // إذا كان المستخدم مسجلاً، ارجع المحتوى
+    } else {
+        return <Navigate to="/login" />; // إذا لم يكن مسجلاً، توجيه إلى صفحة تسجيل الدخول
+    }
 }
 
 export default ProtectedRoute

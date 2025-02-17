@@ -12,7 +12,7 @@ const Session = () => {
 
   const { sessionId } = useParams(); // استخرج معرف السيشن من URL
   const [sessionData, setSessionData] = useState(null); // حالة لتخزين بيانات السيشن
-  const [loading, setLoading] = useState(true); // حالة للتحميل
+  const [loading, setLoading] = useState(false); // حالة للتحميل
 
 
   // useEffect(() => {

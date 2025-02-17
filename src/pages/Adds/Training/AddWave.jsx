@@ -152,22 +152,22 @@ const AddWave = () => {
                     </div>
 
                     <div className="form-group my-3 ms-5 w-50">
-                    <label className='font-medium' htmlFor="level">Select Level:</label>
-                    <select
-                        id="level"
-                        value={levelId}
-                        onChange={(e) => setLevelId(e.target.value)}
-                        className="form-control"
-                        required
-                    >
-                        <option value="">--Select Level--</option>
-                        {levels.map((level) => (
-                            <option key={level.id} value={level.id}>
-                                {level.title}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                        <label className='font-medium' htmlFor="level">Select Level:</label>
+                        <select
+                            id="level"
+                            value={levelId}
+                            onChange={(e) => setLevelId(e.target.value)}
+                            className="form-control"
+                            required
+                        >
+                            <option value="">--Select Level--</option>
+                            {levels.map((level) => (
+                                <option key={level.id} value={level.id}>
+                                    {level.title}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
 
 

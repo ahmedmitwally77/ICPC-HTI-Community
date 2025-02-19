@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AnimatedText from "../AnimatedText";
 import line2 from "../../Images/line 2.jpeg";
 import content from '../../Images/sessionContent.png'
@@ -7,13 +7,36 @@ import { useParams } from "react-router-dom";
 import Sheet from "../Codeforces/sheet/Sheet";
 import MainHeading from "../MainHeading/MainHeading";
 import { RxDotFilled } from "react-icons/rx";
+import { AuthContext } from "../../Context/AuthContext";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const Session = () => {
 
-  const { sessionId } = useParams(); // استخرج معرف السيشن من URL
   const [sessionData, setSessionData] = useState(null); // حالة لتخزين بيانات السيشن
-  const [loading, setLoading] = useState(false); // حالة للتحميل
+  
+  const { id } = useParams();
+  const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
 
+  function getSession() {
+    return axios.get(`https://icpc-hti.vercel.app/api/camp/leader/${id}`, {
+      headers: { token: userToken },
+    });
+  }
+
+  const { data, isLoading, isError, refetch } = useQuery("getSession", getSession, {
+    enabled: false, // لا يتم جلب البيانات تلقائيًا
+    refetchOnWindowFocus: false, // لا يعيد الجلب عند التنقل بين التبويبات
+  });
+  
+  // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
+  useEffect(() => {
+    function fetchWaveData() {
+      refetch(); // استدعاء الطلب يدويًا فقط
+    }
+  
+    fetchWaveData()
+  }, [])
 
   // useEffect(() => {
   //   console.log("Session ID:", sessionId); // تحقق من قيمة sessionId
@@ -36,28 +59,21 @@ const Session = () => {
   // console.log(sessionData.sheetLink);
   
 
-  if (loading) {
-    return (
-      <div id="loading">
-        <div className="sk-cube-grid">
-          <div className="sk-cube sk-cube1"></div>
-          <div className="sk-cube sk-cube2"></div>
-          <div className="sk-cube sk-cube3"></div>
-          <div className="sk-cube sk-cube4"></div>
-          <div className="sk-cube sk-cube5"></div>
-          <div className="sk-cube sk-cube6"></div>
-          <div className="sk-cube sk-cube7"></div>
-          <div className="sk-cube sk-cube8"></div>
-          <div className="sk-cube sk-cube9"></div>
-        </div>
+  if (isLoading) return <>
+  <div className="flex align-middle py-32 justify-center">
+    <div class="animate-pulse flex flex-col items-center gap-4 w-100">
+      <div>
+        <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
+        <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
       </div>
-    );
-  }
-
-
-  if (!sessionData) {
-    return <p>No session found.</p>;
-  }
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
+    </div>
+  </div>
+  </>;
+if (isError) return <p className="py-32">حدث خطأ أثناء تحميل البيانات.</p>;
 
   return <>
     <TransitionEffect />

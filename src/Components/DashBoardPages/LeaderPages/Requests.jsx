@@ -1,157 +1,10 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthContext";
+import { useQuery } from "react-query";
 
 const Requests = () => {
-  const standingData = [
-    {
-      name: "ahmed essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "alaa essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "essa essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "zezo essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "zozo essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "waal essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-    {
-      name: "ziad essa",
-      level: "Level 1",
-      wave: "Wave 1",
-      email: "helmyzez@gmail.com",
-      phone: "01066958945",
-    },
-  ];
-
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState([]);
@@ -162,14 +15,193 @@ const Requests = () => {
   const rowsPerPage = 15;
 
   const navigate = useNavigate();
+  const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
 
-  const filteredData = standingData.filter((data) =>
-    data.name.toLowerCase().includes(searchTerm.toLowerCase())
+  function getRequestData() {
+    return axios.get(
+      `https://icpc-hti.vercel.app/api/request?size=${rowsPerPage}&page=${currentPage}`,
+      {
+        headers: { token: userToken },
+      }
+    );
+  }
+
+  const { data, isLoading, isError, refetch } = useQuery(
+    ["getRequestData", currentPage],
+    getRequestData,
+    {
+      keepPreviousData: true, // للحفاظ على البيانات القديمة أثناء تحميل الجديدة
+      refetchOnWindowFocus: false,
+    }
   );
+
+  console.log(data?.data?.data);
+
+  // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
+  useEffect(() => {
+    refetch();
+  }, [currentPage]);
+
+  // const standingData = [
+  //   {
+  //     name: "ahmed essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "alaa essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "essa essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "zezo essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "zozo essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "waal essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  //   {
+  //     name: "ziad essa",
+  //     level: "Level 1",
+  //     wave: "Wave 1",
+  //     email: "helmyzez@gmail.com",
+  //     phone: "01066958945",
+  //   },
+  // ];
+
+  const filteredData = data?.data?.data
+  ? data.data.data.filter((data) =>
+      data.userId?.firstName?.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  : [];
+
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
+  const currentRows = filteredData?.slice(indexOfFirstRow, indexOfLastRow);
 
   // 🔹 تحديد أو إلغاء تحديد صف معين
   const handleRowSelect = (index) => {
@@ -193,29 +225,74 @@ const Requests = () => {
     setSelectAll(!selectAll);
   };
 
-  const handleDeleteClick = (index) => {
-    setRowToDelete(index);
-    setShowDeletePopup(true);
-  };
-
-  const handleConfirmDelete = () => {
-    if (rowToDelete !== null) {
-      standingData.splice(rowToDelete, 1);
-      setShowDeletePopup(false);
-      setRowToDelete(null);
+  const HandleRequestAction = async (ids, status) => {
+    try {
+      await axios.patch(
+        `https://icpc-hti.vercel.app/api/request`,
+        {
+          requestIds: ids,
+          requestStat: status,
+        },
+        {
+          headers: { token: userToken },
+        }
+      );
+      refetch(); // تحديث البيانات بعد العملية
+    } catch (err) {
+      return console.error("Request failed", err);
     }
   };
 
-  // update it in api updates
-  const handleCancelDelete = () => {
-    setShowDeletePopup(false);
-    setRowToDelete(null);
+  const handleDeleteClick = (id) => {
+    // setRowToDelete(index);
+    // setShowDeletePopup(true);
+    HandleRequestAction([id], "rejected");
   };
 
   // update it in api updates
-  const handleApproveClick = (session) => {
-    // navigate(`/updatesession/${session}`);
+  const HandleApproveClick = (id) => {
+    HandleRequestAction([id], "accepted");
   };
+
+  const handleBulkApprove = () => {
+    console.log(selectedRows);
+    
+    // const selectedIds = selectedRows
+    //   .map((index) => currentRows[index]?._id)
+    //   .filter((id) => id); // استبعاد أي `undefined`
+    if (selectedRows.length > 0) {
+      HandleRequestAction(selectedRows, "accepted");
+    }
+  };
+  
+  const handleBulkDeny = () => {
+    // const selectedIds = selectedRows
+    //   .map((index) => currentRows[index]?._id)
+    //   .filter((id) => id);
+    if (selectedRows.length > 0) {
+      HandleRequestAction(selectedRows, "rejected");
+    }
+  };
+  
+
+  if (isLoading)
+    return (
+      <>
+        <div className="flex align-middle py-32 justify-center">
+          <div class="animate-pulse flex flex-col items-center gap-4 w-100">
+            <div>
+              <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
+              <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
+            </div>
+            <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+            <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+            <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+            <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
+          </div>
+        </div>
+      </>
+    );
+  if (isError) return <p className="py-32">حدث خطأ أثناء تحميل البيانات.</p>;
 
   return (
     <div className="Sheets_Contest">
@@ -271,76 +348,90 @@ const Requests = () => {
         </div>
         <hr />
         <div className="overflow-x-auto">
-            <table className="w-full border-separate border-spacing-y-2 border-yellow-300 my-3 text-sm text-left rtl:text-right text-gray-500 ">
+          <table className="w-full border-separate border-spacing-y-2 border-yellow-300 my-3 text-sm text-left rtl:text-right text-gray-500 ">
             <thead className="text-lg text-[#3A3A3A] uppercase dark:text-gray-400">
-                <tr>
+              <tr>
                 <th scope="col" className="px-6 py-3">
-                    <input
+                  <input
                     className="checkbox-error checkbox checkbox-sm"
                     type="checkbox"
                     checked={selectAll}
                     onChange={handleSelectAll}
-                    />
+                  />
                 </th>
-                <th scope="col" className="px-6 py-3 min-w-[180px] whitespace-nowrap">
-                    Name
+                <th
+                  scope="col"
+                  className="px-6 py-3 min-w-[180px] whitespace-nowrap"
+                >
+                  Name
                 </th>
-                <th scope="col" className="px-6 py-3 min-w-[180px] whitespace-nowrap">
-                    Phone Number
+                <th
+                  scope="col"
+                  className="px-6 py-3 min-w-[180px] whitespace-nowrap"
+                >
+                  Phone Number
                 </th>
-                <th scope="col" className="px-6 py-3 min-w-[180px] whitespace-nowrap">
-                    Email
+                <th
+                  scope="col"
+                  className="px-6 py-3 min-w-[180px] whitespace-nowrap"
+                >
+                  Email
                 </th>
                 <th scope="col" className="px-6 py-3 ">
-                    Level
+                  Level
                 </th>
                 <th scope="col" className="px-6 py-3 ">
-                    Wave
+                  Wave
                 </th>
-                <th scope="col" className="px-6 py-3 min-w-[280px] whitespace-nowrap text-center">
-                    Actions
+                <th
+                  scope="col"
+                  className="px-6 py-3 min-w-[280px] whitespace-nowrap text-center"
+                >
+                  Actions
                 </th>
-                </tr>
+              </tr>
             </thead>
             <tbody>
-                {currentRows.map((data, index) => (
+              {currentRows.map((data, index) => (
                 <tr
-                    key={index}
-                    className={`font-medium bg-light/75 !border-yellow-300 fs-6 !h-10 text-dark/75 rounded-lg ${
-                    selectedRows.includes(index) ? "bg-gray-200" : ""
-                    }`}
+                  key={data._id}
+                  className={`font-medium bg-light/75 !border-yellow-300 fs-6 !h-10 text-dark/75 rounded-lg ${
+                    selectedRows.includes(data._id) ? "bg-gray-200" : ""
+                  }`}
                 >
-                    <td className="px-6">
+                  <td className="px-6">
                     <input
-                        className="checkbox checkbox-sm checkbox-success"
-                        type="checkbox"
-                        checked={selectedRows.includes(index)}
-                        onChange={() => handleRowSelect(index)}
+                      className="checkbox checkbox-sm checkbox-success"
+                      type="checkbox"
+                      checked={selectedRows.includes(data._id)}
+                      onChange={() => handleRowSelect(data._id)}
                     />
-                    </td>
-                    <td className="px-6">{data.name}</td>
-                    <td className="px-6">{data.phone}</td>
-                    <td className="px-6">{data.email}</td>
-                    <td className="px-6">{data.level}</td>
-                    <td className="px-6">{data.wave}</td>
-                    <td className="px-6 text-center">
+                  </td>
+                  <td className="px-6">
+                    {data?.userId?.firstName} {data?.userId?.lastName}
+                  </td>
+                  <td className="px-6">{data.phone}</td>
+                  <td className="px-6">{data.email}</td>
+                  <td className="px-6">{data.levelId.title}</td>
+                  <td className="px-6">{data.campId.title}</td>
+                  <td className="px-6 text-center">
                     <button
-                        className="px-4 py-2 bg-red-500 text-white rounded mx-2"
-                        onClick={() => handleDeleteClick(index)}
+                      className="px-4 py-2 bg-red-500 text-white rounded mx-2"
+                      onClick={() => handleDeleteClick(data._id)}
                     >
-                        Deny
+                      Deny
                     </button>
                     <button
-                        className="px-4 py-2 bg-green-500 text-white rounded mx-2"
-                        onClick={() => handleApproveClick(data.session)}
+                      className="px-4 py-2 bg-green-500 text-white rounded mx-2"
+                      onClick={() => HandleApproveClick(data._id)}
                     >
-                        Approve
+                      Approve
                     </button>
-                    </td>
+                  </td>
                 </tr>
-                ))}
+              ))}
             </tbody>
-            </table>
+          </table>
         </div>
         {/* 🔹 أزرار التنقل بين الصفحات */}
         {filteredData.length > rowsPerPage && (
@@ -362,7 +453,23 @@ const Requests = () => {
           </div>
         )}
 
-        {showDeletePopup && (
+         {/* approve or deny all */}
+        <div className="flex justify-center mt-4">
+          <button
+            className="px-4 py-2 bg-red-500 text-white rounded mx-2"
+            onClick={() => handleBulkDeny()}
+          >
+            Deny All Selected
+          </button>
+          <button
+            className="px-4 py-2 bg-green-500 text-white rounded mx-2"
+            onClick={() => handleBulkApprove()}
+          >
+            Approve All Selected
+          </button>
+        </div>
+
+        {/* {showDeletePopup && (
           <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg">
               <p>هل متأكد من حذف الخبر</p>
@@ -382,7 +489,7 @@ const Requests = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

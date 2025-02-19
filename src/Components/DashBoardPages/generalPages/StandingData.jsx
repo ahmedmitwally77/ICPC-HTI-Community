@@ -159,7 +159,7 @@ const StandingData = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 20;
-
+  
   // 🔹 تصفية البيانات بناءً على البحث
   const filteredData = standingData.filter((data) =>
     data.name.toLowerCase().includes(searchTerm.toLowerCase())

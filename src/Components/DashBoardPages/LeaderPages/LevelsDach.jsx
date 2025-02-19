@@ -17,6 +17,8 @@ const LevelsDach = () => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [rowToDelete, setRowToDelete] = useState(null);
   const rowsPerPage = 20;
+  const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
+
 
   const navigate = useNavigate();
 
@@ -30,7 +32,6 @@ const LevelsDach = () => {
     });
   }
   
-  const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
   // console.log(userToken);
 
   const { data, isLoading, isFetching, isError } = useQuery(

@@ -1,37 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 
-// const adminUID = process.env.REACT_APP_Admin_Id; // UID الخاص بالمسؤول
 
 
-const ProtectedAdmin = ({ children }) => {
-    // const [isAdmin, setIsAdmin] = useState(null); // حالة لتخزين حالة تسجيل الدخول كمسؤول
+const ProtectedAdmin = ({ children, allowedRoles }) => {
 
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStateChanged(auth, (user) => {
-    //         if (user) {
-    //             if (user.uid === adminUID) {
-    //                 setIsAdmin(true); // المستخدم هو المسؤول
-    //             } else {
-    //                 setIsAdmin(false); // المستخدم ليس مسؤولاً
-    //             }
-    //         } else {
-    //             setIsAdmin(false); // لا يوجد مستخدم مسجل
-    //         }
-    //     });
+    let {userData} = useContext(AuthContext)
 
-    //     return () => unsubscribe(); // قم بإلغاء الاشتراك عند إلغاء تركيب المكون
-    // }, []);
+    const user = userData; // جلب المستخدم الحالي
+    const userRole = userData?.userRole; // يجب أن يكون لديك خاصية role في بيانات المستخدم
 
-    // if (isAdmin === null) {
-    //     return <div>Loading...</div>; // يمكنك عرض شاشة تحميل أثناء انتظار حالة المصادقة
-    // }
+  if (!user) {
+    return <Navigate to="/login" />; // توجيه لصفحة تسجيل الدخول إذا لم يكن مسجلاً
+  }
 
-    // if (isAdmin) {
-    //     return children; // إذا كان المستخدم مسؤولاً، ارجع المحتوى
-    // } else {
-    //     return <Navigate to="/login" />; // إذا لم يكن مسؤولاً، توجيه إلى صفحة تسجيل الدخول
-    // }
+  if (!allowedRoles.includes(userRole)) {
+    return <Navigate to="/" />; // توجيه لصفحة غير مسموح
+  }
+
+  return children; // عرض المحتوى إذا كان الدور مسموحاً
 }
 
 export default ProtectedAdmin

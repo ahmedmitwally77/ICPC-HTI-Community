@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import MainHeading from "../../MainHeading/MainHeading";
+import { AuthContext } from "../../../Context/AuthContext";
 
 const StandingData = () => {
   const standingData = [
@@ -156,6 +157,7 @@ const StandingData = () => {
     },
   ];
 
+  let {userData} = useContext(AuthContext)
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 20;
@@ -186,7 +188,8 @@ const StandingData = () => {
           </div>
 
           {/* if Leader display it  */}
-          <div className="drobDowns">
+          {userData.userRole === 'user' || userData.userRole === 'trainee' ? <></> : <>
+            <div className="drobDowns">
             <details className="dropdown  bg-blue-300">
               <summary className="bg-[#3C5B8E] p-2 rounded-md text-light btn-primary font-medium ">
                 Waves{" "}
@@ -222,24 +225,11 @@ const StandingData = () => {
               </ul>
             </details>
           </div>
+          </>}
+          
+
         </div>
 
-
-        {/* note: edit it in apis update ==> make it display in wave  */}
-        {/* =======
-        <div className="headerStanding flex justify-between my-3 pl-4 sm:pl-6">
-            <MainHeading title1="Standing" />
-          <div className="pb-4 bg-white dark:bg-gray-900">
-            <input
-              type="text"
-              id="table-search"
-              className="block pt-2 ps-3 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search by name"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-        </div>
->>>>>>> eaa7d6851a3566335778542e85a5cfbff3ae1c3d */}
         <hr />
 
         <table className="w-full border-separate border-spacing-y-2 my-3 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

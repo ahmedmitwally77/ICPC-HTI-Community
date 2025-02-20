@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   let navigate = useNavigate()
   let {setUserToken} = useContext(AuthContext)
-  let {setUserData} = useContext(AuthContext)
+  let {setUserData , userData} = useContext(AuthContext)
   
    function Logout(){
     
@@ -89,7 +89,8 @@ const Sidebar = () => {
               <hr className="my-6 border-gray-900 dark:border-gray-600" />
 
               {/* mentor access  */}
-              {/* <h3 className="text-center">Mentor</h3>
+              {userData.userRole === 'mentor' ? <>
+                <h3 className="text-center">Mentor</h3>
                 <Link
                   to={'/dashboard/sheet_contest'}
                   className="flex items-center px-4 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
@@ -99,11 +100,13 @@ const Sidebar = () => {
                   </div>
   
                   <span className="mx-4 font-medium">Trainees</span>
-                </Link> */}
+                </Link>
+              </> : <></>}
               {/* end mentor access  */}
 
               {/* HR access  */}
-              {/* <h3 className="text-center">HR</h3>
+              {userData.userRole === 'hr' ? <>
+                <h3 className="text-center">HR</h3>
                 <Link
                   to={'/dashboard/trainees'}
                   className="flex items-center px-4 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
@@ -143,11 +146,13 @@ const Sidebar = () => {
                   </div>
   
                   <span className="mx-4 font-medium">Warning</span>
-                </Link> */}
+                </Link>
+              </> : <></>}
               {/* end HR access  */}
 
               {/* instructor access  */}
-              {/* <h3 className="text-center">Instructor</h3>
+              {userData.userRole === 'instructor' ? <>
+                <h3 className="text-center">Instructor</h3>
                 <Link
                   to={'/dashboard/trainees'}
                   className="flex items-center px-4 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
@@ -177,11 +182,13 @@ const Sidebar = () => {
                   </div>
   
                   <span className="mx-2 font-medium">Sessions</span>
-                </Link> */}
+                </Link>
+              </> : <></>}
               {/* end instructor access  */}
 
               {/* Leader access  */}
-              <h3 className="text-center">Leader</h3>
+              {userData.userRole === 'leader' ? <>
+                <h3 className="text-center">Leader</h3>
               <Link
                 to={"/dashboard/trainees"}
                 className="flex items-center px-4 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
@@ -301,7 +308,7 @@ const Sidebar = () => {
 
                 <span className="mx-2 font-medium">Archive</span>
               </Link>
-
+              </> : <></>}
               {/* end Leader access  */}
 
               <Link

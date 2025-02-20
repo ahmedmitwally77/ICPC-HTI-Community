@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react'
+import { useQuery } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthContext';
 
 const WaveDash = () => {
   const standingData = [
@@ -16,6 +19,41 @@ const WaveDash = () => {
     const rowsPerPage = 20;
   
     const navigate = useNavigate();
+
+    const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
+
+  function getAllLevels() {
+    return axios.get("https://icpc-hti.vercel.app/api/level", {
+      headers: { token: userToken },
+    });
+  }
+
+ const { data, isLoading, isError, refetch } = useQuery("getAllLevels", getAllLevels, {
+     enabled: false, // لا يتم جلب البيانات تلقائيًا
+     refetchOnWindowFocus: false, // لا يعيد الجلب عند التنقل بين التبويبات
+   });
+   
+   // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
+    useEffect(() => {
+       refetch();
+     }, [currentPage]);
+
+  if (isLoading) return <>
+   <div className="flex align-middle pt-16 justify-center">
+    <div class="animate-pulse flex flex-col items-center gap-4 w-100">
+      <div>
+        <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
+        <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
+      </div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
+    </div>
+  </div>
+  </>;
+  // if (isError) return <p>حدث خطأ أثناء تحميل البيانات.</p>;
+  console.log(data);
   
     const filteredData = standingData.filter((data) =>
       data.name.toLowerCase().includes(searchTerm.toLowerCase())

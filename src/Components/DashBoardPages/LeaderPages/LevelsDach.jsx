@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from 'react-query'
 import { AuthContext } from "../../../Context/AuthContext";
@@ -14,33 +14,43 @@ const LevelsDach = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState([]);
-  const [showDeletePopup, setShowDeletePopup] = useState(false);
-  const [rowToDelete, setRowToDelete] = useState(null);
   const rowsPerPage = 20;
-  const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
-
-
   const navigate = useNavigate();
 
 
-  function getAllLevels(userToken) {
-    console.log("Sending Token:", userToken); // تحقق مما يتم إرساله
+  const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
+
+  function getAllLevels() {
     return axios.get("https://icpc-hti.vercel.app/api/level", {
-      headers: {
-        token: userToken,
-      },
+      headers: { token: userToken },
     });
   }
-  
-  // console.log(userToken);
 
-  const { data, isLoading, isFetching, isError } = useQuery(
-    ["AllLevels", userToken], // جعل userToken جزءًا من المفتاح
-    () => getAllLevels(userToken), // تمرير userToken هنا
-    {
-      enabled: !!userToken, // لن يتم جلب البيانات إلا إذا كان هناك توكن
-    }
-  );
+ const { data, isLoading, isError, refetch } = useQuery("getAllLevels", getAllLevels, {
+     enabled: false, // لا يتم جلب البيانات تلقائيًا
+     refetchOnWindowFocus: false, // لا يعيد الجلب عند التنقل بين التبويبات
+   });
+   
+   // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
+    useEffect(() => {
+       refetch();
+     }, [currentPage]);
+
+  if (isLoading) return <>
+   <div className="flex align-middle pt-16 justify-center">
+    <div class="animate-pulse flex flex-col items-center gap-4 w-100">
+      <div>
+        <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
+        <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
+      </div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
+    </div>
+  </div>
+  </>;
+  // if (isError) return <p>حدث خطأ أثناء تحميل البيانات.</p>;
   console.log(data);
   
 
@@ -52,29 +62,28 @@ const LevelsDach = () => {
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
 
-  const handleDeleteClick = (index) => {
-    setRowToDelete(index);
-    setShowDeletePopup(true);
-  };
+  const handleDeleteClick = (id) => {
+    try{
+      return axios.delete(`https://icpc-hti.vercel.app/api/level/${id}`, {
+        headers: { token: userToken },
+      });
 
-  const handleConfirmDelete = () => {
-    if (rowToDelete !== null) {
-      standingData.splice(rowToDelete, 1);
-      setShowDeletePopup(false);
-      setRowToDelete(null);
+    } catch (error) {
+      console.error("خطأ أثناء إرسال البيانات:", error);
+      alert("فى مشكله حصلت");
     }
+
   };
 
   // update it in api updates
-  const handleCancelDelete = () => {
-    setShowDeletePopup(false);
-    setRowToDelete(null);
-  };
+  // const handleCancelDelete = () => {
+  //   setShowDeletePopup(false);
+  //   setRowToDelete(null);
+  // };
 
   // update it in api updates
   const handleUpdateClick = (session) => {
-    // navigate(`/updatesession/${session}`);
-    navigate(`addlevel`);
+    navigate("/addlevel", { state: { levelId: session._id, title: session.title, description: session.description } });
   };
 
   return (
@@ -134,13 +143,13 @@ const LevelsDach = () => {
                 <td className="px-6 text-center">
                   <button
                     className="px-4 py-2 bg-red-500 text-white rounded mx-2"
-                    onClick={() => handleDeleteClick(index)}
+                    onClick={() => handleDeleteClick(data.id)}
                   >
                     Delete
                   </button>
                   <button
                     className="px-4 py-2 bg-blue-500 text-white rounded mx-2"
-                    onClick={() => handleUpdateClick(data.session)}
+                    onClick={() => handleUpdateClick(data)}
                   >
                     Update
                   </button>
@@ -169,7 +178,7 @@ const LevelsDach = () => {
           </div>
         )}
 
-        {showDeletePopup && (
+        {/* {showDeletePopup && (
           <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg">
               <p>هل متأكد من حذف الليفل</p>
@@ -189,7 +198,7 @@ const LevelsDach = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

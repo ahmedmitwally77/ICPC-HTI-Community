@@ -117,7 +117,7 @@ function sessionBox(session){
       </div>
     </div>
     </>;
-  if (isError) return <p className="py-32">حدث خطأ أثناء تحميل البيانات.</p>;
+  if (isError) return <h2 className=" text-center text-danger py-32">"No Available session at the time"</h2>;
 
 
 return (

@@ -22,12 +22,12 @@ const BoxyTop = (title,des,linkTitle,link) => {
 const BoxyBottom = (title,des,linkTitle,link) => {
     return (
         <div className="box relative w-full flex justify-end md:justify-start py-12">
-            <div className="content relative z-20 flex flex-col w-1/2 md:w-full py-8">
+            <div className="content relative z-20 flex flex-col w-1/2 lg:w-3/4 md:w-full py-8 ">
                 <MainHeading title2={title} />
                 <p className="my-4 ">{des}</p>
                 <a href={link} className="grade2 btn w-fit">{linkTitle}</a>
             </div>
-            <div className="layer shadowInRoadmap bg-white z-[0]  absolute left-[200px] lg:left-[100px] lg:top-[-100px] xl:left-[150px] sm:left-[-120px]  md:left-[-100px] top-[-150px] w-[900px] h-[850px] rounded-[90%] skew-x-[-10deg]">
+            <div className="layer shadowInRoadmap bg-white z-[0]  absolute left-[200px] lg:left-[20px] lg:top-[-100px] xl:left-[150px] sm:left-[-130px]  md:left-[-100px] top-[-150px] w-[900px] h-[850px] rounded-[90%] skew-x-[-10deg]">
             </div>
         </div>
     );
@@ -49,7 +49,7 @@ export default function WhatIsIcpc() {
                         </div>
                 </div>
 
-                <div className="whatIcpc flex flex-wrap  mt-[300px] lg:mt-[100px] md:mt-[100px]">
+                <div className="whatIcpc flex flex-wrap  mt-[300px] xl:mt-[150px] lg:mt-[100px] md:mt-[100px]">
                     <div className="image w-1/3">
                         <img src={roaticpc} className="w-100 sm:hidden" alt="" />
                     </div>

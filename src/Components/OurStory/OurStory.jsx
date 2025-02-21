@@ -16,7 +16,7 @@ const OurStory = () => {
             <MainHeading title1='Our' title2='Story'/>
             <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:1 , y:0}} transition={{duration:1.5 }} className="row">
                 <div  className="col-md-7">
-                    <p className='text-dark/60 leading-loose mt-8 pr-8 relative after:w-2 after:h-full after:bg-[#FEBA12] after:absolute after:top-1/2 after:-translate-y-1/2 after:-left-6'>The ICPC community at HTI University is 
+                    <p className='text-dark/60 leading-loose mt-8 pr-8 relative after:w-2 after:h-full after:bg-[#FEBA12] after:absolute after:top-0  after:-left-6'>The ICPC community at HTI University is 
                     a dynamic hub of talented individuals passionate about computer science. Members 
                     regularly engage in practice sessions to enhance their problem-solving skills and 
                     collaborate on challenging coding tasks. They actively participate in local and regional
@@ -44,7 +44,7 @@ const OurStory = () => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen>
-                  </iframe>
+                    </iframe>
             </motion.div> */}
         </div>
         <div className='line d-flex justify-center align-items-center h-25 absolute right-10 bottom-16 d-none d-md-block '>

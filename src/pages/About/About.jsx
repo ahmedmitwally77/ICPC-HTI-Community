@@ -16,7 +16,9 @@ const About = () => {
         <title>About ICPC HTI | Empowering Competitive Programming at HTI</title>
         <meta name='description' content='Learn about ICPC HTI, a community that fosters programming skills and competitive coding among students, preparing them for national and international competitions.' />
     </Helmet>
+
     <TransitionEffect/>
+    
     <div className='about  relative overflow-x-hidden'>
       <div className="hero bg-dark relative  -top-4">
             <AnimatedText text="About Us" ClassName='mt-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8 text-light absolute xs:top-[10%] sm:top-[10%] top-[15%] z-20'/>

@@ -26,7 +26,7 @@ export default function NewOurFounders() {
 
         <MainHeading title1='Our' title2='Founders'/> 
 
-        <div className="our-founders-data mt-8 grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 sm:gap-14">
+        <div className="our-founders-data mt-8 grid grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 sm:gap-14">
 
           <OutFoundersBox img={ziad} name='Ziad Essa' title='Project Team lead | FrontEnd Developer' link='https://www.linkedin.com/in/ziad-essa/'  />
           <OutFoundersBox img={mitwaly} name='Ahmed Mitwally' title='Front-End Developer' link='https://www.linkedin.com/in/ahmed-mitwally?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'  />

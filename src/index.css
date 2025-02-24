@@ -406,3 +406,13 @@ a {
   background-size: cover;
   background-position: center;
 }
+
+.bg-icpc{
+  background: linear-gradient(to right, #004D89E5 90%, #004D89E5 10%) ,url("./Images/IMG_3229.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.shadowInRoadmap{
+  box-shadow: 4px 4px 48px 0px #FFE39DCF;
+
+}

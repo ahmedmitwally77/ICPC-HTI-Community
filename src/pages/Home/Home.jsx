@@ -46,7 +46,7 @@ const Home = () => {
       <NewOurFounders/>
       <Appreciation/>
       <WhatIsIcpc/>
-      <RoudeMap/>
+      {/* <RoudeMap/> */}
       <TalentedMember/>
       {/* <LatestEvent/> */}
       <Testimonials/>

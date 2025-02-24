@@ -1,74 +1,65 @@
-import React, { useEffect, useRef } from 'react'
-import LiIcon from '../LiIcon'
-import { motion, useScroll } from 'framer-motion'
-import icpc from '../../Images/5d8fe48ab721ff05beea40684647002a3b64177a.svg'
-import shape1 from '../../Images/circleleft.svg'
-import style from './WhatIsIcpc.module.css'
+import React from "react";
+import MainHeading from "../MainHeading/MainHeading";
+import whaticpc from "../../Images/IcpcFoundation-roadmap.png"
+import roaticpc from "../../Images/road-roadmap.png"
 
-const Details = ({position , company , companyLink , time , address , work}) =>{
 
-    const ref = useRef(null)
-
-    return <li ref={ref} className='my-8 first:mt-0 last:mb-0 w-[80%] mx-auto flex flex-col items-center justify-between md:w-[80%]'>
-        <LiIcon reference={ref} />
-
-        <motion.div
-        initial={{y:50}}
-        whileInView={{y:0}}
-        transition={{duration:0.5 , type:"spring"}}
-        >
-            <h3 className='capitalize font-bold text-2xl sm:text-xl xs:text-lg'>{position}&nbsp; <a href={companyLink} target='_blank' className='text-primary dark:text-primaryDark capitalize' > {company}</a></h3>
-            {/* <span className='capitalize font-medium text-dark/75 dark:text-light/75 xs:text-sm'>
-                {time}  {address}
-            </span > */}
-            <p className='font-medium text-light/75 w-full md:text-sm'>
-                {work}
-            </p>
-        </motion.div>
-    </li>
-}
-
-const WhatIsIcpc = () => {
-
-    const ref = useRef(null);
-    const {scrollYProgress} = useScroll(
-        {
-            target: ref ,
-            offset: ["start end" , "center start"]
-        }
-    )
-
-  return (
-    <div className={`${style.whatisicpc} relative  pb-16 !bg-[#4d72c2]`}>
-        
-        <img src={shape1} alt="" />
-        <div className="row justify-around align-items-center">
-            <div className="col-md-7">
-                <div ref={ref} className='w-[75%] mx-auto relative lg:w-[90%] md:w-full'>
-                <motion.div 
-                style={{scaleY: scrollYProgress}}
-                className='bg-light  absolute left-9 top-0 w-[4px] h-full  origin-top
-                md:w-[2px] md:left-[30px] xs:left-[20px]
-                '/>
-                <ul className='w-full flex flex-col items-start justify-between ml-4'>
-                    <Details
-                    position="International Collegiate Programming Contest" 
-                    work="The International Collegiate Programming Contest (ICPC) is an annual, 
-                    team-based, multi-tiered programming competition among universities worldwide. 
-                    Teams of three students, representing their university, work collaboratively to solve 
-                    a set of algorithmic problems within a limited time. The contest aims to foster creativity,
-                     teamwork, and problem-solving skills. It is considered one of the most prestigious programming 
-                     competitions for university students globally."
-                    />
-                </ul>
-                </div>
+const BoxyTop = (title,des,linkTitle,link) => {
+    return (
+        <div className="box relative w-3/4 pb-12">
+            <div className="content relative z-20">
+                <MainHeading title2={title} />
+                <p className="my-4 w-3/4 md:w-full">{des}</p>
+                <a href={link} className="grade2 btn">{linkTitle}</a>
             </div>
-            <div className="col-md-5 d-flex align-items-center justify-center">
-                <img className='' src={icpc} alt="icpc" />
+            <div className="layer shadowInRoadmap bg-white z-[0]  absolute top-[-300px] sm:!bg-red-500 left-[-200px] w-[900px] h-[850px] lg:h-[800px] lg:w-[620px]  md:h-[800px] xl:w-[700px] xl:h-[700px] md:w-[550px]  rounded-[90%] skew-x-[-10deg]">
             </div>
         </div>
-    </div>
-  )
+    );
 }
 
-export default WhatIsIcpc
+
+const BoxyBottom = (title,des,linkTitle,link) => {
+    return (
+        <div className="box relative w-full flex justify-end md:justify-start py-12">
+            <div className="content relative z-20 flex flex-col w-1/2 lg:w-3/4 md:w-full py-8 ">
+                <MainHeading title2={title} />
+                <p className="my-4 ">{des}</p>
+                <a href={link} className="grade2 btn w-fit">{linkTitle}</a>
+            </div>
+            <div className="layer shadowInRoadmap bg-white z-[0]  absolute left-[200px] lg:left-[20px] lg:top-[-100px] xl:left-[150px] sm:left-[-130px]  md:left-[-100px] top-[-150px] w-[900px] h-[850px] rounded-[90%] skew-x-[-10deg]">
+            </div>
+        </div>
+    );
+};
+
+
+export default function WhatIsIcpc() {
+    return (
+        <div className="what-is-icpc h-[170vh] xl:h-[180vh] w-100 bg-icpc overflow-hidden py-16">
+            <div className="container ">
+                <div className="whatIcpc flex flex-wrap">
+                        <div className="box w-2/3 sm:w-full">
+                        {BoxyTop("What is ICPC ?",
+                            "The International Collegiate Programming Contest (ICPC) is an annual, team-based, multi-tiered programming competition among universities worldwide. Teams of three students, representing their university, work collaboratively to solve a set of algorithmic problems within a limited time.", 
+                            "Learn More", "#")}
+                        </div>
+                        <div className="image w-1/3">
+                            <img src={whaticpc} className="w-100 sm:hidden" alt="" />
+                        </div>
+                </div>
+
+                <div className="whatIcpc flex flex-wrap  mt-[300px] xl:mt-[150px] lg:mt-[100px] md:mt-[100px]">
+                    <div className="image w-1/3">
+                        <img src={roaticpc} className="w-100 sm:hidden" alt="" />
+                    </div>
+                    <div className="box w-2/3">
+                        {BoxyBottom("Our Roadmap", "Our Roadmap contains all the materials we use for our training, that includes slides, sheets, and even videos! The Roadmap targets everyone interested in PS, either you're a college student, older or even younger, no matter what your major is, as long as you're interested in learning and willing"
+                            , "Learn More",
+                            "#")}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

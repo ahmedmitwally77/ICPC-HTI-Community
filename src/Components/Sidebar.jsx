@@ -288,6 +288,27 @@ const Sidebar = () => {
               </div>
 
               <Link
+                  to={'/dashboard/attendance'}
+                  className="flex items-center px-3 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5 ms-2" viewBox="0 0 24 24">
+                    <img src={attendance} alt="attendance icon" />
+                  </div>
+  
+                  <span className="mx-2 font-medium">Attendance</span>
+                </Link>
+                <Link
+                  to={'/dashboard/warning'}
+                  className="flex items-center px-4 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                >
+                  <div className="w-5 h-5" viewBox="0 0 24 24">
+                    <img src={warning} alt="warning icon" />
+                  </div>
+  
+                  <span className="mx-4 font-medium">Warning</span>
+                </Link>
+
+              <Link
                 to={"/dashboard/request"}
                 className="flex items-center px-2 py-2 mt-3 no-underline text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
               >

@@ -5,16 +5,12 @@ import { useQuery } from 'react-query'
 import { AuthContext } from "../../../Context/AuthContext";
 
 const LevelsDach = () => {
-  const standingData = [
-    { name: "Level 1", published: "3/2/2025", waves: "Waves 1" },
-    { name: "Level 2", published: "3/2/2025", waves: "Waves 2 " },
-    { name: "Level 3", published: "3/2/2025", waves: "Waves 3" },
-  ];
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState([]);
-  const rowsPerPage = 20;
+  // const rowsPerPage = 20;
   const navigate = useNavigate();
 
 
@@ -34,40 +30,26 @@ const LevelsDach = () => {
    // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
     useEffect(() => {
        refetch();
-     }, [currentPage]);
+     }, []);
 
-  if (isLoading) return <>
-   <div className="flex align-middle pt-16 justify-center">
-    <div class="animate-pulse flex flex-col items-center gap-4 w-100">
-      <div>
-        <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
-        <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
-      </div>
-      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
-      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
-      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
-      <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
-    </div>
-  </div>
-  </>;
-  // if (isError) return <p>حدث خطأ أثناء تحميل البيانات.</p>;
-  console.log(data);
-  
 
-  const filteredData = standingData.filter((data) =>
-    data.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
+  // const filteredData = data?.data.data.filter((data) =>
+  //   data.title.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+
+  // const indexOfLastRow = currentPage * rowsPerPage;
+  // const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  // const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
 
   const handleDeleteClick = (id) => {
     try{
-      return axios.delete(`https://icpc-hti.vercel.app/api/level/${id}`, {
+       axios.delete(`https://icpc-hti.vercel.app/api/level/${id}`, {
         headers: { token: userToken },
       });
 
+      refetch()
+      alert("level deleted ^-^");
     } catch (error) {
       console.error("خطأ أثناء إرسال البيانات:", error);
       alert("فى مشكله حصلت");
@@ -83,8 +65,25 @@ const LevelsDach = () => {
 
   // update it in api updates
   const handleUpdateClick = (session) => {
-    navigate("/addlevel", { state: { levelId: session._id, title: session.title, description: session.description } });
+    navigate("addlevel", { state: { levelId: session._id, title: session.title, description: session.description } });
   };
+
+  if (isLoading) return <>
+  <div className="flex align-middle pt-16 justify-center">
+   <div class="animate-pulse flex flex-col items-center gap-4 w-100">
+     <div>
+       <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
+       <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
+     </div>
+     <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+     <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+     <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+     <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
+   </div>
+ </div>
+ </>;
+//  if (isError) return <p>حدث خطأ أثناء تحميل البيانات.</p>;
+ 
 
   return (
     <div className="AchievementDash">
@@ -112,38 +111,40 @@ const LevelsDach = () => {
         </div>
         <hr />
 
+        {isError? <><p className="py-32">حدث خطأ أثناء تحميل البيانات.</p></> : <>
+        
         <table className="w-full border-separate border-spacing-y-2 border-yellow-300 my-3 text-sm text-left rtl:text-right text-gray-500 ">
           <thead className="text-lg text-[#3A3A3A] uppercase dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3  min-w-[180px] whitespace-nowrap">
                 Levels
               </th>
-              <th scope="col" className="px-6 py-3 text-center">
-                Waves
+              <th scope="col" className="px-6 py-3  min-w-[180px] whitespace-nowrap">
+                Level ID
               </th>
-              <th scope="col" className="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3  min-w-[180px] whitespace-nowrap">
                 Published
               </th>
-              <th scope="col" className="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3 text-center min-w-[280px] whitespace-nowrap">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody>
-            {currentRows.map((data, index) => (
+            {data?.data.data.map((data, index) => (
               <tr
                 key={index}
                 className={`font-medium bg-light/75 !border-yellow-300 fs-6 !h-10 text-dark/75 rounded-lg ${
                   selectedRows.includes(index) ? "bg-gray-200" : ""
                 }`}
               >
-                <td className="px-6 text-center">{data.name}</td>
-                <td className="px-6 text-center">{data.waves}</td>
-                <td className="px-6 text-center">{data.published}</td>
+                <td className="px-6 text-center">{data.title}</td>
+                <td className="px-6 text-center">{data._id}</td>
+                <td className="px-6 text-center">{data.createdAt}</td>
                 <td className="px-6 text-center">
                   <button
                     className="px-4 py-2 bg-red-500 text-white rounded mx-2"
-                    onClick={() => handleDeleteClick(data.id)}
+                    onClick={() => handleDeleteClick(data._id)}
                   >
                     Delete
                   </button>
@@ -158,8 +159,12 @@ const LevelsDach = () => {
             ))}
           </tbody>
         </table>
+        
+        </>}
 
-        {filteredData.length > rowsPerPage && (
+
+
+        {/* {filteredData.length > rowsPerPage && (
           <div className="flex justify-center mt-4">
             <button
               className="px-4 py-2 bg-gray-500 text-white rounded mx-2 disabled:opacity-50"
@@ -176,7 +181,7 @@ const LevelsDach = () => {
               Next
             </button>
           </div>
-        )}
+        )} */}
 
         {/* {showDeletePopup && (
           <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">

@@ -92,7 +92,7 @@ const Levels = () => {
               <MainHeading title1="" title2="Levels" />
             </div>
 
-            <div className="row">
+            <div className="row ">
 
                 {userData?.userRole === 'user' || userData === null ? <>
               {userData?.userRole === 'user' ? <><h2 className='text-red-800 text-center py-5'>استنى الادمن يقبل الطلب </h2> </> : <> </> } 

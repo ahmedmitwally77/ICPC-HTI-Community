@@ -62,7 +62,7 @@ let routers = createBrowserRouter([
     {path:"training" , element:<Training/>},
     {path:"level/:id" , element:<ProtectedRoute><Level/></ProtectedRoute>},
     {path:"wave/:id" , element:<ProtectedRoute><Wave/></ProtectedRoute>},
-    {path:"session/:sessionId" , element:<ProtectedRoute><Session/></ProtectedRoute>},
+    {path:"session/:id" , element:<ProtectedRoute><Session/></ProtectedRoute>},
     {path:"resetpassword" , element:<ResetPassword/>},
     {path:"otp" , element:<OTPVer/>},
     {

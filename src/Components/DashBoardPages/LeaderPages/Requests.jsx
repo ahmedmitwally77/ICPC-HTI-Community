@@ -10,8 +10,6 @@ const Requests = () => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
 
-  const [showDeletePopup, setShowDeletePopup] = useState(false);
-  const [rowToDelete, setRowToDelete] = useState(null);
   const rowsPerPage = 15;
 
   const navigate = useNavigate();
@@ -41,156 +39,6 @@ const Requests = () => {
   useEffect(() => {
     refetch();
   }, [currentPage]);
-
-  // const standingData = [
-  //   {
-  //     name: "ahmed essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "alaa essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "essa essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "zezo essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "zozo essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "waal essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  //   {
-  //     name: "ziad essa",
-  //     level: "Level 1",
-  //     wave: "Wave 1",
-  //     email: "helmyzez@gmail.com",
-  //     phone: "01066958945",
-  //   },
-  // ];
 
   const filteredData = data?.data?.data
   ? data.data.data.filter((data) =>
@@ -292,7 +140,7 @@ const Requests = () => {
         </div>
       </>
     );
-  if (isError) return <p className="py-32">حدث خطأ أثناء تحميل البيانات.</p>;
+  // if (isError) return <p className="py-32">حدث خطأ أثناء تحميل البيانات.</p>;
 
   return (
     <div className="Sheets_Contest">
@@ -391,6 +239,7 @@ const Requests = () => {
                 </th>
               </tr>
             </thead>
+            {isError ? <><p className="py-32">حدث خطأ أثناء تحميل البيانات.</p></> : <>
             <tbody>
               {currentRows.map((data, index) => (
                 <tr
@@ -431,6 +280,8 @@ const Requests = () => {
                 </tr>
               ))}
             </tbody>
+            
+            </>}
           </table>
         </div>
         {/* 🔹 أزرار التنقل بين الصفحات */}

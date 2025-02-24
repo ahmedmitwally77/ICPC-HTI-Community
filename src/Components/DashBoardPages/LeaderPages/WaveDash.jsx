@@ -5,30 +5,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext';
 
 const WaveDash = () => {
-  const standingData = [
-      { name: "Wave 1",instructor:"Mohamed alaa" , published: "3/2/2025", sessions: "session 4" },
-      { name: "Wave 2",instructor:"Mohamed alaa" , published: "3/2/2025", sessions: "session 4 " },
-      { name: "Wave 3",instructor:"Mohamed alaa" , published: "3/2/2025", sessions: "session 4" },
-    ];
   
-    const [searchTerm, setSearchTerm] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const [selectedRows, setSelectedRows] = useState([]);
-    const [showDeletePopup, setShowDeletePopup] = useState(false);
-    const [rowToDelete, setRowToDelete] = useState(null);
-    const rowsPerPage = 20;
-  
-    const navigate = useNavigate();
+  const [selectedRows, setSelectedRows] = useState([]);
+  const navigate = useNavigate();
 
-    const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
 
-  function getAllLevels() {
-    return axios.get("https://icpc-hti.vercel.app/api/level", {
+  const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
+
+  function getAllCamps() {
+    return axios.get("https://icpc-hti.vercel.app/api/camp", {
       headers: { token: userToken },
     });
   }
 
- const { data, isLoading, isError, refetch } = useQuery("getAllLevels", getAllLevels, {
+ const { data, isLoading, isError, refetch } = useQuery("getAllCamps", getAllCamps, {
      enabled: false, // لا يتم جلب البيانات تلقائيًا
      refetchOnWindowFocus: false, // لا يعيد الجلب عند التنقل بين التبويبات
    });
@@ -36,57 +26,60 @@ const WaveDash = () => {
    // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
     useEffect(() => {
        refetch();
-     }, [currentPage]);
+     }, []);
+
+
+
+  const handleDeleteClick = (id) => {
+    try{
+       axios.delete(`https://icpc-hti.vercel.app/api/camp/${id}`, {
+        headers: { token: userToken },
+      });
+
+      refetch()
+      alert("level deleted ^-^");
+    } catch (error) {
+      console.error("خطأ أثناء إرسال البيانات:", error);
+      alert("فى مشكله حصلت");
+    }
+
+  };
+
+  // update it in api updates
+  const handleUpdateClick = (camp) => {
+    navigate("addwave", { state: {
+       campId: camp._id,
+       startDate: camp.startDate, 
+       endDate: camp.endDate, 
+       title: camp.title, 
+       description: camp.description ,
+       registration: camp.registration ,
+       levelId: camp.levelId ,
+       instructorId: camp.instructorId,
+       mentorsId: camp.mentorsId ,
+       hrIds: camp.hrIds} });
+  };
+
 
   if (isLoading) return <>
-   <div className="flex align-middle pt-16 justify-center">
-    <div class="animate-pulse flex flex-col items-center gap-4 w-100">
-      <div>
-        <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
-        <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
-      </div>
-      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
-      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
-      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
-      <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
-    </div>
-  </div>
-  </>;
-  // if (isError) return <p>حدث خطأ أثناء تحميل البيانات.</p>;
-  console.log(data);
-  
-    const filteredData = standingData.filter((data) =>
-      data.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  
-    const indexOfLastRow = currentPage * rowsPerPage;
-    const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-    const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
-  
-    const handleDeleteClick = (index) => {
-      setRowToDelete(index);
-      setShowDeletePopup(true);
-    };
-  
-    const handleConfirmDelete = () => {
-      if (rowToDelete !== null) {
-        standingData.splice(rowToDelete, 1);
-        setShowDeletePopup(false);
-        setRowToDelete(null);
-      }
-    };
-  
-    // update it in api updates
-    const handleCancelDelete = () => {
-      setShowDeletePopup(false);
-      setRowToDelete(null);
-    };
-  
-    // update it in api updates
-    const handleUpdateClick = (session) => {
-      // navigate(`/updatesession/${session}`);
-      navigate(`addwave`);
-    };
+  <div className="flex align-middle pt-16 justify-center">
+   <div class="animate-pulse flex flex-col items-center gap-4 w-100">
+     <div>
+       <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
+       <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
+     </div>
+     <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+     <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+     <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+     <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
+   </div>
+ </div>
+ </>;
+//  if (isError) return <p>حدث خطأ أثناء تحميل البيانات.</p>;
+console.log(data?.data.data);
+
+ 
+
   
     return (
       <div className="wave dash">
@@ -117,45 +110,47 @@ const WaveDash = () => {
           <table className="w-full border-separate border-spacing-y-2 border-yellow-300 my-3 text-sm text-left rtl:text-right text-gray-500 ">
             <thead className="text-lg text-[#3A3A3A] uppercase dark:text-gray-400">
               <tr>
-                <th scope="col" className="px-6 py-3 text-center">
-                  Waves
+                <th scope="col" className="px-6 py-3  min-w-[180px] whitespace-nowrap">
+                  Name
                 </th>
-                <th scope="col" className="px-6 py-3 text-center">
-                  Instructor
+                <th scope="col" className="px-6 py-3  ">
+                Trainees
                 </th>
-                <th scope="col" className="px-6 py-3 text-center">
+                <th scope="col" className="px-6 py-3  min-w-[180px] whitespace-nowrap">
                   Published
                 </th>
-                <th scope="col" className="px-6 py-3 text-center">
-                  Sessions
+                <th scope="col" className="px-6 py-3  ">
+                Registration
                 </th>
-                <th scope="col" className="px-6 py-3 text-center">
+                <th scope="col" className="px-6 py-3 text-center min-w-[280px] whitespace-nowrap">
                   Actions
                 </th>
               </tr>
             </thead>
+
+            {isError ? <><p className="py-32">حدث خطأ أثناء تحميل البيانات.</p></> : <>
             <tbody>
-              {currentRows.map((data, index) => (
+              {data?.data.data.map((data, index) => (
                 <tr
                   key={index}
                   className={`font-medium bg-light/75 !border-yellow-300 fs-6 !h-10 text-dark/75 rounded-lg ${
                     selectedRows.includes(index) ? "bg-gray-200" : ""
                   }`}
                 >
-                  <td className="px-6 text-center">{data.name}</td>
-                  <td className="px-6 text-center">{data.instructor}</td>
-                  <td className="px-6 text-center">{data.published}</td>
-                  <td className="px-6 text-center">{data.sessions}</td>
+                  <td className="px-6 text-center">{data.title}</td>
+                  <td className="px-6 text-center">{data?.trainees?.length}</td>
+                  <td className="px-6 text-center">{data.createdAt}</td>
+                  <td className="px-6 text-center">{data.registration ? <>true</> : <>false</>}</td>
                   <td className="px-6 text-center">
                     <button
                       className="px-4 py-2 bg-red-500 text-white rounded mx-2"
-                      onClick={() => handleDeleteClick(index)}
+                      onClick={() => handleDeleteClick(data._id)}
                     >
                       Delete
                     </button>
                     <button
                       className="px-4 py-2 bg-blue-500 text-white rounded mx-2"
-                      onClick={() => handleUpdateClick(data.sessions)}
+                      onClick={() => handleUpdateClick(data)}
                     >
                       Update
                     </button>
@@ -163,48 +158,12 @@ const WaveDash = () => {
                 </tr>
               ))}
             </tbody>
+            
+            </>}
+
           </table>
   
-          {filteredData.length > rowsPerPage && (
-            <div className="flex justify-center mt-4">
-              <button
-                className="px-4 py-2 bg-gray-500 text-white rounded mx-2 disabled:opacity-50"
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage((prev) => prev - 1)}
-              >
-                Previous
-              </button>
-              <button
-                className="px-4 py-2 bg-gray-500 text-white rounded mx-2 disabled:opacity-50"
-                disabled={indexOfLastRow >= filteredData.length}
-                onClick={() => setCurrentPage((prev) => prev + 1)}
-              >
-                Next
-              </button>
-            </div>
-          )}
-  
-          {showDeletePopup && (
-            <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-              <div className="bg-white p-6 rounded-lg">
-                <p>هل متأكد من حذف الليفل</p>
-                <div className="flex justify-center mt-4">
-                  <button
-                    className="px-4 py-2 bg-red-500 text-white rounded mx-2"
-                    onClick={handleConfirmDelete}
-                  >
-                    احذف يعم
-                  </button>
-                  <button
-                    className="px-4 py-2 bg-gray-500 text-white rounded mx-2"
-                    onClick={handleCancelDelete}
-                  >
-                    لا متحذفش
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
+          
         </div>
       </div>
     );

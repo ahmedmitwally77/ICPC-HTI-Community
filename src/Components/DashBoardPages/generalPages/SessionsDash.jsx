@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthContext';
+import axios from 'axios';
+import { useQuery } from 'react-query';
 
 const SessionsDash = () => {
   const standingData = [
@@ -12,49 +15,98 @@ const SessionsDash = () => {
     { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session7" },
   ];
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState([]);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [rowToDelete, setRowToDelete] = useState(null);
-  const rowsPerPage = 20;
-
+  // const rowsPerPage = 20;
   const navigate = useNavigate();
 
-  const filteredData = standingData.filter((data) =>
-    data.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
 
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
+
+  function getAllSessions() {
+    return axios.get("https://icpc-hti.vercel.app/api/session", {
+      headers: { token: userToken },
+    });
+  }
+
+
+  
+ const { data, isLoading, isError, refetch } = useQuery("getAllSessions", getAllSessions, {
+     enabled: false, // لا يتم جلب البيانات تلقائيًا
+     refetchOnWindowFocus: false, // لا يعيد الجلب عند التنقل بين التبويبات
+   });
+   console.log(data?.data.data);
+   
+   
+   // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
+    useEffect(() => {
+       refetch();
+     }, []);
+
+
+  // const filteredData = data?.data.data.filter((data) =>
+  //   data?.title.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+
+  // const indexOfLastRow = currentPage * rowsPerPage;
+  // const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  // const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
 
  
-  const handleDeleteClick = (index) => {
-    setRowToDelete(index);
-    setShowDeletePopup(true);
-  };
-
-  const handleConfirmDelete = () => {
-    if (rowToDelete !== null) {
-      standingData.splice(rowToDelete, 1);
-      setShowDeletePopup(false);
-      setRowToDelete(null);
+  const handleDeleteClick = async (id) => {
+    try {
+      await axios.delete(`https://icpc-hti.vercel.app/api/session/${id}`, {
+        headers: { token: userToken },
+      });
+      await refetch();
+      alert("Session deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting session:", error);
+      alert("حدثت مشكلة أثناء الحذف.");
     }
   };
-
-  // update it in api updates
-  const handleCancelDelete = () => {
-    setShowDeletePopup(false);
-    setRowToDelete(null);
-  };
+  
 
   // update it in api updates
   const handleUpdateClick = (session) => {
-    
-    // navigate(`/updatesession/${session}`);
-    navigate(`addsession`);
-  };
+    navigate("addsession", {
+      state: {
+        sessionId: session._id,
+        title: session.title,
+        description: session.description,
+        sessionLink: session.sessionLink || "",
+        sessionSlides: session.sessionSlides || "",
+        // content: session.content || "",
+        levelId: session.levelId || "",
+        campId: session.campId || "",
+        sheetLink: session.sheetUpsolveLink || "",
+        upsolveSheetVid: session.sessionSheetLink || "",
+        contestSheetLink: session.contestUpsolveLink || "",
+        upsolveContestVid: session.sessionContestLink || "",
+        attendance: session.attendance || false,
+      },
+    });  };
+
+  if (isLoading) return <>
+  <div className="flex align-middle py-32 justify-center">
+    <div class="animate-pulse flex flex-col items-center gap-4 w-100">
+      <div>
+        <div class="w-48 h-6 bg-slate-400 rounded-md"></div>
+        <div class="w-28 h-4 bg-slate-400 mx-auto mt-3 rounded-md"></div>
+      </div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-full rounded-md"></div>
+      <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
+    </div>
+  </div>
+  </>;
+
+// if (isError) return <p className="py-32">حدث خطأ أثناء تحميل البيانات.</p>;
+
 
   return (
     <div className='SessionsDash'>
@@ -82,13 +134,12 @@ const SessionsDash = () => {
         </div>
         <hr />
 
+        {isError? <><p className="py-32">حدث خطأ أثناء تحميل البيانات.</p></> : <>
+        
         <table className="w-full border-separate border-spacing-y-2 border-yellow-300 my-3 text-sm text-left rtl:text-right text-gray-500 ">
           <thead className="text-lg text-[#3A3A3A] uppercase dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3 text-center">
-                Session
-              </th>
-              <th scope="col" className="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3 text-center min-w-[220px] whitespace-nowrap">
                 Name
               </th>
               <th scope="col" className="px-6 py-3 text-center">
@@ -97,13 +148,17 @@ const SessionsDash = () => {
               <th scope="col" className="px-6 py-3 text-center">
                 Attendance
               </th>
-              <th scope="col" className="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3 text-center  min-w-[300px] whitespace-nowrap">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody>
-            {currentRows.map((data, index) => (
+
+ 
+
+            
+              {data?.data.data.map((data, index) => (
               <tr
                 key={index}
                 className={`font-medium bg-light/75 !border-yellow-300 fs-6 !h-10 text-dark/75 rounded-lg ${
@@ -111,37 +166,36 @@ const SessionsDash = () => {
                 }`}
               >
                 <td className="px-6 text-center">
-                  {data.session}
+                  {data.title}
                 </td>
                 <td className="px-6 text-center">
-                  {data.name}
+                  {data.createdAt}
                 </td>
                 <td className="px-6 text-center">
-                  {data.published}
-                </td>
-                <td className="px-6 text-center">
-                  {data.attendance}
+                  {data.attendedTrainees.length}
                 </td>
                 <td className="px-6 text-center">
                   <button
                     className="px-4 py-2 bg-red-500 text-white rounded mx-2"
-                    onClick={() => handleDeleteClick(index)}
+                    onClick={() => handleDeleteClick(data._id)}
                   >
                     Delete
                   </button>
                   <button
                     className="px-4 py-2 bg-blue-500 text-white rounded mx-2"
-                    onClick={() => handleUpdateClick(data.session)}
+                    onClick={() => handleUpdateClick(data)}
                   >
                     Update
                   </button>
                 </td>
               </tr>
             ))}
+          
           </tbody>
         </table>
+        </>}
 
-        {filteredData.length > rowsPerPage && (
+        {/* {filteredData.length > rowsPerPage && (
           <div className="flex justify-center mt-4">
             <button
               className="px-4 py-2 bg-gray-500 text-white rounded mx-2 disabled:opacity-50"
@@ -158,9 +212,9 @@ const SessionsDash = () => {
               Next
             </button>
           </div>
-        )}
+        )} */}
 
-        {showDeletePopup && (
+        {/* {showDeletePopup && (
           <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg">
               <p>هل متأكد من حذف الجلسة؟</p>
@@ -180,7 +234,7 @@ const SessionsDash = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

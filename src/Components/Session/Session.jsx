@@ -12,52 +12,47 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 const Session = () => {
-
-  const [sessionData, setSessionData] = useState(null); // حالة لتخزين بيانات السيشن
   
   const { id } = useParams();
   const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
+  const { userData } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
+  console.log(id);
 
-  function getSession() {
-    return axios.get(`https://icpc-hti.vercel.app/api/camp/leader/${id}`, {
-      headers: { token: userToken },
-    });
-  }
+function getSession() {
+  console.log("Fetching session with ID:", id);
+   axios.get(`https://icpc-hti.vercel.app/api/session/${id}`, {
+    headers: { token: userToken },
+  }).catch(error => {
+    console.error("API Error:", error.response ? error.response.data : error.message);
+  });
+}
 
   const { data, isLoading, isError, refetch } = useQuery("getSession", getSession, {
     enabled: false, // لا يتم جلب البيانات تلقائيًا
     refetchOnWindowFocus: false, // لا يعيد الجلب عند التنقل بين التبويبات
   });
-  
+
+  console.log(data);
   // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
   useEffect(() => {
-    function fetchWaveData() {
-      refetch(); // استدعاء الطلب يدويًا فقط
+    if (id) {
+      refetch();
     }
-  
-    fetchWaveData()
-  }, [])
+  }, [id]);
 
-  // useEffect(() => {
-  //   console.log("Session ID:", sessionId); // تحقق من قيمة sessionId
-  //   const fetchSessionData = async () => {
-  //     const docRef = doc(db, 'sessions', sessionId);
-  //     const docSnap = await getDoc(docRef);
-  //     if (docSnap.exists()) {
-  //       setSessionData(docSnap.data());
-  //     } else {
-  //       console.log('No such document!');
-  //     }
-  //     setLoading(false); // أوقف حالة التحميل بعد الانتهاء من الجلب
-  //   };
+  function handleSubmitSession(id){
+    try{
+      axios.delete(`https://icpc-hti.vercel.app/api/session/attend/${id}`, {
+       headers: { token: userToken },
+     });
 
-  //   fetchSessionData();
-  // }, [sessionId]);
+     alert("Attendance Submited ^-^");
+   } catch (error) {
+     console.error("خطأ أثناء إرسال البيانات:", error);
+     alert("فى مشكله حصلت");
+   }
+  }
 
-  // const link = sessionData.sheetLink ;
-  // "https://codeforcesapi-b7fuhthjcncdbdax.canadacentral-01.azurewebsites.net/ac/g/WrIZm2zHiL/c/560740/p/1";
-  // console.log(sessionData.sheetLink);
-  
 
   if (isLoading) return <>
   <div className="flex align-middle py-32 justify-center">
@@ -73,7 +68,7 @@ const Session = () => {
     </div>
   </div>
   </>;
-if (isError) return <p className="py-32">حدث خطأ أثناء تحميل البيانات.</p>;
+  if (isError) return <p className="py-32">حدث خطأ أثناء تحميل البيانات.</p>;
 
   return <>
     <TransitionEffect />
@@ -81,16 +76,19 @@ if (isError) return <p className="py-32">حدث خطأ أثناء تحميل ا�
     <div className="session">
       <div className="container py-20">
         <div className="my-12 sm:pl-6">
-          <MainHeading title2={sessionData.title} />
+          <MainHeading title2={data?.data.data.title} />
         </div>     
 
+        <div className="attendanceB flex justify-center align-middle">
+        <button className="btnnew" onClick={() => handleSubmitSession(userData.userId)}>submit attendance</button>
+        </div>
+
         <div className="vid  d-flex py-8 relative -top-4 w-[80%] sm:w-[100%] md:w-[100%] mx-auto justify-center align-items-center  d-md-flex ">
-        {sessionData.link ? (
+        {data?.data.data.sessionLink ? (
               <iframe
-              
                 width="100%"
                 height="500"
-                src={sessionData.link}
+                src={data?.data.data.sessionLink}
                 className="rounded-3xl"
                 title="YouTube video player"
                 frameborder="0" // تعديل هنا
@@ -113,7 +111,7 @@ if (isError) return <p className="py-32">حدث خطأ أثناء تحميل ا�
                 <MainHeading title2="Session Content" />
                 </div>
                 <ul className="fs-4 text-dark/75">
-                  {sessionData.content ? sessionData.content.split('\n').map((item, index) => (
+                  {data?.data.data.description ? data?.data.data.description.split('\n').map((item, index) => (
                     <li className="my-2 flex align-items-center gap-2" key={index} > <RxDotFilled /> {item}</li> // استخدم محتوى السيشن من البيانات
                   )) : <li>No content available</li>}
                 </ul>
@@ -127,9 +125,7 @@ if (isError) return <p className="py-32">حدث خطأ أثناء تحميل ا�
           <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
         </div>
         
-        {sessionData.sessionPdf ? <>
-
-
+        {data?.data.data.sessionPdf ? <>
 
        <div className="my-20 sm:pl-6">
         <MainHeading title2="Session PDF" />
@@ -137,9 +133,8 @@ if (isError) return <p className="py-32">حدث خطأ أثناء تحميل ا�
 
         <div className=" d-flex relative w-[80%] sm:w-[100%] md:w-[100%] mx-auto -top-4 justify-center align-items-center  d-md-flex ">
 
-              
             <iframe 
-            src={`${sessionData.sessionPdf}/preview`} 
+            src={`${data?.data.data.sessionSlides}/preview`} 
             width="100%" 
             height="600px"
             title="pdf session"
@@ -162,7 +157,7 @@ if (isError) return <p className="py-32">حدث خطأ أثناء تحميل ا�
         <MainHeading title2="Sheet" />
         </div>
        
-        <Sheet link={sessionData.sheetLink}/>
+        {/* <Sheet link={data?.data.data.sheetLink}/> */}
 
       </div>
     </div>

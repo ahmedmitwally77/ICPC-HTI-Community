@@ -27,6 +27,9 @@ const Wave = () => {
     enabled: false, // لا يتم جلب البيانات تلقائيًا
     refetchOnWindowFocus: false, // لا يعيد الجلب عند التنقل بين التبويبات
   });
+
+  console.log(data?.data.data);
+  
   
   // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
   useEffect(() => {
@@ -131,7 +134,7 @@ return (
 
             <div className="text flex flex-wrap justify-between items-start pb-8">
                 <p className='text-xl md:w-[100%] text-[#2E2E2E] relative before:w-[8px] before:bg-[#FEBA12] before:h-full before:absolute before:top-0 pl-5 before:left-0'>
-                    {data?.data.data._doc.description.length < 10 ?"Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur delectus necessitatibus, excepturi amet repellendus molestias soluta voluptates quo accusantium voluptas? Vitae, placeat nisi eum consectetur praesentium quasi ex quis blanditiis voluptas ipsam nihil accusamus, deserunt ut eaque cum error fuga natus possimus molestiae sed eos? Itaque facilis ipsam consectetur ipsa." : data?.data.data._doc.description}
+                    {data?.data.data.description.length < 10 ?"Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur delectus necessitatibus, excepturi amet repellendus molestias soluta voluptates quo accusantium voluptas? Vitae, placeat nisi eum consectetur praesentium quasi ex quis blanditiis voluptas ipsam nihil accusamus, deserunt ut eaque cum error fuga natus possimus molestiae sed eos? Itaque facilis ipsam consectetur ipsa." : data?.data.data.description}
                 </p>
             </div>
 

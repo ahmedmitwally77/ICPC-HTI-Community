@@ -35,21 +35,21 @@ const Navbar = () => {
     { to: '/', title: 'Home' },
     { to: '/about', title: 'About' },
     { to: '/training', title: 'Training' },
-    { to: '/committees', title: 'Committees' },
+    // { to: '/committees', title: 'Committees' },
     { to: '/ecpc', title: 'ECPC' },
   ];
 
   // روابط الأدمن
-  const ADMIN_LINKS = [
-    { to: '/addnews', title: 'Add News' },
-    { to: '/addtalented', title: 'Add Talented' },
-    { to: '/addevent', title: 'Add Latest Event' },
-    { to: '/addAchievemnts', title: 'Add Achievements' },
-    { to: '/addgallary', title: 'Add Gallery' },
-    { to: '/addlevels', title: 'Add Levels' },
-    { to: '/addwaves', title: 'Add Waves' },
-    { to: '/addsession', title: 'Add Session' },
-  ];
+  // const ADMIN_LINKS = [
+  //   { to: '/addnews', title: 'Add News' },
+  //   { to: '/addtalented', title: 'Add Talented' },
+  //   { to: '/addevent', title: 'Add Latest Event' },
+  //   { to: '/addAchievemnts', title: 'Add Achievements' },
+  //   { to: '/addgallary', title: 'Add Gallery' },
+  //   { to: '/addlevels', title: 'Add Levels' },
+  //   { to: '/addwaves', title: 'Add Waves' },
+  //   { to: '/addsession', title: 'Add Session' },
+  // ];
 
   // مكون الرابط المخصص
   const CustomLink = ({ to, title, className = "", onClick }) => {
@@ -108,27 +108,6 @@ const Navbar = () => {
               className="mx-3 text-decoration-none text-dark"
             />
           ))}
-          {/* {flag && flagAdmin && (
-            <div className="dropdown-center">
-              <button
-                className="btn btn-primary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Admin Access
-              </button>
-              <ul className="dropdown-menu">
-                {ADMIN_LINKS.map((link) => (
-                  <li key={link.to}>
-                    <Link to={link.to} className="dropdown-item">
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )} */}
         </nav>
 
         {/* قسم المستخدم */}
@@ -164,45 +143,26 @@ const Navbar = () => {
                 onClick={toggleMenu}
               />
             ))}
-            {/* {flag && flagAdmin && (
-              <div className="dropdown-center">
-                <button
-                  className="btn btn-primary dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Admin Access
-                </button>
-                <ul className="dropdown-menu">
-                  {ADMIN_LINKS.map((link) => (
-                    <li key={link.to}>
-                      <Link to={link.to} className="dropdown-item">
-                        {link.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )} */}
+            
           </nav>
 
-          {userToken ? (
-            <nav>
-              <Link to="/dashBoard" className="fw-bold">
-                Hello 
-              </Link>
-            </nav>
-          ) : (
-            <nav className="flex items-center justify-center">
-              <Link to="/signup" className={style.btn2}>
-                SignUp
-              </Link>
-              <Link to="/login" className={style.btn}>
-                SignIn
-              </Link>
-            </nav>
-          )}
+          {userToken && userData ? (
+          <nav className='mt-2'>
+            <Link to={'/dashBoard'} class="flex items-center px-4 -mx-2">
+              <img class="object-cover mx-2 rounded-full h-9 w-9" src={userData?.image?.secure_url} alt={userData?.firstName} />
+              <span class="mx-2 font-medium text-gray-800 dark:text-gray-200 no-underline">Hello {userData?.firstName}</span>
+            </Link>
+          </nav>
+        ) : (
+          <nav className="flex items-center justify-center">
+            <Link to="/signup" className={style.btn2}>
+              SignUp
+            </Link>
+            <Link to="/login" className={style.btn}>
+              SignIn
+            </Link>
+          </nav>
+        )}
         </div>
       )}
 

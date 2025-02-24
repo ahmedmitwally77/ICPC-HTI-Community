@@ -8,6 +8,7 @@ import { AuthContext } from '../../Context/AuthContext'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import { Bounce, toast, ToastContainer } from 'react-toastify'
 
 
 const Login = () => {
@@ -31,6 +32,16 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(data.user));
         setUserToken(data.token);
         setUserData(data.user)
+        toast.success("Login seccufuly 🎉", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
         navigate("/");
       }
     } catch (err) {
@@ -63,7 +74,7 @@ const Login = () => {
 
   return <>
       <TransitionEffect/>
-
+      <ToastContainer />
     <div className='login overflow-x-hidden py-32'>
       <div className="container">
         <div className="row mt-5 justify-content-around align-items-center">

@@ -19,7 +19,7 @@ const News = () => {
     axios.request(option).then(function (response) {
       setArticles(response.data.data)
     }).catch((error) => {
-      alert(error.message)
+      console.log(error.message);
     });
   }
 

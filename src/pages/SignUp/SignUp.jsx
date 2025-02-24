@@ -64,7 +64,7 @@ const SignUp = () => {
       university: '',
       collegeYear: '',
       levelId: '6792ad82828f98081ed36cc1',
-      campId: '6792badf6eef0a555b579918',
+      campId: '67bb5b400f033f4affe8659e',
       gender: 'male',
       DOB: '',
     },
@@ -220,7 +220,7 @@ const SignUp = () => {
                       required
                     >
                         <option value="">--Choose Wave--</option>
-                        <option value="6792badf6eef0a555b579918">Wave 1</option>
+                        <option value="67bb5b400f033f4affe8659e">Wave 1</option>
                         {/* {levels.map((level) => (
                             <option key={level.id} value={level.id}>
                                 {level.title}
@@ -257,7 +257,6 @@ const SignUp = () => {
                   </button>
                 <p className='mt-4'>Already Have An Account? <Link to={'/login'}>Login</Link></p>
               </div>
-              {error && <span>somthing went wrong</span>}
             </form>        
             {showDeletePopup && (
           <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">

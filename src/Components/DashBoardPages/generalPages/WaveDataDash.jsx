@@ -1,7 +1,9 @@
 import React from 'react'
 
 const WaveDataDash = () => {
-  return (
+  return <>
+
+      <h2 className='text-center text-danger'>we will notify you when this done</h2>
     <div className="flex align-middle pt-16 justify-center">
     <div class="animate-pulse flex flex-col items-center gap-4 w-100">
       <div>
@@ -14,7 +16,7 @@ const WaveDataDash = () => {
       <div class="h-7 bg-slate-400 w-1/2 rounded-md"></div>
     </div>
   </div>
-  )
+  </>
 }
 
 export default WaveDataDash

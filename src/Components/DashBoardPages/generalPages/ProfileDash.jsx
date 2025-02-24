@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
 import axios from "axios";
 import { useQuery, useMutation } from "react-query";
+import { Bounce, toast, ToastContainer } from 'react-toastify';
+
 
 const ProfileDash = () => {
   const { userToken } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
@@ -79,12 +81,30 @@ const ProfileDash = () => {
     {
       onSuccess: () => {
         setIsEditing(false);
-        alert("تم تحديث الملف الشخصي بنجاح! 🎉");
+        toast.success("updated seccufuly 🎉", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
         refetch(); // تحديث البيانات بعد التعديل
       },
       onError: (error) => {
         console.error("خطأ أثناء التحديث:", error);
-        alert("حدث خطأ أثناء تحديث البيانات. حاول مرة أخرى.");
+        toast.error("there is an error please try again", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
       },
     }
   );
@@ -146,6 +166,7 @@ const ProfileDash = () => {
 
   return (
     <div className="DashBoard mt-10 relative">
+      <ToastContainer />
       <div className="profDetails bg-white rounded-3xl relative sm:top-0">
         <div className="container">
           <div className="box m-auto p-10 bg-white w-100 rounded-3xl relative">

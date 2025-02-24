@@ -6,36 +6,55 @@ import axios from "axios";
 const AddSessions = () => {
   const { userToken } = useContext(AuthContext);
   const location = useLocation();
+  const [err, setErr] = useState(null);
+
 
   const sessionId = location.state?.sessionId || "";
   const [title, setTitle] = useState(location.state?.title || "");
-  const [description, setDescription] = useState(location.state?.description || "");
-  const [sessionLink, setSessionLink] = useState(location.state?.sessionLink || "");
-  const [sessionSlides, setSessionSlides] = useState(null);
-  const [existingFileName, setExistingFileName] = useState(location.state?.sessionSlides || "");
-
+  const [description, setDescription] = useState(
+    location.state?.description || ""
+  );
+  const [sessionLink, setSessionLink] = useState(
+    location.state?.sessionLink || ""
+  );
+  const [sessionSlides, setSessionSlides] = useState(
+    location.state?.sessionSlides || null
+  );
+  // const [content, setContent] = useState("");
   const [levelId, setLevelId] = useState(location.state?.levelId || "");
   const [campId, setCampId] = useState(location.state?.campId || "");
-  const [sheetLink, setSheetLink] = useState(location.state?.sheetLink || "");
-  const [upsolveSheetVid, setUpsolveSheetVid] = useState(location.state?.upsolveSheetVid || "");
-  const [contestSheetLink, setContestSheetLink] = useState(location.state?.contestSheetLink || "");
-  const [upsolveContestVid, setUpsolveContestVid] = useState(location.state?.upsolveContestVid || "");
-  const [attendance, setAttendance] = useState(location.state?.attendance || false);
+  const [sheetUpsolveLink, setSheetUpsolveLink] = useState(location.state?.sheetUpsolveLink || "");
+  const [sessionSheetLink, setSessionSheetLink] = useState(
+    location.state?.sessionSheetLink || ""
+  );
+  const [contestUpsolveLink, setContestUpsolveLink] = useState(
+    location.state?.contestUpsolveLink || ""
+  );
+  const [sessionContestLink, setSessionContestLink] = useState(
+    location.state?.sessionContestLink || ""
+  );
+  const [attendance, setAttendance] = useState(
+    location.state?.attendance || false
+  );
 
+  //for get all , when add session
   const [levels, setLevels] = useState([]);
   const [waves, setWaves] = useState([]);
 
   useEffect(() => {
-    setExistingFileName(location.state?.sessionSlides || "");
-  }, [location.state?.sessionSlides]);
-
-  useEffect(() => {
+    // Fetch levels and waves if needed
     const fetchLevels = async () => {
       try {
-        const response = await axios.get("https://icpc-hti.vercel.app/api/level", {
-          headers: { token: userToken },
-        });
+        const response = await axios.get(
+          "https://icpc-hti.vercel.app/api/level",
+          {
+            headers: { token: userToken },
+          }
+        );
+        console.log(response.data.data);
         setLevels(response.data.data);
+        console.log(response.data.data);
+        
       } catch (error) {
         console.error("Error fetching levels:", error);
       }
@@ -48,10 +67,14 @@ const AddSessions = () => {
     if (levelId) {
       const fetchWaves = async () => {
         try {
-          const response = await axios.get(`https://icpc-hti.vercel.app/api/camp/level/${levelId}`, {
-            headers: { token: userToken },
-          });
+          const response = await axios.get(
+            `https://icpc-hti.vercel.app/api/camp/level/${levelId}`,
+            {
+              headers: { token: userToken },
+            }
+          );
           setWaves(response.data.data);
+          console.log(response.data.data);
         } catch (error) {
           console.error("Error fetching waves:", error);
         }
@@ -60,49 +83,63 @@ const AddSessions = () => {
     }
   }, [levelId, userToken]);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSessionSlides(file);
-      setExistingFileName(file.name);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(
+      title,
+      sessionSlides,
+      levelId,
+      campId,
+      description,
+      sessionLink,
+      sheetUpsolveLink,
+      sessionSheetLink,
+      contestUpsolveLink,
+      sessionContestLink,
+      attendance
+    );
+  
     try {
       const url = sessionId
         ? `https://icpc-hti.vercel.app/api/session/leader/${sessionId}`
         : "https://icpc-hti.vercel.app/api/session";
+  
       const method = sessionId ? "patch" : "post";
-
+  
+      // إنشاء FormData فقط بالقيم غير الفارغة
       const formData = new FormData();
       formData.append("title", title);
-      formData.append("description", description);
-      formData.append("sessionLink", sessionLink);
+      formData.append("levelId", levelId);
+      formData.append("campId", campId);
+  
+      // إضافة sessionSlides إذا كان موجودًا
       if (sessionSlides) {
         formData.append("sessionSlides", sessionSlides);
       }
-      formData.append("levelId", levelId);
-      formData.append("campId", campId);
-      formData.append("sheetLink", sheetLink);
-      formData.append("upsolveSheetVid", upsolveSheetVid);
-      formData.append("contestSheetLink", contestSheetLink);
-      formData.append("upsolveContestVid", upsolveContestVid);
+  
+      // إضافة باقي القيم فقط إذا لم تكن فارغة
+      if (description) formData.append("description", description);
+      if (sessionLink) formData.append("sessionLink", sessionLink);
+      if (sheetUpsolveLink) formData.append("sheetUpsolveLink", sheetUpsolveLink);
+      if (sessionSheetLink) formData.append("sessionSheetLink", sessionSheetLink);
+      if (contestUpsolveLink) formData.append("contestUpsolveLink", contestUpsolveLink);
+      if (sessionContestLink) formData.append("sessionContestLink", sessionContestLink);
+  
+      // إضافة attendance فقط إذا كان `true`
       formData.append("attendance", attendance);
-
+  
       const response = await axios[method](url, formData, {
         headers: {
           token: userToken,
           "Content-Type": "multipart/form-data",
         },
       });
-
+  
       alert(sessionId ? "تم تحديث البيانات بنجاح!" : "تم إضافة المستوى بنجاح!");
       console.log("الاستجابة:", response.data);
     } catch (error) {
-      console.error("خطأ أثناء إرسال البيانات:", error.response.data.error);
+      console.error("خطأ أثناء إرسال البيانات:", error.response.data.message);
+      setErr(error.response.data.message);
     }
   };
 
@@ -121,7 +158,6 @@ const AddSessions = () => {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              
             />
           </div>
           <div className="mb-3">
@@ -134,27 +170,21 @@ const AddSessions = () => {
               id="sessionLink"
               value={sessionLink}
               onChange={(e) => setSessionLink(e.target.value)}
-              
             />
           </div>
 
           <div className="mb-3">
-        <label htmlFor="sessionSlides" className="form-label font-medium">
-          Session PDF file
-        </label>
-        {existingFileName && (
-          <div className="mb-2">
-            <p>Current file: <a href={existingFileName} target="_blank" rel="noopener noreferrer">{existingFileName}</a></p>
+            <label htmlFor="sessionSlides" className="form-label font-medium">
+              Session PDF file
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="sessionSlides"
+              accept=".pdf,.doc,.docx"
+              onChange={(e) => setSessionSlides(e.target.files[0])}
+            />
           </div>
-        )}
-        <input
-          type="file"
-          className="form-control"
-          id="sessionSlides"
-          accept=".pdf,.doc,.docx"
-          onChange={handleFileChange}
-        />
-      </div>
           <div className="mb-3">
             <label htmlFor="content" className="form-label font-medium">
               Content
@@ -164,7 +194,6 @@ const AddSessions = () => {
               id="content"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              
             ></textarea>
           </div>
 
@@ -181,7 +210,6 @@ const AddSessions = () => {
                   setLevelId(e.target.value);
                   setCampId(""); // Reset selected wave when level changes
                 }}
-                
               >
                 <option value="" disabled>
                   Select a Level
@@ -202,14 +230,13 @@ const AddSessions = () => {
                 id="waveId"
                 value={campId}
                 onChange={(e) => setCampId(e.target.value)}
-                
                 disabled={waves.length === 0} // Disable if no waves available
               >
                 <option value="" disabled>
                   Select a Wave
                 </option>
                 {waves.map((wave) => (
-                  <option key={wave.id} value={wave.id}>
+                  <option key={wave._id} value={wave._id}>
                     {wave.title}
                   </option>
                 ))}
@@ -225,27 +252,25 @@ const AddSessions = () => {
               type="text"
               className="form-control"
               id="sheetLink"
-              value={sheetLink}
-              onChange={(e) => setSheetLink(e.target.value)}
-              
+              value={sheetUpsolveLink}
+              onChange={(e) => setSheetUpsolveLink(e.target.value)}
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="upsolveSheetVid" className="form-label font-medium">
+            <label htmlFor="sessionSheetLink" className="form-label font-medium">
               Upsolve sheet vid{" "}
             </label>
             <input
               type="text"
               className="form-control"
-              id="upsolveSheetVid"
-              value={upsolveSheetVid}
-              onChange={(e) => setUpsolveSheetVid(e.target.value)}
-              
+              id="sessionSheetLink"
+              value={sessionSheetLink}
+              onChange={(e) => setSessionSheetLink(e.target.value)}
             />
           </div>
           <div className="mb-3">
             <label
-              htmlFor="contestSheetLink"
+              htmlFor="contestUpsolveLink"
               className="form-label font-medium"
             >
               contest sheet link
@@ -253,15 +278,14 @@ const AddSessions = () => {
             <input
               type="text"
               className="form-control"
-              id="contestSheetLink"
-              value={contestSheetLink}
-              onChange={(e) => setContestSheetLink(e.target.value)}
-              
+              id="contestUpsolveLink"
+              value={contestUpsolveLink}
+              onChange={(e) => setContestUpsolveLink(e.target.value)}
             />
           </div>
           <div className="mb-3">
             <label
-              htmlFor="upsolveContestVid"
+              htmlFor="sessionContestLink"
               className="form-label font-medium"
             >
               Upsolve Contest Vid{" "}
@@ -269,10 +293,9 @@ const AddSessions = () => {
             <input
               type="text"
               className="form-control"
-              id="upsolveContestVid"
-              value={upsolveContestVid}
-              onChange={(e) => setUpsolveContestVid(e.target.value)}
-              
+              id="sessionContestLink"
+              value={sessionContestLink}
+              onChange={(e) => setSessionContestLink(e.target.value)}
             />
           </div>
 
@@ -313,6 +336,7 @@ const AddSessions = () => {
               {sessionId ? "Update Session" : "Add Session"}
             </button>
           </div>
+            {err ? <><p className="alert alert-danger">{err}</p></> : <></>}
         </form>
       </div>
     </div>

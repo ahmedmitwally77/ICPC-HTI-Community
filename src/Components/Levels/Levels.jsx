@@ -77,7 +77,7 @@ const Levels = () => {
         </div>
       </div>
     </>;
-    if (isError) return <p>حدث خطأ أثناء تحميل البيانات.</p>;
+    if (isError && userData?.userRole !== 'user' ) return <p>حدث خطأ أثناء تحميل البيانات.</p>;
   
 
 
@@ -95,7 +95,7 @@ const Levels = () => {
             <div className="row ">
 
                 {userData?.userRole === 'user' || userData === null ? <>
-              {userData?.userRole === 'user' ? <><h2 className='text-red-800 text-center py-5'>استنى الادمن يقبل الطلب </h2> </> : <> </> } 
+              {/* {userData?.userRole === 'user' ? <><h2 className='text-red-800 text-center py-5'>استنى الادمن يقبل الطلب </h2> </> : <> </> }  */}
               <div  className=" col-md-6 col-12 col-xl-4">
                     <motion.div initial={{opacity:0 , y:50}} whileInView={{opacity:0.7 , y:0}} transition={{duration:1 }} className="box pt-10 sm:top-0 md:top-0 lg:top-0 xl:top-0 -top-16 boxBorder h-[420px] lg:h-[470px] md:my-7 shadow-xl p-10 relative rounded-[80px] ">
                         <img className='w-40 absolute rounded-full  md:hidden -top-24 left-1/2 -translate-x-1/2 m-auto bg-white' src={why1} alt="" />
@@ -107,7 +107,7 @@ const Levels = () => {
                           efficiency. Are you ready to elevate your skills? Join Level One now!
                         </p>
                         <div className="d-flex justify-end">
-                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light mt-3 px-4 mx-auto disabled'>Closed <i class="fa-solid fa-lock"></i></spam>
+                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light mt-3 px-4 mx-auto disabled'>{userData?.userRole === 'user' ? <> Wait admin accept</> : <>Login First</>} <i class="fa-solid fa-lock"></i></spam>
                         </div>
                     </motion.div>
                 </div>
@@ -122,7 +122,7 @@ const Levels = () => {
                           efficiency. Are you ready to elevate your skills? Join Level One now!
                         </p>
                         <div className="d-flex justify-end">
-                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light mt-3 px-4 mx-auto disabled'>Closed <i class="fa-solid fa-lock"></i></spam>
+                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light mt-3 px-4 mx-auto disabled'>{userData?.userRole === 'user' ? <>Wait admin accept</> : <>Login First</>}<i class="fa-solid fa-lock"></i></spam>
                         </div>
                     </motion.div>
                 </div>
@@ -137,7 +137,7 @@ const Levels = () => {
                           efficiency. Are you ready to elevate your skills? Join Level One now!
                         </p>
                         <div className="d-flex justify-end">
-                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light mt-3 px-4 mx-auto disabled'>Closed <i class="fa-solid fa-lock"></i></spam>
+                          <spam  className='btn !font-bold  grade2 text-center !rounded-full py-2 text-light mt-3 px-4 mx-auto disabled'>{userData?.userRole === 'user' ? <>Wait admin accept</> : <>Login First</>} <i class="fa-solid fa-lock"></i></spam>
                         </div>
                     </motion.div>
                 </div>

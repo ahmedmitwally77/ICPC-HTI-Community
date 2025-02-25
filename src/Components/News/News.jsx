@@ -77,7 +77,7 @@ const News = () => {
                     {/* {flagAdmin?<button className='btn btn-danger' onClick={() => handleDelete(article.id)}>Delete</button>:<></>} */}
                     <div className="w-1/2  md:w-full flex justify-center sm:w-full lg:w-full md:mb-12 sm:mb-12 lg:mb-12 ">
                       <div className="image sm:after:hidden  after:w-[400px]  after:rounded-xl after:h-[450px]  after:bg-[#FFB600] relative after:z-[-1] after:translate-x-[-40px] after:translate-y-[-20px] after:top-0 after:left-0 after:absolute">
-                        <img className='rounded-xl w-[400px] h-[400px]' decoding="async" src={article.coverImage.secure_url} alt="icpc hti events" />
+                        <img className='rounded-xl w-[400px] h-[400px] object-cover' decoding="async" src={article.coverImage.secure_url} alt="icpc hti events" />
                       </div>
                     </div>
 

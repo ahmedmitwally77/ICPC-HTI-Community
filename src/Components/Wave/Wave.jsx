@@ -28,7 +28,7 @@ const Wave = () => {
     refetchOnWindowFocus: false, // لا يعيد الجلب عند التنقل بين التبويبات
   });
 
-  console.log(data.data.data);
+  // console.log(data.data.data);
   
   
   // دالة لاستدعاء البيانات مرة واحدة عند الحاجة

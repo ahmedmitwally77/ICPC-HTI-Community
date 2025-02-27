@@ -72,6 +72,8 @@ const SessionsDash = () => {
 
   // update it in api updates
   const handleUpdateClick = (session) => {
+    console.log(session);
+    
     navigate("addsession", {
       state: {
         sessionId: session._id,
@@ -79,13 +81,12 @@ const SessionsDash = () => {
         description: session.description,
         sessionLink: session.sessionLink || "",
         sessionSlides: session.sessionSlides || "",
-        // content: session.content || "",
         levelId: session.levelId || "",
         campId: session.campId || "",
-        sheetUpsolveLink: session.sheetUpsolveLink || "",
-        sessionSheetLink: session.sessionSheetLink || "",
-        contestUpsolveLink: session.contestUpsolveLink || "",
-        sessionContestLink: session.sessionContestLink || "",
+        sheetUpsolveLink: session.sessionSheet.sheetLink|| "",
+        sessionSheetLink: session.sessionSheet.sheetUpsolve  || "",
+        contestUpsolveLink: session.sessionContest.sheetLink || "",
+        sessionContestLink: session.sessionContest.sheetUpsolve || "",
         attendance: session.attendance || false,
       },
     });  };

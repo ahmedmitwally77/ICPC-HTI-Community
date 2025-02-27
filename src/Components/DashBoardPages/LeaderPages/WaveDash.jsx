@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useQuery } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const WaveDash = () => {
   
@@ -37,10 +38,31 @@ const WaveDash = () => {
       });
 
       refetch()
-      alert("level deleted ^-^");
+      // alert("level deleted ^-^");
+      toast.success("wave deleted successfully", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
+      refetch()
     } catch (error) {
       console.error("خطأ أثناء إرسال البيانات:", error);
-      alert("فى مشكله حصلت");
+      // alert("فى مشكله حصلت");
+      toast.error("There is an error whule deleting", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
     }
 
   };
@@ -78,11 +100,11 @@ const WaveDash = () => {
 //  if (isError) return <p>حدث خطأ أثناء تحميل البيانات.</p>;
 console.log(data?.data.data);
 
- 
 
-  
     return (
       <div className="wave dash">
+              <ToastContainer />
+
         <div className="relative overflow-x-auto container">
           <div className="headerStanding flex justify-between my-3">
             <h2>Waves</h2>

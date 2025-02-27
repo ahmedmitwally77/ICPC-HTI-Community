@@ -3,6 +3,7 @@ import { AuthContext } from "../../../Context/AuthContext";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "react-query";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const AddWave = () => {
   const { userToken } = useContext(AuthContext);
@@ -69,6 +70,16 @@ const AddWave = () => {
   }, [userToken, levels.length]);
 
   const handleSubmit = async (e) => {
+    console.log(title,
+      description,
+      registration,
+      levelId,
+      instructorId,
+      mentorsId,
+      hrIds,
+      startDate,
+      endDate,);
+    
     e.preventDefault();
     try {
       const url = campId
@@ -91,10 +102,32 @@ const AddWave = () => {
         { headers: { token: userToken } }
       );
 
-      alert(campId ? "تم تحديث البيانات بنجاح!" : "تم إضافة المستوى بنجاح!");
+      // alert(campId ? "تم تحديث البيانات بنجاح!" : "تم إضافة المستوى بنجاح!");
+      toast.success(campId ? "wave updated successfully" : "wave added successfully", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
     } catch (err) {
-      console.error("خطأ أثناء إرسال البيانات:", err);
-      setError(err)
+      // console.error("خطأ أثناء إرسال البيانات:", err);
+      const errorMessage = err.response?.data?.message || "There is an error";
+      setError(errorMessage);
+  
+      toast.error(errorMessage, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
@@ -105,8 +138,10 @@ const AddWave = () => {
     }
   }, [location.state]); // يتم استدعاء useEffect عند تغيير location.state
 
+
   return (
     <div className="container py-20">
+      <ToastContainer />
       <h2 className="text-center mb-5">
         {campId ? "Update Wave" : "Add Wave"}
       </h2>

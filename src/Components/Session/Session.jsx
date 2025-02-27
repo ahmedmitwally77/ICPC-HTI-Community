@@ -18,27 +18,30 @@ const Session = () => {
   const { userData } = useContext(AuthContext); // استدعاء التوكن من الكونتكست
   console.log(id);
 
-function getSession() {
-  console.log("Fetching session with ID:", id);
-   axios.get(`https://icpc-hti.vercel.app/api/session/${id}`, {
-    headers: { token: userToken },
-  }).catch(error => {
-    console.error("API Error:", error.response ? error.response.data : error.message);
-  });
-}
-
+  function getSession() {
+    console.log("Fetching session with ID:", id);
+    return axios.get(`https://icpc-hti.vercel.app/api/session/leader/${id}`, {
+      headers: { token: userToken },
+    }).then(response => response.data.data) // إرجاع البيانات من الاستجابة
+      .catch(error => {
+        console.error("API Error:", error);
+        throw error; // إعادة رمي الخطأ حتى يتمكن useQuery من التعامل معه
+      });
+  }
+  
   const { data, isLoading, isError, refetch } = useQuery("getSession", getSession, {
     enabled: false, // لا يتم جلب البيانات تلقائيًا
-    refetchOnWindowFocus: false, // لا يعيد الجلب عند التنقل بين التبويبات
+    refetchOnWindowFocus: true, // لا يعيد الجلب عند التنقل بين التبويبات
   });
-
-  console.log(data);
+  
+  console.log(data?.title);
+  
   // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
   useEffect(() => {
     if (id) {
       refetch();
     }
-  }, [id]);
+  }, [id, refetch]);
 
   function handleSubmitSession(id){
     try{
@@ -76,7 +79,7 @@ function getSession() {
     <div className="session">
       <div className="container py-20">
         <div className="my-12 sm:pl-6">
-          <MainHeading title2={data?.data.data.title} />
+          <MainHeading title2={data?.title} />
         </div>     
 
         <div className="attendanceB flex justify-center align-middle">
@@ -84,11 +87,11 @@ function getSession() {
         </div>
 
         <div className="vid  d-flex py-8 relative -top-4 w-[80%] sm:w-[100%] md:w-[100%] mx-auto justify-center align-items-center  d-md-flex ">
-        {data?.data.data.sessionLink ? (
+        {data?.sessionLink ? (
               <iframe
                 width="100%"
                 height="500"
-                src={data?.data.data.sessionLink}
+                src={data?.sessionLink}
                 className="rounded-3xl"
                 title="YouTube video player"
                 frameborder="0" // تعديل هنا
@@ -111,7 +114,7 @@ function getSession() {
                 <MainHeading title2="Session Content" />
                 </div>
                 <ul className="fs-4 text-dark/75">
-                  {data?.data.data.description ? data?.data.data.description.split('\n').map((item, index) => (
+                  {data?.description ? data?.description.split('\n').map((item, index) => (
                     <li className="my-2 flex align-items-center gap-2" key={index} > <RxDotFilled /> {item}</li> // استخدم محتوى السيشن من البيانات
                   )) : <li>No content available</li>}
                 </ul>
@@ -125,7 +128,7 @@ function getSession() {
           <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
         </div>
         
-        {data?.data.data.sessionPdf ? <>
+        {data?.sessionPdf ? <>
 
        <div className="my-20 sm:pl-6">
         <MainHeading title2="Session PDF" />
@@ -134,7 +137,7 @@ function getSession() {
         <div className=" d-flex relative w-[80%] sm:w-[100%] md:w-[100%] mx-auto -top-4 justify-center align-items-center  d-md-flex ">
 
             <iframe 
-            src={`${data?.data.data.sessionSlides}/preview`} 
+            src={`${data?.sessionSlides}/preview`} 
             width="100%" 
             height="600px"
             title="pdf session"
@@ -157,7 +160,7 @@ function getSession() {
         <MainHeading title2="Sheet" />
         </div>
        
-        {/* <Sheet link={data?.data.data.sheetLink}/> */}
+        {/* <Sheet link={data?.sheetLink}/> */}
 
       </div>
     </div>

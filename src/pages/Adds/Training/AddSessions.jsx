@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
 import axios from "axios";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const AddSessions = () => {
   const { userToken } = useContext(AuthContext);
@@ -101,7 +102,7 @@ const AddSessions = () => {
   
     try {
       const url = sessionId
-        ? `https://icpc-hti.vercel.app/api/session/leader/${sessionId}`
+        ? `https://icpc-hti.vercel.app/api/session/${sessionId}`
         : "https://icpc-hti.vercel.app/api/session";
   
       const method = sessionId ? "patch" : "post";
@@ -135,17 +136,38 @@ const AddSessions = () => {
         },
       });
   
-      alert(sessionId ? "تم تحديث البيانات بنجاح!" : "تم إضافة المستوى بنجاح!");
+      // alert(sessionId ? "تم تحديث البيانات بنجاح!" : "تم إضافة المستوى بنجاح!");
+      toast.success(sessionId ? "wave updated successfully" : "wave added successfully", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
       console.log("الاستجابة:", response.data);
     } catch (error) {
-      console.error("خطأ أثناء إرسال البيانات:", error.response.data.message);
+      // console.error("خطأ أثناء إرسال البيانات:", error.response.data.message);
       setErr(error.response.data.message);
+      toast.error(error.response.data.message, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
   return (
     <div className="">
       <div className="container py-20">
+      <ToastContainer />
         <h2 className="text-center font-semibold mb-4">Add New Session</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">

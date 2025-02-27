@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
 import axios from "axios";
 import { useQuery } from "react-query";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const Trainees = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -108,14 +109,44 @@ const Trainees = () => {
         );
         refetch(); // تحديث البيانات بعد العملية
         setShowDeletePopup(false);
-        alert("Role updated successfully");
+        // alert("Role updated successfully");
+        toast.success("Role updated successfully", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
       } catch (err) {
-        alert("Error while updating role");
+        // alert("Error while updating role");
         console.error("Request failed", err);
+        toast.error("Error while updating role", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
       }
       setRowToDelete(null);
     } else {
-      alert("Please select a role first!");
+      // alert("Please select a role first!");
+      toast.error("Please select a role first!", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
@@ -142,6 +173,8 @@ const Trainees = () => {
 
   return (
     <div className="Sheets_Contest">
+            <ToastContainer />
+
       <div className="relative overflow-x-auto container">
         <div className="headerStanding flex justify-between my-3">
           <h2>Trainees</h2>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../../Images/Colored Icon.png'
 import style from './SignUp.module.css'
 import { Link } from 'react-router-dom'
@@ -11,28 +11,176 @@ import axios from 'axios'
 const SignUp = () => {
 
 
-  let navigate = useNavigate() // to let user to go to (home )
-  const [error , setError] = useState(null)
+  // let navigate = useNavigate() // to let user to go to (home )
+  // const [error , setError] = useState(null)
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [showDeletePopup, setShowDeletePopup] = useState(false);
+  
+  // const [levelId, setLevelId] = useState('');
+  // const [campId, setCampId] = useState('');
+
+  //   //for get all , when add session
+  //   const [levels, setLevels] = useState([]);
+  //   const [waves, setWaves] = useState([]);
+  
+  //   useEffect(() => {
+  //     const fetchLevels = async () => {
+  //       try {
+  //         const response = await axios.get("https://icpc-hti.vercel.app/api/level");
+  //         setLevels(response.data.data);
+  //         if (response.data.data.length > 0) {
+  //           setLevelId(response.data.data[0]._id); // اختيار أول level افتراضي
+  //           formik.setFieldValue('levelId', response.data.data[0]._id); // تحديث formik
+  //         }
+  //       } catch (error) {
+  //         console.error("Error fetching levels:", error);
+  //       }
+  //     };
+  //     fetchLevels();
+  //   }, []); // تشغيل مرة واحدة بس
+  
+  //   useEffect(() => {
+  //     if (levelId) {
+  //       const fetchWaves = async () => {
+  //         try {
+  //           const response = await axios.get(
+  //             `https://icpc-hti.vercel.app/api/camp/level/${levelId}`);
+  //           setWaves(response.data.data);
+  //           console.log(response.data.data);
+  //         } catch (error) {
+  //           console.error("Error fetching waves:", error);
+  //         }
+  //       };
+  //       fetchWaves();
+  //     }
+  //   }, [levelId]);
+  
+  
+
+  // async function handleSubmit(values) {
+  //   setIsLoading(true);
+
+  //   try {
+  //     const formData = new FormData();
+  //     for (let key in values) {
+  //       formData.append(key, values[key]);
+  //     }
+
+  //     let { data } = await axios.post(`https://icpc-hti.vercel.app/api/auth/signup`, formData, {
+  //       headers: { 'Content-Type': 'multipart/form-data' }
+  //     });
+  //     console.error(data);
+
+  //     if (data.success) {
+  //       setIsLoading(false);
+  //       setShowDeletePopup(true);
+  //     }
+  //   } catch (err) {
+  //     setIsLoading(false);
+  //     setError(err.response?.data?.message || 'حدث خطأ أثناء التسجيل');
+  //     console.error(err);
+  //   }
+  // }
+
+  // const handleCancelDelete = () => {
+  //   setShowDeletePopup(false);
+  // };
+
+
+  // const formik = useFormik({
+  //   initialValues: {
+  //     firstName: '',
+  //     lastName: '',
+  //     email: '',
+  //     password: '',
+  //     confirmPassword: '',
+  //     image: null,
+  //     universityIdHti: '',
+  //     phone: '',
+  //     nationalId: '',
+  //     codeforces_handle: '',
+  //     university: '',
+  //     collegeYear: '',
+  //     levelId: '',
+  //     campId: '',
+  //     gender: 'male',
+  //     DOB: '',
+  //   },
+  //   validationSchema: Yup.object({
+  //     firstName: Yup.string().required('الاسم مطلوب'),
+  //     lastName: Yup.string().required('الاسم مطلوب'),
+  //     phone: Yup.string().required('رقم الواتس مطلوب'),
+  //     nationalId: Yup.string().matches(/^[0-9]{14}$/, 'الرقم القومي يجب أن يكون مكون من 14 رقم'),
+  //     email: Yup.string().email('البريد الإلكتروني غير صالح').required('البريد الإلكتروني مطلوب'),
+  //     password: Yup.string().required('كلمة المرور مطلوبة'),
+  //     confirmPassword: Yup.string()
+  //       .required('تأكيد كلمة المرور مطلوب')
+  //       .oneOf([Yup.ref('password'), null], 'كلمة المرور غير متطابقة'),
+  //     universityIdHti: Yup.string().required('ID مطلوب'),
+  //     codeforces_handle: Yup.string().required('حساب Codeforces مطلوب'),
+  //     university: Yup.string().required('اسم الجامعة مطلوب'),
+  //     collegeYear: Yup.string().oneOf(['first', 'second', 'third', 'fourth'], 'يجب اختيار سنة دراسية صحيحة'),
+  //     levelId: Yup.string().required('المستوى مطلوب'),
+  //     campId: Yup.string().required('الموجة مطلوبة'),
+  //     gender: Yup.string().oneOf(['male', 'female'], 'يجب اختيار الجنس الصحيح'),
+  //     DOB: Yup.date().required('تاريخ الميلاد مطلوب'),
+  //   }),
+  //   onSubmit: handleSubmit,
+  // });
+
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-    const [showDeletePopup, setShowDeletePopup] = useState(false);
-  
-   const [levelId, setLevelId] = useState('');
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [levelId, setLevelId] = useState(''); // يبدأ فاضي
+  const [campId, setCampId] = useState(''); // يبدأ فاضي
   const [levels, setLevels] = useState([]);
-  
+  const [waves, setWaves] = useState([]);
+
+  // جلب الـ levels بس من غير تحديد قيمة افتراضية
+  useEffect(() => {
+    const fetchLevels = async () => {
+      try {
+        const response = await axios.get("https://icpc-hti.vercel.app/api/level");
+        setLevels(response.data.data);
+      } catch (error) {
+        console.error("Error fetching levels:", error);
+      }
+    };
+    fetchLevels();
+  }, []);
+
+  // جلب الـ waves لما يتغير levelId بس
+  useEffect(() => {
+    if (levelId) {
+      const fetchWaves = async () => {
+        try {
+          const response = await axios.get(`https://icpc-hti.vercel.app/api/camp/level/${levelId}`);
+          setWaves(response.data.data);
+          setCampId(''); // Reset campId لما يتغير levelId
+          formik.setFieldValue('campId', ''); // Reset القيمة في formik
+        } catch (error) {
+          console.error("Error fetching waves:", error);
+        }
+      };
+      fetchWaves();
+    } else {
+      setWaves([]); // لو levelId فاضي، خلي waves فاضية
+      setCampId('');
+      formik.setFieldValue('campId', '');
+    }
+  }, [levelId]);
+
   async function handleSubmit(values) {
     setIsLoading(true);
-
     try {
       const formData = new FormData();
       for (let key in values) {
         formData.append(key, values[key]);
       }
-
       let { data } = await axios.post(`https://icpc-hti.vercel.app/api/auth/signup`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      console.error(data);
-
       if (data.success) {
         setIsLoading(false);
         setShowDeletePopup(true);
@@ -43,11 +191,6 @@ const SignUp = () => {
       console.error(err);
     }
   }
-
-  const handleCancelDelete = () => {
-    setShowDeletePopup(false);
-  };
-
 
   const formik = useFormik({
     initialValues: {
@@ -63,8 +206,8 @@ const SignUp = () => {
       codeforces_handle: '',
       university: '',
       collegeYear: '',
-      levelId: '6792ad82828f98081ed36cc1',
-      campId: '67bb5b400f033f4affe8659e',
+      levelId: '',
+      campId: '',
       gender: 'male',
       DOB: '',
     },
@@ -90,6 +233,9 @@ const SignUp = () => {
     onSubmit: handleSubmit,
   });
 
+    const handleCancelDelete = () => {
+    setShowDeletePopup(false);
+  };
 
   return <>
       <TransitionEffect/>
@@ -184,27 +330,31 @@ const SignUp = () => {
                 </div>
               </div>
 
-              <div className="lvlcampId flex justify-between w-100">
+              {/* <div className="lvlcampId flex justify-between w-100">
                   <div className="form-group w-100  me-2 ">
                         <label className='font-medium' htmlFor="levelId">level</label>
                         <select
                             name='levelId'
                             value={formik.values.levelId} // Use the correct field name here
                             onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
+                            // onChange={formik.handleChange}
+                            onChange={(e) => {
+                              formik.handleChange(e); // استدعاء الدالة مع الـ event
+                              setLevelId(e.target.value);
+                            }}
                             id="levelId"
                             className="form-control"
                             required
                             
                         >
-                            <option value="">--Choose level--</option>
-                            <option value="6792ad82828f98081ed36cc1">Level 1</option>
-
-                            {/* {levels.map((level) => (
-                                <option key={level.id} value={level.id}>
-                                    {level.title}
-                                </option>
-                            ))} */}
+                            <option value="" disabled>
+                              Select a Level
+                            </option>
+                            {levels.map((level) => (
+                              <option key={level._id} value={level._id}>
+                                {level.title}
+                              </option>
+                            ))}
                         </select>
                         {formik.touched.levelId && formik.errors.levelId ? <div className='text-danger fw-bold'>{formik.errors.levelId}</div> : null}
                     </div>
@@ -214,22 +364,86 @@ const SignUp = () => {
                       name='campId'
                       value={formik.values.campId} // Use the correct field name here
                       onBlur={formik.handleBlur}
-                      onChange={formik.handleChange}
+                      // onChange={formik.handleChange}
+                      onChange={(e) => {
+                        formik.handleChange(e);
+                        setCampId(e.target.value);
+                      }}
                       id="campId"
                       className="form-control"
                       required
+                      disabled={waves.length === 0} // Disable if no waves available
                     >
-                        <option value="">--Choose Wave--</option>
-                        <option value="67bb5b400f033f4affe8659e">Wave 1</option>
-                        {/* {levels.map((level) => (
-                            <option key={level.id} value={level.id}>
-                                {level.title}
-                            </option>
-                        ))} */} 
+                        <option value="" disabled>
+                          Select a Wave
+                        </option>
+                        {waves.map((wave) => (
+                          <option key={wave._id} value={wave._id}>
+                            {wave.title}
+                          </option>
+                        ))}
                     </select>
                     {formik.touched.campId && formik.errors.campId ? <div className='text-danger fw-bold'>{formik.errors.campId}</div> : null}
                 </div>
-              </div>
+              </div> */}
+
+<div className="lvlcampId flex justify-between w-100">
+        <div className="form-group w-100 me-2">
+          <label className="font-medium" htmlFor="levelId">Level</label>
+          <select
+            name="levelId"
+            value={formik.values.levelId}
+            onBlur={formik.handleBlur}
+            onChange={(e) => {
+              formik.setFieldValue('levelId', e.target.value);
+              setLevelId(e.target.value);
+            }}
+            id="levelId"
+            className="form-control"
+            required
+          >
+            <option value="" disabled>
+              choose level 
+            </option>
+            {levels.map((level) => (
+              <option key={level._id} value={level._id}>
+                {level.title}
+              </option>
+            ))}
+          </select>
+          {formik.touched.levelId && formik.errors.levelId ? (
+            <div className="text-danger fw-bold">{formik.errors.levelId}</div>
+          ) : null}
+        </div>
+        <div className="form-group w-100">
+          <label className="font-medium" htmlFor="campId">Camp</label>
+          <select
+            name="campId"
+            value={formik.values.campId}
+            onBlur={formik.handleBlur}
+            onChange={(e) => {
+              formik.setFieldValue('campId', e.target.value);
+              setCampId(e.target.value);
+            }}
+            id="campId"
+            className="form-control"
+            required
+            disabled={!levelId || waves.length === 0} // معطل لو levelId فاضي أو waves فاضية
+          >
+            <option value="" disabled>
+              choose camp
+            </option>
+            {waves.map((wave) => (
+              <option key={wave._id} value={wave._id}>
+                {wave.title}
+              </option>
+            ))}
+          </select>
+          {formik.touched.campId && formik.errors.campId ? (
+            <div className="text-danger fw-bold">{formik.errors.campId}</div>
+          ) : null}
+        </div>
+      </div>
 
               <div className="genderBirth flex justify-between  w-100">
                   <div className="form-group w-100 my-3 me-2 ">
@@ -261,7 +475,7 @@ const SignUp = () => {
             {showDeletePopup && (
           <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-16 rounded-lg">
-              <p>Verify your email please</p>
+              <p>Verify your email before login </p>
               <div className="flex justify-center mt-4">
                 <button
                   className="px-4 py-2 bg-gray-500 text-white rounded mx-2"

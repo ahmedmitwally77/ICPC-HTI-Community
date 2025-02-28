@@ -91,7 +91,7 @@ const Login = () => {
 
 
               <label for="password" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-              <input value={formik.values.password} onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" id='password' name='password' class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder="*******" required />
+              <input value={formik.values.password} onBlur={formik.handleBlur} onChange={formik.handleChange} type="password" id='password' name='password' class="mb-2 bg-gray-50 border border-blue-700 text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5" placeholder="*******" required />
               {formik.errors.password && formik.touched.password?<div className="alert mt-2 p-2 alert-danger">{formik.errors.password}</div> : ""}
 
 

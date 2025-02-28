@@ -52,7 +52,6 @@ const AddSessions = () => {
             headers: { token: userToken },
           }
         );
-        console.log(response.data.data);
         setLevels(response.data.data);
         console.log(response.data.data);
         

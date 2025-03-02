@@ -27,15 +27,16 @@ const Session = () => {
         console.error("API Error:", error);
         throw error; // إعادة رمي الخطأ حتى يتمكن useQuery من التعامل معه
       });
+
   }
-  
+
   const { data, isLoading, isError, refetch } = useQuery("getSession", getSession, {
     enabled: false, // لا يتم جلب البيانات تلقائيًا
     refetchOnWindowFocus: true, // لا يعيد الجلب عند التنقل بين التبويبات
   });
-  
-  console.log(data?.title);
-  
+
+  console.log(data);
+
   // دالة لاستدعاء البيانات مرة واحدة عند الحاجة
   useEffect(() => {
     if (id) {
@@ -81,14 +82,16 @@ const Session = () => {
       <div className="container py-20">
         <div className="my-12 sm:pl-6">
           <MainHeading title2={data?.title} />
-        </div>     
-
-        <div className="attendanceB flex justify-center align-middle">
-          <button className="btnnew" onClick={() => handleSubmitSession(userData.userId)}>submit attendance</button>
         </div>
 
-        <div className="vid  d-flex py-8 relative -top-4 w-[80%] sm:w-[100%] md:w-[100%] mx-auto justify-center align-items-center  d-md-flex ">
-        {data?.sessionLink ? (
+        {/* <div className="attendanceB flex justify-center align-middle">
+          <button className="btnnew" onClick={() => handleSubmitSession(userData.userId)}>submit attendance</button>
+        </div> */}
+
+
+        <div className="wrap mb-8 flex flex-wrap justify-center align-items-start">
+          <div className="vid  d-flex py-8 relative  w-[55%] sm:w-[100%] md:w-[100%] mx-auto justify-center align-items-center  ">
+            {data?.sessionLink ? (
               <iframe
                 width="100%"
                 height="500"
@@ -103,34 +106,36 @@ const Session = () => {
             ) : (
               <p>No video available.</p> // عرض رسالة بدلاً من iframe إذا لم يكن هناك رابط
             )}
+          </div>
+
+          <div className="w-[40%] sm:w-[100%] md:w-[100%] pb-16 mt-16 justify-center align-items-center">
+              <MainHeading title1="Session Content" />
+            <ul className="fs-4 text-dark/75">
+              {data?.content ? data?.content.split('\n').map((item, index) => (
+                <li className="my-2 flex  align-items-center gap-2" key={index} > <RxDotFilled /> {item}</li> // استخدم محتوى السيشن من البيانات
+              )) : <li>No content available</li>}
+            </ul>
+
+          </div>
+
+
         </div>
 
-        <div className="line d-flex justify-center align-items-center relative top-7 ">
-            <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
-        </div>
-        
-        <div className="flex flex-wrap pb-16 mt-16 justify-center align-items-center">
-            <div className="w-2/3 sm:w-full md:w-full lg:w-full">
-                <div className="sm:pl-6">
-                <MainHeading title2="Session Content" />
-                </div>
-                <ul className="fs-4 text-dark/75">
-                  {data?.description ? data?.description.split('\n').map((item, index) => (
-                    <li className="my-2 flex align-items-center gap-2" key={index} > <RxDotFilled /> {item}</li> // استخدم محتوى السيشن من البيانات
-                  )) : <li>No content available</li>}
-                </ul>
-            </div>
-            <div className="w-1/3 sm:w-full md:w-full lg:w-full flex justify-center align-items-center">
-                <img className="w-3/4 sm:w-1/2 sm:mt-8 md:w-1/2 lg:w-1/2 object-cover" src={content} alt="" />
-            </div>
-        </div>
+
+
 
         <div className="line d-flex justify-center align-items-center relative top-7 ">
           <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
         </div>
-        
+
+
+
+        <div className="line d-flex justify-center align-items-center relative top-7 ">
+          <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
+        </div>
+
         {data?.sessionSlides ? <>
-{/* 
+{/*           
         <div className="flex flex-wrap pb-16 mt-16 justify-center align-items-center">
           <div className="w-2/3 sm:w-full md:w-full lg:w-full">
             <div className="sm:pl-6">
@@ -158,20 +163,20 @@ const Session = () => {
 
           <div className=" d-flex relative w-[80%] sm:w-[100%] md:w-[100%] mx-auto -top-4 justify-center align-items-center  d-md-flex ">
 
-            <iframe 
-            src={`${data?.sessionSlides}/preview`} 
-            width="100%" 
-            height="600px"
-            title="pdf session"
-            className="rounded-3xl"
-// =======
-//             <iframe
-//               src={`${data?.data.data.sessionSlides.secure_url}/preview`}
-//               width="100%"
-//               height="600px"
-//               title="pdf session"
-//               className="rounded-3xl"
-// >>>>>>> 39f0a80badee4b5b360dd31bad20e3856a5d2abe
+            <iframe
+              src={`${data?.sessionSlides.secure_url}/preview`}
+              width="100%"
+              height="600px"
+              title="pdf session"
+              className="rounded-3xl"
+            // =======
+            //             <iframe
+            //               src={`${data?.data.data.sessionSlides.secure_url}/preview`}
+            //               width="100%"
+            //               height="600px"
+            //               title="pdf session"
+            //               className="rounded-3xl"
+            // >>>>>>> 39f0a80badee4b5b360dd31bad20e3856a5d2abe
             >
             </iframe>
 
@@ -189,10 +194,10 @@ const Session = () => {
         <div className="mt-20 sm:pl-6">
           <MainHeading title2="Sheet" />
         </div>
-       
-        {/* <Sheet link={data?.sheetLink}/> */}
 
-{/* //         <Sheet link={data?.data.data.sessionSheet} />
+        {/* <Sheet link={data?.sessionSheet.sheetLink}/> */}
+
+        {/* //         <Sheet link={data?.data.data.sessionSheet} />
 // >>>>>>> 39f0a80badee4b5b360dd31bad20e3856a5d2abe */}
 
       </div>

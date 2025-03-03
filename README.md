@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# ICPC HTI Community Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Project Status](https://img.shields.io/badge/status-in%20development-yellow)  
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-## Available Scripts
+## Table of Contents
+- [Project Description](#project-description)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Setup and Installation](#setup-and-installation)
+- [Contributing](#contributing)
+- [License](#license)
 
-In the project directory, you can run:
+## Project Description
+The **ICPC HTI Community Platform** is an online learning system designed to enhance problem-solving skills for university students at the Higher Technological Institute (HTI). Built as a collaborative effort by the ICPC HTI Community, this platform offers a variety of programming courses, progress tracking, and administrative tools to streamline educational workflows. It aims to empower students with accessible, high-quality resources while enabling instructors and HR to monitor performance efficiently.
 
-### `npm start`
+Developed under my leadership as Team Lead, the project leverages modern web technologies to deliver a responsive and intuitive user experience, supporting over 500 students with 10+ instructional sessions uploaded to date.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
+- **Departmental Structure:** Registers accounts under specific departments or sub-departments dynamically.
+- **User Roles:**
+  - **Viewer:** Can only view distributed documents without downloading or extracting data.
+  - **Admin:** Full control to manage documents, track users, and archive/delete files after a set period.
+- **Request System:**
+  - Submit requests via forms with pre-filled options and a custom "Other" field.
+  - Track request status: Pending, Returned, Issued.
+- **Document Management:**
+  - Organized in department and sub-department folders.
+  - Admin tracking of document views (who, frequency, duration).
+  - Auto-delete or archiving after a specified time (e.g., 3 years).
+- **Responsive Design:** Built for seamless use across devices, ensuring accessibility.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
+- **Frontend:** React.js, Tailwind CSS, DaisyUI, Flowbite
+- **Backend:** Node.js, Express.js, MongoDB
+- **APIs:** RESTful APIs (e.g., Codeforces integration)
+- **Tools:** Git, GitHub, VS Code, Prettier (for code formatting)
+- **Deployment:** Vercel (Live Demo: [https://icpc-hti-community.vercel.app/](https://icpc-hti-community.vercel.app/))
 
-### `npm test`
+## Screenshots
+*Coming soon! Screenshots of the homepage, course pages, and admin dashboard will be added once finalized.*
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup and Installation
+To run this project locally:
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/zyadessa2/icpc-hti-community.git

@@ -18,18 +18,27 @@ The **ICPC HTI Community Platform** is an online learning system designed to enh
 Developed under my leadership as Team Lead, the project leverages modern web technologies to deliver a responsive and intuitive user experience, supporting over 500 students with 10+ instructional sessions uploaded to date.
 
 ## Features
-- **Departmental Structure:** Registers accounts under specific departments or sub-departments dynamically.
+
+- **Programming Courses Platform:** Offers structured programming courses with multiple levels and camps, allowing users to register and choose their preferred level and camp.
+- **User Registration & Selection:** Users sign up and select a specific Level and Wave to participate in, with access to competitive programming content.
 - **User Roles:**
-  - **Viewer:** Can only view distributed documents without downloading or extracting data.
-  - **Admin:** Full control to manage documents, track users, and archive/delete files after a set period.
-- **Request System:**
-  - Submit requests via forms with pre-filled options and a custom "Other" field.
-  - Track request status: Pending, Returned, Issued.
-- **Document Management:**
-  - Organized in department and sub-department folders.
-  - Admin tracking of document views (who, frequency, duration).
-  - Auto-delete or archiving after a specified time (e.g., 3 years).
-- **Responsive Design:** Built for seamless use across devices, ensuring accessibility.
+  - **Viewer:** Views course materials and distributed documents without download or data extraction privileges.
+  - **Admin:** Manages courses, tracks user progress, archives/deletes content, and oversees platform operations.
+  - **Mentor:** Monitors assigned students, tracks their progress, and sends personalized reports.
+  - **HR:** Tracks specific groups of users, generates reports, and ensures accountability.
+  - **Instructor:** Creates course content, including lectures and exercises, and guides students.
+- **Competitions:** Includes programming contests integrated into the platform for skill enhancement.
+- **Codeforces Integration:** Fetches user data from Codeforces API to track performance and progress seamlessly.
+  - Track request statuses: Pending, Returned, Issued.
+  - Dedicated review section for feedback and evaluations.
+- **Attendance Tracking:**
+  - Records attendance/absence for sessions.
+  - Automated email notifications for registration, warnings, and absences.
+  - Admin tracks document views (who, frequency, duration) and user activity.
+- **Core Pages:**
+  - **Home:** Introduces the ICPC HTI Community with key information and goals.
+  - **About:** Details the community’s mission and structure.
+- **Responsive Design:** Ensures accessibility and seamless use across all devices, with essential features of modern educational platforms (e.g., course navigation, progress tracking).
 
 ## Technologies Used
 - **Frontend:** React.js, Tailwind CSS, DaisyUI, Flowbite

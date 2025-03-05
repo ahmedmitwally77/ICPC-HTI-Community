@@ -91,11 +91,10 @@ const Session = () => {
 
         <div className="wrap mb-8 flex flex-wrap justify-center align-items-start">
           <div className="vid  d-flex py-8 relative  w-[55%] sm:w-[100%] md:w-[100%] mx-auto justify-center align-items-center  ">
-            {data?.sessionLink ? (
               <iframe
                 width="100%"
                 height="500"
-                src={data?.sessionLink}
+                src={data?.sessionLink ? data.sessionLink : 'https://www.youtube.com/embed/tkSR4POdrmU?si=yEwfsbHQEPD_FldY'}
                 className="rounded-3xl"
                 title="YouTube video player"
                 frameborder="0" // تعديل هنا
@@ -103,9 +102,6 @@ const Session = () => {
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               ></iframe>
-            ) : (
-              <p>No video available.</p> // عرض رسالة بدلاً من iframe إذا لم يكن هناك رابط
-            )}
           </div>
 
           <div className="w-[40%] sm:w-[100%] md:w-[100%] pb-16 mt-16 justify-center align-items-center">
@@ -113,7 +109,14 @@ const Session = () => {
             <ul className="fs-4 text-dark/75">
               {data?.content ? data?.content.split('\n').map((item, index) => (
                 <li className="my-2 flex  align-items-center gap-2" key={index} > <RxDotFilled /> {item}</li> // استخدم محتوى السيشن من البيانات
-              )) : <li>No content available</li>}
+              )) : <>
+              <li>Data Types</li>
+                <li>Variables</li>
+                <li>Operators</li>
+                <li>Control Flow</li>
+                </>
+
+              }
             </ul>
 
           </div>
@@ -123,40 +126,18 @@ const Session = () => {
 
 
 
-
+{/* 
         <div className="line d-flex justify-center align-items-center relative top-7 ">
           <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
-        </div>
+        </div> */}
 
 
 
-        <div className="line d-flex justify-center align-items-center relative top-7 ">
+        {/* <div className="line d-flex justify-center align-items-center relative top-7 ">
           <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
-        </div>
+        </div> */}
 
-        {data?.sessionSlides ? <>
-{/*           
-        <div className="flex flex-wrap pb-16 mt-16 justify-center align-items-center">
-          <div className="w-2/3 sm:w-full md:w-full lg:w-full">
-            <div className="sm:pl-6">
-              <MainHeading title2="Session Content" />
-            </div>
-            <ul className="fs-4 text-dark/75">
-              {data?.data.data.description ? <li className="my-2 flex align-items-center gap-2" > <RxDotFilled /> {data.data.data.description}</li> : <li>No content available</li>}
-            </ul>
-          </div>
-          <div className="w-1/3 sm:w-full md:w-full lg:w-full flex justify-center align-items-center">
-            <img className="w-3/4 sm:w-1/2 sm:mt-8 md:w-1/2 lg:w-1/2 object-cover" src={content} alt="" />
-          </div>
-        </div>
-
-        <div className="line d-flex justify-center align-items-center relative top-7 ">
-          <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
-        </div>
-
-        {data?.data.data.sessionPdf ? <>
->>>>>>> 39f0a80badee4b5b360dd31bad20e3856a5d2abe */}
-
+        {/* {data?.sessionSlides ? <>
           <div className="my-20 sm:pl-6">
             <MainHeading title2="Session PDF" />
           </div>
@@ -183,7 +164,7 @@ const Session = () => {
           </div>
         </> : (
           <p>No pdf available.</p> // عرض رسالة بدلاً من iframe إذا لم يكن هناك رابط
-        )}
+        )} */}
 
 
 
@@ -191,9 +172,9 @@ const Session = () => {
           <img className="rounded-2xl w-[20%]" src={line2} alt="line" />
         </div>
 
-        <div className="mt-20 sm:pl-6">
+        {/* <div className="mt-20 sm:pl-6">
           <MainHeading title2="Sheet" />
-        </div>
+        </div> */}
 
         {/* <Sheet link={data?.sessionSheet.sheetLink}/> */}
 

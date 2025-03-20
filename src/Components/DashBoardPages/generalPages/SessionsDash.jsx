@@ -3,17 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext';
 import axios from 'axios';
 import { useQuery } from 'react-query';
+import { Bounce, toast } from 'react-toastify';
 
 const SessionsDash = () => {
-  const standingData = [
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session1" },
-    { name: "stls2", published: "3/2/2025", attendance: "335", session: "Session2" },
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session3" },
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session4" },
-    { name: "stls1", published: "3/2/2025", attendance: "335", session: "Session5" },
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session6" },
-    { name: "Data type", published: "3/2/2025", attendance: "335", session: "Session7" },
-  ];
 
   // const [searchTerm, setSearchTerm] = useState("");
   // const [currentPage, setCurrentPage] = useState(1);
@@ -63,9 +55,29 @@ const SessionsDash = () => {
       });
       await refetch();
       alert("Session deleted successfully!");
+      toast.success( "Session deleted successfully!", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
     } catch (error) {
-      console.error("Error deleting session:", error);
-      alert("حدثت مشكلة أثناء الحذف.");
+      // console.error("Error deleting session:", error);
+      // alert("حدثت مشكلة أثناء الحذف.");
+      toast.error( `error while deleting! ${error}`, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
   
